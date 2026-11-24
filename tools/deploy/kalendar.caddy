@@ -1,0 +1,39 @@
+# LeDor — лендинг, онлайн-конвертер и API (kalendar.bothub.chat).
+# Файлы: /var/www/kalendar (владелец gr — выкладка без sudo: tools/deploy/publish.sh). API — tools/server/setup-backend.sh.
+kalendar.bothub.chat {
+	encode zstd gzip
+	log {
+		output file /var/log/caddy/kalendar.log {
+			roll_size 20MiB
+			roll_keep 10
+			roll_keep_for 168h
+			mode 0640
+		}
+	}
+
+	# API: только POST /rest/v1/rpc/<функция> с ключом приложения → PostgREST на 127.0.0.1:3300.
+	@rpc path /rest/v1/rpc/*
+	handle @rpc {
+		@badkey not header apikey LEDOR_API_KEY
+		respond @badkey `{"message":"invalid api key"}` 401
+		@notpost not method POST
+		respond @notpost 405
+		request_body {
+			max_size 512KB
+		}
+		uri strip_prefix /rest/v1
+		reverse_proxy 127.0.0.1:3300 {
+			header_up -Authorization
+		}
+	}
+	handle /rest/* {
+		respond 404
+	}
+
+	handle {
+		root * /var/www/kalendar
+		header /ledor.apk Content-Type application/vnd.android.package-archive
+		header /assets/* Cache-Control "public, max-age=3600"
+		file_server
+	}
+}

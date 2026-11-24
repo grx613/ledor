@@ -1,0 +1,12 @@
+{
+  "name": "kalendar-golden-vectors",
+  "private": true,
+  "type": "module",
+  "description": "Генератор эталонных тест-векторов (dev-инструмент, в приложение и на сайт не попадает)",
+  "scripts": {
+    "generate": "node generate.mjs"
+  },
+  "devDependencies": {
+    "@hebcal/hdate": "0.23.1"
+  }
+}

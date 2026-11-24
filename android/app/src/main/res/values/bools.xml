@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Еврейские даты буквами (גימטריא): иврит и идиш. -->
+    <bool name="hebrew_letters">false</bool>
+</resources>

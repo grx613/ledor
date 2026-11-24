@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ייִדיש. ערשטע איבערזעצונג — דאַרף איבערגעקוקט ווערן פֿון אַ ייִדיש־רעדער (BACKLOG B-6). -->
+<resources>
+    <string name="locale_tag">yi</string>
+
+    <!-- אַלגעמיין -->
+    <string name="ok">גוט</string>
+    <string name="cancel">אָפּזאָגן</string>
+    <string name="close">פֿאַרמאַכן</string>
+    <string name="back">צוריק</string>
+    <string name="yes">יאָ</string>
+    <string name="no">ניין</string>
+    <string name="save">אָפּהיטן</string>
+    <string name="dont_save">נישט אָפּהיטן</string>
+    <string name="delete">אויסמעקן</string>
+    <string name="edit">ענדערן</string>
+    <string name="create">שאַפֿן</string>
+    <string name="find">געפֿינען</string>
+    <string name="connect">פֿאַרבינדן</string>
+    <string name="copy">קאָפּירן</string>
+    <string name="copied">קאָפּירט</string>
+    <string name="show">ווײַזן</string>
+    <string name="hide">באַהאַלטן</string>
+    <string name="today">הײַנט</string>
+    <string name="version">ווערסיע %1$s</string>
+
+    <!-- נאַוויגאַציע -->
+    <string name="tab_calendar">לוח</string>
+    <string name="tab_events">געשעענישן</string>
+    <string name="tab_converter">איבערזעצער</string>
+    <string name="tab_more">נאָך</string>
+    <string name="lists">רשימות</string>
+    <string name="prev_month">פֿריִערדיקער חודש</string>
+    <string name="next_month">קומענדיקער חודש</string>
+
+    <!-- ערשטער אָנהייב -->
+    <string name="onboarding_title">אימפּאָרטירן אַ רשימה פֿון געבורטסטעג?</string>
+    <string name="onboarding_text">אויב אײַער משפּחה אָדער קהילה האָט שוין אַ רשימה, שרײַבט אַרײַן איר נאָמען און PIN.</string>
+
+    <!-- לוח -->
+    <string name="grid_gregorian">גרעגאָריאַנישע חדשים</string>
+    <string name="grid_hebrew">ייִדישע חדשים</string>
+    <string name="upcoming_events">נאָענטע געשעענישן</string>
+    <string name="events_of_day">געשעענישן: %1$s</string>
+    <string name="show_upcoming">נאָענטע</string>
+    <string name="no_events_day">אין דעם טאָג זײַנען נישטאָ קיין געשעענישן.</string>
+    <string name="add_on_this_date">צולייגן אויף דער דאַטע</string>
+    <string name="add_event">צולייגן אַ געשעעניש</string>
+    <string name="join_list">פֿאַרבינדן אַ רשימה</string>
+    <string name="empty_events">נאָך קיין געשעענישן. לייגט צו די ערשטע: אַ געבורטסטאָג, אַ יאָרצײַט אָדער אַ משפּחה־שׂימחה.</string>
+    <string name="notice_list_deleted">די רשימה „%1$s“ איז אויסגעמעקט געוואָרן פֿונעם בעל־הבית</string>
+
+    <!-- רעלאַטיווע דאַטעס -->
+    <string name="rel_today">הײַנט</string>
+    <string name="rel_tomorrow">מאָרגן</string>
+    <string name="rel_tomorrow_eve">מאָרגן (פֿון הײַנט אין אָוונט)</string>
+    <plurals name="rel_in_days">
+        <item quantity="one">אין %d טאָג</item>
+        <item quantity="other">אין %d טעג</item>
+    </plurals>
+    <plurals name="events_count">
+        <item quantity="one">%d געשעעניש</item>
+        <item quantity="other">%d געשעענישן</item>
+    </plurals>
+    <plurals name="age_turns">
+        <item quantity="one">ווערט %d יאָר</item>
+        <item quantity="other">ווערט %d יאָר</item>
+    </plurals>
+    <plurals name="age_wedding">
+        <item quantity="one">%d יאָר נאָך דער חתונה</item>
+        <item quantity="other">%d יאָר נאָך דער חתונה</item>
+    </plurals>
+    <plurals name="age_years">
+        <item quantity="one">%d יאָר</item>
+        <item quantity="other">%d יאָר</item>
+    </plurals>
+    <string name="age_yahrzeit">%1$d־טער יאָרצײַט</string>
+
+    <!-- סאָרטן געשעענישן -->
+    <string name="type_birthday">געבורטסטאָג</string>
+    <string name="type_yahrzeit">יאָרצײַט</string>
+    <string name="type_bar_mitzvah">בר־מצווה</string>
+    <string name="type_bat_mitzvah">בת־מצווה</string>
+    <string name="type_wedding">חתונה</string>
+    <string name="type_wedding_anniversary">חתונה־יאָרטאָג</string>
+    <string name="type_other">אַנדערס</string>
+
+    <!-- רעדאַקטאָר -->
+    <string name="new_event">נײַע געשעעניש</string>
+    <string name="edit_event">ענדערן די געשעעניש</string>
+    <string name="field_title">נאָמען אָדער טיטל</string>
+    <string name="field_list">רשימה</string>
+    <string name="field_type">סאָרט געשעעניש</string>
+    <string name="field_custom_label">נאָמען פֿון דער געשעעניש</string>
+    <string name="field_recurring">חזרט זיך איבער יעדעס יאָר</string>
+    <string name="recurring_yes">יערלעכע געשעעניש</string>
+    <string name="recurring_no">איינמאָליקע געשעעניש</string>
+    <string name="field_date">דאַטע</string>
+    <string name="field_note">באַמערקונג</string>
+    <string name="gregorian_date">גרעגאָריאַנישע דאַטע</string>
+    <string name="hebrew_date">ייִדישע דאַטע</string>
+    <string name="day">טאָג</string>
+    <string name="month">חודש</string>
+    <string name="year">יאָר</string>
+    <string name="year_unknown">דאָס יאָר איז נישט באַקאַנט</string>
+    <string name="before_sunset">פֿאַר דער שקיעה</string>
+    <string name="after_sunset">נאָך דער שקיעה</string>
+    <string name="conv_hebrew_label">ייִדישע דאַטע</string>
+    <string name="conv_gregorian_label">גרעגאָריאַנישע דאַטע</string>
+    <string name="conv_eve_note">דער ייִדישער טאָג הייבט זיך אָן דעם פֿריִערדיקן אָוונט, מיט דער שקיעה %1$s.</string>
+    <string name="conv_need_year">שרײַבט אַרײַן דאָס יאָר כּדי צו זען די איבערגעזעצטע דאַטע.</string>
+    <string name="observe_title">אָפּמערקן יעדעס יאָר</string>
+    <string name="observe_hebrew">לויטן ייִדישן לוח</string>
+    <string name="observe_gregorian">לויטן גרעגאָריאַנישן לוח</string>
+    <string name="observe_both">לויט ביידע לוחות</string>
+    <string name="observe_both_hint">צוויי דאַטעס אַ יאָר — אַ דערמאָנונג פֿאַר יעדער</string>
+    <string name="observe_needs_year">מע דאַרף דאָס יאָר כּדי איבערצוזעצן די דאַטע</string>
+    <string name="next_occurrence">דער נאָענטסטער: %1$s (%2$s) — %3$s</string>
+    <string name="hint_bar">בר־מצווה (13): %1$s — %2$s</string>
+    <string name="hint_bat">בת־מצווה (12): %1$s — %2$s</string>
+    <string name="add_as_event">צולייגן אַ געשעעניש</string>
+    <string name="event_added">די געשעעניש איז צוגעלייגט</string>
+    <string name="delete_event_q">אויסמעקן די געשעעניש „%1$s“?</string>
+    <string name="save_changes_q">אָפּהיטן די ענדערונגען?</string>
+    <string name="read_only_list">די רשימה איז נאָר צום לייענען — נאָר אַ רעדאַקטאָר קען ענדערן געשעענישן.</string>
+    <string name="err_title_empty">שרײַבט אַרײַן אַ נאָמען אָדער טיטל</string>
+    <string name="err_date_invalid">אַזאַ דאַטע עקזיסטירט נישט אָדער דאָס יאָר איז אויסער דעם ראַם</string>
+    <string name="err_month_days">אין דעם חודש זײַנען %1$d טעג</string>
+    <string name="err_one_off_year">אַן איינמאָליקע געשעעניש דאַרף אַ יאָר</string>
+    <string name="pending_upload">וואַרט אויף שיקן</string>
+
+    <!-- קאַרטל פֿון געשעעניש -->
+    <string name="next_label">דער נאָענטסטער</string>
+    <string name="date_label">דאַטע</string>
+    <string name="original_date">אָריגינעלע דאַטע</string>
+    <string name="event_passed">די געשעעניש איז שוין פֿאַרבײַ</string>
+
+    <!-- רשימה פֿון געשעענישן -->
+    <string name="tab_hebrew_calendar">ייִדישער לוח</string>
+    <string name="tab_gregorian_calendar">גרעגאָריאַניש</string>
+    <string name="all_lists">אַלע רשימות</string>
+    <string name="past_events">פֿאַרבײַ (%1$d)</string>
+
+    <!-- איבערזעצער -->
+    <string name="conv_g2h">גרעגאָריאַניש ← ייִדיש</string>
+    <string name="conv_h2g">ייִדיש ← גרעגאָריאַניש</string>
+    <string name="conv_create_event">שאַפֿן אַ געשעעניש אויף דער דאַטע</string>
+    <string name="conv_if_birth">אויב דאָס איז אַ געבורטס־דאַטע</string>
+    <string name="conv_mitzvah_passed">בר־מצווה און בת־מצווה זײַנען שוין פֿאַרבײַ.</string>
+    <string name="conv_if_death">אויב דאָס איז אַ פּטירה־דאַטע</string>
+    <string name="conv_next_yahrzeit">דער נאָענטסטער יאָרצײַט: %1$s — %2$s</string>
+
+    <!-- נאָך -->
+    <string name="manage_lists">פֿאַרוואַלטן רשימות</string>
+    <string name="manage_lists_sub">שאַפֿן, פֿאַרבינדן, טיילן</string>
+    <string name="settings">באַשטעלונגען</string>
+    <string name="settings_sub">דערמאָנונגען, שטאָט, אויסזען, שפּראַך</string>
+    <string name="about">וועגן דער אַפּ</string>
+
+    <!-- רשימות -->
+    <string name="list_personal">פּערזענלעך</string>
+    <string name="role_personal">פּערזענלעכע רשימה אויף דעם טעלעפֿאָן</string>
+    <string name="role_reader">נאָר לייענען</string>
+    <string name="role_editor">רעדאַקטאָר</string>
+    <string name="role_no_access">קיין צוטריט</string>
+    <string name="create_list">שאַפֿן אַ רשימה</string>
+    <string name="list_name">נאָמען פֿון דער רשימה</string>
+    <string name="name_free">דער נאָמען איז פֿרײַ ✓</string>
+    <string name="read_pin">PIN צום לייענען</string>
+    <string name="read_pin_hint">4–8 ציפֿערן</string>
+    <string name="master_pin">מאַסטער־PIN צום רעדאַקטירן</string>
+    <string name="master_pin_hint">6–12 ציפֿערן, אַנדערש ווי דער PIN צום לייענען</string>
+    <string name="regenerate">נײַ</string>
+    <string name="pins_explain">דעם געוויינלעכן PIN גיט די, וואָס וועלן נאָר קוקן. דעם מאַסטער־PIN — נאָר די, וועמען איר געטרויט צו ענדערן די רשימה.</string>
+    <string name="move_local_events">איבערפֿירן געשעענישן פֿון דער פּערזענלעכער רשימה</string>
+    <string name="join_explain">שרײַבט אַרײַן דעם נאָמען פֿון דער רשימה און דערנאָך דעם PIN. עס פּאַסט סײַ דער געוויינלעכער PIN (נאָר לייענען), סײַ דער מאַסטער־PIN (רעדאַקטירן).</string>
+    <string name="pin_code">PIN</string>
+    <string name="pin_any_hint">געוויינלעכער אָדער מאַסטער־PIN</string>
+    <string name="imported_n">אימפּאָרטירטע געשעענישן: %1$d</string>
+    <string name="synced_at">סינכראָניזירט: %1$s</string>
+    <string name="lists_hint_notify">דער שאַלטער אויף דער זײַט צינדט אָן און לעשט אויס די מעלדונגען פֿאַר דער רשימה.</string>
+    <string name="pull_to_sync">ציט אַראָפּ כּדי צו סינכראָניזירן.</string>
+    <string name="list_notifications">מעלדונגען פֿאַר דער רשימה</string>
+    <string name="pin_codes">PIN־קאָדן</string>
+    <string name="reader_hint">איר האָט נאָר צוטריט צום לייענען. כּדי צו רעדאַקטירן, שרײַבט אַרײַן דעם מאַסטער־PIN.</string>
+    <string name="share">טיילן</string>
+    <string name="share_edit_rights">טיילן דאָס רעכט צו רעדאַקטירן</string>
+    <string name="share_other">אַנדערש…</string>
+    <string name="master_share_warning">דער מאַסטער־PIN לאָזט ענדערן און אויסמעקן געשעענישן און די גאַנצע רשימה. שיקט אים נאָר די, וועמען איר געטרויט אינגאַנצן.</string>
+    <string name="share_message">📅 די רשימה „%1$s“ אין דער אַפּ %2$s: געבורטסטעג, יאָרצײַטן און משפּחה־געשעענישן לויטן ייִדישן און גרעגאָריאַנישן לוח.\n\n1. אינסטאַלירט די אַפּ: %3$s\n2. עפֿנט „רשימות“ ← „פֿאַרבינדן אַ רשימה“\n3. נאָמען: %4$s\n4. PIN: %5$s</string>
+    <string name="sync_now">סינכראָניזירן איצט</string>
+    <string name="synced">סינכראָניזירט</string>
+    <string name="enter_master_pin">אַרײַנשרײַבן דעם מאַסטער־PIN</string>
+    <string name="disconnect_list">אָפּבינדן די רשימה פֿון דעם טעלעפֿאָן</string>
+    <string name="disconnect">אָפּבינדן</string>
+    <string name="disconnect_text">די געשעענישן פֿון דער רשימה וועלן פֿאַרשווינדן פֿון דעם טעלעפֿאָן. אין וואָלקן בלײַבט די רשימה.</string>
+    <string name="delete_from_cloud">אויסמעקן די רשימה פֿונעם וואָלקן</string>
+    <string name="delete_cloud_text">די רשימה מיט אַלע אירע געשעענישן וועט אויף אייביק אויסגעמעקט ווערן בײַ אַלע באַטייליקטע. שרײַבט אַרײַן דעם מאַסטער־PIN צו באַשטעטיקן.</string>
+    <string name="report_list">מעלדן וועגן דער רשימה</string>
+    <string name="report_subject">אַ מעלדונג וועגן דער רשימה „%1$s“</string>
+    <string name="personal_list_explain">די פּערזענלעכע רשימה ווערט געהאַלטן נאָר אויף דעם טעלעפֿאָן און ווערט ניט געשיקט ערגעץ. כּדי צו טיילן געשעענישן מיט דער משפּחה, שאַפֿט אַ רשימה אין וואָלקן.</string>
+    <string name="move_to_cloud">איבערפֿירן געשעענישן צו אַ וואָלקן־רשימה…</string>
+
+    <!-- וואָלקן־טעותן -->
+    <string name="err_network">קיין פֿאַרבינדונג מיטן אינטערנעט</string>
+    <string name="err_server">סערווער־טעות, פּרוּווט שפּעטער</string>
+    <string name="err_cloud_not_configured">דער וואָלקן איז נישט אײַנגעשטעלט אין דער ווערסיע: מע קען נישט שאַפֿן אָדער פֿאַרבינדן געמיינזאַמע רשימות. די פּערזענלעכע רשימה אַרבעט אינגאַנצן.</string>
+    <string name="err_name_taken">אַזאַ רשימה איז שוין דאָ</string>
+    <string name="err_not_found">די רשימה איז נישט געפֿונען. קוקט איבער דעם נאָמען.</string>
+    <string name="err_wrong_pin">פֿאַלשער PIN. געבליבן פּרוּוון: %1$d</string>
+    <string name="err_locked">צו פֿיל פֿאַלשע פּרוּוון. פּרוּווט ווידער אין %1$d מינוט.</string>
+    <string name="err_rate_limited">צו פֿיל פּרוּוון, פּרוּווט שפּעטער</string>
+    <string name="err_invalid_name">נאָמען: פֿון 3 ביז 60 צייכנס</string>
+    <string name="err_invalid_pin">קוקט איבער די PIN־קאָדן</string>
+    <string name="err_forbidden">מע דאַרף רעכט פֿון אַ רעדאַקטאָר</string>
+    <string name="err_unauthorized">דער צוטריט צו דער רשימה איז פֿאַרלוירן. פֿאַרבינדט זי פֿון דאָס נײַ.</string>
+    <string name="err_list_deleted">די רשימה איז אויסגעמעקט</string>
+
+    <!-- באַשטעלונגען -->
+    <string name="set_eve_title">ערשטע דערמאָנונג — דעם אָוונט פֿריִער</string>
+    <string name="set_day_title">צווייטע דערמאָנונג — אין טאָג פֿון דער געשעעניש</string>
+    <string name="set_enabled">אָנגעצונדן</string>
+    <string name="set_eve_before_sunset">… פֿאַר דער שקיעה</string>
+    <string name="set_before_sunset_value">%1$d שעה %2$02d מינוט פֿאַר דער שקיעה</string>
+    <string name="set_eve_fixed">אין אַ באַשטימטער צײַט</string>
+    <string name="set_time">צײַט</string>
+    <string name="set_city_title">שטאָט פֿאַר דער שקיעה־צײַט</string>
+    <string name="city_none">נישט אויסגעקליבן</string>
+    <string name="city_none_hint">די שקיעה ווערט גערעכנט פֿאַר 18:00</string>
+    <string name="city_search">זוכן אַ שטאָט</string>
+    <string name="set_preview">הײַנט איז די שקיעה %1$s ← די אָוונט־דערמאָנונג קומט %2$s</string>
+    <string name="set_health_title">פֿאַרלאָזלעכקייט פֿון די דערמאָנונגען</string>
+    <string name="set_health_warnings">ווײַזן וואָרענונגען</string>
+    <string name="set_test_notification">שיקן אַ פּראָבע־מעלדונג</string>
+    <string name="set_language">שפּראַך</string>
+    <string name="lang_system">ווי אין סיסטעם</string>
+    <string name="set_view_title">אויסזען</string>
+    <string name="set_week_start">ערשטער טאָג פֿון דער וואָך</string>
+    <string name="sunday">זונטיק</string>
+    <string name="monday">מאָנטיק</string>
+    <string name="set_theme">טעמע</string>
+    <string name="theme_system">ווי אין סיסטעם</string>
+    <string name="theme_light">ליכטיק</string>
+    <string name="theme_dark">טונקל</string>
+    <string name="set_adar_title">יאָרצײַט אין אַ עיבור־יאָר</string>
+    <string name="set_adar_i">אדר א׳ (אַשכּנזישער מינהג)</string>
+    <string name="set_adar_ii">אדר ב׳ (ספֿרדישער מינהג)</string>
+    <string name="set_adar_hint">פֿאַר די, וואָס זײַנען נפֿטר געוואָרן אין אדר פֿון אַ פּשוט יאָר.</string>
+
+    <!-- קאָנטראָל פֿון ערלויבענישן -->
+    <string name="health_banner_title">די דערמאָנונגען קענען נישט אָנקומען</string>
+    <string name="health_banner_text">דער טעלעפֿאָן באַגרענעצט די אַפּ אין הינטערגרונט. אָן דער באַשטעלונג וועט די סיסטעם בלאָקירן די אַרבעט אין הינטערגרונט: איר וועט פּשוט נישט באַקומען קיין מעלדונגען.</string>
+    <string name="health_fix">פֿאַרריכטן</string>
+    <string name="health_no_reminders">איך דאַרף נישט קיין דערמאָנונגען</string>
+    <string name="health_disable_title">אויסלעשן די וואָרענונגען?</string>
+    <string name="health_disable_text">די אַפּ וועט אַרבעטן ווי אַ נאָטיץ־ביכל, אָן מעלדונגען. מע קען ווידער אָנצינדן דעם קאָנטראָל אין באַשטעלונגען ← פֿאַרלאָזלעכקייט פֿון די דערמאָנונגען.</string>
+    <string name="health_disable_confirm">אויסלעשן</string>
+    <string name="health_sheet_title">וואָס מע דאַרף אָנצינדן</string>
+    <string name="health_open_setting">עפֿענען די באַשטעלונג</string>
+    <string name="health_all_ok">אַלץ איז אײַנגעשטעלט ✓</string>
+    <string name="health_notif_title">מעלדונגען זײַנען אויסגעלאָשן</string>
+    <string name="health_notif_text">ערלויבט דער אַפּ צו ווײַזן מעלדונגען — אַנדערש וועלן די דערמאָנונגען נישט באַווײַזן זיך.</string>
+    <string name="health_exact_title">גענויע וועקערס זײַנען פֿאַרווערט</string>
+    <string name="health_exact_text">אָן דער ערלויבעניש קען די סיסטעם פֿאַרשפּעטיקן אַ דערמאָנונג אויף עטלעכע שעה.</string>
+    <string name="health_bg_title">די אַרבעט אין הינטערגרונט איז באַגרענעצט</string>
+    <string name="health_bg_text">דער טעלעפֿאָן בלאָקירט אינגאַנצן די אַפּ אין הינטערגרונט. נעמט אַראָפּ די באַטאַרעי־באַגרענעצונג.</string>
+    <string name="health_battery_title">באַטאַרעי־שפּאָרונג איז אָנגעצונדן פֿאַר דער אַפּ</string>
+    <string name="health_battery_text">קלײַבט „אָן באַגרענעצונג“ (אויף Samsung — לייגט צו די אַפּ צו „קיינמאָל נישט שלאָפֿנדיקע אַפּס“). אַנדערש קען דער טעלעפֿאָן אײַנשלעפֿערן די אַפּ, און די דערמאָנונגען וועלן נישט אָנקומען. די אַפּ אַרבעט נישט אין הינטערגרונט און פֿאַרברויכט נישט די באַטאַרעי — זי וואַכט אויף נאָר אין דער מינוט פֿון דער דערמאָנונג.</string>
+    <string name="hint_samsung">Samsung: Settings ← Device care ← Battery ← Background usage limits ← Never sleeping apps.</string>
+    <string name="hint_xiaomi">Xiaomi: Settings ← Apps ← LeDor ← Battery saver ← No restrictions; אויך „Autostart“.</string>
+    <string name="hint_huawei">Huawei/Honor: Settings ← Battery ← App launch ← LeDor ← Manage manually.</string>
+    <string name="hint_oppo">OPPO/realme/OnePlus: Settings ← Battery ← LeDor ← Allow background activity.</string>
+    <string name="hint_vivo">vivo: Settings ← Battery ← Background power consumption ← LeDor ← Allow.</string>
+
+    <!-- מעלדונגען -->
+    <string name="channel_eve">דעם אָוונט פֿריִער</string>
+    <string name="channel_day">אין טאָג פֿון דער געשעעניש</string>
+    <string name="notif_eve_title">הײַנט בײַ נאַכט: %1$s — %2$s</string>
+    <string name="notif_eve_yahrzeit_title">הײַנט בײַ נאַכט יאָרצײַט: %1$s</string>
+    <string name="notif_eve_greg_title">מאָרגן: %1$s — %2$s</string>
+    <string name="notif_day_title">הײַנט: %1$s — %2$s</string>
+    <string name="notif_eve_starts">מיט דער שקיעה הייבט זיך אָן %1$s.</string>
+    <string name="notif_candle">צײַט אָנצוצינדן די יאָרצײַט־ליכט.</string>
+    <string name="notif_test_title">פּראָבע־מעלדונג</string>
+    <string name="notif_test_text">די דערמאָנונגען אַרבעטן. אַזוי וועט אויסזען אַ מעלדונג וועגן אַ געשעעניש.</string>
+
+    <!-- וועגן דער אַפּ -->
+    <string name="about_text">די אַפּ איז נישט־קאָמערציעל און אומזיסט. אין איר איז נישטאָ קיין רעקלאַמע און קיין זאַמלען דאַטן. דער מקור־קאָד איז אָפֿן (Open Source) — יעדער קען איבערקוקן ווי זי אַרבעט און פֿאָרשלאָגן פֿאַרבעסערונגען.</string>
+    <string name="about_source">מקור־קאָד אויף GitHub</string>
+    <string name="about_site">וועבזײַטל פֿון דער אַפּ</string>
+    <string name="about_author">מחבר: גרשון</string>
+    <string name="about_author_channel">דעם מחברס טעלעגראַם־קאַנאַל</string>
+    <string name="about_privacy">פּריוואַטקייט־פּאָליטיק</string>
+    <string name="feedback_title">שיקן אַ באַמערקונג</string>
+    <string name="feedback_sub">אַ טעות, אַן אײַנפֿאַל אָדער אַ שאלה — איך לייען יעדע</string>
+    <string name="feedback_intro">שרײַבט וואָס אַרבעט נישט אָדער וואָס פֿעלט. די באַמערקונג גייט גלײַך צום אַנטוויקלער.</string>
+    <string name="feedback_message">אײַער באַמערקונג</string>
+    <string name="feedback_contact">ווי אַזוי זיך פֿאַרבינדן מיט אײַך (נישט מוז)</string>
+    <string name="feedback_contact_hint">E-mail אָדער טעלעגראַם — אויב איר ווילט אַן ענטפֿער</string>
+    <string name="feedback_attach_meta">צולייגן טעכנישע פּרטים</string>
+    <string name="feedback_meta_detail">ווערסיע %1$s · %2$s · Android %3$s. געשעענישן און PIN־קאָדן ווערן נישט געשיקט.</string>
+    <string name="feedback_send">שיקן</string>
+    <string name="feedback_sending">שיק…</string>
+    <string name="feedback_thanks_title">אַ דאַנק!</string>
+    <string name="feedback_thanks_text">די באַמערקונג איז באַקומען. אויב איר האָט איבערגעלאָזט אַ קאָנטאַקט, וועל איך ענטפֿערן.</string>
+    <string name="feedback_no_network">קיין פֿאַרבינדונג מיטן סערווער. דער טעקסט איז אָפּגעהיט — פּרוּווט שפּעטער.</string>
+    <string name="feedback_failed">ניט געלונגען צו שיקן. פּרוּווט שפּעטער.</string>
+    <string name="feedback_rate_limited">צו פֿיל באַמערקונגען נאָך אַנאַנד. פּרוּווט אין אַ שעה.</string>
+    <string name="feedback_privacy">די באַמערקונג ווערט געהאַלטן אויפֿן סערווער פֿונעם אַנטוויקלער ביז 2 יאָר און ווערט גענוצט נאָר צו ענטפֿערן און פֿאַרבעסערן די אַפּ.</string>
+    <string name="done">פֿאַרטיק</string>
+    <string name="about_licenses">לייסענסן פֿון אָפֿענער ווייכווואַרג</string>
+    <string name="licenses_text">KosherJava Zmanim — LGPL 2.1\nRubik — SIL Open Font License 1.1\nOkHttp, AndroidX, Jetpack Compose, Kotlin, kotlinx — Apache License 2.0\nMaterial icons — Apache License 2.0</string>
+
+    <string-array name="hebrew_months_nom">
+        <item>ניסן</item><item>אייר</item><item>סיוון</item><item>תּמוז</item><item>אָב</item><item>אלול</item>
+        <item>תּשרי</item><item>חשוון</item><item>כּסלו</item><item>טבֿת</item><item>שבֿט</item>
+        <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
+    </string-array>
+    <string-array name="hebrew_months_gen">
+        <item>ניסן</item><item>אייר</item><item>סיוון</item><item>תּמוז</item><item>אָב</item><item>אלול</item>
+        <item>תּשרי</item><item>חשוון</item><item>כּסלו</item><item>טבֿת</item><item>שבֿט</item>
+        <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
+    </string-array>
+    <string-array name="hebrew_months_short">
+        <item>ניסן</item><item>אייר</item><item>סיוון</item><item>תּמוז</item><item>אָב</item><item>אלול</item>
+        <item>תּשרי</item><item>חשוון</item><item>כּסלו</item><item>טבֿת</item><item>שבֿט</item>
+        <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
+    </string-array>
+</resources>

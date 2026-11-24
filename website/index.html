@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Еврейский календарь дней рождения: перевести дату, йорцайт, бар-мицва — LeDor</title>
+<meta name="description" content="Бесплатный онлайн-конвертер: перевести дату рождения в еврейский календарь с учётом захода солнца, рассчитать йорцайт и дату бар-мицвы или бат-мицвы. Приложение LeDor с напоминаниями для семьи и общины.">
+<link rel="canonical" href="https://kalendar.bothub.chat/">
+<meta name="theme-color" content="#0B3FAE">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LeDor">
+<meta property="og:title" content="LeDor — еврейский календарь дней рождения и йорцайтов">
+<meta property="og:description" content="Переведите дату в еврейский календарь, узнайте дату бар-мицвы и йорцайта. Бесплатное приложение без рекламы, общие списки для семьи и общины.">
+<meta property="og:url" content="https://kalendar.bothub.chat/">
+<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/screens/01_splash.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/styles.css?v=4">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication","name":"LeDor","alternateName":"LeDor VaDor","applicationCategory":"LifestyleApplication","operatingSystem":"Android","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Напоминания о днях рождения, йорцайтах и семейных событиях по еврейскому и обычному календарю.","author":{"@type":"Person","name":"Гершон","url":"https://t.me/bothub_founder"}},
+ {"@type":"WebSite","name":"LeDor","url":"https://kalendar.bothub.chat/","inLanguage":"ru"},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Как перевести дату рождения в еврейский календарь?","acceptedAnswer":{"@type":"Answer","text":"Введите дату в конвертер и укажите, было ли это до или после захода солнца: еврейский день начинается вечером, поэтому рождение после заката относится к следующей еврейской дате."}},
+  {"@type":"Question","name":"Когда наступает бар-мицва и бат-мицва?","acceptedAnswer":{"@type":"Answer","text":"Бар-мицва — в 13 лет, бат-мицва — в 12 лет по еврейскому календарю, в еврейский день рождения. Конвертер считает обе даты автоматически."}},
+  {"@type":"Question","name":"Как рассчитать йорцайт?","acceptedAnswer":{"@type":"Answer","text":"Йорцайт — годовщина смерти по еврейскому календарю. Свечу зажигают накануне вечером. В високосный год и для 30-го числа Хешвана и Кислева действуют особые правила — конвертер их учитывает."}},
+  {"@type":"Question","name":"Сколько стоит приложение LeDor?","acceptedAnswer":{"@type":"Answer","text":"Бесплатно, без рекламы и платного контента. Приложение некоммерческое, с открытым исходным кодом."}}
+ ]}
+]}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/mark.svg" alt="" width="34" height="34">LeDor</a>
+    <nav>
+      <a href="#converter">Конвертер</a>
+      <a href="#features">Возможности</a>
+      <a href="#faq">Вопросы</a>
+      <a class="btn btn-primary" href="#download">Скачать</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div class="logo-block">
+      <img src="/assets/img/mark.svg" alt="Знак LeDor" width="104" height="104">
+      <div class="logo-name">LeDor</div>
+      <div class="slogan"><div class="lat">LeDor VaDor</div><div class="he" lang="he" dir="rtl">לדור ודור</div></div>
+    </div>
+    <div>
+      <h1>Перевести дату в еврейский календарь: дни рождения, йорцайт, бар-мицва</h1>
+      <p class="lead">Онлайн-конвертер с учётом захода солнца — и бесплатное приложение, которое напомнит о еврейских днях рождения и годовщинах памяти всей семье.</p>
+    </div>
+    <div class="cta" id="download">
+      <a class="btn btn-primary" href="/ledor.apk" download>Скачать для Android (APK)</a>
+      <a class="btn btn-ghost" href="#converter">Открыть конвертер</a>
+    </div>
+    <small>Скоро в Google Play · бесплатно · без рекламы</small>
+  </div>
+</div>
+
+<section id="converter" class="converter" aria-labelledby="conv-title">
+  <div class="wrap">
+    <div class="card">
+      <h2 id="conv-title" class="visually-hidden">Конвертер дат</h2>
+      <div class="seg" role="group" aria-label="Направление перевода">
+        <button type="button" data-mode="g2h" aria-pressed="true">Обычная → еврейская</button>
+        <button type="button" data-mode="h2g" aria-pressed="false">Еврейская → обычная</button>
+      </div>
+      <div class="fields" id="g-fields">
+        <label>День<select id="g-day"></select></label>
+        <label>Месяц<select id="g-month"></select></label>
+        <label>Год<input id="g-year" type="number" inputmode="numeric" min="1600" max="2200"></label>
+      </div>
+      <div class="fields" id="h-fields" hidden>
+        <label>День<select id="h-day"></select></label>
+        <label>Месяц<select id="h-month"></select></label>
+        <label>Год<input id="h-year" type="number" inputmode="numeric" min="5360" max="5960"></label>
+      </div>
+      <div class="seg" id="sunset" role="group" aria-label="Время суток">
+        <button type="button" data-after="0" aria-pressed="true">До захода солнца</button>
+        <button type="button" data-after="1" aria-pressed="false">После захода</button>
+      </div>
+      <div id="result" class="result" aria-live="polite"></div>
+      <div class="extras" id="extras" hidden>
+        <div class="card" id="birth"></div>
+        <div class="card" id="yahrzeit"></div>
+      </div>
+      <p class="cta-inline"><span id="cta"></span> <a href="#download">Скачать приложение</a></p>
+      <noscript><p>Для работы конвертера включите JavaScript.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Еврейский календарь дней рождения для всей семьи</h2>
+    <p class="sub">LeDor помнит даты, которые важно не пропустить, — и напоминает о них вовремя, по еврейскому или обычному календарю.</p>
+    <div class="features">
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8.66 15H3.34z M12 22L3.34 7h17.32z"/></svg></div><h3>Два календаря сразу</h3><p>Каждая дата видна и по еврейскому, и по обычному календарю. Адар I и Адар II, 30-е Хешвана и Кислева — учтено.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M13.5 20c0-2.8 1.3-5 3-5s4 2.2 4 5"/></svg></div><h3>Общие списки семьи и общины</h3><p>Создайте список и поделитесь ПИН-кодом в Telegram или WhatsApp — родные увидят те же даты. Редактирует только тот, у кого мастер-ПИН.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="11" rx="1.5"/><path d="M12 2.5c2 2.2 2 4.5 0 5.5c-2-1-2-3.3 0-5.5z"/></svg></div><h3>Напоминание накануне вечером</h3><p>Еврейский день начинается с заходом солнца — LeDor напомнит за 3 часа до заката и ещё раз в полдень.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3v18M19 3v18"/><rect x="7" y="5" width="10" height="14"/><path d="M9.5 9h5M9.5 12h5M9.5 15h3"/></svg></div><h3>Бар- и бат-мицва</h3><p>Введите дату рождения — приложение подскажет, когда у ребёнка бар-мицва (13 лет) и бат-мицва (12 лет).</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6 10v4M9 10v4"/></svg></div><h3>Не тратит батарею</h3><p>Никакой работы в фоне и геолокации: приложение просыпается только в момент напоминания.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></div><h3>Бесплатно и без рекламы</h3><p>Некоммерческий проект с открытым кодом. Без подписок, платного контента и сбора данных.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens" aria-labelledby="shots-title">
+  <div class="wrap">
+    <h2 id="shots-title">Как выглядит приложение</h2>
+    <div class="shots-nav"><button type="button" data-scroll="-1" aria-label="Назад">←</button><button type="button" data-scroll="1" aria-label="Вперёд">→</button></div>
+    <div class="shots" id="shots" tabindex="0">
+      <img src="/assets/img/screens/03_calendar.png" alt="Календарь: обычные и еврейские даты в каждой ячейке" width="1200" height="2580" loading="lazy">
+      <img src="/assets/img/screens/05_events.png" alt="Список событий, сгруппированный по еврейским месяцам" width="1200" height="2580" loading="lazy">
+      <img src="/assets/img/screens/08_editor.png" alt="Добавление события: тип, повтор, дата в любом календаре" width="1200" height="2580" loading="lazy">
+      <img src="/assets/img/screens/06_detail.png" alt="Карточка события: ближайшая дата и возраст" width="1200" height="2580" loading="lazy">
+      <img src="/assets/img/screens/07_converter.png" alt="Конвертер дат с учётом захода солнца" width="1200" height="2580" loading="lazy">
+      <img src="/assets/img/screens/01_splash.png" alt="Заставка LeDor" width="1200" height="2580" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap prose">
+    <h2>Как перевести дату рождения в еврейский календарь</h2>
+    <p>Еврейский день начинается не в полночь, а с заходом солнца. Поэтому для человека, родившегося вечером, еврейская дата — уже следующая. Если время рождения неизвестно, выбирайте «до захода солнца»: так поступают чаще всего.</p>
+    <h3>Почему еврейский день рождения «плавает»</h3>
+    <p>Еврейский год лунно-солнечный: месяцы привязаны к луне, а раз в несколько лет добавляется тринадцатый месяц — Адар II. Поэтому одна и та же еврейская дата каждый год выпадает на разные числа обычного календаря.</p>
+    <h2>Как рассчитать йорцайт</h2>
+    <p>Йорцайт — годовщина смерти близкого по еврейскому календарю. Поминальную свечу зажигают накануне вечером. Если человек умер в Адар обычного года, в високосный год по ашкеназскому обычаю йорцайт отмечают в Адар I. Для 30-го числа Хешвана и Кислева действует правило первой годовщины. Конвертер выше всё это учитывает.</p>
+    <h2>Как рассчитать дату бар-мицвы и бат-мицвы</h2>
+    <p>Бар-мицва наступает в 13 лет, бат-мицва — в 12 лет, в еврейский день рождения. Рождённым в Адар високосного года дату считают по последнему Адару. Введите дату рождения в конвертер — обе даты появятся сразу.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Вопросы</h2>
+    <details><summary>Как перевести дату рождения в еврейский календарь?</summary><p>Введите дату в конвертер и укажите, было ли это до или после захода солнца: еврейский день начинается вечером, поэтому рождение после заката относится к следующей еврейской дате.</p></details>
+    <details><summary>Когда наступает бар-мицва и бат-мицва?</summary><p>Бар-мицва — в 13 лет, бат-мицва — в 12 лет по еврейскому календарю, в еврейский день рождения. Конвертер считает обе даты автоматически.</p></details>
+    <details><summary>Как рассчитать йорцайт?</summary><p>Йорцайт — годовщина смерти по еврейскому календарю. Свечу зажигают накануне вечером. В високосный год и для 30-го числа Хешвана и Кислева действуют особые правила — конвертер их учитывает.</p></details>
+    <details><summary>Сколько стоит приложение LeDor?</summary><p>Бесплатно, без рекламы и платного контента. Приложение некоммерческое, с открытым исходным кодом.</p></details>
+    <details><summary>Кто видит мои данные?</summary><p>Личный список хранится только на телефоне. Общий список видят только те, кто знает его название и ПИН-код. Подробнее — в <a href="/privacy/">Политике конфиденциальности</a>.</p></details>
+  </div>
+</section>
+
+<section aria-labelledby="eco-title">
+  <div class="wrap">
+    <h2 id="eco-title">Другие проекты BotHub</h2>
+    <p class="sub">LeDor — часть небольшой экосистемы проектов.</p>
+    <div class="eco">
+      <div class="card"><a href="https://bothub.chat" rel="noopener"><img src="/assets/img/eco/bothub.png" alt="" width="52" height="52" loading="lazy"><div><b>BotHub</b><span>ChatGPT, Claude, Gemini, Grok и другие нейросети в одном месте — без зарубежной подписки.</span></div></a></div>
+      <div class="card"><a href="https://fire.bothub.chat" rel="noopener"><img src="/assets/img/eco/fire.svg" alt="" width="52" height="52" loading="lazy"><div><b>BotHub FiRe</b><span>Главные новости рынков: акции, ставки, нефть, криптовалюты — краткие сюжеты из десятков изданий.</span></div></a></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="author-title">
+  <div class="wrap">
+    <div class="card author">
+      <img src="/assets/img/author.jpg" alt="Гершон" width="72" height="72" loading="lazy">
+      <div>
+        <h2 id="author-title" style="font-size:20px;margin:0">Об авторе: Гершон</h2>
+        <p>Автор приложения LeDor. Нашли ошибку в дате или есть идея — напишите, будем рады.</p>
+        <div class="links"><a href="https://t.me/bothub_founder" rel="noopener">Канал в Telegram</a><a href="https://t.me/rajce" rel="noopener">Написать автору</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">Kalendář</span>
+    <nav><a href="/privacy/">Политика конфиденциальности</a><a href="/privacy/#delete">Удаление данных</a><a href="https://t.me/rajce" rel="noopener">Поддержка</a></nav>
+    <div>© 2026 LeDor · некоммерческий проект · без рекламы и трекеров</div>
+  </div>
+</footer>
+<script type="module" src="/assets/js/converter.js?v=3"></script>
+</body>
+</html>

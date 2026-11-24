@@ -1,0 +1,4 @@
+sdk.dir=/path/to/Android/Sdk
+# Адрес API и публичный ключ приложения (не секрет). Свой сервер: tools/server/setup-backend.sh; Supabase тоже подходит.
+supabase.url=https://kalendar.bothub.chat
+supabase.key=ledor_pub_...

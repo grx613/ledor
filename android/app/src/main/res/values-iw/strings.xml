@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- עברית. תרגום ראשוני — לבדיקה על ידי דובר/ת עברית (BACKLOG B-6). -->
+<resources>
+    <string name="locale_tag">he</string>
+
+    <!-- כללי -->
+    <string name="ok">אישור</string>
+    <string name="cancel">ביטול</string>
+    <string name="close">סגירה</string>
+    <string name="back">חזרה</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="save">שמירה</string>
+    <string name="dont_save">לא לשמור</string>
+    <string name="delete">מחיקה</string>
+    <string name="edit">עריכה</string>
+    <string name="create">יצירה</string>
+    <string name="find">חיפוש</string>
+    <string name="connect">חיבור</string>
+    <string name="copy">העתקה</string>
+    <string name="copied">הועתק</string>
+    <string name="show">הצגה</string>
+    <string name="hide">הסתרה</string>
+    <string name="today">היום</string>
+    <string name="version">גרסה %1$s</string>
+
+    <!-- ניווט -->
+    <string name="tab_calendar">לוח שנה</string>
+    <string name="tab_events">אירועים</string>
+    <string name="tab_converter">ממיר</string>
+    <string name="tab_more">עוד</string>
+    <string name="lists">רשימות</string>
+    <string name="prev_month">החודש הקודם</string>
+    <string name="next_month">החודש הבא</string>
+
+    <!-- הפעלה ראשונה -->
+    <string name="onboarding_title">לייבא רשימת ימי הולדת?</string>
+    <string name="onboarding_text">אם למשפחה או לקהילה שלכם כבר יש רשימה, הזינו את שמה ואת קוד ה־PIN.</string>
+
+    <!-- לוח שנה -->
+    <string name="grid_gregorian">חודשים לועזיים</string>
+    <string name="grid_hebrew">חודשים עבריים</string>
+    <string name="upcoming_events">אירועים קרובים</string>
+    <string name="events_of_day">אירועים: %1$s</string>
+    <string name="show_upcoming">קרובים</string>
+    <string name="no_events_day">אין אירועים ביום זה.</string>
+    <string name="add_on_this_date">הוספה בתאריך זה</string>
+    <string name="add_event">הוספת אירוע</string>
+    <string name="join_list">חיבור רשימה</string>
+    <string name="empty_events">עדיין אין אירועים. הוסיפו את הראשון: יום הולדת, יארצייט או שמחה משפחתית.</string>
+    <string name="notice_list_deleted">הרשימה „%1$s” נמחקה על ידי הבעלים</string>
+
+    <!-- תאריכים יחסיים -->
+    <string name="rel_today">היום</string>
+    <string name="rel_tomorrow">מחר</string>
+    <string name="rel_tomorrow_eve">מחר (מהערב)</string>
+    <plurals name="rel_in_days">
+        <item quantity="one">בעוד יום</item>
+        <item quantity="two">בעוד יומיים</item>
+        <item quantity="other">בעוד %d ימים</item>
+    </plurals>
+    <plurals name="events_count">
+        <item quantity="one">אירוע אחד</item>
+        <item quantity="two">%d אירועים</item>
+        <item quantity="other">%d אירועים</item>
+    </plurals>
+    <plurals name="age_turns">
+        <item quantity="one">מלאת שנה</item>
+        <item quantity="two">מלאות %d שנים</item>
+        <item quantity="other">מלאות %d שנים</item>
+    </plurals>
+    <plurals name="age_wedding">
+        <item quantity="one">שנה לנישואין</item>
+        <item quantity="two">שנתיים לנישואין</item>
+        <item quantity="other">%d שנים לנישואין</item>
+    </plurals>
+    <plurals name="age_years">
+        <item quantity="one">שנה</item>
+        <item quantity="two">שנתיים</item>
+        <item quantity="other">%d שנים</item>
+    </plurals>
+    <string name="age_yahrzeit">יארצייט %1$d</string>
+
+    <!-- סוגי אירועים -->
+    <string name="type_birthday">יום הולדת</string>
+    <string name="type_yahrzeit">יארצייט</string>
+    <string name="type_bar_mitzvah">בר מצווה</string>
+    <string name="type_bat_mitzvah">בת מצווה</string>
+    <string name="type_wedding">חתונה</string>
+    <string name="type_wedding_anniversary">יום נישואין</string>
+    <string name="type_other">אחר</string>
+
+    <!-- עורך -->
+    <string name="new_event">אירוע חדש</string>
+    <string name="edit_event">עריכת אירוע</string>
+    <string name="field_title">שם או כותרת</string>
+    <string name="field_list">רשימה</string>
+    <string name="field_type">סוג האירוע</string>
+    <string name="field_custom_label">שם האירוע</string>
+    <string name="field_recurring">חוזר מדי שנה</string>
+    <string name="recurring_yes">אירוע שנתי</string>
+    <string name="recurring_no">אירוע חד־פעמי</string>
+    <string name="field_date">תאריך</string>
+    <string name="field_note">הערה</string>
+    <string name="gregorian_date">תאריך לועזי</string>
+    <string name="hebrew_date">תאריך עברי</string>
+    <string name="day">יום</string>
+    <string name="month">חודש</string>
+    <string name="year">שנה</string>
+    <string name="year_unknown">השנה לא ידועה</string>
+    <string name="before_sunset">לפני השקיעה</string>
+    <string name="after_sunset">אחרי השקיעה</string>
+    <string name="conv_hebrew_label">תאריך עברי</string>
+    <string name="conv_gregorian_label">תאריך לועזי</string>
+    <string name="conv_eve_note">היום העברי מתחיל בערב הקודם, בשקיעת %1$s.</string>
+    <string name="conv_need_year">הזינו שנה כדי לראות את התאריך המומר.</string>
+    <string name="observe_title">לציין מדי שנה</string>
+    <string name="observe_hebrew">לפי הלוח העברי</string>
+    <string name="observe_gregorian">לפי הלוח הלועזי</string>
+    <string name="observe_both">לפי שני הלוחות</string>
+    <string name="observe_both_hint">שני תאריכים בשנה — תזכורת לכל אחד</string>
+    <string name="observe_needs_year">כדי להמיר את התאריך צריך שנה</string>
+    <string name="next_occurrence">הקרוב: %1$s (%2$s) — %3$s</string>
+    <string name="hint_bar">בר מצווה (13): %1$s — %2$s</string>
+    <string name="hint_bat">בת מצווה (12): %1$s — %2$s</string>
+    <string name="add_as_event">הוספת אירוע</string>
+    <string name="event_added">האירוע נוסף</string>
+    <string name="delete_event_q">למחוק את האירוע „%1$s”?</string>
+    <string name="save_changes_q">לשמור את השינויים?</string>
+    <string name="read_only_list">הרשימה לקריאה בלבד — רק עורך יכול לשנות אירועים.</string>
+    <string name="err_title_empty">הזינו שם או כותרת</string>
+    <string name="err_date_invalid">תאריך זה אינו קיים או שהשנה מחוץ לטווח</string>
+    <string name="err_month_days">בחודש זה %1$d ימים</string>
+    <string name="err_one_off_year">לאירוע חד־פעמי צריך שנה</string>
+    <string name="pending_upload">ממתין לשליחה</string>
+
+    <!-- כרטיס אירוע -->
+    <string name="next_label">הקרוב</string>
+    <string name="date_label">תאריך</string>
+    <string name="original_date">התאריך המקורי</string>
+    <string name="event_passed">האירוע כבר עבר</string>
+
+    <!-- רשימת אירועים -->
+    <string name="tab_hebrew_calendar">לוח עברי</string>
+    <string name="tab_gregorian_calendar">לוח לועזי</string>
+    <string name="all_lists">כל הרשימות</string>
+    <string name="past_events">שעברו (%1$d)</string>
+
+    <!-- ממיר -->
+    <string name="conv_g2h">לועזי ← עברי</string>
+    <string name="conv_h2g">עברי ← לועזי</string>
+    <string name="conv_create_event">יצירת אירוע בתאריך זה</string>
+    <string name="conv_if_birth">אם זהו תאריך לידה</string>
+    <string name="conv_mitzvah_passed">הבר מצווה והבת מצווה כבר עברו.</string>
+    <string name="conv_if_death">אם זהו תאריך פטירה</string>
+    <string name="conv_next_yahrzeit">היארצייט הקרוב: %1$s — %2$s</string>
+
+    <!-- עוד -->
+    <string name="manage_lists">ניהול רשימות</string>
+    <string name="manage_lists_sub">יצירה, חיבור, שיתוף</string>
+    <string name="settings">הגדרות</string>
+    <string name="settings_sub">תזכורות, עיר, מראה, שפה</string>
+    <string name="about">אודות</string>
+
+    <!-- רשימות -->
+    <string name="list_personal">אישית</string>
+    <string name="role_personal">רשימה אישית בטלפון זה</string>
+    <string name="role_reader">קריאה בלבד</string>
+    <string name="role_editor">עורך</string>
+    <string name="role_no_access">אין גישה</string>
+    <string name="create_list">יצירת רשימה</string>
+    <string name="list_name">שם הרשימה</string>
+    <string name="name_free">השם פנוי ✓</string>
+    <string name="read_pin">קוד PIN לקריאה</string>
+    <string name="read_pin_hint">4–8 ספרות</string>
+    <string name="master_pin">קוד מאסטר לעריכה</string>
+    <string name="master_pin_hint">6–12 ספרות, שונה מקוד הקריאה</string>
+    <string name="regenerate">חדש</string>
+    <string name="pins_explain">את הקוד הרגיל תנו למי שרק יצפה ברשימה. את קוד המאסטר — רק למי שאתם סומכים עליו שישנה אותה.</string>
+    <string name="move_local_events">העברת אירועים מהרשימה האישית</string>
+    <string name="join_explain">הזינו את שם הרשימה ואחר כך את הקוד. מתאים גם הקוד הרגיל (קריאה בלבד) וגם קוד המאסטר (עריכה).</string>
+    <string name="pin_code">קוד PIN</string>
+    <string name="pin_any_hint">קוד רגיל או קוד מאסטר</string>
+    <string name="imported_n">יובאו אירועים: %1$d</string>
+    <string name="synced_at">סונכרן: %1$s</string>
+    <string name="lists_hint_notify">המתג מימין מפעיל ומכבה התראות עבור הרשימה.</string>
+    <string name="pull_to_sync">משכו למטה כדי לסנכרן.</string>
+    <string name="list_notifications">התראות עבור רשימה זו</string>
+    <string name="pin_codes">קודים</string>
+    <string name="reader_hint">יש לכם גישת קריאה בלבד. כדי לערוך, הזינו את קוד המאסטר.</string>
+    <string name="share">שיתוף</string>
+    <string name="share_edit_rights">שיתוף הרשאת עריכה</string>
+    <string name="share_other">אחר…</string>
+    <string name="master_share_warning">קוד המאסטר מאפשר לשנות ולמחוק אירועים ואת הרשימה כולה. שלחו אותו רק למי שאתם סומכים עליו לגמרי.</string>
+    <string name="share_message">📅 הרשימה „%1$s” באפליקציה %2$s: ימי הולדת, יארצייטים ואירועים משפחתיים לפי הלוח העברי והלועזי.\n\n1. התקינו את האפליקציה: %3$s\n2. פתחו „רשימות” ← „חיבור רשימה”\n3. שם: %4$s\n4. קוד PIN: %5$s</string>
+    <string name="sync_now">סנכרון עכשיו</string>
+    <string name="synced">סונכרן</string>
+    <string name="enter_master_pin">הזנת קוד מאסטר</string>
+    <string name="disconnect_list">ניתוק הרשימה מטלפון זה</string>
+    <string name="disconnect">ניתוק</string>
+    <string name="disconnect_text">אירועי הרשימה ייעלמו מטלפון זה. בענן הרשימה תישאר.</string>
+    <string name="delete_from_cloud">מחיקת הרשימה מהענן</string>
+    <string name="delete_cloud_text">הרשימה וכל אירועיה יימחקו לצמיתות אצל כל המשתתפים. הזינו את קוד המאסטר לאישור.</string>
+    <string name="report_list">דיווח על הרשימה</string>
+    <string name="report_subject">דיווח על הרשימה „%1$s”</string>
+    <string name="personal_list_explain">הרשימה האישית נשמרת רק בטלפון זה ואינה נשלחת לשום מקום. כדי לשתף אירועים עם המשפחה, צרו רשימה בענן.</string>
+    <string name="move_to_cloud">העברת אירועים לרשימה בענן…</string>
+
+    <!-- שגיאות ענן -->
+    <string name="err_network">אין חיבור לאינטרנט</string>
+    <string name="err_server">שגיאת שרת, נסו שוב מאוחר יותר</string>
+    <string name="err_cloud_not_configured">הענן אינו מוגדר בגרסה זו: אי אפשר ליצור או לחבר רשימות משותפות. הרשימה האישית פועלת במלואה.</string>
+    <string name="err_name_taken">רשימה בשם זה כבר קיימת</string>
+    <string name="err_not_found">הרשימה לא נמצאה. בדקו את השם.</string>
+    <string name="err_wrong_pin">קוד שגוי. נותרו ניסיונות: %1$d</string>
+    <string name="err_locked">יותר מדי ניסיונות שגויים. נסו שוב בעוד %1$d דק׳.</string>
+    <string name="err_rate_limited">יותר מדי ניסיונות, נסו מאוחר יותר</string>
+    <string name="err_invalid_name">שם: 3 עד 60 תווים</string>
+    <string name="err_invalid_pin">בדקו את הקודים</string>
+    <string name="err_forbidden">נדרשת הרשאת עורך</string>
+    <string name="err_unauthorized">הגישה לרשימה אבדה. חברו אותה מחדש.</string>
+    <string name="err_list_deleted">הרשימה נמחקה</string>
+
+    <!-- הגדרות -->
+    <string name="set_eve_title">תזכורת ראשונה — בערב הקודם</string>
+    <string name="set_day_title">תזכורת שנייה — ביום האירוע</string>
+    <string name="set_enabled">פעיל</string>
+    <string name="set_eve_before_sunset">… לפני השקיעה</string>
+    <string name="set_before_sunset_value">%1$d ש׳ %2$02d דק׳ לפני השקיעה</string>
+    <string name="set_eve_fixed">בשעה קבועה</string>
+    <string name="set_time">שעה</string>
+    <string name="set_city_title">עיר לחישוב השקיעה</string>
+    <string name="city_none">לא נבחרה</string>
+    <string name="city_none_hint">השקיעה מחושבת כ־18:00</string>
+    <string name="city_search">חיפוש עיר</string>
+    <string name="set_preview">השקיעה היום ב־%1$s ← התזכורת בערב תגיע ב־%2$s</string>
+    <string name="set_health_title">אמינות התזכורות</string>
+    <string name="set_health_warnings">הצגת אזהרות</string>
+    <string name="set_test_notification">שליחת התראת ניסיון</string>
+    <string name="set_language">שפה</string>
+    <string name="lang_system">כמו במערכת</string>
+    <string name="set_view_title">מראה</string>
+    <string name="set_week_start">היום הראשון בשבוע</string>
+    <string name="sunday">ראשון</string>
+    <string name="monday">שני</string>
+    <string name="set_theme">ערכת נושא</string>
+    <string name="theme_system">כמו במערכת</string>
+    <string name="theme_light">בהירה</string>
+    <string name="theme_dark">כהה</string>
+    <string name="set_adar_title">יארצייט בשנה מעוברת</string>
+    <string name="set_adar_i">אדר א׳ (מנהג אשכנז)</string>
+    <string name="set_adar_ii">אדר ב׳ (מנהג ספרד)</string>
+    <string name="set_adar_hint">למי שנפטר באדר של שנה פשוטה.</string>
+
+    <!-- בדיקת הרשאות -->
+    <string name="health_banner_title">ייתכן שהתזכורות לא יגיעו</string>
+    <string name="health_banner_text">הטלפון מגביל את האפליקציה ברקע. בלי לשנות הגדרה זו המערכת תחסום את העבודה ברקע: פשוט לא תקבלו התראות, והתזכורות יאבדו את טעמן.</string>
+    <string name="health_fix">תיקון</string>
+    <string name="health_no_reminders">לא צריך תזכורות</string>
+    <string name="health_disable_title">לכבות את האזהרות?</string>
+    <string name="health_disable_text">האפליקציה תעבוד כפנקס, בלי התראות. אפשר להפעיל את הבדיקה שוב בהגדרות ← אמינות התזכורות.</string>
+    <string name="health_disable_confirm">כיבוי</string>
+    <string name="health_sheet_title">מה צריך להפעיל</string>
+    <string name="health_open_setting">פתיחת ההגדרה</string>
+    <string name="health_all_ok">הכול מוגדר ✓</string>
+    <string name="health_notif_title">ההתראות כבויות</string>
+    <string name="health_notif_text">אפשרו לאפליקציה להציג התראות — אחרת התזכורות לא יופיעו.</string>
+    <string name="health_exact_title">התראות מדויקות אסורות</string>
+    <string name="health_exact_text">בלי הרשאה זו המערכת עלולה לעכב תזכורת בכמה שעות.</string>
+    <string name="health_bg_title">העבודה ברקע מוגבלת</string>
+    <string name="health_bg_text">הטלפון חוסם את האפליקציה ברקע לחלוטין. הסירו את הגבלת הסוללה.</string>
+    <string name="health_battery_title">חיסכון בסוללה פעיל לאפליקציה</string>
+    <string name="health_battery_text">בחרו „ללא הגבלה” (בסמסונג — הוסיפו את האפליקציה ל„אפליקציות שלעולם אינן במצב שינה”). אחרת הטלפון עלול להרדים את האפליקציה והתזכורות לא יגיעו. האפליקציה אינה פועלת ברקע ואינה צורכת סוללה — היא מתעוררת רק ברגע התזכורת.</string>
+    <string name="hint_samsung">סמסונג: הגדרות ← טיפול במכשיר ← סוללה ← הגבלות שימוש ברקע ← אפליקציות שלעולם אינן במצב שינה.</string>
+    <string name="hint_xiaomi">שיאומי: הגדרות ← אפליקציות ← LeDor ← חיסכון בסוללה ← ללא הגבלות; הפעילו גם „הפעלה אוטומטית”.</string>
+    <string name="hint_huawei">Huawei/Honor: הגדרות ← סוללה ← הפעלת אפליקציות ← LeDor ← ניהול ידני, הפעילו את כל המתגים.</string>
+    <string name="hint_oppo">OPPO/realme/OnePlus: הגדרות ← סוללה ← LeDor ← אפשר פעילות ברקע.</string>
+    <string name="hint_vivo">vivo: הגדרות ← סוללה ← צריכת חשמל ברקע ← LeDor ← אפשר.</string>
+
+    <!-- התראות -->
+    <string name="channel_eve">בערב הקודם</string>
+    <string name="channel_day">ביום האירוע</string>
+    <string name="notif_eve_title">הערב: %1$s — %2$s</string>
+    <string name="notif_eve_yahrzeit_title">הערב יארצייט: %1$s</string>
+    <string name="notif_eve_greg_title">מחר: %1$s — %2$s</string>
+    <string name="notif_day_title">היום: %1$s — %2$s</string>
+    <string name="notif_eve_starts">עם השקיעה מתחיל %1$s.</string>
+    <string name="notif_candle">הגיע הזמן להדליק נר נשמה.</string>
+    <string name="notif_test_title">התראת ניסיון</string>
+    <string name="notif_test_text">התזכורות פועלות. כך תיראה התראה על אירוע.</string>
+
+    <!-- אודות -->
+    <string name="about_text">האפליקציה ללא מטרות רווח וחינמית. אין בה פרסומות ואין בה איסוף נתונים. קוד המקור פתוח (Open Source) — כל אחד יכול לבדוק איך היא פועלת ולהציע שיפורים.</string>
+    <string name="about_source">קוד המקור ב־GitHub</string>
+    <string name="about_site">אתר האפליקציה</string>
+    <string name="about_author">יוצר: גרשון</string>
+    <string name="about_author_channel">ערוץ הטלגרם של היוצר</string>
+    <string name="about_privacy">מדיניות פרטיות</string>
+    <string name="feedback_title">שליחת משוב</string>
+    <string name="feedback_sub">תקלה, רעיון או שאלה — אני קורא כל הודעה</string>
+    <string name="feedback_intro">כתבו מה לא עובד או מה חסר. המשוב מגיע ישירות למפתח.</string>
+    <string name="feedback_message">המשוב שלכם</string>
+    <string name="feedback_contact">איך ליצור איתכם קשר (לא חובה)</string>
+    <string name="feedback_contact_hint">דוא״ל או טלגרם — אם תרצו תשובה</string>
+    <string name="feedback_attach_meta">צירוף פרטים טכניים</string>
+    <string name="feedback_meta_detail">גרסה %1$s · %2$s · Android %3$s. אירועים וקודים אינם נשלחים.</string>
+    <string name="feedback_send">שליחה</string>
+    <string name="feedback_sending">שולח…</string>
+    <string name="feedback_thanks_title">תודה!</string>
+    <string name="feedback_thanks_text">המשוב התקבל. אם השארתם פרטי קשר, אענה.</string>
+    <string name="feedback_no_network">אין חיבור לשרת. הטקסט נשמר — נסו שוב מאוחר יותר.</string>
+    <string name="feedback_failed">השליחה נכשלה. נסו שוב מאוחר יותר.</string>
+    <string name="feedback_rate_limited">יותר מדי הודעות ברצף. נסו שוב בעוד שעה.</string>
+    <string name="feedback_privacy">המשוב נשמר בשרת המפתח עד שנתיים ומשמש רק למענה ולשיפור האפליקציה.</string>
+    <string name="done">סיום</string>
+    <string name="about_licenses">רישיונות קוד פתוח</string>
+    <string name="licenses_text">KosherJava Zmanim — LGPL 2.1\nהגופן Rubik — SIL Open Font License 1.1\nOkHttp, AndroidX, Jetpack Compose, Kotlin, kotlinx — Apache License 2.0\nסמלי Material — Apache License 2.0</string>
+
+    <string-array name="hebrew_months_nom">
+        <item>ניסן</item><item>אייר</item><item>סיוון</item><item>תמוז</item><item>אב</item><item>אלול</item>
+        <item>תשרי</item><item>חשוון</item><item>כסלו</item><item>טבת</item><item>שבט</item>
+        <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
+    </string-array>
+    <string-array name="hebrew_months_gen">
+        <item>בניסן</item><item>באייר</item><item>בסיוון</item><item>בתמוז</item><item>באב</item><item>באלול</item>
+        <item>בתשרי</item><item>בחשוון</item><item>בכסלו</item><item>בטבת</item><item>בשבט</item>
+        <item>באדר</item><item>באדר א׳</item><item>באדר ב׳</item>
+    </string-array>
+    <string-array name="hebrew_months_short">
+        <item>ניסן</item><item>אייר</item><item>סיוון</item><item>תמוז</item><item>אב</item><item>אלול</item>
+        <item>תשרי</item><item>חשוון</item><item>כסלו</item><item>טבת</item><item>שבט</item>
+        <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
+    </string-array>
+</resources>

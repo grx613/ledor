@@ -1,0 +1,38 @@
+# Секреты и локальные настройки
+local.properties
+*.jks
+*.keystore
+keystore.properties
+.env
+.env.*
+!.env.example
+
+# Gradle / Android
+.gradle/
+build/
+captures/
+.cxx/
+*.apk
+*.aab
+*.ap_
+/android/.kotlin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Node
+node_modules/
+
+# Supabase CLI
+supabase/.temp/
+supabase/.branches/
+
+# ОС
+.DS_Store
+Thumbs.db
+/dist/
+
+# Публичный ключ приложения для своего сервера (B-11) — не секрет, но в репозиторий не кладём
+tools/server/public-api-key

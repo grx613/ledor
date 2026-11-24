@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Français. Première traduction — à relire par un locuteur natif (BACKLOG B-6). -->
+<resources>
+    <string name="locale_tag">fr</string>
+
+    <!-- Général -->
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="close">Fermer</string>
+    <string name="back">Retour</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="save">Enregistrer</string>
+    <string name="dont_save">Ne pas enregistrer</string>
+    <string name="delete">Supprimer</string>
+    <string name="edit">Modifier</string>
+    <string name="create">Créer</string>
+    <string name="find">Rechercher</string>
+    <string name="connect">Connecter</string>
+    <string name="copy">Copier</string>
+    <string name="copied">Copié</string>
+    <string name="show">Afficher</string>
+    <string name="hide">Masquer</string>
+    <string name="today">Aujourd’hui</string>
+    <string name="version">version %1$s</string>
+
+    <!-- Navigation -->
+    <string name="tab_calendar">Calendrier</string>
+    <string name="tab_events">Événements</string>
+    <string name="tab_converter">Convertisseur</string>
+    <string name="tab_more">Plus</string>
+    <string name="lists">Listes</string>
+    <string name="prev_month">Mois précédent</string>
+    <string name="next_month">Mois suivant</string>
+
+    <!-- Premier lancement -->
+    <string name="onboarding_title">Importer une liste d’anniversaires ?</string>
+    <string name="onboarding_text">Si votre famille ou votre communauté a déjà une liste, saisissez son nom et son code PIN.</string>
+
+    <!-- Calendrier -->
+    <string name="grid_gregorian">Mois grégoriens</string>
+    <string name="grid_hebrew">Mois hébraïques</string>
+    <string name="upcoming_events">Événements à venir</string>
+    <string name="events_of_day">Événements : %1$s</string>
+    <string name="show_upcoming">À venir</string>
+    <string name="no_events_day">Aucun événement ce jour-là.</string>
+    <string name="add_on_this_date">Ajouter à cette date</string>
+    <string name="add_event">Ajouter un événement</string>
+    <string name="join_list">Connecter une liste</string>
+    <string name="empty_events">Pas encore d’événements. Ajoutez le premier : un anniversaire, une yahrzeit ou une fête de famille.</string>
+    <string name="notice_list_deleted">La liste « %1$s » a été supprimée par son propriétaire</string>
+
+    <!-- Dates relatives -->
+    <string name="rel_today">aujourd’hui</string>
+    <string name="rel_tomorrow">demain</string>
+    <string name="rel_tomorrow_eve">demain (dès ce soir)</string>
+    <plurals name="rel_in_days">
+        <item quantity="one">dans %d jour</item>
+        <item quantity="many">dans %d jours</item>
+        <item quantity="other">dans %d jours</item>
+    </plurals>
+    <plurals name="events_count">
+        <item quantity="one">%d événement</item>
+        <item quantity="many">%d événements</item>
+        <item quantity="other">%d événements</item>
+    </plurals>
+    <plurals name="age_turns">
+        <item quantity="one">Fête ses %d an</item>
+        <item quantity="many">Fête ses %d ans</item>
+        <item quantity="other">Fête ses %d ans</item>
+    </plurals>
+    <plurals name="age_wedding">
+        <item quantity="one">%d an de mariage</item>
+        <item quantity="many">%d ans de mariage</item>
+        <item quantity="other">%d ans de mariage</item>
+    </plurals>
+    <plurals name="age_years">
+        <item quantity="one">%d an</item>
+        <item quantity="many">%d ans</item>
+        <item quantity="other">%d ans</item>
+    </plurals>
+    <string name="age_yahrzeit">%1$de anniversaire</string>
+
+    <!-- Types d’événements -->
+    <string name="type_birthday">Anniversaire</string>
+    <string name="type_yahrzeit">Yahrzeit</string>
+    <string name="type_bar_mitzvah">Bar-mitsva</string>
+    <string name="type_bat_mitzvah">Bat-mitsva</string>
+    <string name="type_wedding">Mariage</string>
+    <string name="type_wedding_anniversary">Anniversaire de mariage</string>
+    <string name="type_other">Autre</string>
+
+    <!-- Éditeur -->
+    <string name="new_event">Nouvel événement</string>
+    <string name="edit_event">Modifier l’événement</string>
+    <string name="field_title">Nom ou titre</string>
+    <string name="field_list">Liste</string>
+    <string name="field_type">Type d’événement</string>
+    <string name="field_custom_label">Nom de l’événement</string>
+    <string name="field_recurring">Se répète chaque année</string>
+    <string name="recurring_yes">Événement annuel</string>
+    <string name="recurring_no">Événement unique</string>
+    <string name="field_date">Date</string>
+    <string name="field_note">Note</string>
+    <string name="gregorian_date">Date grégorienne</string>
+    <string name="hebrew_date">Date hébraïque</string>
+    <string name="day">Jour</string>
+    <string name="month">Mois</string>
+    <string name="year">Année</string>
+    <string name="year_unknown">Année inconnue</string>
+    <string name="before_sunset">Avant le coucher</string>
+    <string name="after_sunset">Après le coucher</string>
+    <string name="conv_hebrew_label">Date hébraïque</string>
+    <string name="conv_gregorian_label">Date grégorienne</string>
+    <string name="conv_eve_note">Le jour hébraïque commence la veille au soir, au coucher du soleil du %1$s.</string>
+    <string name="conv_need_year">Indiquez l’année pour voir la date convertie.</string>
+    <string name="observe_title">Célébrer chaque année</string>
+    <string name="observe_hebrew">Selon le calendrier hébraïque</string>
+    <string name="observe_gregorian">Selon le calendrier grégorien</string>
+    <string name="observe_both">Selon les deux calendriers</string>
+    <string name="observe_both_hint">Deux dates par an — un rappel pour chacune</string>
+    <string name="observe_needs_year">L’année est nécessaire pour convertir la date</string>
+    <string name="next_occurrence">Prochain : %1$s (%2$s) — %3$s</string>
+    <string name="hint_bar">Bar-mitsva (13 ans) : %1$s — %2$s</string>
+    <string name="hint_bat">Bat-mitsva (12 ans) : %1$s — %2$s</string>
+    <string name="add_as_event">Ajouter un événement</string>
+    <string name="event_added">Événement ajouté</string>
+    <string name="delete_event_q">Supprimer l’événement « %1$s » ?</string>
+    <string name="save_changes_q">Enregistrer les modifications ?</string>
+    <string name="read_only_list">Liste en lecture seule — seul un éditeur peut modifier les événements.</string>
+    <string name="err_title_empty">Saisissez un nom ou un titre</string>
+    <string name="err_date_invalid">Cette date n’existe pas ou l’année est hors limites</string>
+    <string name="err_month_days">Ce mois compte %1$d jours</string>
+    <string name="err_one_off_year">Un événement unique nécessite une année</string>
+    <string name="pending_upload">En attente d’envoi</string>
+
+    <!-- Fiche événement -->
+    <string name="next_label">Prochain</string>
+    <string name="date_label">Date</string>
+    <string name="original_date">Date d’origine</string>
+    <string name="event_passed">L’événement est passé</string>
+
+    <!-- Liste des événements -->
+    <string name="tab_hebrew_calendar">Calendrier hébraïque</string>
+    <string name="tab_gregorian_calendar">Grégorien</string>
+    <string name="all_lists">Toutes les listes</string>
+    <string name="past_events">Passés (%1$d)</string>
+
+    <!-- Convertisseur -->
+    <string name="conv_g2h">Grégorien → hébraïque</string>
+    <string name="conv_h2g">Hébraïque → grégorien</string>
+    <string name="conv_create_event">Créer un événement à cette date</string>
+    <string name="conv_if_birth">S’il s’agit d’une date de naissance</string>
+    <string name="conv_mitzvah_passed">La bar-mitsva et la bat-mitsva sont déjà passées.</string>
+    <string name="conv_if_death">S’il s’agit d’une date de décès</string>
+    <string name="conv_next_yahrzeit">Prochaine yahrzeit : %1$s — %2$s</string>
+
+    <!-- Plus -->
+    <string name="manage_lists">Gérer les listes</string>
+    <string name="manage_lists_sub">Créer, connecter, partager</string>
+    <string name="settings">Réglages</string>
+    <string name="settings_sub">Rappels, ville, apparence, langue</string>
+    <string name="about">À propos</string>
+
+    <!-- Listes -->
+    <string name="list_personal">Personnelle</string>
+    <string name="role_personal">Liste personnelle sur ce téléphone</string>
+    <string name="role_reader">Lecture seule</string>
+    <string name="role_editor">Éditeur</string>
+    <string name="role_no_access">Pas d’accès</string>
+    <string name="create_list">Créer une liste</string>
+    <string name="list_name">Nom de la liste</string>
+    <string name="name_free">Nom disponible ✓</string>
+    <string name="read_pin">Code PIN de lecture</string>
+    <string name="read_pin_hint">4 à 8 chiffres</string>
+    <string name="master_pin">Code maître pour modifier</string>
+    <string name="master_pin_hint">6 à 12 chiffres, différent du code de lecture</string>
+    <string name="regenerate">Nouveau</string>
+    <string name="pins_explain">Donnez le code ordinaire à ceux qui consulteront seulement. Le code maître — uniquement à ceux à qui vous confiez la modification de la liste.</string>
+    <string name="move_local_events">Transférer les événements de la liste personnelle</string>
+    <string name="join_explain">Saisissez le nom de la liste, puis le code PIN. Le code ordinaire (lecture seule) comme le code maître (modification) conviennent.</string>
+    <string name="pin_code">Code PIN</string>
+    <string name="pin_any_hint">Code ordinaire ou code maître</string>
+    <string name="imported_n">Événements importés : %1$d</string>
+    <string name="synced_at">Synchronisé : %1$s</string>
+    <string name="lists_hint_notify">L’interrupteur à droite active ou désactive les notifications de la liste.</string>
+    <string name="pull_to_sync">Tirez vers le bas pour synchroniser.</string>
+    <string name="list_notifications">Notifications de cette liste</string>
+    <string name="pin_codes">Codes PIN</string>
+    <string name="reader_hint">Vous avez un accès en lecture seule. Pour modifier, saisissez le code maître.</string>
+    <string name="share">Partager</string>
+    <string name="share_edit_rights">Partager le droit de modification</string>
+    <string name="share_other">Autre…</string>
+    <string name="master_share_warning">Le code maître permet de modifier et de supprimer les événements et toute la liste. Ne l’envoyez qu’à des personnes de pleine confiance.</string>
+    <string name="share_message">📅 La liste « %1$s » dans l’application %2$s : anniversaires, yahrzeits et événements familiaux selon les calendriers hébraïque et grégorien.\n\n1. Installez l’application : %3$s\n2. Ouvrez « Listes » → « Connecter une liste »\n3. Nom : %4$s\n4. Code PIN : %5$s</string>
+    <string name="sync_now">Synchroniser maintenant</string>
+    <string name="synced">Synchronisé</string>
+    <string name="enter_master_pin">Saisir le code maître</string>
+    <string name="disconnect_list">Déconnecter la liste de ce téléphone</string>
+    <string name="disconnect">Déconnecter</string>
+    <string name="disconnect_text">Les événements de la liste disparaîtront de ce téléphone. La liste reste dans le cloud.</string>
+    <string name="delete_from_cloud">Supprimer la liste du cloud</string>
+    <string name="delete_cloud_text">La liste et tous ses événements seront supprimés définitivement pour tous les membres. Saisissez le code maître pour confirmer.</string>
+    <string name="report_list">Signaler la liste</string>
+    <string name="report_subject">Signalement de la liste « %1$s »</string>
+    <string name="personal_list_explain">La liste personnelle est conservée uniquement sur ce téléphone et n’est envoyée nulle part. Pour partager des événements avec vos proches, créez une liste dans le cloud.</string>
+    <string name="move_to_cloud">Transférer les événements vers une liste cloud…</string>
+
+    <!-- Erreurs du cloud -->
+    <string name="err_network">Pas de connexion Internet</string>
+    <string name="err_server">Erreur du serveur, réessayez plus tard</string>
+    <string name="err_cloud_not_configured">Le cloud n’est pas configuré dans cette version : impossible de créer ou de connecter des listes partagées. La liste personnelle fonctionne entièrement.</string>
+    <string name="err_name_taken">Une liste de ce nom existe déjà</string>
+    <string name="err_not_found">Liste introuvable. Vérifiez le nom.</string>
+    <string name="err_wrong_pin">Code incorrect. Tentatives restantes : %1$d</string>
+    <string name="err_locked">Trop de tentatives incorrectes. Réessayez dans %1$d min.</string>
+    <string name="err_rate_limited">Trop de tentatives, réessayez plus tard</string>
+    <string name="err_invalid_name">Nom : de 3 à 60 caractères</string>
+    <string name="err_invalid_pin">Vérifiez les codes PIN</string>
+    <string name="err_forbidden">Droits d’éditeur nécessaires</string>
+    <string name="err_unauthorized">L’accès à la liste a été perdu. Reconnectez-la.</string>
+    <string name="err_list_deleted">La liste a été supprimée</string>
+
+    <!-- Réglages -->
+    <string name="set_eve_title">Premier rappel — la veille au soir</string>
+    <string name="set_day_title">Second rappel — le jour même</string>
+    <string name="set_enabled">Activé</string>
+    <string name="set_eve_before_sunset">… avant le coucher du soleil</string>
+    <string name="set_before_sunset_value">%1$d h %2$02d min avant le coucher du soleil</string>
+    <string name="set_eve_fixed">À heure fixe</string>
+    <string name="set_time">Heure</string>
+    <string name="set_city_title">Ville pour le coucher du soleil</string>
+    <string name="city_none">Non choisie</string>
+    <string name="city_none_hint">Le coucher du soleil est fixé à 18:00</string>
+    <string name="city_search">Rechercher une ville</string>
+    <string name="set_preview">Coucher du soleil aujourd’hui à %1$s → le rappel de la veille arrivera à %2$s</string>
+    <string name="set_health_title">Fiabilité des rappels</string>
+    <string name="set_health_warnings">Afficher les avertissements</string>
+    <string name="set_test_notification">Envoyer une notification de test</string>
+    <string name="set_language">Langue</string>
+    <string name="lang_system">Langue du système</string>
+    <string name="set_view_title">Apparence</string>
+    <string name="set_week_start">Premier jour de la semaine</string>
+    <string name="sunday">Dimanche</string>
+    <string name="monday">Lundi</string>
+    <string name="set_theme">Thème</string>
+    <string name="theme_system">Système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="set_adar_title">Yahrzeit en année embolismique</string>
+    <string name="set_adar_i">Adar I (coutume ashkénaze)</string>
+    <string name="set_adar_ii">Adar II (coutume séfarade)</string>
+    <string name="set_adar_hint">Pour les personnes décédées en Adar d’une année simple.</string>
+
+    <!-- Vérification des autorisations -->
+    <string name="health_banner_title">Les rappels risquent de ne pas arriver</string>
+    <string name="health_banner_text">Le téléphone limite l’application en arrière-plan. Sans ce réglage, le système bloquera le travail en arrière-plan : vous ne recevrez tout simplement pas de notifications.</string>
+    <string name="health_fix">Corriger</string>
+    <string name="health_no_reminders">Je n’ai pas besoin de rappels</string>
+    <string name="health_disable_title">Désactiver les avertissements ?</string>
+    <string name="health_disable_text">L’application fonctionnera comme un carnet, sans notifications. Vous pourrez réactiver la vérification dans Réglages → Fiabilité des rappels.</string>
+    <string name="health_disable_confirm">Désactiver</string>
+    <string name="health_sheet_title">À activer</string>
+    <string name="health_open_setting">Ouvrir le réglage</string>
+    <string name="health_all_ok">Tout est réglé ✓</string>
+    <string name="health_notif_title">Les notifications sont désactivées</string>
+    <string name="health_notif_text">Autorisez l’application à afficher des notifications, sinon les rappels n’apparaîtront pas.</string>
+    <string name="health_exact_title">Les alarmes exactes sont interdites</string>
+    <string name="health_exact_text">Sans cette autorisation, le système peut retarder un rappel de plusieurs heures.</string>
+    <string name="health_bg_title">Travail en arrière-plan limité</string>
+    <string name="health_bg_text">Le téléphone bloque complètement l’application en arrière-plan. Levez la restriction de batterie.</string>
+    <string name="health_battery_title">L’économie de batterie est activée pour l’application</string>
+    <string name="health_battery_text">Choisissez « Non restreinte » (sur Samsung, ajoutez l’application aux « Applications jamais en veille »). Sinon, le téléphone peut endormir l’application et les rappels n’arriveront pas. L’application ne tourne pas en arrière-plan et ne consomme pas de batterie — elle ne se réveille qu’au moment d’un rappel.</string>
+    <string name="hint_samsung">Samsung : Paramètres → Maintenance de l’appareil → Batterie → Limites d’utilisation en arrière-plan → Applications jamais en veille.</string>
+    <string name="hint_xiaomi">Xiaomi : Paramètres → Applications → LeDor → Économiseur de batterie → Aucune restriction ; activez aussi « Démarrage automatique ».</string>
+    <string name="hint_huawei">Huawei/Honor : Paramètres → Batterie → Lancement d’applications → LeDor → Gérer manuellement, activez tous les interrupteurs.</string>
+    <string name="hint_oppo">OPPO/realme/OnePlus : Paramètres → Batterie → LeDor → Autoriser l’activité en arrière-plan.</string>
+    <string name="hint_vivo">vivo : Paramètres → Batterie → Consommation en arrière-plan → LeDor → Autoriser.</string>
+
+    <!-- Notifications -->
+    <string name="channel_eve">La veille au soir</string>
+    <string name="channel_day">Le jour même</string>
+    <string name="notif_eve_title">Ce soir : %1$s — %2$s</string>
+    <string name="notif_eve_yahrzeit_title">Yahrzeit ce soir : %1$s</string>
+    <string name="notif_eve_greg_title">Demain : %1$s — %2$s</string>
+    <string name="notif_day_title">Aujourd’hui : %1$s — %2$s</string>
+    <string name="notif_eve_starts">Le %1$s commence au coucher du soleil.</string>
+    <string name="notif_candle">C’est l’heure d’allumer la bougie du souvenir.</string>
+    <string name="notif_test_title">Notification de test</string>
+    <string name="notif_test_text">Les rappels fonctionnent. Voici à quoi ressemblera une notification d’événement.</string>
+
+    <!-- À propos -->
+    <string name="about_text">L’application est non commerciale et gratuite. Elle ne contient aucune publicité et ne collecte aucune donnée. Le code source est ouvert (Open Source) — chacun peut vérifier son fonctionnement et proposer des améliorations.</string>
+    <string name="about_source">Code source sur GitHub</string>
+    <string name="about_site">Site de l’application</string>
+    <string name="about_author">Auteur : Gershon</string>
+    <string name="about_author_channel">Chaîne Telegram de l’auteur</string>
+    <string name="about_privacy">Politique de confidentialité</string>
+    <string name="feedback_title">Envoyer un avis</string>
+    <string name="feedback_sub">Un bug, une idée ou une question — je lis chaque message</string>
+    <string name="feedback_intro">Dites-nous ce qui ne va pas ou ce qui manque. Votre avis va directement au développeur.</string>
+    <string name="feedback_message">Votre avis</string>
+    <string name="feedback_contact">Comment vous joindre (facultatif)</string>
+    <string name="feedback_contact_hint">E-mail ou Telegram — si vous souhaitez une réponse</string>
+    <string name="feedback_attach_meta">Joindre les données techniques</string>
+    <string name="feedback_meta_detail">Version %1$s · %2$s · Android %3$s. Les événements et les codes PIN ne sont jamais envoyés.</string>
+    <string name="feedback_send">Envoyer</string>
+    <string name="feedback_sending">Envoi…</string>
+    <string name="feedback_thanks_title">Merci !</string>
+    <string name="feedback_thanks_text">Votre avis a été reçu. Si vous avez laissé un contact, je vous répondrai.</string>
+    <string name="feedback_no_network">Serveur injoignable. Votre texte est conservé — réessayez plus tard.</string>
+    <string name="feedback_failed">Échec de l’envoi. Réessayez plus tard.</string>
+    <string name="feedback_rate_limited">Trop de messages d’affilée. Réessayez dans une heure.</string>
+    <string name="feedback_privacy">L’avis est conservé sur le serveur du développeur jusqu’à 2 ans et sert uniquement à répondre et à améliorer l’application.</string>
+    <string name="done">Terminé</string>
+    <string name="about_licenses">Licences open source</string>
+    <string name="licenses_text">KosherJava Zmanim — LGPL 2.1\nPolice Rubik — SIL Open Font License 1.1\nOkHttp, AndroidX, Jetpack Compose, Kotlin, kotlinx — Apache License 2.0\nIcônes Material — Apache License 2.0</string>
+
+    <string-array name="hebrew_months_nom">
+        <item>Nissan</item><item>Iyar</item><item>Sivan</item><item>Tamouz</item><item>Av</item><item>Eloul</item>
+        <item>Tichri</item><item>Hechvan</item><item>Kislev</item><item>Tevet</item><item>Chevat</item>
+        <item>Adar</item><item>Adar I</item><item>Adar II</item>
+    </string-array>
+    <string-array name="hebrew_months_gen">
+        <item>Nissan</item><item>Iyar</item><item>Sivan</item><item>Tamouz</item><item>Av</item><item>Eloul</item>
+        <item>Tichri</item><item>Hechvan</item><item>Kislev</item><item>Tevet</item><item>Chevat</item>
+        <item>Adar</item><item>Adar I</item><item>Adar II</item>
+    </string-array>
+    <string-array name="hebrew_months_short">
+        <item>Nis</item><item>Iyar</item><item>Siv</item><item>Tam</item><item>Av</item><item>Elo</item>
+        <item>Tich</item><item>Hech</item><item>Kis</item><item>Tev</item><item>Chev</item>
+        <item>Adar</item><item>Adar I</item><item>Adar II</item>
+    </string-array>
+</resources>

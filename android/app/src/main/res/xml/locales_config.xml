@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Языки для системного выбора «Язык приложения» (Android 13+). Иврит и идиш — старыми кодами iw/ji, как папки ресурсов. -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="iw" />
+    <locale android:name="ru" />
+    <locale android:name="ji" />
+    <locale android:name="fr" />
+    <locale android:name="es" />
+</locale-config>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Русский. Английский — values/, остальные языки — values-iw, values-yi, values-fr, values-es. -->
+<resources>
+    <string name="locale_tag">ru</string>
+
+    <!-- Общие -->
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="close">Закрыть</string>
+    <string name="back">Назад</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="save">Сохранить</string>
+    <string name="dont_save">Не сохранять</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Изменить</string>
+    <string name="create">Создать</string>
+    <string name="find">Найти</string>
+    <string name="connect">Подключить</string>
+    <string name="copy">Копировать</string>
+    <string name="copied">Скопировано</string>
+    <string name="show">Показать</string>
+    <string name="hide">Скрыть</string>
+    <string name="today">Сегодня</string>
+    <string name="version">версия %1$s</string>
+
+    <!-- Навигация -->
+    <string name="tab_calendar">Календарь</string>
+    <string name="tab_events">События</string>
+    <string name="tab_converter">Конвертер</string>
+    <string name="tab_more">Ещё</string>
+    <string name="lists">Списки</string>
+    <string name="prev_month">Предыдущий месяц</string>
+    <string name="next_month">Следующий месяц</string>
+
+    <!-- Первый запуск -->
+    <string name="onboarding_title">Хотите импортировать список дней рождения?</string>
+    <string name="onboarding_text">Если у вашей семьи или общины уже есть список, введите его название и ПИН-код.</string>
+
+    <!-- Календарь -->
+    <string name="grid_gregorian">Обычные месяцы</string>
+    <string name="grid_hebrew">Еврейские месяцы</string>
+    <string name="upcoming_events">Ближайшие события</string>
+    <string name="events_of_day">События: %1$s</string>
+    <string name="show_upcoming">Ближайшие</string>
+    <string name="no_events_day">В этот день событий нет.</string>
+    <string name="add_on_this_date">Добавить на эту дату</string>
+    <string name="add_event">Добавить событие</string>
+    <string name="join_list">Подключить список</string>
+    <string name="empty_events">Пока нет событий. Добавьте первое — день рождения, йорцайт или семейный праздник.</string>
+    <string name="notice_list_deleted">Список «%1$s» удалён владельцем</string>
+
+    <!-- Относительные даты -->
+    <string name="rel_today">сегодня</string>
+    <string name="rel_tomorrow">завтра</string>
+    <string name="rel_tomorrow_eve">завтра (с вечера сегодня)</string>
+    <plurals name="rel_in_days">
+        <item quantity="one">через %d день</item>
+        <item quantity="few">через %d дня</item>
+        <item quantity="many">через %d дней</item>
+        <item quantity="other">через %d дня</item>
+    </plurals>
+    <plurals name="events_count">
+        <item quantity="one">%d событие</item>
+        <item quantity="few">%d события</item>
+        <item quantity="many">%d событий</item>
+        <item quantity="other">%d события</item>
+    </plurals>
+    <plurals name="age_turns">
+        <item quantity="one">Исполняется %d год</item>
+        <item quantity="few">Исполняется %d года</item>
+        <item quantity="many">Исполняется %d лет</item>
+        <item quantity="other">Исполняется %d года</item>
+    </plurals>
+    <plurals name="age_wedding">
+        <item quantity="one">%d год со дня свадьбы</item>
+        <item quantity="few">%d года со дня свадьбы</item>
+        <item quantity="many">%d лет со дня свадьбы</item>
+        <item quantity="other">%d года со дня свадьбы</item>
+    </plurals>
+    <plurals name="age_years">
+        <item quantity="one">%d год</item>
+        <item quantity="few">%d года</item>
+        <item quantity="many">%d лет</item>
+        <item quantity="other">%d года</item>
+    </plurals>
+    <string name="age_yahrzeit">%1$d-я годовщина</string>
+
+    <!-- Типы событий -->
+    <string name="type_birthday">День рождения</string>
+    <string name="type_yahrzeit">Йорцайт</string>
+    <string name="type_bar_mitzvah">Бар-мицва</string>
+    <string name="type_bat_mitzvah">Бат-мицва</string>
+    <string name="type_wedding">Свадьба</string>
+    <string name="type_wedding_anniversary">Годовщина свадьбы</string>
+    <string name="type_other">Другое</string>
+
+    <!-- Редактор -->
+    <string name="new_event">Новое событие</string>
+    <string name="edit_event">Изменить событие</string>
+    <string name="field_title">Имя или название</string>
+    <string name="field_list">Список</string>
+    <string name="field_type">Тип события</string>
+    <string name="field_custom_label">Название события</string>
+    <string name="field_recurring">Повторяется каждый год</string>
+    <string name="recurring_yes">Ежегодное событие</string>
+    <string name="recurring_no">Одноразовое событие</string>
+    <string name="field_date">Дата</string>
+    <string name="field_note">Заметка</string>
+    <string name="gregorian_date">Григорианская дата</string>
+    <string name="hebrew_date">Еврейская дата</string>
+    <string name="day">День</string>
+    <string name="month">Месяц</string>
+    <string name="year">Год</string>
+    <string name="year_unknown">Год неизвестен</string>
+    <string name="before_sunset">До захода</string>
+    <string name="after_sunset">После захода</string>
+    <string name="conv_hebrew_label">Еврейская дата</string>
+    <string name="conv_gregorian_label">Григорианская дата</string>
+    <string name="conv_eve_note">Еврейский день начинается накануне вечером, с заходом солнца %1$s.</string>
+    <string name="conv_need_year">Укажите год, чтобы увидеть перевод даты.</string>
+    <string name="observe_title">Отмечать каждый год</string>
+    <string name="observe_hebrew">По еврейскому календарю</string>
+    <string name="observe_gregorian">По григорианскому календарю</string>
+    <string name="observe_both">По обоим календарям</string>
+    <string name="observe_both_hint">Две даты в году — напомню о каждой</string>
+    <string name="observe_needs_year">Нужен год, чтобы перевести дату</string>
+    <string name="next_occurrence">Ближайшее: %1$s (%2$s) — %3$s</string>
+    <string name="hint_bar">Бар-мицва (13 лет): %1$s — %2$s</string>
+    <string name="hint_bat">Бат-мицва (12 лет): %1$s — %2$s</string>
+    <string name="add_as_event">Добавить событие</string>
+    <string name="event_added">Событие добавлено</string>
+    <string name="delete_event_q">Удалить событие «%1$s»?</string>
+    <string name="save_changes_q">Сохранить изменения?</string>
+    <string name="read_only_list">Список только для чтения — изменять события может только редактор.</string>
+    <string name="err_title_empty">Введите имя или название</string>
+    <string name="err_date_invalid">Такой даты не существует или год вне диапазона</string>
+    <string name="err_month_days">В этом месяце %1$d дней</string>
+    <string name="err_one_off_year">Для одноразового события нужен год</string>
+    <string name="pending_upload">Ожидает отправки</string>
+
+    <!-- Карточка события -->
+    <string name="next_label">Ближайшее</string>
+    <string name="date_label">Дата</string>
+    <string name="original_date">Исходная дата</string>
+    <string name="event_passed">Событие уже прошло</string>
+
+    <!-- Список событий -->
+    <string name="tab_hebrew_calendar">Еврейский календарь</string>
+    <string name="tab_gregorian_calendar">Григорианский</string>
+    <string name="all_lists">Все списки</string>
+    <string name="past_events">Прошедшие (%1$d)</string>
+
+    <!-- Конвертер -->
+    <string name="conv_g2h">Обычная → еврейская</string>
+    <string name="conv_h2g">Еврейская → обычная</string>
+    <string name="conv_create_event">Создать событие на эту дату</string>
+    <string name="conv_if_birth">Если это дата рождения</string>
+    <string name="conv_mitzvah_passed">Бар-мицва и бат-мицва уже прошли.</string>
+    <string name="conv_if_death">Если это дата смерти</string>
+    <string name="conv_next_yahrzeit">Ближайший йорцайт: %1$s — %2$s</string>
+
+    <!-- Ещё -->
+    <string name="manage_lists">Управление списками</string>
+    <string name="manage_lists_sub">Создать, подключить, поделиться</string>
+    <string name="settings">Настройки</string>
+    <string name="settings_sub">Напоминания, город, оформление, язык</string>
+    <string name="about">О программе</string>
+
+    <!-- Списки -->
+    <string name="list_personal">Личный</string>
+    <string name="role_personal">Личный список на этом телефоне</string>
+    <string name="role_reader">Только чтение</string>
+    <string name="role_editor">Редактор</string>
+    <string name="role_no_access">Нет доступа</string>
+    <string name="create_list">Создать список</string>
+    <string name="list_name">Название списка</string>
+    <string name="name_free">Название свободно ✓</string>
+    <string name="read_pin">ПИН-код для чтения</string>
+    <string name="read_pin_hint">4–8 цифр</string>
+    <string name="master_pin">Мастер-ПИН для редактирования</string>
+    <string name="master_pin_hint">6–12 цифр, не совпадает с ПИН-кодом для чтения</string>
+    <string name="regenerate">Новый</string>
+    <string name="pins_explain">Обычный ПИН дайте тем, кто будет только смотреть. Мастер-ПИН — только тем, кому доверяете изменять список.</string>
+    <string name="move_local_events">Перенести события из личного списка</string>
+    <string name="join_explain">Введите название списка, а затем ПИН-код. Подойдёт и обычный ПИН (только чтение), и Мастер-ПИН (редактирование).</string>
+    <string name="pin_code">ПИН-код</string>
+    <string name="pin_any_hint">Обычный ПИН или Мастер-ПИН</string>
+    <string name="imported_n">Импортировано событий: %1$d</string>
+    <string name="synced_at">Синхронизировано: %1$s</string>
+    <string name="lists_hint_notify">Переключатель справа включает и выключает уведомления по списку.</string>
+    <string name="pull_to_sync">Потяните вниз, чтобы синхронизировать.</string>
+    <string name="list_notifications">Уведомления по этому списку</string>
+    <string name="pin_codes">ПИН-коды</string>
+    <string name="reader_hint">У вас доступ только для чтения. Чтобы редактировать, введите Мастер-ПИН.</string>
+    <string name="share">Поделиться</string>
+    <string name="share_edit_rights">Поделиться правом редактирования</string>
+    <string name="share_other">Другое…</string>
+    <string name="master_share_warning">Мастер-ПИН позволяет изменять и удалять события и весь список. Отправляйте его только тем, кому полностью доверяете.</string>
+    <string name="share_message">📅 Список «%1$s» в приложении %2$s: дни рождения, йорцайты и семейные события по еврейскому и обычному календарю.\n\n1. Установите приложение: %3$s\n2. Откройте «Списки» → «Подключить список»\n3. Название: %4$s\n4. ПИН-код: %5$s</string>
+    <string name="sync_now">Синхронизировать сейчас</string>
+    <string name="synced">Синхронизировано</string>
+    <string name="enter_master_pin">Ввести Мастер-ПИН</string>
+    <string name="disconnect_list">Отключить список от этого телефона</string>
+    <string name="disconnect">Отключить</string>
+    <string name="disconnect_text">События списка исчезнут с этого телефона. В облаке список останется.</string>
+    <string name="delete_from_cloud">Удалить список из облака</string>
+    <string name="delete_cloud_text">Список и все его события будут удалены безвозвратно у всех участников. Введите Мастер-ПИН для подтверждения.</string>
+    <string name="report_list">Пожаловаться на список</string>
+    <string name="report_subject">Жалоба на список «%1$s»</string>
+    <string name="personal_list_explain">Личный список хранится только на этом телефоне и никуда не отправляется. Чтобы делиться событиями с родными, создайте облачный список.</string>
+    <string name="move_to_cloud">Перенести события в облачный список…</string>
+
+    <!-- Ошибки облака -->
+    <string name="err_network">Нет соединения с интернетом</string>
+    <string name="err_server">Ошибка сервера, попробуйте позже</string>
+    <string name="err_cloud_not_configured">Облако пока не настроено в этой сборке: создавать и подключать общие списки нельзя. Личный список работает полностью.</string>
+    <string name="err_name_taken">Такой список уже есть</string>
+    <string name="err_not_found">Список не найден. Проверьте название.</string>
+    <string name="err_wrong_pin">Неверный ПИН-код. Осталось попыток: %1$d</string>
+    <string name="err_locked">Слишком много неверных попыток. Попробуйте через %1$d мин.</string>
+    <string name="err_rate_limited">Слишком много попыток, попробуйте позже</string>
+    <string name="err_invalid_name">Название: от 3 до 60 символов</string>
+    <string name="err_invalid_pin">Проверьте ПИН-коды</string>
+    <string name="err_forbidden">Нужны права редактора</string>
+    <string name="err_unauthorized">Доступ к списку потерян. Подключите его заново.</string>
+    <string name="err_list_deleted">Список удалён</string>
+
+    <!-- Настройки -->
+    <string name="set_eve_title">Первое напоминание — накануне вечером</string>
+    <string name="set_day_title">Второе напоминание — в день события</string>
+    <string name="set_enabled">Включено</string>
+    <string name="set_eve_before_sunset">За … до захода солнца</string>
+    <string name="set_before_sunset_value">За %1$d ч %2$02d мин до захода</string>
+    <string name="set_eve_fixed">В фиксированное время</string>
+    <string name="set_time">Время</string>
+    <string name="set_city_title">Город для расчёта захода солнца</string>
+    <string name="city_none">Не выбран</string>
+    <string name="city_none_hint">Заход солнца считается в 18:00</string>
+    <string name="city_search">Поиск города</string>
+    <string name="set_preview">Сегодня заход солнца в %1$s → напоминание накануне придёт в %2$s</string>
+    <string name="set_health_title">Надёжность напоминаний</string>
+    <string name="set_health_warnings">Показывать предупреждения</string>
+    <string name="set_test_notification">Отправить тестовое уведомление</string>
+    <string name="set_language">Язык</string>
+    <string name="lang_system">Как в системе</string>
+    <string name="set_view_title">Вид</string>
+    <string name="set_week_start">Первый день недели</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="monday">Понедельник</string>
+    <string name="set_theme">Тема</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="set_adar_title">Йорцайт в високосный год</string>
+    <string name="set_adar_i">Адар I (ашкеназский обычай)</string>
+    <string name="set_adar_ii">Адар II (сефардский обычай)</string>
+    <string name="set_adar_hint">Для умерших в Адар простого года.</string>
+
+    <!-- Проверка разрешений -->
+    <string name="health_banner_title">Напоминания могут не прийти</string>
+    <string name="health_banner_text">Телефон ограничивает работу приложения в фоне. Если не включить эту настройку, система заблокирует фоновую работу: вы просто не получите оповещения, и в напоминаниях не будет смысла.</string>
+    <string name="health_fix">Исправить</string>
+    <string name="health_no_reminders">Мне не нужны напоминания</string>
+    <string name="health_disable_title">Отключить предупреждения?</string>
+    <string name="health_disable_text">Приложение будет работать как записная книжка, без уведомлений. Включить проверку снова можно в Настройках → Надёжность напоминаний.</string>
+    <string name="health_disable_confirm">Отключить</string>
+    <string name="health_sheet_title">Что нужно включить</string>
+    <string name="health_open_setting">Открыть настройку</string>
+    <string name="health_all_ok">Всё настроено ✓</string>
+    <string name="health_notif_title">Уведомления выключены</string>
+    <string name="health_notif_text">Разрешите приложению показывать уведомления — иначе напоминания не появятся.</string>
+    <string name="health_exact_title">Точные будильники запрещены</string>
+    <string name="health_exact_text">Без этого разрешения система может задержать напоминание на несколько часов.</string>
+    <string name="health_bg_title">Работа в фоне ограничена</string>
+    <string name="health_bg_text">Телефон полностью блокирует приложение в фоне. Снимите ограничение батареи.</string>
+    <string name="health_battery_title">Включена экономия батареи для приложения</string>
+    <string name="health_battery_text">Выберите «Не ограничивать» (на Samsung — добавьте приложение в «Никогда не спящие»). Иначе телефон может усыпить приложение, и напоминания не придут. Приложение не работает в фоне и не расходует заряд — оно просыпается только в момент напоминания.</string>
+    <string name="hint_samsung">Samsung: Настройки → Обслуживание устройства → Батарея → Ограничения в фоновом режиме → Никогда не спящие приложения.</string>
+    <string name="hint_xiaomi">Xiaomi: Настройки → Приложения → LeDor → Контроль активности → Нет ограничений; включите также «Автозапуск».</string>
+    <string name="hint_huawei">Huawei/Honor: Настройки → Батарея → Запуск приложений → LeDor → Управлять вручную, включите все переключатели.</string>
+    <string name="hint_oppo">OPPO/realme/OnePlus: Настройки → Батарея → LeDor → Разрешить фоновую активность.</string>
+    <string name="hint_vivo">vivo: Настройки → Батарея → Фоновое энергопотребление → LeDor → Разрешить.</string>
+
+    <!-- Уведомления -->
+    <string name="channel_eve">Накануне вечером</string>
+    <string name="channel_day">В день события</string>
+    <string name="notif_eve_title">Сегодня вечером: %1$s — %2$s</string>
+    <string name="notif_eve_yahrzeit_title">Сегодня вечером йорцайт: %1$s</string>
+    <string name="notif_eve_greg_title">Завтра: %1$s — %2$s</string>
+    <string name="notif_day_title">Сегодня: %1$s — %2$s</string>
+    <string name="notif_eve_starts">С заходом солнца начинается %1$s.</string>
+    <string name="notif_candle">Время зажечь поминальную свечу.</string>
+    <string name="notif_test_title">Тестовое уведомление</string>
+    <string name="notif_test_text">Напоминания работают. Так будет выглядеть уведомление о событии.</string>
+
+    <!-- О программе -->
+    <string name="about_text">Приложение некоммерческое и бесплатное. В нём нет рекламы и сбора данных. Исходный код открыт (Open Source) — любой может проверить, как оно работает, и предложить улучшения.</string>
+    <string name="about_source">Исходный код на GitHub</string>
+    <string name="about_site">Сайт приложения</string>
+    <string name="about_author">Автор: Гершон</string>
+    <string name="about_author_channel">Канал автора в Telegram</string>
+    <string name="about_privacy">Политика конфиденциальности</string>
+    <string name="feedback_title">Отправить отзыв</string>
+    <string name="feedback_sub">Ошибка, идея или вопрос — прочитаю каждое</string>
+    <string name="feedback_intro">Напишите, что не так или чего не хватает. Отзыв уходит разработчику напрямую.</string>
+    <string name="feedback_message">Ваш отзыв</string>
+    <string name="feedback_contact">Как с вами связаться (необязательно)</string>
+    <string name="feedback_contact_hint">Почта или Telegram — если хотите получить ответ</string>
+    <string name="feedback_attach_meta">Приложить техданные</string>
+    <string name="feedback_meta_detail">Версия %1$s · %2$s · Android %3$s. События и ПИН-коды не отправляются.</string>
+    <string name="feedback_send">Отправить</string>
+    <string name="feedback_sending">Отправляю…</string>
+    <string name="feedback_thanks_title">Спасибо!</string>
+    <string name="feedback_thanks_text">Отзыв получен. Если вы оставили контакт, я отвечу.</string>
+    <string name="feedback_no_network">Нет связи с сервером. Текст сохранён — попробуйте ещё раз позже.</string>
+    <string name="feedback_failed">Не удалось отправить. Попробуйте ещё раз позже.</string>
+    <string name="feedback_rate_limited">Слишком много отзывов подряд. Попробуйте через час.</string>
+    <string name="feedback_privacy">Отзыв хранится на сервере разработчика до 2 лет и нужен только для ответа и улучшения приложения.</string>
+    <string name="done">Готово</string>
+    <string name="about_licenses">Лицензии открытого ПО</string>
+    <string name="licenses_text">KosherJava Zmanim — LGPL 2.1\nШрифт Rubik — SIL Open Font License 1.1\nOkHttp, AndroidX, Jetpack Compose, Kotlin, kotlinx — Apache License 2.0\nЗначки Material — Apache License 2.0</string>
+
+    <string-array name="hebrew_months_nom">
+        <item>Нисан</item><item>Ияр</item><item>Сиван</item><item>Таммуз</item><item>Ав</item><item>Элул</item>
+        <item>Тишрей</item><item>Хешван</item><item>Кислев</item><item>Тевет</item><item>Шват</item>
+        <item>Адар</item><item>Адар I</item><item>Адар II</item>
+    </string-array>
+    <string-array name="hebrew_months_gen">
+        <item>Нисана</item><item>Ияра</item><item>Сивана</item><item>Таммуза</item><item>Ава</item><item>Элула</item>
+        <item>Тишрея</item><item>Хешвана</item><item>Кислева</item><item>Тевета</item><item>Швата</item>
+        <item>Адара</item><item>Адара I</item><item>Адара II</item>
+    </string-array>
+    <string-array name="hebrew_months_short">
+        <item>Нис</item><item>Ияр</item><item>Сив</item><item>Там</item><item>Ав</item><item>Элул</item>
+        <item>Тиш</item><item>Хеш</item><item>Кис</item><item>Тев</item><item>Шв</item>
+        <item>Адар</item><item>Ад I</item><item>Ад II</item>
+    </string-array>
+</resources>
