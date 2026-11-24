@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.calendar.HebrewMonth
@@ -124,8 +125,29 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onNodeWithText(s(R.string.conv_create_event)).performClick()
         rule.waitForIdle()
         shot("08_editor")
+        // Подсказка «до или после захода»: время 19:40 и первый город каталога → «после захода».
+        rule.onNodeWithText(s(R.string.sunset_hint_open)).performScrollTo().performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.sunset_hint_set_time)).performClick()
+        val picker = org.robolectric.shadows.ShadowDialog.getLatestDialog() as android.app.TimePickerDialog
+        picker.updateTime(19, 40)
+        picker.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick()
+        org.robolectric.shadows.ShadowLooper.idleMainLooper()
+        rule.onNodeWithText(s(R.string.sunset_hint_set_city)).performClick()
+        rule.waitForIdle()
+        val city = ApplicationProvider.getApplicationContext<KalendarApp>().container.cityCatalog.cities.first()
+        rule.onNodeWithText(when (s(R.string.locale_tag)) { "ru" -> city.nameRu; "he", "yi" -> city.nameHe; else -> city.nameEn }).performScrollTo().performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.sunset_hint_local)).performScrollTo()
+        rule.waitForIdle()
+        shot("08b_sunset_hint")
         rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.waitForIdle()
+        // Подсказка изменила событие — редактор спросит, сохранять ли.
+        if (rule.onAllNodesWithText(s(R.string.dont_save)).fetchSemanticsNodes().isNotEmpty()) {
+            rule.onNodeWithText(s(R.string.dont_save)).performClick()
+            rule.waitForIdle()
+        }
         rule.onNodeWithText(s(R.string.tab_more)).performClick()
         rule.waitForIdle()
         rule.onNodeWithText(s(R.string.settings)).performClick()

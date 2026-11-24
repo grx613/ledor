@@ -110,6 +110,17 @@
     <string name="year_unknown">Año desconocido</string>
     <string name="before_sunset">Antes del ocaso</string>
     <string name="after_sunset">Después del ocaso</string>
+    <string name="sunset_hint_open">¿No lo sabes? Te ayudo con la hora y la ciudad</string>
+    <string name="sunset_hint_set_time">Indicar la hora</string>
+    <string name="sunset_hint_time">Hora: %1$s</string>
+    <string name="sunset_hint_set_city">Elegir ciudad</string>
+    <string name="sunset_hint_city">Ciudad: %1$s</string>
+    <string name="sunset_hint_sunset">Ese día el sol se puso a las %1$s.</string>
+    <string name="sunset_hint_before">%1$s — antes de la puesta de sol.</string>
+    <string name="sunset_hint_after">%1$s — después de la puesta de sol: la fecha hebrea ya es la siguiente.</string>
+    <string name="sunset_hint_twilight">%1$s — crepúsculo, entre la puesta de sol y la salida de las estrellas (%2$s). La fecha es dudosa: consulta a un rabino y elige tú.</string>
+    <string name="sunset_hint_none">Ese día el sol no se pone en esta ciudad. Consulta a un rabino.</string>
+    <string name="sunset_hint_local">Hora local, la que marcaba el reloj entonces.</string>
     <string name="conv_hebrew_label">Fecha hebrea</string>
     <string name="conv_gregorian_label">Fecha gregoriana</string>
     <string name="conv_eve_note">El día hebreo empieza la noche anterior, con la puesta de sol del %1$s.</string>

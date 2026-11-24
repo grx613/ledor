@@ -110,6 +110,17 @@
     <string name="year_unknown">Année inconnue</string>
     <string name="before_sunset">Avant le coucher</string>
     <string name="after_sunset">Après le coucher</string>
+    <string name="sunset_hint_open">Vous ne savez pas ? Aide d’après l’heure et la ville</string>
+    <string name="sunset_hint_set_time">Indiquer l’heure</string>
+    <string name="sunset_hint_time">Heure : %1$s</string>
+    <string name="sunset_hint_set_city">Choisir une ville</string>
+    <string name="sunset_hint_city">Ville : %1$s</string>
+    <string name="sunset_hint_sunset">Ce jour-là, le soleil s’est couché à %1$s.</string>
+    <string name="sunset_hint_before">%1$s — avant le coucher du soleil.</string>
+    <string name="sunset_hint_after">%1$s — après le coucher du soleil : la date hébraïque est déjà la suivante.</string>
+    <string name="sunset_hint_twilight">%1$s — crépuscule, entre le coucher du soleil et la tombée de la nuit (%2$s). La date est incertaine : consultez un rabbin et choisissez vous-même.</string>
+    <string name="sunset_hint_none">Ce jour-là, le soleil ne se couche pas dans cette ville. Consultez un rabbin.</string>
+    <string name="sunset_hint_local">Heure locale, telle qu’affichée à l’époque.</string>
     <string name="conv_hebrew_label">Date hébraïque</string>
     <string name="conv_gregorian_label">Date grégorienne</string>
     <string name="conv_eve_note">Le jour hébraïque commence la veille au soir, au coucher du soleil du %1$s.</string>

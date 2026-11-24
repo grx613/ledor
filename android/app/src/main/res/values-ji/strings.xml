@@ -105,6 +105,17 @@
     <string name="year_unknown">דאָס יאָר איז נישט באַקאַנט</string>
     <string name="before_sunset">פֿאַר דער שקיעה</string>
     <string name="after_sunset">נאָך דער שקיעה</string>
+    <string name="sunset_hint_open">ניט זיכער? מיר וועלן העלפֿן לויט דער צײַט און שטאָט</string>
+    <string name="sunset_hint_set_time">אויסקלײַבן די צײַט</string>
+    <string name="sunset_hint_time">צײַט: %1$s</string>
+    <string name="sunset_hint_set_city">אויסקלײַבן אַ שטאָט</string>
+    <string name="sunset_hint_city">שטאָט: %1$s</string>
+    <string name="sunset_hint_sunset">די שקיעה אין יענעם טאָג איז געווען %1$s.</string>
+    <string name="sunset_hint_before">%1$s — פֿאַר דער שקיעה.</string>
+    <string name="sunset_hint_after">%1$s — נאָך דער שקיעה: די ייִדישע דאַטע איז שוין די קומענדיקע.</string>
+    <string name="sunset_hint_twilight">%1$s — בין־השמשות, צווישן דער שקיעה און צאת־הכּוכבֿים (%2$s). די דאַטע איז אַ ספֿק: פֿרעגט אַ רבֿ און קלײַבט אַליין.</string>
+    <string name="sunset_hint_none">אין דעם טאָג גייט די זון נישט אונטער אין דער שטאָט. פֿרעגט אַ רבֿ.</string>
+    <string name="sunset_hint_local">אָרטיקע צײַט, ווי דער זייגער האָט דעמאָלט געוויזן.</string>
     <string name="conv_hebrew_label">ייִדישע דאַטע</string>
     <string name="conv_gregorian_label">גרעגאָריאַנישע דאַטע</string>
     <string name="conv_eve_note">דער ייִדישער טאָג הייבט זיך אָן דעם פֿריִערדיקן אָוונט, מיט דער שקיעה %1$s.</string>

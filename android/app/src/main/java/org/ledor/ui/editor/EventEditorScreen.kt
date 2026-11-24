@@ -166,7 +166,10 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                         NumberField(stringResource(R.string.year), if (s.gYearUnknown) "" else s.gYear, vm::setGYear, Modifier.weight(1f), enabled = !s.gYearUnknown, isError = dateErr)
                     }
                     CheckRow(stringResource(R.string.year_unknown), s.gYearUnknown, vm::setGYearUnknown)
-                    if (s.gYearInt != null) SunsetToggle(s.afterSunset, vm::setAfterSunset)
+                    if (s.gYearInt != null) {
+                        SunsetToggle(s.afterSunset, vm::setAfterSunset)
+                        if (!s.readOnly) SunsetHint(runCatching { java.time.LocalDate.of(s.gYearInt!!, s.gMonth, s.gDay) }.getOrNull(), vm::setAfterSunset)
+                    }
                 } else {
                     val hy = s.hYearInt?.takeIf { M.isHebrewYearSupported(it) }
                     val months = hy?.let { M.monthsOfYear(it) } ?: HebrewMonth.ORDER_WITHOUT_YEAR

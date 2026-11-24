@@ -115,6 +115,17 @@
     <string name="year_unknown">Год неизвестен</string>
     <string name="before_sunset">До захода</string>
     <string name="after_sunset">После захода</string>
+    <string name="sunset_hint_open">Не знаете? Подскажу по времени и городу</string>
+    <string name="sunset_hint_set_time">Указать время</string>
+    <string name="sunset_hint_time">Время: %1$s</string>
+    <string name="sunset_hint_set_city">Выбрать город</string>
+    <string name="sunset_hint_city">Город: %1$s</string>
+    <string name="sunset_hint_sunset">Заход солнца в тот день — в %1$s.</string>
+    <string name="sunset_hint_before">%1$s — до захода солнца.</string>
+    <string name="sunset_hint_after">%1$s — после захода: еврейская дата уже следующая.</string>
+    <string name="sunset_hint_twilight">%1$s — сумерки между заходом солнца и выходом звёзд (%2$s). Дата под сомнением: посоветуйтесь с раввином и выберите сами.</string>
+    <string name="sunset_hint_none">В этот день солнце в этом городе не заходит. Посоветуйтесь с раввином.</string>
+    <string name="sunset_hint_local">Время — местное, как было на часах.</string>
     <string name="conv_hebrew_label">Еврейская дата</string>
     <string name="conv_gregorian_label">Григорианская дата</string>
     <string name="conv_eve_note">Еврейский день начинается накануне вечером, с заходом солнца %1$s.</string>

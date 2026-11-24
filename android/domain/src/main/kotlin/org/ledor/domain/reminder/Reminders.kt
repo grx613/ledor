@@ -52,10 +52,53 @@ fun interface SunsetProvider { fun sunset(date: LocalDate): Instant }
 class CitySunsetProvider(private val city: City) : SunsetProvider {
     private val zone = ZoneId.of(city.zoneId)
     private val geo = GeoLocation(city.nameEn, city.lat, city.lon, zone)
-    override fun sunset(date: LocalDate): Instant {
-        val cal = AstronomicalCalendar(geo)
-        cal.localDate = date
-        return cal.seaLevelSunset ?: ZonedDateTime.of(date, LocalTime.of(18, 0), zone).toInstant()
+    private fun calendar(date: LocalDate) = AstronomicalCalendar(geo).apply { localDate = date }
+
+    override fun sunset(date: LocalDate): Instant =
+        sunsetOrNull(date) ?: ZonedDateTime.of(date, LocalTime.of(18, 0), zone).toInstant()
+
+    /** Заход солнца или null, если в этот день его нет (полярный день/ночь). */
+    fun sunsetOrNull(date: LocalDate): Instant? = calendar(date).seaLevelSunset
+
+    /** Выход звёзд: солнце на 8,5° ниже горизонта. null — в эту ночь так не темнеет (высокие широты летом). */
+    fun nightfallOrNull(date: LocalDate): Instant? =
+        calendar(date).getSunsetOffsetByDegrees(AstronomicalCalendar.GEOMETRIC_ZENITH + NIGHTFALL_DEGREES)
+
+    companion object { const val NIGHTFALL_DEGREES = 8.5 }
+}
+
+enum class SunsetVerdict { BEFORE, TWILIGHT, AFTER }
+
+/** [sunset] и [nightfall] — местное время границ сумерек, к которым относится ответ. */
+data class SunsetHint(val verdict: SunsetVerdict, val sunset: LocalTime, val nightfall: LocalTime)
+
+/** Подсказка «до или после захода» по местному времени и городу события (BACKLOG B-24). */
+object SunsetHints {
+    /** Если по градусам ночь не наступает — считаем выход звёзд через 72 минуты после захода. */
+    const val NIGHTFALL_FALLBACK_MINUTES = 72L
+
+    /** null — в этот день в этом городе солнце не заходит. */
+    fun evaluate(date: LocalDate, time: LocalTime, city: City): SunsetHint? {
+        val zone = ZoneId.of(city.zoneId)
+        val provider = CitySunsetProvider(city)
+        val moment = ZonedDateTime.of(date, time, zone).toInstant()
+        fun bounds(d: LocalDate): Pair<Instant, Instant>? {
+            val sunset = provider.sunsetOrNull(d) ?: return null
+            val night = provider.nightfallOrNull(d)?.takeIf { it.isAfter(sunset) }
+                ?: sunset.plusSeconds(NIGHTFALL_FALLBACK_MINUTES * 60)
+            return sunset to night
+        }
+        fun hint(v: SunsetVerdict, b: Pair<Instant, Instant>) = SunsetHint(
+            v, b.first.atZone(zone).toLocalTime().withSecond(0).withNano(0), b.second.atZone(zone).toLocalTime().withSecond(0).withNano(0),
+        )
+        // После полуночи ещё могут длиться сумерки вчерашнего вечера (летом на севере).
+        bounds(date.minusDays(1))?.let { prev -> if (moment.isBefore(prev.second)) return hint(SunsetVerdict.TWILIGHT, prev) }
+        val today = bounds(date) ?: return null
+        return when {
+            moment.isBefore(today.first) -> hint(SunsetVerdict.BEFORE, today)
+            moment.isBefore(today.second) -> hint(SunsetVerdict.TWILIGHT, today)
+            else -> hint(SunsetVerdict.AFTER, today)
+        }
     }
 }
 

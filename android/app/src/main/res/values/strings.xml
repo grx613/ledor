@@ -109,6 +109,17 @@
     <string name="year_unknown">Year unknown</string>
     <string name="before_sunset">Before sunset</string>
     <string name="after_sunset">After sunset</string>
+    <string name="sunset_hint_open">Not sure? Get a hint from the time and city</string>
+    <string name="sunset_hint_set_time">Set the time</string>
+    <string name="sunset_hint_time">Time: %1$s</string>
+    <string name="sunset_hint_set_city">Choose a city</string>
+    <string name="sunset_hint_city">City: %1$s</string>
+    <string name="sunset_hint_sunset">Sunset that day was at %1$s.</string>
+    <string name="sunset_hint_before">%1$s is before sunset.</string>
+    <string name="sunset_hint_after">%1$s is after sunset: the Hebrew date is already the next one.</string>
+    <string name="sunset_hint_twilight">%1$s is twilight, between sunset and nightfall (%2$s). The date is in doubt: ask a rabbi and choose yourself.</string>
+    <string name="sunset_hint_none">The sun does not set in this city on this day. Ask a rabbi.</string>
+    <string name="sunset_hint_local">Local time, as the clock showed then.</string>
     <string name="conv_hebrew_label">Hebrew date</string>
     <string name="conv_gregorian_label">Gregorian date</string>
     <string name="conv_eve_note">The Hebrew day begins the evening before, at sunset on %1$s.</string>

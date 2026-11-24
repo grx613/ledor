@@ -174,4 +174,36 @@ class DomainTest {
         assertEquals("י״ד", org.ledor.domain.calendar.Gematriya.format(14))
         assertEquals("ל׳", org.ledor.domain.calendar.Gematriya.format(30))
     }
+
+    @Test fun sunsetHint() {
+        fun near(expected: LocalTime, actual: LocalTime, minutes: Long) =
+            assertTrue("$actual vs $expected", abs(ChronoUnit.MINUTES.between(expected, actual)) <= minutes)
+        val jerusalem = City("j", "j", "Jerusalem", "j", "IL", 31.778, 35.235, "Asia/Jerusalem")
+        val d = LocalDate.of(2026, 12, 21)
+        val before = SunsetHints.evaluate(d, LocalTime.of(15, 0), jerusalem)!!
+        assertEquals(SunsetVerdict.BEFORE, before.verdict)
+        near(LocalTime.of(16, 40), before.sunset, 2)
+        near(LocalTime.of(17, 18), before.nightfall, 8)
+        assertEquals(SunsetVerdict.TWILIGHT, SunsetHints.evaluate(d, LocalTime.of(16, 50), jerusalem)!!.verdict)
+        assertEquals(SunsetVerdict.AFTER, SunsetHints.evaluate(d, LocalTime.of(18, 0), jerusalem)!!.verdict)
+        assertEquals(SunsetVerdict.BEFORE, SunsetHints.evaluate(d, LocalTime.of(1, 30), jerusalem)!!.verdict)
+
+        // Исторический часовой пояс: в апреле 1990 в Москве летнее время UTC+4, заход около 20:50.
+        val moscow = City("m", "m", "Moscow", "m", "RU", 55.7558, 37.6173, "Europe/Moscow")
+        val m = SunsetHints.evaluate(LocalDate.of(1990, 4, 23), LocalTime.of(19, 40), moscow)!!
+        assertEquals(SunsetVerdict.BEFORE, m.verdict)
+        near(LocalTime.of(20, 50), m.sunset, 6)
+
+        // Белые ночи: до 8,5° солнце не опускается — сумерки 72 минуты, после полуночи уже «до захода».
+        val spb = City("s", "s", "Saint Petersburg", "s", "RU", 59.9343, 30.3351, "Europe/Moscow")
+        val june = LocalDate.of(2026, 6, 21)
+        val white = SunsetHints.evaluate(june, LocalTime.of(23, 0), spb)!!
+        assertEquals(SunsetVerdict.TWILIGHT, white.verdict)
+        assertEquals(72, ChronoUnit.MINUTES.between(white.sunset, white.nightfall))
+        assertEquals(SunsetVerdict.BEFORE, SunsetHints.evaluate(june.plusDays(1), LocalTime.of(0, 30), spb)!!.verdict)
+
+        // Полярный день: захода нет.
+        val polar = City("x", "x", "x", "x", "NO", 78.2, 15.6, "Arctic/Longyearbyen")
+        assertNull(SunsetHints.evaluate(june, LocalTime.of(20, 0), polar))
+    }
 }

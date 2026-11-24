@@ -110,6 +110,17 @@
     <string name="year_unknown">השנה לא ידועה</string>
     <string name="before_sunset">לפני השקיעה</string>
     <string name="after_sunset">אחרי השקיעה</string>
+    <string name="sunset_hint_open">לא בטוחים? נעזור לפי השעה והעיר</string>
+    <string name="sunset_hint_set_time">בחירת שעה</string>
+    <string name="sunset_hint_time">שעה: %1$s</string>
+    <string name="sunset_hint_set_city">בחירת עיר</string>
+    <string name="sunset_hint_city">עיר: %1$s</string>
+    <string name="sunset_hint_sunset">השקיעה באותו יום הייתה ב־%1$s.</string>
+    <string name="sunset_hint_before">%1$s — לפני השקיעה.</string>
+    <string name="sunset_hint_after">%1$s — אחרי השקיעה: התאריך העברי הוא כבר הבא.</string>
+    <string name="sunset_hint_twilight">%1$s — בין השמשות, בין השקיעה לצאת הכוכבים (%2$s). התאריך בספק: שאלו רב ובחרו בעצמכם.</string>
+    <string name="sunset_hint_none">ביום זה השמש אינה שוקעת בעיר זו. שאלו רב.</string>
+    <string name="sunset_hint_local">שעה מקומית, כפי שהראה אז השעון.</string>
     <string name="conv_hebrew_label">תאריך עברי</string>
     <string name="conv_gregorian_label">תאריך לועזי</string>
     <string name="conv_eve_note">היום העברי מתחיל בערב הקודם, בשקיעת %1$s.</string>

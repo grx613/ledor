@@ -65,6 +65,7 @@ fun ConverterScreen(nav: NavController, outer: PaddingValues) {
                         NumberField(stringResource(R.string.year), gy, { gy = it }, Modifier.weight(1f), isError = gDate == null)
                     }
                     SunsetToggle(after) { after = it }
+                    SunsetHint(gDate) { after = it }
                     if (gDate != null) {
                         resultHebrew = M.fromGregorian(gDate, after)
                         resultDate = gDate
