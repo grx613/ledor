@@ -1,4 +1,4 @@
-// Интеграционный smoke-тест RPC-функций Supabase (docs/04-backend-supabase.md §7).
+// Интеграционный smoke-тест RPC-функций Supabase (docs/04-backend.md §7).
 //
 // Запуск (Node 22, без зависимостей):
 //   SUPABASE_URL=https://<project>.supabase.co SUPABASE_KEY=<публичный ключ> node --test tools/rpc-smoke/smoke.mjs

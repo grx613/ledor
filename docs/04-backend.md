@@ -1,13 +1,19 @@
-# 04. Бэкенд: Supabase
+# 04. Сервер
 
-Задача бэкенда — хранить облачные списки и отдавать изменения. Учётных записей пользователей нет.
+Задача сервера — хранить общие списки, отдавать изменения и принимать отзывы. Учётных записей пользователей нет.
 Доступ к списку даёт знание его **названия и ПИН-кода**.
+
+Сервер свой: **PostgreSQL + PostgREST за Caddy** на `https://kalendar.bothub.chat` (обновлено 2026-11-24).
+Сначала проект работал на Supabase; контракт остался тем же (Supabase внутри — те же Postgres и PostgREST), поэтому
+миграции лежат в `supabase/migrations/`, а клиент в Android называется `SupabaseRpc`. Те же миграции можно применить
+и в проекте Supabase — см. `supabase/README.md`.
 
 ## 1. Принципы
 
 1. **Клиент никогда не обращается к таблицам напрямую.** Только вызовы RPC-функций
-   `POST {SUPABASE_URL}/rest/v1/rpc/<имя>` с публичным ключом проекта.
-2. Таблицы лежат в схеме `app`, которая **не выставлена** в Data API (выставлена только `public`).
+   `POST https://kalendar.bothub.chat/rest/v1/rpc/<имя>` с публичным ключом приложения в заголовке `apikey`.
+   Caddy пропускает к PostgREST только этот путь и только POST; всё остальное под `/rest/` → 404/405.
+2. Таблицы лежат в схеме `app`, которая **не выставлена** в PostgREST (`db-schemas = "public"`).
    На всех таблицах включён RLS без единой политики; у ролей `anon`/`authenticated` нет прав на схему `app`.
 3. Функции в схеме `public`: `language plpgsql`, `security definer`, `set search_path = ''`
    (все имена — с указанием схемы: `app.lists`, `extensions.crypt(...)`).
@@ -16,12 +22,14 @@
    `{"ok": true, ...}` или `{"ok": false, "error": "КОД", ...}`.
    Причина: `RAISE` откатывает транзакцию, и счётчик неудачных попыток ПИН-кода не сохранится — защита от
    перебора перестанет работать. Это самая вероятная ошибка реализации, на неё есть отдельный тест.
-5. Никаких Realtime, Auth, Storage, Edge Functions, push-уведомлений. Только Postgres + PostgREST.
+5. Никаких push-уведомлений, постоянных соединений и сторонних сервисов. Только Postgres + PostgREST.
 6. Сервер ничего не знает о еврейском календаре: хранит поля события как есть, проверяет только формат и размеры.
 
 ## 2. Схема данных
 
-Файл миграции: `supabase/migrations/0001_init.sql`. Расширение `pgcrypto` в Supabase находится в схеме `extensions`.
+Миграции: `supabase/migrations/0001_init.sql` (списки, участники, события, лимиты) и `0002_feedback_observe_both.sql`
+(отзывы, `observe_by = 'BOTH'`). Новые изменения схемы — только новыми файлами `000N_….sql`: установочный скрипт применяет
+каждый файл один раз (таблица `public.ledor_migrations`). Расширение `pgcrypto` ставится в схему `extensions`.
 
 ```sql
 create schema if not exists app;
@@ -61,7 +69,7 @@ create table app.events (
   type           text        not null check (type in ('BIRTHDAY','YAHRZEIT','BAR_MITZVAH','BAT_MITZVAH','WEDDING','OTHER')),
   custom_label   text        check (char_length(custom_label) <= 60),
   recurring      boolean     not null,
-  observe_by     text        not null check (observe_by in ('HEBREW','GREGORIAN')),
+  observe_by     text        not null check (observe_by in ('HEBREW','GREGORIAN','BOTH')),  -- BOTH: основной календарь = input_calendar
   input_calendar text        not null check (input_calendar in ('HEBREW','GREGORIAN')),
   g_year         smallint    check (g_year between 1600 and 2200),
   g_month        smallint    check (g_month between 1 and 12),
@@ -86,6 +94,16 @@ create table app.rate_limits (
 
 -- Служебные значения (соль для хэша IP генерируется миграцией)
 create table app.config (key text primary key, value text not null);
+
+-- Отзывы из приложения (миграция 0002)
+create table app.feedback (
+  id          bigint      generated always as identity primary key,
+  created_at  timestamptz not null default now(),
+  message     text        not null check (char_length(message) between 1 and 2000),
+  contact     text        check (char_length(contact) <= 200),
+  app_version text, device text, os_version text, locale text,   -- только если пользователь разрешил
+  notified    boolean     not null default false                 -- переслано ли автору в Telegram
+);
 
 alter table app.lists       enable row level security;
 alter table app.members     enable row level security;
@@ -134,6 +152,7 @@ revoke all on schema app from anon, authenticated;
 | `UNAUTHORIZED` | список есть, но токен неизвестен | пометить список «доступ потерян» |
 | `FORBIDDEN` | нужна роль `EDITOR` | понизить роль, перечитать список |
 | `TOO_MANY_EVENTS`, `BATCH_TOO_LARGE`, `INVALID_EVENT` | ограничения | показать ошибку, оставить изменения в очереди |
+| `FEEDBACK_EMPTY`, `FEEDBACK_TOO_LONG` | отзыв пуст или длиннее 2000 символов (контакт — 200) | показать у поля |
 
 ### Функции
 
@@ -161,7 +180,7 @@ revoke all on schema app from anon, authenticated;
 ```json
 { "id": "uuid", "deleted": false, "rev": 17,
   "title": "Сара Коэн", "type": "BIRTHDAY", "custom_label": null, "recurring": true,
-  "observe_by": "HEBREW", "input_calendar": "GREGORIAN",
+  "observe_by": "HEBREW", "input_calendar": "GREGORIAN",          // observe_by: HEBREW | GREGORIAN | BOTH
   "g_year": 1990, "g_month": 4, "g_day": 23, "after_sunset": false,
   "h_year": 5750, "h_month": "NISAN", "h_day": 28, "note": null }
 ```
@@ -187,6 +206,11 @@ revoke all on schema app from anon, authenticated;
 Требует одновременно токен с ролью `EDITOR` **и** верный Мастер-ПИН (повторный ввод в интерфейсе).
 Удаляет список каскадно — события и участников, безвозвратно. Неверный ПИН учитывается тем же счётчиком блокировки.
 Ошибки: `LIST_DELETED`, `UNAUTHORIZED`, `FORBIDDEN`, `WRONG_PIN`, `LOCKED`.
+
+**8. `submit_feedback(p_message text, p_contact text, p_meta jsonb)`** → `{"ok":true}`
+`p_meta` — объект с необязательными `app_version`, `device`, `os_version`, `locale` (пустой объект, если пользователь не
+разрешил техданные). Ошибки: `FEEDBACK_EMPTY`, `FEEDBACK_TOO_LONG`, `RATE_LIMITED`. Лимит: 5/час с IP.
+Запись попадает в `app.feedback`; раз в 2 минуты скрипт на сервере пересылает новые отзывы автору в Telegram.
 
 ## 4. Защита от перебора ПИН-кода (`join_list`, `delete_list`)
 
@@ -217,27 +241,28 @@ IP берётся из заголовков запроса
 где `h = current_setting('request.headers', true)::json`; хранится только `sha256(ip + соль)` с окном в 1 час.
 Строки старше суток удаляются при каждом вызове (`delete … where window_start < now() - interval '1 day'`).
 
-## 5. Клиент на Android
+## 5. Клиент
 
-Собственный тонкий клиент на OkHttp + kotlinx.serialization (без `supabase-kt`: нужны только 7 POST-запросов,
-а SDK тянет Ktor и замедляет старт — решение D-04).
+Собственный тонкий клиент без SDK: на Android — OkHttp + kotlinx.serialization (`SupabaseRpc`), на iOS — `URLSession`.
 
 ```
-POST {SUPABASE_URL}/rest/v1/rpc/{function}
-apikey: {SUPABASE_KEY}
-Authorization: Bearer {SUPABASE_KEY}
+POST https://kalendar.bothub.chat/rest/v1/rpc/{function}
+apikey: {публичный ключ}
 Content-Type: application/json
 
 {"p_name":"Семья Коэн","p_pin":"123456"}
 ```
 
-- `SUPABASE_KEY` — публичный ключ проекта (`sb_publishable_…` либо legacy `anon`). Секретный/`service_role` ключ
-  в приложение и в репозиторий не попадает **никогда**.
-- Ключи берутся из `android/local.properties` (`supabase.url`, `supabase.key`) → `BuildConfig`. Файл не коммитится;
-  образец — `android/local.properties.example`. Если значения пустые — приложение собирается и работает,
-  облачные функции показывают «Облако не настроено».
+- Публичный ключ приложения (`ledor_pub_…`) не секрет — он зашит в приложение и лишь отсекает случайные запросы;
+  его проверяет Caddy. В репозиторий он не кладётся: на сервере — `/etc/ledor/public-api-key`.
+  Заголовок `Authorization` сервер отбрасывает (PostgREST работает без JWT, под ролью `anon`).
+- Android: адрес и ключ — в `android/local.properties` (`supabase.url=https://kalendar.bothub.chat`, `supabase.key=…`) →
+  `BuildConfig`. Файл не коммитится; образец — `local.properties.example`. Если значения пустые — приложение собирается
+  и работает, облачные функции показывают «Облако не настроено».
 - Таймауты: соединение 10 с, чтение 20 с. Повторы — на уровне `SyncEngine`/WorkManager, не в HTTP-клиенте.
 - HTTP ≠ 200, сетевые ошибки, невалидный JSON → `RpcResult.Failure(NETWORK | SERVER)`; конверт с `ok:false` → `RpcResult.Error(code, …)`.
+- Секретов уровня администратора (пароль базы, токен Telegram-бота) в приложениях и репозитории нет: они живут только
+  на сервере в `/etc/ledor/`.
 
 ## 6. Алгоритм синхронизации (клиент)
 
@@ -263,12 +288,27 @@ Content-Type: application/json
 
 ## 7. Развёртывание и проверка
 
-- Проект Supabase создаёт заказчик (вопрос Q-02 в `DECISIONS.md`). Миграция применяется либо через SQL Editor
-  в панели Supabase (вставить содержимое `0001_init.sql`), либо `supabase db push` при наличии CLI и доступа.
-- В настройках проекта: Data API → Exposed schemas = только `public`.
-- На машине разработки нет Docker, поэтому локальный Supabase недоступен. Проверка — интеграционным скриптом
-  `tools/rpc-smoke/smoke.mjs` (Node 22, встроенные `fetch` и `node:test`), который ходит в реальный проект
-  по `SUPABASE_URL`/`SUPABASE_KEY` из переменных окружения, создаёт список со случайным именем и в конце удаляет его.
+Сервер ставится одной командой на машине с Caddy (Ubuntu): `sudo bash tools/server/setup-backend.sh`.
+Скрипт можно запускать повторно — сделанные шаги пропускаются, применяются только новые миграции. Он:
+
+1. ставит PostgreSQL (слушает только 127.0.0.1), создаёт базу `ledor` и роли `anon`, `authenticated`, `authenticator`;
+2. применяет миграции из `supabase/migrations/` по порядку, каждую один раз;
+3. ставит PostgREST (версия и контрольная сумма зафиксированы в скрипте) как службу `ledor-postgrest` на 127.0.0.1:3300;
+4. включает ежедневную копию базы (`/var/backups/ledor`, 14 дней) и удаление отзывов старше 2 лет;
+5. ставит пересылку отзывов в Telegram (`ledor-feedback-notify.timer`; токен бота и chat_id — в `/etc/ledor/telegram.env`);
+6. заменяет блок `kalendar.bothub.chat` в Caddyfile (`tools/deploy/kalendar.caddy`): API + статический сайт.
+
+Вспомогательное: `tools/server/feedback-list.sh` — последние отзывы; `tools/server/import-from-supabase.sh` — разовый перенос
+списков из Supabase.
+
+Проверка — интеграционным скриптом `tools/rpc-smoke/smoke.mjs` (Node 22, встроенные `fetch` и `node:test`):
+
+```bash
+SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный ключ> node --test tools/rpc-smoke/smoke.mjs
+```
+
+Он ходит на живой сервер, создаёт списки со случайными именами и в конце удаляет их (заблокированный сценарием 9 список и
+тестовый отзыв остаются — их удаляет администратор).
 
 Обязательные сценарии smoke-теста:
 
@@ -285,6 +325,8 @@ Content-Type: application/json
 10. Прямой доступ к таблицам: `GET /rest/v1/lists`, `GET /rest/v1/events` → 404/отказ.
 11. `delete_list` с неверным Мастер-ПИНом → `WRONG_PIN`; с верным → успех; затем `pull_changes` → `LIST_DELETED`.
 12. Невалидные данные: ПИН из букв, имя из 2 символов, событие с `type = "X"` → соответствующие коды ошибок.
+13. (10b в скрипте) Событие с `observe_by = "BOTH"` принимается и возвращается как `BOTH`.
+14. `submit_feedback`: пустой текст → `FEEDBACK_EMPTY`, 2001 символ → `FEEDBACK_TOO_LONG`, обычный отзыв → успех.
 
 Один прогон создаёт два списка (основной и «чужой» для сценария 8), а лимит `create_list` — 10 в час с адреса:
 запускать smoke-тест не чаще 5 раз в час, иначе он упадёт с `RATE_LIMITED` (это не ошибка бэкенда).
@@ -292,9 +334,11 @@ Content-Type: application/json
 
 ## 8. Эксплуатационные заметки
 
-- Бесплатный тариф Supabase приостанавливает проект после недели без запросов. До появления живых пользователей
-  проект может «уснуть» — перед тестированием проверить, что он активен.
-- Персональные данные в базе: названия списков, имена/названия событий, даты, заметки. Это отражено в Политике
-  конфиденциальности (`07-website.md`). Регион проекта выбрать ближе к пользователям (ЕС подходит и для Израиля, и для СНГ).
-- Отложено (не в v1): смена ПИН-кодов и отзыв токенов, переименование списка, автоудаление заброшенных списков,
-  очистка «надгробий».
+- Персональные данные в базе: названия списков, имена/названия событий, даты, заметки, тексты и контакты отзывов.
+  Это отражено в Политике конфиденциальности (`07-website.md`): отзывы — до 2 лет, хэш IP — до суток, копии базы — 14 дней.
+- Резервные копии лежат на том же сервере — нужна копия наружу (не настроено).
+- Лимиты по IP берут адрес из `cf-connecting-ip` / `x-forwarded-for`. При обращении к серверу в обход Cloudflare заголовок
+  можно подделать — это ослабляет только лимиты, но не защиту ПИН-кодов (она считается по списку).
+- Сайт и API обслуживает один блок Caddy; DNS и TLS — через Cloudflare.
+- Отложено: смена ПИН-кодов и отзыв токенов, переименование списка, автоудаление заброшенных списков,
+  очистка «надгробий», очередь отзывов без сети.

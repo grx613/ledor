@@ -47,10 +47,12 @@ node --test website/tests/*.test.mjs                  # конвертер са�
 | [`docs/01-product-spec.md`](docs/01-product-spec.md) | техническое задание: экраны и поведение |
 | [`docs/02-architecture.md`](docs/02-architecture.md) | архитектура, стек, структура кода |
 | [`docs/03-calendar-domain.md`](docs/03-calendar-domain.md) | календарная логика и правила |
-| [`docs/04-backend-supabase.md`](docs/04-backend-supabase.md) | база данных и API |
+| [`docs/04-backend.md`](docs/04-backend.md) | сервер: база данных, API, развёртывание |
 | [`docs/05-reminders-battery.md`](docs/05-reminders-battery.md) | напоминания без расхода батареи |
 | [`docs/06-design-system.md`](docs/06-design-system.md) | дизайн-система |
-| [`docs/07-website.md`](docs/07-website.md) | сайт и SEO |
+| [`docs/07-website.md`](docs/07-website.md) | сайт: структура, языки, SEO, выкладка |
+| [`docs/08-store-compliance.md`](docs/08-store-compliance.md) | требования магазинов |
+| [`docs/09-ios-notes.md`](docs/09-ios-notes.md) | iOS: план и отличия |
 | [`docs/PLAN.md`](docs/PLAN.md) | план по вехам и журнал |
 | [`docs/DECISIONS.md`](docs/DECISIONS.md) | решения и отклонения |
 | [`docs/BACKLOG.md`](docs/BACKLOG.md) | идеи и их статус |

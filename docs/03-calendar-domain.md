@@ -71,10 +71,10 @@ val sunset: Instant? = cal.seaLevelSunset        // null, если захода 
 
 ## 3. Модель данных
 
-Пакет `chat.bothub.fire.kalendar.domain.calendar`.
+Пакет `org.ledor.domain.calendar`.
 
 ```kotlin
-/** 14 значений. Строковые имена — контракт: так хранится в БД, в Supabase, на iOS и на сайте. */
+/** 14 значений. Строковые имена — контракт: так хранится в БД, на сервере, на iOS и на сайте. */
 enum class HebrewMonth { NISAN, IYAR, SIVAN, TAMMUZ, AV, ELUL, TISHREI, CHESHVAN, KISLEV, TEVET, SHEVAT,
                          ADAR,      // Адар простого (невисокосного) года
                          ADAR_I,    // Адар I високосного года
@@ -130,7 +130,7 @@ object HebrewCalendarMath {
 
 ## 4. Модель события
 
-Пакет `chat.bothub.fire.kalendar.domain.event`.
+Пакет `org.ledor.domain.event`.
 
 ```kotlin
 enum class EventType { BIRTHDAY, YAHRZEIT, BAR_MITZVAH, BAT_MITZVAH, WEDDING, OTHER }
@@ -152,9 +152,10 @@ data class Event(
     val type: EventType,
     val customLabel: String?,            // только для OTHER, 1..60
     val recurring: Boolean,              // true = каждый год, false = одноразовое
-    val observeBy: CalendarKind,         // по какому календарю повторять
+    val observeBy: CalendarKind,         // по какому календарю повторять (при observeBoth — основной)
     val date: EventDate,
     val note: String?,                   // до 500 символов
+    val observeBoth: Boolean = false,    // отмечать и по второму календарю тоже
 )
 ```
 
@@ -168,6 +169,7 @@ data class Event(
 | I4 | Дата существует: с годом — `isValid(...)` / реальная `LocalDate`; без года — день ≤ максимума из таблицы §3 (григорианское 29 февраля без года допустимо). |
 | I5 | `customLabel` непуст ⇔ `type = OTHER`. |
 | I6 | Годы в поддерживаемом диапазоне (§3). |
+| I7 | `observeBoth = true` допустимо только для ежегодного события с известным годом (нужны обе полные даты); иначе ошибка `OBSERVE_NEEDS_YEAR`. Основной календарь при этом — `inputCalendar`. В БД и API пара (`observeBy`, `observeBoth = true`) хранится одним значением `observe_by = 'BOTH'`. |
 
 Вторая (производная) дата хранится рядом с введённой, чтобы все платформы показывали одно и то же и чтобы
 списки сортировались без пересчёта. Вычисляет её всегда тот, кто пишет событие (фабрика `EventDate.fromGregorian(...)` /
@@ -277,8 +279,8 @@ data class Occurrence(
     val date: LocalDate,          // дневная гражданская дата наступления
     val hebrewDate: HebrewDate,   // fromGregorian(date)
     val yearsSince: Int?,         // сколько лет исполняется; null, если исходный год неизвестен
-    val startsEveBefore: Boolean, // true для observeBy = HEBREW: день начинается накануне вечером
-)
+    val startsEveBefore: Boolean, // true для наступления по еврейскому календарю: день начинается накануне вечером
+) { val calendar: CalendarKind }  // по какому календарю это наступление (HEBREW, если startsEveBefore)
 
 object OccurrenceCalculator {
     fun inHebrewYear(event: Event, year: Int, policy: YahrzeitAdarPolicy): Occurrence?
@@ -301,6 +303,9 @@ object OccurrenceCalculator {
 5. `next()` для HEBREW: перебрать `Y ∈ {hebrewYearOf(today), +1, +2}`, взять минимальную дату `≥ today`.
    Для GREGORIAN: `gy ∈ {today.year, today.year + 1}`.
 6. `between()`: перебрать все годы, пересекающиеся с диапазоном (еврейские — от `hebrewYearOf(from)` до `hebrewYearOf(to)`), отфильтровать по диапазону, отсортировать.
+7. **Ежегодное, `observeBoth = true`** (и обе даты с годом): наступления считаются по обоим календарям и объединяются.
+   Если в каком-то году обе даты выпали на один день — остаётся одно наступление (по основному календарю).
+   `next()` — ближайшее из двух рядов. В списке и календаре у такого события две строки в году, напоминания — для каждой.
 
 «Через сколько дней» = `ChronoUnit.DAYS.between(today, occurrence.date)`; `today` — гражданская дата устройства.
 
@@ -319,7 +324,7 @@ fun mitzvahHints(birth: HebrewParts /* с годом */, today: LocalDate): List
 
 ## 8. Заход солнца и города
 
-Пакет `chat.bothub.fire.kalendar.domain.reminder`.
+Пакет `org.ledor.domain.reminder`.
 
 ```kotlin
 data class City(val id: String, val nameRu: String, val nameEn: String, val nameHe: String,
@@ -327,7 +332,10 @@ data class City(val id: String, val nameRu: String, val nameEn: String, val name
 
 interface SunsetProvider { fun sunset(date: LocalDate): Instant }
 
-class CitySunsetProvider(city: City) : SunsetProvider            // KosherJava, seaLevelSunset
+class CitySunsetProvider(city: City) : SunsetProvider {          // KosherJava, seaLevelSunset
+    fun sunsetOrNull(date: LocalDate): Instant?                  // null — захода в этот день нет
+    fun nightfallOrNull(date: LocalDate): Instant?               // выход звёзд: солнце на 8,5° ниже горизонта
+}
 class DefaultSunsetProvider(zone: ZoneId) : SunsetProvider       // 18:00 в зоне устройства
 ```
 
@@ -356,6 +364,26 @@ class DefaultSunsetProvider(zone: ZoneId) : SunsetProvider       // 18:00 в з�
 | Москва | ≈ 21:17 | ≈ 15:58 |
 | Нью-Йорк | ≈ 20:30 | ≈ 16:32 |
 
+### Подсказка «до или после захода» (`SunsetHints`)
+
+Помогает правильно выставить `afterSunset`, когда известны местное время и город события.
+
+```kotlin
+enum class SunsetVerdict { BEFORE, TWILIGHT, AFTER }
+data class SunsetHint(val verdict: SunsetVerdict, val sunset: LocalTime, val nightfall: LocalTime)
+object SunsetHints { fun evaluate(date: LocalDate, time: LocalTime, city: City): SunsetHint? }
+```
+
+- Момент события — `date` + `time` в часовом поясе города (**исторические** правила пояса: Москва, апрель 1990 → UTC+4).
+- До захода → `BEFORE`; от захода до выхода звёзд → `TWILIGHT` (дата под сомнением — интерфейс ничего не выставляет
+  и советует спросить раввина); позже → `AFTER`.
+- Выход звёзд — 8,5° под горизонтом; если солнце так низко не опускается (белые ночи) — заход + 72 минуты.
+- Сначала проверяются сумерки **вчерашнего** вечера: время после полуночи, но до вчерашнего выхода звёзд — тоже `TWILIGHT`.
+- Захода в этот день нет (полярный день) → `null`.
+- Контроль (тест `sunsetHint`): Иерусалим 21.12.2026 — 15:00 `BEFORE`, 16:50 `TWILIGHT`, 18:00 `AFTER`, 01:30 `BEFORE`,
+  выход звёзд ≈ 17:18; Москва 23.04.1990 19:40 — `BEFORE`, заход ≈ 20:50; Санкт-Петербург 21.06.2026 23:00 — `TWILIGHT`
+  (72 минуты), 22.06 00:30 — `BEFORE`.
+
 ---
 
 ## 9. Планировщик напоминаний (`ReminderPlanner`) — чистая функция
@@ -376,7 +404,8 @@ data class ReminderSettings(
 )
 
 data class PlannedReminder(val eventId: String, val occurrenceDate: LocalDate, val kind: ReminderKind,
-                           val triggerAt: Instant, val yearsSince: Int?)
+                           val triggerAt: Instant, val yearsSince: Int?,
+                           val calendar: CalendarKind)   // календарь наступления — от него зависит текст уведомления
 
 object ReminderPlanner {
     /** Все напоминания с triggerAt в полуинтервале (fromExclusive, toInclusive], по возрастанию triggerAt. */
@@ -393,7 +422,8 @@ object ReminderPlanner {
 | EVE, режим `FIXED_TIME` | `(D − 1)` в `eveFixedTime` в зоне устройства |
 | DAY | `D` в `dayTime` в зоне устройства |
 
-- Расписание одинаково для событий по еврейскому и по григорианскому календарю (различается только текст уведомления).
+- Расписание одинаково для наступлений по еврейскому и по григорианскому календарю (различается только текст уведомления).
+  У события «по обоим календарям» напоминания планируются для каждой из двух дат.
 - События из списков с выключенными уведомлениями вызывающая сторона отфильтровывает **до** вызова `plan`.
 - Диапазон наступлений для перебора: `[fromDate − 1 день, toDate + 2 дня]`, затем фильтр по `triggerAt`.
 - Локальное время, попавшее в «дыру» перехода на летнее время, разрешается стандартно через `ZonedDateTime.of(...)`.
@@ -404,7 +434,15 @@ object ReminderPlanner {
 
 ---
 
-## 10. Эталонные векторы `spec/golden/`
+## 10. Числа буквами (`Gematriya`)
+
+Для иврита и идиша день и год еврейской даты пишутся буквами: `Gematriya.format(28) = "כ״ח"`, `format(5787) = "תשפ״ז"`.
+Тысячи года не пишутся; 15 и 16 — `ט״ו`, `ט״ז`; одна буква — с гершем (`א׳`, `ל׳`); последняя буква — в конечной форме
+(`תש״ן`). Та же функция есть в JS-порте сайта (`gematriya` в `website/assets/js/hebrew-calendar.js`).
+
+---
+
+## 11. Эталонные векторы `spec/golden/`
 
 Генератор: `tools/golden/generate.mjs` (Node 22, `npm ci && node generate.mjs`). Файлы закоммичены, руками не править.
 Формат каждого файла: `{ description, source, columns: [...], rows: [[...], ...] }`.
@@ -417,8 +455,8 @@ object ReminderPlanner {
 
 Подключение в `:domain`: `sourceSets.test.resources.srcDir("../../spec/golden")`, чтение через `kotlinx-serialization-json`
 (`JsonArray`), параметризованный перебор всех строк. Те же файлы использует тест JS-конвертера сайта
-(`website/tests/`) и в будущем — тесты iOS.
+(`website/tests/`) и должны использовать тесты iOS.
 
 Чего **нет** в векторах (покрыть обычными модульными тестами): правило YAHRZEIT с политикой `ADAR_II`,
-даты без года, григорианские годовщины (29 февраля), `OccurrenceCalculator`, `MitzvahCalculator`, `ReminderPlanner`,
-`EventValidator`.
+даты без года, григорианские годовщины (29 февраля), `OccurrenceCalculator` (включая «по обоим календарям»),
+`MitzvahCalculator`, `ReminderPlanner`, `SunsetHints`, `Gematriya`, `EventValidator` — см. `DomainTest.kt`.

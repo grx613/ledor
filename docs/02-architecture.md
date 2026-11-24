@@ -1,23 +1,29 @@
 # 02. Архитектура проекта
 
+Описывает Android-версию 0.3.2 и общий репозиторий (обновлено 2026-11-24). iOS — `09-ios-notes.md`.
+
 ## 1. Репозиторий (монорепозиторий)
 
 ```
-kalendar/
+ledor/                         (github.com/grx613/ledor)
 ├── CLAUDE.md                  правила для модели-исполнителя (читать первым)
-├── README.md
-├── docs/                      ТЗ, архитектура, план (этот каталог)
+├── README.md, LICENSE         GPL-3.0
+├── docs/                      описание продукта, архитектура, план, решения (этот каталог)
 ├── spec/golden/               эталонные тест-векторы (общие для Android, сайта, iOS)
-├── tools/
-│   ├── golden/                генератор векторов (Node)
-│   └── rpc-smoke/             интеграционный тест бэкенда (Node)           ← создаётся в вехе M4
-├── assets/brand/              логотип BotHub FiRe (оригиналы с сайта)
-├── android/                   Android-проект (корень Gradle)               ← M0
-│   ├── domain/                чистый Kotlin/JVM: календарь, правила, планировщик
+├── android/                   Android-проект (корень Gradle)
+│   ├── domain/                чистый Kotlin/JVM: календарь, правила, планировщик, заход солнца
 │   └── app/                   Android-приложение (Compose)
-├── supabase/migrations/       SQL-миграции                                 ← M4
-├── website/                   статический сайт разработчика                ← M14
-└── ios/                       позже (см. 09-ios-notes.md)
+├── ios/                       iOS-приложение (ещё не начато, см. 09-ios-notes.md)
+├── supabase/migrations/       SQL-миграции сервера (имя каталога историческое)
+├── website/                   сайт: готовые страницы и ресурсы (страницы генерируются)
+├── tools/
+│   ├── env.sh                 JAVA_HOME / ANDROID_HOME для сборки Android
+│   ├── golden/                генератор эталонных векторов (Node)
+│   ├── rpc-smoke/             интеграционный тест сервера (Node, 14 сценариев)
+│   ├── server/                установка сервера: PostgreSQL + PostgREST + Caddy, бэкапы, отзывы в Telegram
+│   ├── site/                  генератор сайта: build.mjs, og.mjs, i18n/<lang>.mjs
+│   └── deploy/                блок Caddy и выкладка сайта (publish.sh)
+└── assets/brand/              исходники логотипов BotHub для карточек на сайте, лицензия шрифта
 ```
 
 ## 2. Стек и версии (проверены 24.11.2026 по Maven Central / Google Maven)
@@ -77,51 +83,61 @@ android {
 Почему `:domain` отдельно: вся сложная логика тестируется за секунды обычным `./gradlew :domain:test`
 без Android и эмулятора; её границы совпадают с тем, что потом переносится на Swift.
 
-Идентификаторы: `applicationId = chat.bothub.fire.kalendar` (рабочее, см. вопрос Q-01), пакет кода тот же.
+Идентификаторы: `applicationId` и `namespace` — **`org.ledor`**, пакеты кода — `org.ledor…`.
+Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 5 / 0.3.2).
+Адрес сервера и публичный ключ берутся из `android/local.properties` (`supabase.url`, `supabase.key`; файл не коммитится,
+образец — `local.properties.example`) и попадают в `BuildConfig`.
 
 ## 4. Пакеты
 
-### `:domain` — `chat.bothub.fire.kalendar.domain`
+### `:domain` — `org.ledor.domain`
 
 ```
-calendar/    HebrewMonth, HebrewDate, CalendarKind, HebrewCalendarMath
-event/       Event, EventType, EventDate, GregorianParts, HebrewParts, EventValidator, EventDefaults,
-             AnniversaryRule, YahrzeitAdarPolicy, AnniversaryCalculator,
-             Occurrence, OccurrenceCalculator, MitzvahHint, MitzvahCalculator
-reminder/    ReminderSettings, ReminderKind, EveMode, PlannedReminder, ReminderPlanner,
-             SunsetProvider, CitySunsetProvider, DefaultSunsetProvider, City, CityCatalog
-lists/       ListNameRules, PinRules, PinGenerator
+calendar/HebrewCalendar.kt   HebrewMonth, HebrewDate, CalendarKind, HebrewCalendarMath (единственное место с JewishDate)
+calendar/Gematriya.kt        числа еврейскими буквами (для иврита и идиша)
+event/Event.kt               Event (в т. ч. observeBoth), EventType, EventDate, GregorianParts, HebrewParts,
+                             EventDefaults, EventValidator, AnniversaryRule, YahrzeitAdarPolicy
+event/Occurrences.kt         AnniversaryCalculator, Occurrence, OccurrenceCalculator, MitzvahCalculator
+reminder/Reminders.kt        City, CityCatalog, SunsetProvider, CitySunsetProvider (единственное место с AstronomicalCalendar),
+                             DefaultSunsetProvider, SunsetHints (подсказка «до или после захода»),
+                             ReminderSettings, PlannedReminder, ReminderPlanner
+lists/ListRules.kt           ListNameRules, PinRules, PinGenerator
+resources/cities.json        143 города: названия ru/en/he, координаты, часовой пояс
 ```
 
-### `:app` — `chat.bothub.fire.kalendar`
+### `:app` — `org.ledor`
 
 ```
-KalendarApp            Application: AppContainer, каналы уведомлений, первый rearm()
-AppContainer           ручное внедрение зависимостей (lazy-поля), без фреймворков
-MainActivity           единственная Activity: enableEdgeToEdge(), setContent { KalendarRoot() }
+AppContainer.kt        KalendarApp (Application, Configuration.Provider для WorkManager) и AppContainer —
+                       ручное внедрение зависимостей (lazy-поля), без фреймворков
+MainActivity.kt        единственная Activity: enableEdgeToEdge(), setContent { KalendarRoot() }
 
-data/local/            AppDatabase, ListEntity, EventEntity, ListDao, EventDao, Mappers
-data/prefs/            SettingsStore (DataStore Preferences), AppSettings
-data/remote/           SupabaseRpc, RpcResult, Dto (kotlinx.serialization)
-data/repo/             ListRepository, EventRepository, SyncEngine, NoticeQueue
-reminders/             ReminderScheduler, AlarmGateway (+ AndroidAlarmGateway), ReminderReceiver,
-                       SystemEventsReceiver, NotificationFactory, ReminderHealthChecker
-sync/                  SyncWorker, SyncScheduler
-share/                 ShareMessageBuilder, ShareLauncher
-ui/theme/              Color, Type, Shape, KalendarTheme
-ui/components/         общие компоненты (см. 06-design-system.md §5)
-ui/format/             DateFormatters (еврейские/григорианские даты, «через N дней», склонения)
-ui/navigation/         Routes, KalendarNavHost, нижняя панель
-ui/splash/ ui/onboarding/ ui/calendar/ ui/events/ ui/editor/ ui/detail/ ui/converter/
-ui/lists/ ui/settings/ ui/about/        — по экрану: <Имя>Screen.kt + <Имя>ViewModel.kt + <Имя>UiState.kt
+data/local/            Database.kt (AppDatabase, ListEntity, EventEntity, ListDao, EventDao), Mappers.kt
+data/prefs/            SettingsStore.kt (DataStore Preferences), AppSettings
+data/remote/           SupabaseRpc.kt — клиент сервера на OkHttp (имя историческое: сервер свой), RpcResult, DTO
+data/repo/             Repositories.kt — EventRepository, ListRepository, SyncEngine
+reminders/             Reminders.kt — ReminderScheduler, AlarmGateway, ReminderReceiver, SystemEventsReceiver,
+                       NotificationFactory, ReminderHealthChecker
+sync/                  SyncWorker.kt — SyncWorker, SyncScheduler (раз в сутки)
+ui/AppViewModel.kt     общее состояние: события, списки, настройки, «здоровье» напоминаний
+ui/theme/              Theme.kt — цвета, типографика, формы, KalendarTheme
+ui/components/         Components, EventRow, Graphics (LedorMark, Маген Давид), Logo (LogoBlock, Wordmark),
+                       SunsetHint, AppIcons
+ui/format/             DateFormatters (еврейские/григорианские даты, «через N дней», гематрия для he/yi)
+ui/locale/             AppLocale — язык приложения
+ui/navigation/         Navigation.kt — маршруты, KalendarRoot, нижняя панель
+ui/splash/ calendar/ events/ editor/ detail/ converter/ lists/ settings/ feedback/ about/ more/ — экраны
 ```
+
+Отдельная ViewModel есть у редактора (`EventEditorViewModel`); остальные экраны работают через `AppViewModel` и
+состояние в самих экранах.
 
 ## 5. Слои и поток данных
 
 ```
  Compose-экран ──события UI──▶ ViewModel ──▶ Repository ──▶ Room (единственный источник истины для UI)
        ▲                           │              │
-       └── StateFlow<UiState> ─────┘              ├──▶ SupabaseRpc (только через SyncEngine)
+       └── StateFlow<UiState> ─────┘              ├──▶ SupabaseRpc → сервер (синхронизация — только через SyncEngine)
                                                   └──▶ изменение в Room ──▶ ReminderScheduler.rearm()
 ```
 
@@ -159,8 +175,10 @@ ui/lists/ ui/settings/ ui/about/        — по экрану: <Имя>Screen.kt
 
 ### Таблица `events`
 
-Поля события 1:1 с `Event` из `:domain` и с серверной таблицей (`title`, `type`, `custom_label`, `recurring`,
-`observe_by`, `input_calendar`, `g_year`, `g_month`, `g_day`, `after_sunset`, `h_year`, `h_month`, `h_day`, `note`) плюс:
+Поля события 1:1 с серверной таблицей (`title`, `type`, `custom_label`, `recurring`, `observe_by`, `input_calendar`,
+`g_year`, `g_month`, `g_day`, `after_sunset`, `h_year`, `h_month`, `h_day`, `note`). `observe_by` — `HEBREW`,
+`GREGORIAN` или `BOTH`; при `BOTH` в домене `observeBoth = true`, а основной календарь равен `input_calendar`
+(отдельного столбца нет, миграция Room не понадобилась). Плюс:
 
 | Колонка | Тип | Описание |
 |---|---|---|
@@ -192,10 +210,14 @@ ui/lists/ ui/settings/ ui/about/        — по экрану: <Имя>Screen.kt
 | `reminderWatermark` | Long (epoch millis) | момент первого запуска |
 | `weekStartsOnSunday` | Boolean | true |
 | `themeMode` | SYSTEM/LIGHT/DARK | SYSTEM |
-| `calendarGridMode` | GREGORIAN/HEBREW | GREGORIAN |
+| `calendarGridMode` | GREGORIAN/HEBREW | HEBREW |
 | `yahrzeitAdarPolicy` | ADAR_I/ADAR_II | ADAR_I |
 | `lastSyncAttemptAt` | Long | 0 |
 | `pendingNotices` | String (JSON-массив) | `[]` — очередь внутренних сообщений («список удалён владельцем») |
+| `lastListId` | String | последний список, выбранный в редакторе |
+
+Язык приложения хранится не здесь: на Android 13+ — в системе (`LocaleManager`), на 8–12 — в `SharedPreferences`
+`app_locale` (нужен синхронно в `attachBaseContext`).
 
 ## 7. Ключевые интерфейсы приложения
 
@@ -238,6 +260,7 @@ Splash ──▶ Main (нижняя панель)
              ├─ Converter
              └─ More ──▶ Lists ──▶ ListDetail(listId) / ListCreate / ListJoin(prefillName?)
                      ├─▶ Settings ──▶ CityPicker
+                     ├─▶ Feedback(prefill?)      также из «О программе» и «Пожаловаться на список»
                      └─▶ About
 EventEditor(eventId?, presetCalendar?, presetYear?, presetMonth?, presetDay?, presetAfterSunset?)
 EventDetail(eventId)       — открывается и по нажатию на уведомление
@@ -257,32 +280,39 @@ EventDetail(eventId)       — открывается и по нажатию н�
 
 ## 10. Тестирование (всё на JVM, эмулятор не нужен)
 
-| Уровень | Инструмент | Что покрывает |
+| Уровень | Инструмент | Что покрывает сейчас |
 |---|---|---|
-| `:domain` | JUnit 4 + эталонные векторы | конвертация, правила годовщин, наступления, бар/бат-мицва, планировщик, валидация, города |
-| `:app` данные | Robolectric + Room in-memory + MockWebServer | DAO, мапперы, `SupabaseRpc`, `SyncEngine` (все ветки ошибок) |
-| `:app` напоминания | Robolectric + поддельные шлюзы | `ReminderScheduler`, `ReminderHealthChecker`, ресиверы, `SyncWorker` |
-| `:app` ViewModel | kotlinx-coroutines-test | состояния редактора, конвертера, списков |
-| UI | Roborazzi (снимки экранов под Robolectric) | каждый экран: светлая/тёмная тема, ru/en. Исполнитель **обязан открыть PNG и посмотреть глазами** |
+| `:domain` | JUnit 4 + эталонные векторы | `GoldenVectorsTest` — все строки `spec/golden`; `DomainTest` — наступления, «по обоим календарям», бар/бат-мицва, проверка ввода, города, заход солнца, подсказка про сумерки, планировщик, гематрия |
+| `:app` | Robolectric + Roborazzi | `ScreensSmokeTest` — сквозной проход по всем экранам с тестовыми данными (три общих списка), по классу на язык: ru, ru-тёмная, en, he, yi, fr, es; снимки — `app/build/screens/<язык>/` |
+| Сервер | Node (`tools/rpc-smoke`) | 14 сценариев на живом сервере |
+| Сайт | Node (`website/tests`) | JS-порт календаря на тех же эталонных векторах |
 
-Команда полной проверки (должна проходить в конце каждой вехи):
+Каждый класс снимков идёт в отдельном JVM (`unitTests.all { forkEvery = 1 }`): DataStore и WorkManager — синглтоны процесса.
+Исполнитель **обязан открыть PNG и посмотреть глазами**. Отдельных тестов синхронизации, DAO и планировщика
+будильников на уровне `:app` нет — это известный пробел.
+
+Команда полной проверки (должна проходить после каждого изменения):
 
 ```bash
 cd android && ./gradlew :domain:test :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
+./gradlew :app:recordRoborazziDebug        # записать снимки экранов
 ```
-
-Roborazzi — вспомогательный инструмент самопроверки вёрстки. Если его не удаётся завести с текущими версиями
-AGP/Robolectric за ~40 минут — отложить, записать в `DECISIONS.md` и продолжать (сборка и остальные тесты важнее).
 
 ## 11. Локализация
 
-- `values/strings.xml` — английский (обязательный запасной язык), `values-ru/` — русский (первичные тексты из ТЗ).
-  Иврит (`values-iw/`) — вторая очередь; вёрстка сразу RTL-совместимая (`start/end`, `android:supportsRtl="true"`).
+- Шесть языков: `values/` — английский (язык по умолчанию), `values-ru/`, `values-iw/` (иврит), `values-ji/` (идиш),
+  `values-fr/`, `values-es/`. Иврит и идиш — старыми кодами `iw`/`ji`: так их сопоставляет Android.
+  he, yi, fr, es переведены машинно и ждут вычитки носителем.
+- Вёрстка RTL-совместимая (`start/end`, `android:supportsRtl="true"`); на иврите и идише всё зеркалится.
+- Язык выбирается в «Настройках» (`AppLocale`): Android 13+ — системный язык приложения (`LocaleManager`,
+  `android:localeConfig`), Android 8–12 — `attachBaseContext` в `Application`, `MainActivity` и при показе уведомлений.
+- В каждом языке есть строка `locale_tag` (en, ru, he, yi, fr, es): по ней выбираются форматтеры дат, название города
+  (ru / he / en) и адрес сайта (`https://kalendar.bothub.chat/<locale_tag>/`).
 - Названия еврейских месяцев — массивы ресурсов; для русского **две формы**: именительный («Нисан 5787» — заголовки)
-  и родительный («28 Нисана» — даты). Григорианские даты — `DateTimeFormatter` с текущей локалью
-  (`d MMMM yyyy` для дат, `LLLL yyyy` для заголовков — иначе в русском будет «ноября 2026» вместо «Ноябрь 2026»).
+  и родительный («28 Нисана» — даты); на иврите «родительная» форма — с предлогом («בניסן»).
+  Григорианские даты — `DateTimeFormatter` с локалью из `locale_tag` (`d MMMM yyyy`, `LLLL yyyy` для заголовков).
+- На иврите и идише (`bools.xml`: `hebrew_letters = true`) числа еврейских дат пишутся буквами: `כ״ח בניסן תש״ן`.
 - Множественное число («через 3 дня», «исполняется 37 лет») — только через `plurals`.
-- `android:localeConfig` со списком языков → язык приложения выбирается в системных настройках (Android 13+).
 
 | Месяц | ru (им.) | ru (род.) | en | he |
 |---|---|---|---|---|

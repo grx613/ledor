@@ -78,7 +78,7 @@ data class Rejected(val id: String, val reason: String)
 @Serializable
 data class PushResponse(val revision: Long, val accepted: List<String> = emptyList(), val rejected: List<Rejected> = emptyList())
 
-/** Тонкий клиент к RPC-функциям Supabase (docs/04-backend-supabase.md §3, §5). */
+/** Тонкий клиент к RPC-функциям Supabase (docs/04-backend.md §3, §5). */
 class SupabaseRpc(private val baseUrl: String, private val apiKey: String, client: OkHttpClient? = null) {
     val isConfigured: Boolean get() = baseUrl.isNotBlank() && apiKey.isNotBlank()
 
