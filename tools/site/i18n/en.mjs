@@ -5,51 +5,74 @@ export default {
   meta: {
     title: 'LeDor Kalendář — Jewish birthday & yahrzeit calendar for the whole family',
     description: 'Free app for families and communities: Hebrew birthdays, yahrzeits and anniversaries by the Hebrew and Gregorian calendars, a shared list synced by PIN, and reminders the evening before, ahead of sunset.',
-    ogTitle: 'LeDor — one list of family dates for the whole family',
+    ogTitle: 'LeDor — reminds the whole family of birthdays and yahrzeits',
     ogDesc: 'Hebrew birthdays, yahrzeits and anniversaries. A shared list by PIN, reminders before sunset. Free, no ads.',
   },
-  nav: { share: 'Shared list', features: 'Features', converter: 'Converter', faq: 'FAQ', download: 'Download', lang: 'Language' },
+  nav: { download: 'Download', lang: 'Language' },
+  stores: { soon: 'Coming soon to', apk: 'Download for Android', apkNote: 'APK file · Android 8.0 or later' },
+  lists: ['Cohen family', 'Chabad of New York', 'Beth Shalom community'],
 
   hero: {
-    h1: 'One list of family dates — shared by the whole family',
-    lead: 'Birthdays, yahrzeits and anniversaries by the Hebrew and Gregorian calendars. Create a shared list, send your family the PIN — and everyone gets the same dates and reminders on their phone.',
-    download: 'Download for Android',
-    how: 'How the shared list works',
-    note: 'Free · no ads · no sign-up · coming soon to Google Play',
+    h1: 'Reminds the whole family of birthdays and yahrzeits',
+    lead: 'LeDor keeps track of family dates by the Hebrew and Gregorian calendars and reminds you ahead of time. And the list is easy to share with your family or community — everyone gets the same dates on their phone.',
+    note: 'Free · no ads · no sign-up',
+    alt: 'LeDor calendar: Hebrew and Gregorian dates, upcoming events from family and community lists',
+    listsCap: 'Your lists', now: 'now',
+  },
+
+  remind: {
+    kicker: 'Reminders',
+    h2: 'A reminder the evening before — and on the day',
+    sub: 'A Hebrew date falls on a different day every year, and the day begins at nightfall. LeDor does the math and reminds you while there is still time.',
+    points: [
+      { icon: 'candle', t: 'The evening before, ahead of sunset', p: 'By default three hours before sunset in your city: time to call, set the table or light a memorial candle.' },
+      { icon: 'bell', t: 'And again on the day', p: 'At noon, or at the time you choose.' },
+      { icon: 'star', t: 'By the Hebrew calendar, the Gregorian, or both', p: 'For each event you decide which date to observe.' },
+    ],
+    cap: { eve: 'The evening before · 3 hours before sunset', day: 'On the day · 12:00', yz: 'The evening before a yahrzeit' },
+    notifs: {
+      eve: { title: 'This evening: Birthday — Sarah Cohen', text: '19 Kislev 5787 begins at sunset. Turns 37' },
+      day: { title: 'Today: Birthday — Sarah Cohen', text: '19 Kislev 5787 · 29 November 2026. Turns 37' },
+      yz: { title: 'Yahrzeit this evening: Grandpa Aaron', text: '20 Kislev 5787 begins at sunset. Time to light the memorial candle.' },
+    },
   },
 
   share: {
-    h2: 'A shared list: the same dates for the whole family',
-    sub: 'The heart of LeDor is a list kept by the whole family or community. No accounts, emails or passwords.',
+    kicker: 'Shared lists',
+    h2: 'Share the list with your family or community',
+    sub: 'One person adds the dates — everyone sees them and gets reminders. No sign-up, email or passwords.',
     steps: [
-      { t: 'Create a list', p: 'For example, “Cohen family”. The app creates two PINs: one for viewing and one for editing.' },
-      { t: 'Send the PIN to your family', p: 'One tap in WhatsApp or Telegram. They install LeDor and enter the list name and PIN.' },
-      { t: 'The dates appear for everyone', p: 'Add a grandchild’s birthday — grandma and uncle get it too, with reminders by their own settings.' },
+      { t: 'Create a list', p: '“Cohen family”, “Our community”, “Friends” — you can have several lists.' },
+      { t: 'Tap “Share”', p: 'LeDor sends an invitation via WhatsApp or Telegram with the list name and access code.' },
+      { t: 'Your family connects', p: 'They install LeDor, enter the name and code — and see the same dates, with reminders on their own phone.' },
     ],
     points: [
-      '<b>No sign-up.</b> No email, phone number or password — just the list name and PIN.',
-      '<b>Two access levels.</b> The regular PIN lets you view. The Master PIN lets you add and edit.',
+      '<b>You decide who can edit.</b> One code lets people view, another lets them add and correct dates.',
+      '<b>Several lists at once.</b> Family, community, friends — each list has its own color and notifications.',
       '<b>Works offline.</b> Changes are sent once you are back online.',
-      '<b>Several lists at once.</b> Family, community, friends — each with its own color and notifications.',
+      '<b>No accounts.</b> No email, phone number or password.',
     ],
     sync: 'Changes arrive when someone opens the app or pulls the list down, and once a day in the background.',
-    altLists: 'Lists screen: personal and shared family list',
-    altShare: 'Shared list: PINs and Share buttons for Telegram and WhatsApp',
+    msgCap: 'Invitation via WhatsApp or Telegram',
+    msg: ['The list “Cohen family” in the LeDor app: birthdays, yahrzeits and family events by the Hebrew and Gregorian calendars.', '1. Install the app: kalendar.bothub.chat', '2. Open “Lists” → “Connect a list”', '3. Name: Cohen family', '4. PIN: 4821'],
+    altLists: 'Several lists in LeDor: personal, family and two communities',
+    altEvents: 'Events from all lists, each labeled with its list',
   },
 
   features: {
-    h2: 'Everything you need not to miss an important date',
+    kicker: 'And more',
+    h2: 'Built for the Hebrew calendar',
     items: [
-      { icon: 'candle', t: 'A reminder the evening before, ahead of sunset', p: 'The Hebrew day begins at nightfall. LeDor reminds you a chosen time before sunset in your city — and again on the day itself.' },
-      { icon: 'star', t: 'Two calendars', p: 'Every date is shown by both the Hebrew and Gregorian calendars. You can even celebrate a birthday by both.' },
+      { icon: 'star', t: 'Both dates side by side', p: 'Every event is shown by both the Hebrew and the Gregorian calendar — in the calendar and in the list.' },
       { icon: 'scroll', t: 'Yahrzeit by the rules', p: 'Adar I and Adar II in a leap year, the 30th of Cheshvan and Kislev — all handled. Choose your Adar custom in settings.' },
-      { icon: 'bar', t: 'Bar and bat mitzvah', p: 'Enter a date of birth — the app tells you when the bar mitzvah and bat mitzvah fall.' },
-      { icon: 'battery', t: 'Easy on the battery', p: 'No background work and no location: the app wakes up only at the moment of a reminder.' },
-      { icon: 'heart', t: 'Free and open', p: 'No ads, subscriptions or data collection. The source code is open on GitHub.' },
+      { icon: 'bar', t: 'Bar and bat mitzvah', p: 'Enter a date of birth — LeDor tells you the bar mitzvah and bat mitzvah dates.' },
+      { icon: 'battery', t: 'Easy on the battery', p: 'No background work and no location: it wakes up only at the moment of a reminder.' },
+      { icon: 'globe', t: 'Six languages', p: 'English, עברית, Русский, ייִדיש, Français, Español. In Hebrew and Yiddish, dates are written in letters.' },
+      { icon: 'heart', t: 'Free and open', p: 'No ads, subscriptions or data collection. The source code is open.' },
     ],
   },
 
-  teaser: { h2: 'Find a Hebrew birthday', p: 'Online date converter that accounts for sunset: Hebrew birthday, bar mitzvah and yahrzeit dates for 10 years ahead.', link: 'Open the converter →' },
+  cta: { h2: 'Install LeDor — and important dates stop slipping by', p: 'Free, no ads, no sign-up.' },
 
   shots: {
     h2: 'What the app looks like', prev: 'Back', next: 'Next',
@@ -88,11 +111,11 @@ export default {
     channel: 'Author’s Telegram channel', torahAlt: 'Gershon with a Torah scroll',
   },
   eco: {
-    h2: 'Other BotHub projects', sub: 'LeDor is part of a small family of projects.',
-    bothub: 'ChatGPT, Claude, Gemini, Grok and other AI models in one place.',
+    h2: 'Other BotHub projects',
+    bothub: 'ChatGPT, Claude, Gemini, Grok and other AI models in one place — no subscription.',
     fire: 'Top market news: stocks, rates, oil, crypto — short stories from dozens of outlets.',
   },
-  footer: { privacy: 'Privacy policy', delete: 'Delete data', converter: 'Date converter', source: 'Source code', copy: 'non-commercial project · no ads or trackers' },
+  footer: { privacy: 'Privacy policy', delete: 'Delete data', converter: 'Date converter', faq: 'FAQ', copy: 'non-commercial project · no ads or trackers' },
 
   conv: {
     title: 'Hebrew Date Converter — Hebrew birthday, bar mitzvah, yahrzeit | LeDor',

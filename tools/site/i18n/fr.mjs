@@ -5,51 +5,74 @@ export default {
   meta: {
     title: 'LeDor Kalendář — calendrier hébraïque des anniversaires et yahrzeits pour toute la famille',
     description: 'Application gratuite pour la famille et la communauté : anniversaires hébraïques, yahrzeits et dates de famille selon les calendriers hébraïque et grégorien, liste partagée synchronisée par code PIN et rappels la veille avant le coucher du soleil.',
-    ogTitle: 'LeDor — une seule liste de dates pour toute la famille',
+    ogTitle: 'LeDor — rappelle à toute la famille les anniversaires et les yahrzeits',
     ogDesc: 'Anniversaires hébraïques, yahrzeits et dates de famille. Liste partagée par code PIN, rappels avant le coucher du soleil. Gratuit, sans publicité.',
   },
-  nav: { share: 'Liste partagée', features: 'Fonctions', converter: 'Convertisseur', faq: 'Questions', download: 'Télécharger', lang: 'Langue' },
+  nav: { download: 'Télécharger', lang: 'Langue' },
+  stores: { soon: 'Bientôt sur', apk: 'Télécharger pour Android', apkNote: 'Fichier APK · Android 8.0 ou plus récent' },
+  lists: ['Famille Cohen', 'Habad de New York', 'Communauté Beth Shalom'],
 
   hero: {
-    h1: 'Une seule liste de dates de famille — partagée par toute la famille',
-    lead: 'Anniversaires, yahrzeits et dates de famille selon les calendriers hébraïque et grégorien. Créez une liste partagée, envoyez le code PIN à vos proches — et chacun aura les mêmes dates et rappels sur son téléphone.',
-    download: 'Télécharger pour Android',
-    how: 'Comment fonctionne la liste partagée',
-    note: 'Gratuit · sans publicité · sans inscription · bientôt sur Google Play',
+    h1: 'Rappelle à toute la famille les anniversaires et les yahrzeits',
+    lead: 'LeDor suit les dates de famille selon les calendriers hébraïque et grégorien et vous les rappelle à l’avance. Et la liste se partage facilement avec la famille ou la communauté — chacun a les mêmes dates sur son téléphone.',
+    note: 'Gratuit · sans publicité · sans inscription',
+    alt: 'Calendrier LeDor : dates hébraïques et grégoriennes, prochains événements des listes de la famille et de la communauté',
+    listsCap: 'Vos listes', now: 'maintenant',
+  },
+
+  remind: {
+    kicker: 'Rappels',
+    h2: 'Un rappel la veille au soir — et le jour même',
+    sub: 'Une date hébraïque tombe chaque année un jour différent, et le jour commence le soir. LeDor fait le calcul et vous prévient tant qu’il est encore temps.',
+    points: [
+      { icon: 'candle', t: 'La veille, avant le coucher du soleil', p: 'Par défaut trois heures avant le coucher du soleil dans votre ville : le temps d’appeler, de dresser la table ou d’allumer une bougie du souvenir.' },
+      { icon: 'bell', t: 'Et encore le jour même', p: 'À midi, ou à l’heure de votre choix.' },
+      { icon: 'star', t: 'Selon le calendrier hébraïque, grégorien, ou les deux', p: 'Pour chaque événement, vous décidez quelle date célébrer.' },
+    ],
+    cap: { eve: 'La veille au soir · 3 h avant le coucher du soleil', day: 'Le jour même · 12:00', yz: 'La veille d’une yahrzeit' },
+    notifs: {
+      eve: { title: 'Ce soir : Anniversaire — Sarah Cohen', text: 'Le 19 Kislev 5787 commence au coucher du soleil. Fête ses 37 ans' },
+      day: { title: 'Aujourd’hui : Anniversaire — Sarah Cohen', text: '19 Kislev 5787 · 29 novembre 2026. Fête ses 37 ans' },
+      yz: { title: 'Yahrzeit ce soir : Grand-père Aaron', text: 'Le 20 Kislev 5787 commence au coucher du soleil. C’est l’heure d’allumer la bougie du souvenir.' },
+    },
   },
 
   share: {
-    h2: 'Une liste partagée : les mêmes dates pour toute la famille',
-    sub: 'Le cœur de LeDor, c’est une liste tenue par toute la famille ou la communauté. Sans compte, e-mail ni mot de passe.',
+    kicker: 'Listes partagées',
+    h2: 'Partagez la liste avec la famille ou la communauté',
+    sub: 'Une personne saisit les dates — tous les voient et reçoivent les rappels. Sans inscription, e-mail ni mot de passe.',
     steps: [
-      { t: 'Créez une liste', p: 'Par exemple « Famille Cohen ». L’application crée deux codes PIN : un pour consulter, un pour modifier.' },
-      { t: 'Envoyez le code à vos proches', p: 'En un geste dans WhatsApp ou Telegram. Ils installent LeDor et saisissent le nom de la liste et le code.' },
-      { t: 'Les dates apparaissent chez tous', p: 'Ajoutez l’anniversaire d’un petit-enfant — il apparaît aussi chez la grand-mère et l’oncle, avec leurs propres rappels.' },
+      { t: 'Créez une liste', p: '« Famille Cohen », « Notre communauté », « Amis » — vous pouvez avoir plusieurs listes.' },
+      { t: 'Touchez « Partager »', p: 'LeDor envoie une invitation par WhatsApp ou Telegram, avec le nom de la liste et le code d’accès.' },
+      { t: 'Vos proches se connectent', p: 'Ils installent LeDor, saisissent le nom et le code — et voient les mêmes dates, avec des rappels sur leur téléphone.' },
     ],
     points: [
-      '<b>Sans inscription.</b> Ni e-mail, ni téléphone, ni mot de passe — juste le nom de la liste et le code.',
-      '<b>Deux niveaux d’accès.</b> Le code ordinaire permet de consulter. Le code maître permet d’ajouter et de corriger.',
+      '<b>Vous décidez qui modifie.</b> Un code pour consulter, un autre pour ajouter et corriger des dates.',
+      '<b>Plusieurs listes à la fois.</b> Famille, communauté, amis — chaque liste a sa couleur et ses notifications.',
       '<b>Fonctionne hors ligne.</b> Les modifications partent dès que la connexion revient.',
-      '<b>Plusieurs listes à la fois.</b> Famille, communauté, amis — chacune avec sa couleur et ses notifications.',
+      '<b>Sans compte.</b> Ni e-mail, ni téléphone, ni mot de passe.',
     ],
     sync: 'Les modifications arrivent quand on ouvre l’application ou tire la liste vers le bas, et une fois par jour en arrière-plan.',
-    altLists: 'Écran des listes : liste personnelle et liste familiale partagée',
-    altShare: 'Liste partagée : codes PIN et boutons de partage Telegram et WhatsApp',
+    msgCap: 'Invitation par WhatsApp ou Telegram',
+    msg: ['La liste « Famille Cohen » dans l’application LeDor : anniversaires, yahrzeits et événements familiaux selon les calendriers hébraïque et grégorien.', '1. Installez l’application : kalendar.bothub.chat', '2. Ouvrez « Listes » → « Connecter une liste »', '3. Nom : Famille Cohen', '4. Code PIN : 4821'],
+    altLists: 'Plusieurs listes dans LeDor : personnelle, familiale et deux communautés',
+    altEvents: 'Événements de toutes les listes, chacun avec le nom de sa liste',
   },
 
   features: {
-    h2: 'Tout pour ne manquer aucune date importante',
+    kicker: 'Et aussi',
+    h2: 'Pensé pour le calendrier hébraïque',
     items: [
-      { icon: 'candle', t: 'Un rappel la veille, avant le coucher du soleil', p: 'Le jour hébraïque commence le soir. LeDor vous prévient le temps choisi avant le coucher du soleil dans votre ville — et encore le jour même.' },
-      { icon: 'star', t: 'Deux calendriers', p: 'Chaque date s’affiche selon les calendriers hébraïque et grégorien. Un anniversaire peut même être fêté selon les deux.' },
+      { icon: 'star', t: 'Les deux dates côte à côte', p: 'Chaque événement s’affiche selon les calendriers hébraïque et grégorien — dans le calendrier et dans la liste.' },
       { icon: 'scroll', t: 'Yahrzeit selon les règles', p: 'Adar I et Adar II en année embolismique, le 30 Hechvan et Kislev — tout est pris en compte. La coutume pour Adar se règle dans les réglages.' },
-      { icon: 'bar', t: 'Bar-mitsva et bat-mitsva', p: 'Saisissez une date de naissance — l’application indique la date de la bar-mitsva et de la bat-mitsva.' },
-      { icon: 'battery', t: 'Économe en batterie', p: 'Aucun travail en arrière-plan ni géolocalisation : l’application ne se réveille qu’au moment d’un rappel.' },
-      { icon: 'heart', t: 'Gratuit et ouvert', p: 'Sans publicité, abonnement ni collecte de données. Le code source est ouvert sur GitHub.' },
+      { icon: 'bar', t: 'Bar-mitsva et bat-mitsva', p: 'Saisissez une date de naissance — LeDor indique les dates de bar-mitsva et de bat-mitsva.' },
+      { icon: 'battery', t: 'Économe en batterie', p: 'Aucun travail en arrière-plan ni géolocalisation : il ne se réveille qu’au moment d’un rappel.' },
+      { icon: 'globe', t: 'Six langues', p: 'English, עברית, Русский, ייִדיש, Français, Español. En hébreu et en yiddish, les dates s’écrivent en lettres.' },
+      { icon: 'heart', t: 'Gratuit et ouvert', p: 'Sans publicité, abonnement ni collecte de données. Le code source est ouvert.' },
     ],
   },
 
-  teaser: { h2: 'Trouver un anniversaire hébraïque', p: 'Convertisseur de dates en ligne qui tient compte du coucher du soleil : anniversaire hébraïque, bar-mitsva et yahrzeit sur 10 ans.', link: 'Ouvrir le convertisseur →' },
+  cta: { h2: 'Installez LeDor — et les dates importantes ne vous échapperont plus', p: 'Gratuit, sans publicité ni inscription.' },
 
   shots: {
     h2: 'À quoi ressemble l’application', prev: 'Précédent', next: 'Suivant',
@@ -88,11 +111,11 @@ export default {
     channel: 'Chaîne Telegram de l’auteur', torahAlt: 'Gershon avec un rouleau de la Torah',
   },
   eco: {
-    h2: 'Autres projets BotHub', sub: 'LeDor fait partie d’une petite famille de projets.',
-    bothub: 'ChatGPT, Claude, Gemini, Grok et d’autres IA au même endroit.',
+    h2: 'Autres projets BotHub',
+    bothub: 'ChatGPT, Claude, Gemini, Grok et d’autres IA au même endroit — sans abonnement.',
     fire: 'L’essentiel de l’actualité des marchés : actions, taux, pétrole, crypto — en bref, à partir de dizaines de médias.',
   },
-  footer: { privacy: 'Politique de confidentialité', delete: 'Supprimer les données', converter: 'Convertisseur de dates', source: 'Code source', copy: 'projet non commercial · sans publicité ni traceurs' },
+  footer: { privacy: 'Politique de confidentialité', delete: 'Supprimer les données', converter: 'Convertisseur de dates', faq: 'Questions fréquentes', copy: 'projet non commercial · sans publicité ni traceurs' },
 
   conv: {
     title: 'Convertisseur de date hébraïque — anniversaire, bar-mitsva, yahrzeit | LeDor',

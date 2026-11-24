@@ -17,10 +17,10 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LeDor Kalendář">
-<meta property="og:title" content="LeDor — one list of family dates for the whole family">
+<meta property="og:title" content="LeDor — reminds the whole family of birthdays and yahrzeits">
 <meta property="og:description" content="Hebrew birthdays, yahrzeits and anniversaries. A shared list by PIN, reminders before sunset. Free, no ads.">
 <meta property="og:url" content="https://kalendar.bothub.chat/en/">
-<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/en.png">
+<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/en.png?v=6">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="he_IL">
@@ -29,112 +29,134 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/css/styles.css?v=5">
+<link rel="stylesheet" href="/assets/css/styles.css?v=6">
 <script>try{localStorage.setItem('ledor-lang','en')}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"MobileApplication","name":"LeDor","alternateName":["LeDor VaDor","LeDor Kalendář"],"applicationCategory":"LifestyleApplication","operatingSystem":"Android","inLanguage":["en","he","ru","yi","fr","es"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free app for families and communities: Hebrew birthdays, yahrzeits and anniversaries by the Hebrew and Gregorian calendars, a shared list synced by PIN, and reminders the evening before, ahead of sunset.","downloadUrl":"https://kalendar.bothub.chat/ledor-0.3.1.apk","author":{"@type":"Person","name":"Gershon","url":"https://t.me/bothub_founder"},"license":"https://github.com/grx613/ledor/blob/main/LICENSE"},{"@type":"WebSite","name":"LeDor Kalendář","url":"https://kalendar.bothub.chat/en/","inLanguage":"en"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I share a list with my family?","acceptedAnswer":{"@type":"Answer","text":"Create a shared list under “Lists” and tap Telegram or WhatsApp — your family gets a message with the list name, PIN and a link to the app."}},{"@type":"Question","name":"Do I need to sign up? Do you collect my data?","acceptedAnswer":{"@type":"Answer","text":"There is no sign-up. The app has no ads, analytics or trackers. The personal list stays on your phone; a shared list is stored on our server for its members only."}},{"@type":"Question","name":"What is the difference between the PIN and the Master PIN?","acceptedAnswer":{"@type":"Answer","text":"The regular PIN lets people view dates and get reminders. The Master PIN lets them add, change and delete events. Share it only with people you trust."}},{"@type":"Question","name":"Can I celebrate a birthday by both calendars?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose “By both calendars” — there will be two dates a year, and LeDor reminds you of each. The year of birth is needed to convert the date."}},{"@type":"Question","name":"Does it account for sunset?","acceptedAnswer":{"@type":"Answer","text":"Yes. When entering a date you can mark “after sunset” — the Hebrew date is then the next one. The evening reminder comes a chosen time before sunset in your city."}},{"@type":"Question","name":"How is a yahrzeit calculated in a leap year?","acceptedAnswer":{"@type":"Answer","text":"For someone who passed away in Adar of a regular year, Ashkenazi custom observes it in Adar I and Sephardi custom in Adar II; you choose the custom in settings. The rules for the 30th of Cheshvan and Kislev are applied too."}},{"@type":"Question","name":"Does the app work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. The internet is needed only for shared lists; changes are sent once you are back online."}},{"@type":"Question","name":"How much battery does the app use?","acceptedAnswer":{"@type":"Answer","text":"Practically none. There are no background services, no location and no permanent connection. The phone wakes LeDor for a split second only at the moment of a reminder — the evening before and on the day — and, if you use a shared list, once a day to sync, when the system finds it convenient."}},{"@type":"Question","name":"Which languages does LeDor support?","acceptedAnswer":{"@type":"Answer","text":"English, עברית, Русский, ייִדיש, Français, Español. In Hebrew and Yiddish the interface is right-to-left and Hebrew dates are written in letters."}},{"@type":"Question","name":"Can I move my events to a shared list?","acceptedAnswer":{"@type":"Answer","text":"Yes. When creating a list, check “Move events from the personal list”, or open the personal list and choose “Move events to a cloud list”."}},{"@type":"Question","name":"Is there a dark theme?","acceptedAnswer":{"@type":"Answer","text":"Yes: light, dark or system — under “Settings → Appearance”."}},{"@type":"Question","name":"Is there an iPhone version?","acceptedAnswer":{"@type":"Answer","text":"Coming soon. LeDor is currently available for Android."}},{"@type":"Question","name":"How much does the app cost?","acceptedAnswer":{"@type":"Answer","text":"It is free, with no ads or paid content. The project is non-commercial and open source."}}]}]}</script>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/en/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span><span class="brand-sub">Kalendář</span></a>
-    <nav>
-      <a href="/en/#share">Shared list</a>
-      <a href="/en/#features">Features</a>
-      <a href="/en/converter/">Converter</a>
-      <a href="/en/#faq">FAQ</a>
+    <a class="brand" href="/en/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span></a>
+    <div class="top-actions">
       <details class="langs"><summary aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>EN</summary><div class="langs-menu"><a href="/en/" lang="en" hreflang="en" aria-current="true">English</a><a href="/he/" lang="he" hreflang="he">עברית</a><a href="/ru/" lang="ru" hreflang="ru">Русский</a><a href="/yi/" lang="yi" hreflang="yi">ייִדיש</a><a href="/fr/" lang="fr" hreflang="fr">Français</a><a href="/es/" lang="es" hreflang="es">Español</a></div></details>
       <a class="btn btn-primary" href="/ledor-0.3.1.apk" download>Download</a>
-    </nav>
+    </div>
   </div>
 </header>
 <main>
 <div class="hero">
-  <div class="wrap">
-    <div class="logo-block">
-      <img src="/assets/img/mark.svg" alt="" width="96" height="96">
-      <div class="logo-name">LeDor</div>
-      <div class="slogan"><span class="lat">LeDor VaDor</span> · <span class="he" lang="he" dir="rtl">לדור ודור</span></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="lockup">
+        <img src="/assets/img/mark.svg" alt="" width="68" height="68">
+        <div><div class="lockup-name">LeDor</div><div class="lockup-slogan">LeDor VaDor · <span lang="he" dir="rtl">לדור ודור</span></div></div>
+      </div>
       <div class="hero-wordmark">Kalendář</div>
+      <h1>Reminds the whole family of birthdays and yahrzeits</h1>
+      <p class="lead">LeDor keeps track of family dates by the Hebrew and Gregorian calendars and reminds you ahead of time. And the list is easy to share with your family or community — everyone gets the same dates on their phone.</p>
+    <div class="cta-row" id="download">
+      <a class="btn btn-light" href="/ledor-0.3.1.apk" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Download for Android</a>
+      <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 3.5v17l14-8.5z"/></svg><span><small>Coming soon to</small><b>Google Play</b></span></span>
+      <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 4.5L5.5 19.5M12 4.5l6.5 15M8 14.5h8"/></svg><span><small>Coming soon to</small><b>App Store</b></span></span>
     </div>
-    <div>
-      <h1>One list of family dates — shared by the whole family</h1>
-      <p class="lead">Birthdays, yahrzeits and anniversaries by the Hebrew and Gregorian calendars. Create a shared list, send your family the PIN — and everyone gets the same dates and reminders on their phone.</p>
+      <p class="hero-note">Free · no ads · no sign-up<br>APK file · Android 8.0 or later</p>
     </div>
-    <div class="cta" id="download">
-      <a class="btn btn-primary" href="/ledor-0.3.1.apk" download>Download for Android</a>
-      <a class="btn btn-ghost" href="#share">How the shared list works</a>
+    <div class="hero-visual">
+      <div class="float float-notif"><div class="notif"><img src="/assets/img/mark.svg" alt="" width="38" height="38"><div><div class="notif-app">LeDor · now</div><b>This evening: Birthday — Sarah Cohen</b><p>19 Kislev 5787 begins at sunset. Turns 37</p></div></div></div>
+      <div class="phone"><img src="/assets/img/screens/en/03_calendar.png?v=6" alt="LeDor calendar: Hebrew and Gregorian dates, upcoming events from family and community lists" width="1200" height="2580" fetchpriority="high"></div>
+      <div class="float float-lists chips-card"><small>Your lists</small><span class="chip"><i style="--c:#D4A72C"></i>Cohen family</span><span class="chip"><i style="--c:#1FA187"></i>Chabad of New York</span><span class="chip"><i style="--c:#6A58B5"></i>Beth Shalom community</span></div>
     </div>
-    <small>Free · no ads · no sign-up · coming soon to Google Play</small>
   </div>
 </div>
 
-<section id="share" aria-labelledby="share-title">
-  <div class="wrap">
-    <h2 id="share-title">A shared list: the same dates for the whole family</h2>
-    <p class="sub">The heart of LeDor is a list kept by the whole family or community. No accounts, emails or passwords.</p>
-    <div class="share-grid">
-      <div>
-        <ol class="steps">
-          <li><span class="num">1</span><div><h3>Create a list</h3><p>For example, “Cohen family”. The app creates two PINs: one for viewing and one for editing.</p></div></li>
-          <li><span class="num">2</span><div><h3>Send the PIN to your family</h3><p>One tap in WhatsApp or Telegram. They install LeDor and enter the list name and PIN.</p></div></li>
-          <li><span class="num">3</span><div><h3>The dates appear for everyone</h3><p>Add a grandchild’s birthday — grandma and uncle get it too, with reminders by their own settings.</p></div></li>
-        </ol>
-        <ul class="points">
-          <li><b>No sign-up.</b> No email, phone number or password — just the list name and PIN.</li>
-          <li><b>Two access levels.</b> The regular PIN lets you view. The Master PIN lets you add and edit.</li>
-          <li><b>Works offline.</b> Changes are sent once you are back online.</li>
-          <li><b>Several lists at once.</b> Family, community, friends — each with its own color and notifications.</li>
-        </ul>
-        <p class="note">Changes arrive when someone opens the app or pulls the list down, and once a day in the background.</p>
-      </div>
-      <div class="share-shots">
-        <img src="/assets/img/screens/en/10_lists.png" alt="Lists screen: personal and shared family list" width="1200" height="2580" loading="lazy">
-        <img src="/assets/img/screens/en/14_list_share.png" alt="Shared list: PINs and Share buttons for Telegram and WhatsApp" width="1200" height="2580" loading="lazy">
-      </div>
+<section id="reminders" aria-labelledby="remind-title">
+  <div class="wrap split">
+    <div>
+      <span class="kicker">Reminders</span>
+      <h2 id="remind-title">A reminder the evening before — and on the day</h2>
+      <p class="sub">A Hebrew date falls on a different day every year, and the day begins at nightfall. LeDor does the math and reminds you while there is still time.</p>
+      <ul class="icon-list">
+        <li><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="11" rx="1.5"/><path d="M12 2.5c2 2.2 2 4.5 0 5.5c-2-1-2-3.3 0-5.5z"/></svg></div><div><h3>The evening before, ahead of sunset</h3><p>By default three hours before sunset in your city: time to call, set the table or light a memorial candle.</p></div></li>
+        <li><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div><div><h3>And again on the day</h3><p>At noon, or at the time you choose.</p></div></li>
+        <li><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8.66 15H3.34z M12 22L3.34 7h17.32z"/></svg></div><div><h3>By the Hebrew calendar, the Gregorian, or both</h3><p>For each event you decide which date to observe.</p></div></li>
+      </ul>
+    </div>
+    <div class="lock">
+      <div class="lock-cap">The evening before · 3 hours before sunset</div>
+      <div class="notif"><img src="/assets/img/mark.svg" alt="" width="38" height="38"><div><div class="notif-app">LeDor · now</div><b>This evening: Birthday — Sarah Cohen</b><p>19 Kislev 5787 begins at sunset. Turns 37</p></div></div>
+      <div class="lock-cap">On the day · 12:00</div>
+      <div class="notif"><img src="/assets/img/mark.svg" alt="" width="38" height="38"><div><div class="notif-app">LeDor · now</div><b>Today: Birthday — Sarah Cohen</b><p>19 Kislev 5787 · 29 November 2026. Turns 37</p></div></div>
+      <div class="lock-cap">The evening before a yahrzeit</div>
+      <div class="notif"><img src="/assets/img/mark.svg" alt="" width="38" height="38"><div><div class="notif-app">LeDor · now</div><b>Yahrzeit this evening: Grandpa Aaron</b><p>20 Kislev 5787 begins at sunset. Time to light the memorial candle.</p></div></div>
     </div>
   </div>
 </section>
 
-<section id="features" class="alt">
+<section id="share" class="alt" aria-labelledby="share-title">
   <div class="wrap">
-    <h2>Everything you need not to miss an important date</h2>
+    <div class="center">
+      <span class="kicker">Shared lists</span>
+      <h2 id="share-title">Share the list with your family or community</h2>
+      <p class="sub">One person adds the dates — everyone sees them and gets reminders. No sign-up, email or passwords.</p>
+    </div>
+    <div class="flow">
+      <div class="phone"><img src="/assets/img/screens/en/10_lists.png?v=6" alt="Several lists in LeDor: personal, family and two communities" width="1200" height="2580" loading="lazy"></div>
+      <div class="bubble-wrap">
+        <div class="bubble-cap">Invitation via WhatsApp or Telegram</div>
+        <div class="bubble"><p>The list “Cohen family” in the LeDor app: birthdays, yahrzeits and family events by the Hebrew and Gregorian calendars.</p><ul><li>1. Install the app: kalendar.bothub.chat</li><li>2. Open “Lists” → “Connect a list”</li><li>3. Name: Cohen family</li><li>4. PIN: 4821</li></ul></div>
+      </div>
+      <div class="phone"><img src="/assets/img/screens/en/05_events.png?v=6" alt="Events from all lists, each labeled with its list" width="1200" height="2580" loading="lazy"></div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><h3>Create a list</h3><p>“Cohen family”, “Our community”, “Friends” — you can have several lists.</p></li>
+      <li><div class="num">2</div><h3>Tap “Share”</h3><p>LeDor sends an invitation via WhatsApp or Telegram with the list name and access code.</p></li>
+      <li><div class="num">3</div><h3>Your family connects</h3><p>They install LeDor, enter the name and code — and see the same dates, with reminders on their own phone.</p></li>
+    </ol>
+    <ul class="points">
+      <li><b>You decide who can edit.</b> One code lets people view, another lets them add and correct dates.</li>
+      <li><b>Several lists at once.</b> Family, community, friends — each list has its own color and notifications.</li>
+      <li><b>Works offline.</b> Changes are sent once you are back online.</li>
+      <li><b>No accounts.</b> No email, phone number or password.</li>
+    </ul>
+    <p class="fineprint">Changes arrive when someone opens the app or pulls the list down, and once a day in the background.</p>
+  </div>
+</section>
+
+<section id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <span class="kicker">And more</span>
+    <h2 id="features-title">Built for the Hebrew calendar</h2>
     <div class="features">
-      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="11" rx="1.5"/><path d="M12 2.5c2 2.2 2 4.5 0 5.5c-2-1-2-3.3 0-5.5z"/></svg></div><h3>A reminder the evening before, ahead of sunset</h3><p>The Hebrew day begins at nightfall. LeDor reminds you a chosen time before sunset in your city — and again on the day itself.</p></div>
-      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8.66 15H3.34z M12 22L3.34 7h17.32z"/></svg></div><h3>Two calendars</h3><p>Every date is shown by both the Hebrew and Gregorian calendars. You can even celebrate a birthday by both.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8.66 15H3.34z M12 22L3.34 7h17.32z"/></svg></div><h3>Both dates side by side</h3><p>Every event is shown by both the Hebrew and the Gregorian calendar — in the calendar and in the list.</p></div>
       <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3v18M19 3v18"/><rect x="7" y="5" width="10" height="14"/><path d="M9.5 9h5M9.5 12h5M9.5 15h3"/></svg></div><h3>Yahrzeit by the rules</h3><p>Adar I and Adar II in a leap year, the 30th of Cheshvan and Kislev — all handled. Choose your Adar custom in settings.</p></div>
-      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div><h3>Bar and bat mitzvah</h3><p>Enter a date of birth — the app tells you when the bar mitzvah and bat mitzvah fall.</p></div>
-      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6 10v4M9 10v4"/></svg></div><h3>Easy on the battery</h3><p>No background work and no location: the app wakes up only at the moment of a reminder.</p></div>
-      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></div><h3>Free and open</h3><p>No ads, subscriptions or data collection. The source code is open on GitHub.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div><h3>Bar and bat mitzvah</h3><p>Enter a date of birth — LeDor tells you the bar mitzvah and bat mitzvah dates.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6 10v4M9 10v4"/></svg></div><h3>Easy on the battery</h3><p>No background work and no location: it wakes up only at the moment of a reminder.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></div><h3>Six languages</h3><p>English, עברית, Русский, ייִדיש, Français, Español. In Hebrew and Yiddish, dates are written in letters.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></div><h3>Free and open</h3><p>No ads, subscriptions or data collection. The source code is open.</p></div>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="teaser-title">
+<section id="screens" class="alt" aria-labelledby="shots-title">
   <div class="wrap">
-    <a class="card teaser" href="/en/converter/">
-      <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8.66 15H3.34z M12 22L3.34 7h17.32z"/></svg></div>
-      <div><h2 id="teaser-title">Find a Hebrew birthday</h2><p>Online date converter that accounts for sunset: Hebrew birthday, bar mitzvah and yahrzeit dates for 10 years ahead.</p><span class="more">Open the converter →</span></div>
-    </a>
-  </div>
-</section>
-
-<section id="screens" aria-labelledby="shots-title" class="alt">
-  <div class="wrap">
-    <h2 id="shots-title">What the app looks like</h2>
-    <div class="shots-nav"><button type="button" data-scroll="-1" aria-label="Back">‹</button><button type="button" data-scroll="1" aria-label="Next">›</button></div>
+    <div class="shots-head">
+      <h2 id="shots-title">What the app looks like</h2>
+      <div class="shots-nav"><button type="button" data-scroll="-1" aria-label="Back">‹</button><button type="button" data-scroll="1" aria-label="Next">›</button></div>
+    </div>
     <div class="shots" id="shots" tabindex="0">
-      <img src="/assets/img/screens/en/03_calendar.png" alt="Calendar by Hebrew months: both dates in every cell" width="1200" height="2580" loading="lazy">
-      <img src="/assets/img/screens/en/05_events.png" alt="Events from all lists, grouped by Hebrew month" width="1200" height="2580" loading="lazy">
-      <img src="/assets/img/screens/en/14_list_share.png" alt="Shared family list: PINs and sending to relatives" width="1200" height="2580" loading="lazy">
-      <img src="/assets/img/screens/en/06_detail.png" alt="Event card: next date and age" width="1200" height="2580" loading="lazy">
-      <img src="/assets/img/screens/en/08_editor.png" alt="New event: type, date in either calendar, observe by both calendars" width="1200" height="2580" loading="lazy">
-      <img src="/assets/img/screens/en/07_converter.png" alt="Date converter that accounts for sunset" width="1200" height="2580" loading="lazy">
+      <div class="phone"><img src="/assets/img/screens/en/03_calendar.png?v=6" alt="Calendar by Hebrew months: both dates in every cell" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/05_events.png?v=6" alt="Events from all lists, grouped by Hebrew month" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/10_lists.png?v=6" alt="Several lists in LeDor: personal, family and two communities" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/14_list_share.png?v=6" alt="Shared family list: PINs and sending to relatives" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/06_detail.png?v=6" alt="Event card: next date and age" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/08_editor.png?v=6" alt="New event: type, date in either calendar, observe by both calendars" width="1200" height="2580" loading="lazy"></div>
+      <div class="phone"><img src="/assets/img/screens/en/07_converter.png?v=6" alt="Date converter that accounts for sunset" width="1200" height="2580" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <section id="faq">
-  <div class="wrap">
+  <div class="wrap faq">
     <h2>Frequently asked questions</h2>
     <details><summary>How do I share a list with my family?</summary><p>Create a shared list under “Lists” and tap Telegram or WhatsApp — your family gets a message with the list name, PIN and a link to the app.</p></details>
     <details><summary>Do I need to sign up? Do you collect my data?</summary><p>There is no sign-up. The app has no ads, analytics or trackers. The personal list stays on your phone; a shared list is stored on our server for its members only.</p></details>
@@ -152,26 +174,35 @@
   </div>
 </section>
 
-<section aria-labelledby="author-title" class="alt">
+<section aria-labelledby="cta-title" style="padding-top:0">
   <div class="wrap">
-    <div class="card author">
-      <img class="author-torah" src="/assets/img/author-torah.jpg" alt="Gershon with a Torah scroll" width="720" height="720" loading="lazy">
-      <div>
-        <div class="author-head"><img src="/assets/img/author.jpg" alt="" width="72" height="72" loading="lazy"><div><p class="kicker">About the author</p><h2 id="author-title">Gershon</h2></div></div>
-        <p>Author of LeDor. Found a mistake in a date or have an idea? Write right from the app: “More → Send feedback”.</p>
-        <div class="links"><a href="https://t.me/bothub_founder" rel="noopener">Author’s Telegram channel</a><a href="https://github.com/grx613/ledor" rel="noopener">GitHub</a></div>
-      </div>
+    <div class="cta-band">
+      <span class="wordmark">Kalendář</span>
+      <h2 id="cta-title">Install LeDor — and important dates stop slipping by</h2>
+      <p>Free, no ads, no sign-up.</p>
+    <div class="cta-row">
+      <a class="btn btn-light" href="/ledor-0.3.1.apk" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Download for Android</a>
+      <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 3.5v17l14-8.5z"/></svg><span><small>Coming soon to</small><b>Google Play</b></span></span>
+      <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 4.5L5.5 19.5M12 4.5l6.5 15M8 14.5h8"/></svg><span><small>Coming soon to</small><b>App Store</b></span></span>
+    </div>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="eco-title">
-  <div class="wrap">
-    <h2 id="eco-title">Other BotHub projects</h2>
-    <p class="sub">LeDor is part of a small family of projects.</p>
-    <div class="eco">
-      <div class="card"><a href="https://bothub.chat" rel="noopener"><img src="/assets/img/eco/bothub.png" alt="" width="52" height="52" loading="lazy"><div><b>BotHub</b><span>ChatGPT, Claude, Gemini, Grok and other AI models in one place.</span></div></a></div>
-      <div class="card"><a href="https://fire.bothub.chat" rel="noopener"><img src="/assets/img/eco/fire.svg" alt="" width="52" height="52" loading="lazy"><div><b>BotHub FiRe</b><span>Top market news: stocks, rates, oil, crypto — short stories from dozens of outlets.</span></div></a></div>
+<section class="alt" aria-labelledby="author-title">
+  <div class="wrap about">
+    <div class="card author">
+      <img class="author-photo" src="/assets/img/author-torah.jpg" alt="Gershon with a Torah scroll" width="720" height="720" loading="lazy">
+      <div>
+        <div class="author-head"><img src="/assets/img/author-face.jpg" alt="" width="56" height="56" loading="lazy"><div><p class="kicker">About the author</p><h2 id="author-title">Gershon</h2></div></div>
+        <p>Author of LeDor. Found a mistake in a date or have an idea? Write right from the app: “More → Send feedback”.</p>
+        <a href="https://t.me/bothub_founder" rel="noopener">Author’s Telegram channel</a>
+      </div>
+    </div>
+    <div class="card projects">
+      <h2>Other BotHub projects</h2>
+      <a href="https://bothub.chat" rel="noopener"><img src="/assets/img/eco/bothub.png" alt="" width="48" height="48" loading="lazy"><div><b>BotHub</b><span>ChatGPT, Claude, Gemini, Grok and other AI models in one place — no subscription.</span></div></a>
+      <a href="https://fire.bothub.chat" rel="noopener"><img src="/assets/img/eco/fire.svg" alt="" width="48" height="48" loading="lazy"><div><b>BotHub FiRe</b><span>Top market news: stocks, rates, oil, crypto — short stories from dozens of outlets.</span></div></a>
     </div>
   </div>
 </section>
@@ -179,10 +210,10 @@
 <footer>
   <div class="wrap">
     <span class="wordmark">Kalendář</span>
-    <nav><a href="/en/converter/">Date converter</a><a href="/en/privacy/">Privacy policy</a><a href="/en/privacy/#delete">Delete data</a><a href="https://github.com/grx613/ledor" rel="noopener">Source code</a><a href="https://t.me/bothub_founder" rel="noopener">Telegram</a></nav>
+    <nav><a href="/en/converter/">Date converter</a><a href="/en/#faq">FAQ</a><a href="/en/privacy/">Privacy policy</a><a href="/en/privacy/#delete">Delete data</a><a href="https://github.com/grx613/ledor" rel="noopener">GitHub</a><a href="https://t.me/bothub_founder" rel="noopener">Telegram</a></nav>
     <div>© 2026 LeDor · non-commercial project · no ads or trackers</div>
   </div>
 </footer>
-<script src="/assets/js/site.js?v=5" defer></script>
+<script src="/assets/js/site.js?v=6" defer></script>
 </body>
 </html>

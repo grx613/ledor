@@ -20,7 +20,7 @@
 <meta property="og:title" content="Hebrew Date Converter — Hebrew birthday, bar mitzvah, yahrzeit | LeDor">
 <meta property="og:description" content="Free Hebrew date converter: convert a date of birth to the Hebrew calendar accounting for sunset and back, find bar mitzvah, bat mitzvah and yahrzeit dates for 10 years ahead.">
 <meta property="og:url" content="https://kalendar.bothub.chat/en/converter/">
-<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/en.png">
+<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/en.png?v=6">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="he_IL">
@@ -29,22 +29,18 @@
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/css/styles.css?v=5">
+<link rel="stylesheet" href="/assets/css/styles.css?v=6">
 <script>try{localStorage.setItem('ledor-lang','en')}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Hebrew date converter","url":"https://kalendar.bothub.chat/en/converter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a date of birth to the Hebrew calendar?","acceptedAnswer":{"@type":"Answer","text":"Enter the date and mark whether it was before or after sunset: a birth after sunset belongs to the next Hebrew date."}},{"@type":"Question","name":"When is the bar mitzvah and bat mitzvah?","acceptedAnswer":{"@type":"Answer","text":"Bar mitzvah at 13, bat mitzvah at 12 by the Hebrew calendar, on the Hebrew birthday."}},{"@type":"Question","name":"When is the yahrzeit candle lit?","acceptedAnswer":{"@type":"Answer","text":"The evening before: the Hebrew date begins at sunset."}}]}]}</script>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/en/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span><span class="brand-sub">Kalendář</span></a>
-    <nav>
-      <a href="/en/#share">Shared list</a>
-      <a href="/en/#features">Features</a>
-      <a href="/en/converter/">Converter</a>
-      <a href="/en/#faq">FAQ</a>
+    <a class="brand" href="/en/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span></a>
+    <div class="top-actions">
       <details class="langs"><summary aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>EN</summary><div class="langs-menu"><a href="/en/converter/" lang="en" hreflang="en" aria-current="true">English</a><a href="/he/converter/" lang="he" hreflang="he">עברית</a><a href="/ru/converter/" lang="ru" hreflang="ru">Русский</a><a href="/yi/converter/" lang="yi" hreflang="yi">ייִדיש</a><a href="/fr/converter/" lang="fr" hreflang="fr">Français</a><a href="/es/converter/" lang="es" hreflang="es">Español</a></div></details>
       <a class="btn btn-primary" href="/ledor-0.3.1.apk" download>Download</a>
-    </nav>
+    </div>
   </div>
 </header>
 <main>
@@ -86,7 +82,7 @@
     </div>
   </div>
 </section>
-<section>
+<section style="padding-top:0">
   <div class="wrap prose">
     <h2>How to convert a date of birth to the Hebrew calendar</h2>
 <p>The Hebrew day begins not at midnight but at sunset. So for someone born in the evening, the Hebrew date is already the next one. If the time of birth is unknown, choose “before sunset” — that is the usual practice.</p>
@@ -98,8 +94,8 @@
 <p>A bar mitzvah is at 13 and a bat mitzvah at 12, on the Hebrew birthday. For those born in Adar of a leap year, the date follows the last Adar.</p>
   </div>
 </section>
-<section>
-  <div class="wrap">
+<section style="padding-top:0">
+  <div class="wrap faq">
     <h2>Frequently asked questions</h2>
     <details><summary>How do I convert a date of birth to the Hebrew calendar?</summary><p>Enter the date and mark whether it was before or after sunset: a birth after sunset belongs to the next Hebrew date.</p></details>
     <details><summary>When is the bar mitzvah and bat mitzvah?</summary><p>Bar mitzvah at 13, bat mitzvah at 12 by the Hebrew calendar, on the Hebrew birthday.</p></details>
@@ -110,11 +106,11 @@
 <footer>
   <div class="wrap">
     <span class="wordmark">Kalendář</span>
-    <nav><a href="/en/converter/">Date converter</a><a href="/en/privacy/">Privacy policy</a><a href="/en/privacy/#delete">Delete data</a><a href="https://github.com/grx613/ledor" rel="noopener">Source code</a><a href="https://t.me/bothub_founder" rel="noopener">Telegram</a></nav>
+    <nav><a href="/en/converter/">Date converter</a><a href="/en/#faq">FAQ</a><a href="/en/privacy/">Privacy policy</a><a href="/en/privacy/#delete">Delete data</a><a href="https://github.com/grx613/ledor" rel="noopener">GitHub</a><a href="https://t.me/bothub_founder" rel="noopener">Telegram</a></nav>
     <div>© 2026 LeDor · non-commercial project · no ads or trackers</div>
   </div>
 </footer>
 <script type="application/json" id="i18n">{"lang":"en","letters":false,"hebLabel":"Hebrew date","gregLabel":"Gregorian date","evening":" evening — the Hebrew day has already begun","eveNote":"The Hebrew day begins the evening before, at sunset on {date}.","errGYear":"Enter a year from 1600 to 2200.","errNoDate":"This date does not exist.","errHYear":"Enter a Hebrew year from 5360 to 5960.","errMonthDays":"{month} {year} has {n} days.","nextBday":"Next Hebrew birthday: \u003cb>{heb}\u003c/b> — {greg}","turns":{"one":", turns {n}","other":", turns {n}"},"bar":"Bar mitzvah (13)","bat":"Bat mitzvah (12)","ifBirth":"If this is a date of birth","ifDeath":"If this is a date of death (yahrzeit)","nextYz":"Next yahrzeit: \u003cb>{heb}\u003c/b> — {greg}. The candle is lit the evening before.","yzNextYear":"The yahrzeit starts from the year after the date.","ctaDays":{"one":"{n} day until the next Hebrew birthday.","other":"{n} days until the next Hebrew birthday."},"ctaApp":"The LeDor app reminds you the evening before and on the day.","monthsNom":{"NISAN":"Nisan","IYAR":"Iyar","SIVAN":"Sivan","TAMMUZ":"Tammuz","AV":"Av","ELUL":"Elul","TISHREI":"Tishrei","CHESHVAN":"Cheshvan","KISLEV":"Kislev","TEVET":"Tevet","SHEVAT":"Shevat","ADAR":"Adar","ADAR_I":"Adar I","ADAR_II":"Adar II"},"monthsGen":{"NISAN":"Nisan","IYAR":"Iyar","SIVAN":"Sivan","TAMMUZ":"Tammuz","AV":"Av","ELUL":"Elul","TISHREI":"Tishrei","CHESHVAN":"Cheshvan","KISLEV":"Kislev","TEVET":"Tevet","SHEVAT":"Shevat","ADAR":"Adar","ADAR_I":"Adar I","ADAR_II":"Adar II"}}</script>
-<script type="module" src="/assets/js/converter.js?v=5"></script>
+<script type="module" src="/assets/js/converter.js?v=6"></script>
 </body>
 </html>
