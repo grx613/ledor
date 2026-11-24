@@ -28,7 +28,7 @@ data class AppSettings(
     val healthWarningsEnabled: Boolean = true,
     val weekStartsOnSunday: Boolean = true,
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
-    val gridMode: GridMode = GridMode.GREGORIAN,
+    val gridMode: GridMode = GridMode.HEBREW,
     val adarPolicy: YahrzeitAdarPolicy = YahrzeitAdarPolicy.ADAR_I,
     val lastListId: String? = null,
 )
@@ -77,7 +77,7 @@ class SettingsStore(private val context: Context) {
             healthWarningsEnabled = p[K.health] ?: true,
             weekStartsOnSunday = p[K.weekSunday] ?: true,
             themeMode = p[K.theme]?.let { runCatching { ThemeMode.valueOf(it) }.getOrNull() } ?: ThemeMode.SYSTEM,
-            gridMode = p[K.grid]?.let { runCatching { GridMode.valueOf(it) }.getOrNull() } ?: GridMode.GREGORIAN,
+            gridMode = p[K.grid]?.let { runCatching { GridMode.valueOf(it) }.getOrNull() } ?: GridMode.HEBREW,
             adarPolicy = p[K.adar]?.let { runCatching { YahrzeitAdarPolicy.valueOf(it) }.getOrNull() } ?: YahrzeitAdarPolicy.ADAR_I,
             lastListId = p[K.lastList],
         )

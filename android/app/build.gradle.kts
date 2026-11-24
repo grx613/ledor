@@ -20,8 +20,8 @@ android {
         applicationId = "org.ledor"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "0.3.0"
+        versionCode = 4
+        versionName = "0.3.1"
         buildConfigField("String", "SUPABASE_URL", "\"${localProps.getProperty("supabase.url", "")}\"")
         buildConfigField("String", "SUPABASE_KEY", "\"${localProps.getProperty("supabase.key", "")}\"")
     }
@@ -35,7 +35,11 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-    testOptions { unitTests.isIncludeAndroidResources = true }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        // Снимки экранов на каждом языке — в отдельном JVM: DataStore и WorkManager — синглтоны процесса.
+        unitTests.all { it.forkEvery = 1 }
+    }
 }
 
 ksp { arg("room.schemaLocation", "$projectDir/schemas") }

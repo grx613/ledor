@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convertisseur de date hébraïque — anniversaire, bar-mitsva, yahrzeit | LeDor</title>
+<meta name="description" content="Convertisseur de date hébraïque gratuit : convertir une date de naissance en date hébraïque en tenant compte du coucher du soleil et inversement, trouver les dates de bar-mitsva, bat-mitsva et yahrzeit sur 10 ans.">
+<link rel="canonical" href="https://kalendar.bothub.chat/fr/converter/">
+<link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/converter/">
+<link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/converter/">
+<link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/converter/">
+<link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/converter/">
+<link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/converter/">
+<link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/converter/">
+<link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/converter/">
+<meta name="theme-color" content="#0B3FAE">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LeDor Kalendář">
+<meta property="og:title" content="Convertisseur de date hébraïque — anniversaire, bar-mitsva, yahrzeit | LeDor">
+<meta property="og:description" content="Convertisseur de date hébraïque gratuit : convertir une date de naissance en date hébraïque en tenant compte du coucher du soleil et inversement, trouver les dates de bar-mitsva, bat-mitsva et yahrzeit sur 10 ans.">
+<meta property="og:url" content="https://kalendar.bothub.chat/fr/converter/">
+<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/fr.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="he_IL">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="yi_001">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/styles.css?v=5">
+<script>try{localStorage.setItem('ledor-lang','fr')}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Convertisseur de date hébraïque","url":"https://kalendar.bothub.chat/fr/converter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"fr"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment convertir une date de naissance en date hébraïque ?","acceptedAnswer":{"@type":"Answer","text":"Saisissez la date et indiquez si c’était avant ou après le coucher du soleil : une naissance après le coucher correspond à la date hébraïque suivante."}},{"@type":"Question","name":"Quand a lieu la bar-mitsva et la bat-mitsva ?","acceptedAnswer":{"@type":"Answer","text":"La bar-mitsva à 13 ans, la bat-mitsva à 12 ans selon le calendrier hébraïque, le jour de l’anniversaire hébraïque."}},{"@type":"Question","name":"Quand allumer la bougie de yahrzeit ?","acceptedAnswer":{"@type":"Answer","text":"La veille au soir : la date hébraïque commence au coucher du soleil."}}]}]}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/fr/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span><span class="brand-sub">Kalendář</span></a>
+    <nav>
+      <a href="/fr/#share">Liste partagée</a>
+      <a href="/fr/#features">Fonctions</a>
+      <a href="/fr/converter/">Convertisseur</a>
+      <a href="/fr/#faq">Questions</a>
+      <details class="langs"><summary aria-label="Langue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>FR</summary><div class="langs-menu"><a href="/en/converter/" lang="en" hreflang="en">English</a><a href="/he/converter/" lang="he" hreflang="he">עברית</a><a href="/ru/converter/" lang="ru" hreflang="ru">Русский</a><a href="/yi/converter/" lang="yi" hreflang="yi">ייִדיש</a><a href="/fr/converter/" lang="fr" hreflang="fr" aria-current="true">Français</a><a href="/es/converter/" lang="es" hreflang="es">Español</a></div></details>
+      <a class="btn btn-primary" href="/ledor-0.3.1.apk" download>Télécharger</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="hero hero-small">
+  <div class="wrap">
+    <h1>Convertisseur de date hébraïque</h1>
+    <p class="lead">Tient compte du coucher du soleil, des années embolismiques et des règles des anniversaires. Le résultat inclut les dates de bar-mitsva, bat-mitsva et yahrzeit.</p>
+  </div>
+</div>
+<section id="converter" class="converter" aria-labelledby="conv-title">
+  <div class="wrap">
+    <div class="card">
+      <h2 id="conv-title" class="visually-hidden">Convertisseur de date hébraïque</h2>
+      <div class="seg" role="group" aria-label="Sens de conversion">
+        <button type="button" data-mode="g2h" aria-pressed="true">Grégorien → hébraïque</button>
+        <button type="button" data-mode="h2g" aria-pressed="false">Hébraïque → grégorien</button>
+      </div>
+      <div class="fields" id="g-fields">
+        <label>Jour<select id="g-day"></select></label>
+        <label>Mois<select id="g-month"></select></label>
+        <label>Année<input id="g-year" type="number" inputmode="numeric" min="1600" max="2200"></label>
+      </div>
+      <div class="fields" id="h-fields" hidden>
+        <label>Jour<select id="h-day"></select></label>
+        <label>Mois<select id="h-month"></select></label>
+        <label>Année<input id="h-year" type="number" inputmode="numeric" min="5360" max="5960"></label>
+      </div>
+      <div class="seg" id="sunset" role="group" aria-label="Moment de la journée">
+        <button type="button" data-after="0" aria-pressed="true">Avant le coucher du soleil</button>
+        <button type="button" data-after="1" aria-pressed="false">Après le coucher</button>
+      </div>
+      <div id="result" class="result" aria-live="polite"></div>
+      <div class="extras" id="extras" hidden>
+        <div class="card" id="birth"></div>
+        <div class="card" id="yahrzeit"></div>
+      </div>
+      <p class="cta-inline"><span id="cta"></span> <a href="/ledor-0.3.1.apk" download>Télécharger l’application</a></p>
+      <noscript><p>Activez JavaScript pour utiliser le convertisseur.</p></noscript>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap prose">
+    <h2>Comment convertir une date de naissance en date hébraïque</h2>
+<p>Le jour hébraïque ne commence pas à minuit mais au coucher du soleil. Pour une personne née le soir, la date hébraïque est donc déjà la suivante. Si l’heure de naissance est inconnue, choisissez « avant le coucher du soleil » : c’est l’usage le plus courant.</p>
+<h3>Pourquoi l’anniversaire hébraïque « se déplace »</h3>
+<p>L’année hébraïque est luni-solaire : les mois suivent la lune et, tous les quelques ans, un treizième mois, Adar II, est ajouté. C’est pourquoi une même date hébraïque tombe chaque année à une date grégorienne différente.</p>
+<h2>Comment calculer une yahrzeit</h2>
+<p>La yahrzeit est l’anniversaire du décès d’un proche selon le calendrier hébraïque. La bougie du souvenir s’allume la veille au soir. Pour un décès en Adar d’une année simple, la coutume ashkénaze fixe la yahrzeit en Adar I lors d’une année embolismique. Pour le 30 Hechvan et Kislev s’applique la règle de la première année. Le convertisseur en tient compte.</p>
+<h2>Comment calculer la date de bar-mitsva et de bat-mitsva</h2>
+<p>La bar-mitsva a lieu à 13 ans, la bat-mitsva à 12 ans, le jour de l’anniversaire hébraïque. Pour les personnes nées en Adar d’une année embolismique, la date suit le dernier Adar.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>Questions fréquentes</h2>
+    <details><summary>Comment convertir une date de naissance en date hébraïque ?</summary><p>Saisissez la date et indiquez si c’était avant ou après le coucher du soleil : une naissance après le coucher correspond à la date hébraïque suivante.</p></details>
+    <details><summary>Quand a lieu la bar-mitsva et la bat-mitsva ?</summary><p>La bar-mitsva à 13 ans, la bat-mitsva à 12 ans selon le calendrier hébraïque, le jour de l’anniversaire hébraïque.</p></details>
+    <details><summary>Quand allumer la bougie de yahrzeit ?</summary><p>La veille au soir : la date hébraïque commence au coucher du soleil.</p></details>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span class="wordmark">Kalendář</span>
+    <nav><a href="/fr/converter/">Convertisseur de dates</a><a href="/fr/privacy/">Politique de confidentialité</a><a href="/fr/privacy/#delete">Supprimer les données</a><a href="https://github.com/grx613/ledor" rel="noopener">Code source</a><a href="https://t.me/bothub_founder" rel="noopener">Telegram</a></nav>
+    <div>© 2026 LeDor · projet non commercial · sans publicité ni traceurs</div>
+  </div>
+</footer>
+<script type="application/json" id="i18n">{"lang":"fr","letters":false,"hebLabel":"Date hébraïque","gregLabel":"Date grégorienne","evening":" soir — le jour hébraïque a déjà commencé","eveNote":"Le jour hébraïque commence la veille au soir, au coucher du soleil du {date}.","errGYear":"Saisissez une année entre 1600 et 2200.","errNoDate":"Cette date n’existe pas.","errHYear":"Saisissez une année hébraïque entre 5360 et 5960.","errMonthDays":"{month} {year} compte {n} jours.","nextBday":"Prochain anniversaire hébraïque : \u003cb>{heb}\u003c/b> — {greg}","turns":{"one":", {n} an","many":", {n} ans","other":", {n} ans"},"bar":"Bar-mitsva (13 ans)","bat":"Bat-mitsva (12 ans)","ifBirth":"S’il s’agit d’une date de naissance","ifDeath":"S’il s’agit d’une date de décès (yahrzeit)","nextYz":"Prochaine yahrzeit : \u003cb>{heb}\u003c/b> — {greg}. La bougie s’allume la veille au soir.","yzNextYear":"La yahrzeit commence l’année suivant la date.","ctaDays":{"one":"{n} jour avant le prochain anniversaire hébraïque.","many":"{n} jours avant le prochain anniversaire hébraïque.","other":"{n} jours avant le prochain anniversaire hébraïque."},"ctaApp":"L’application LeDor vous le rappellera la veille au soir et le jour même.","monthsNom":{"NISAN":"Nissan","IYAR":"Iyar","SIVAN":"Sivan","TAMMUZ":"Tamouz","AV":"Av","ELUL":"Eloul","TISHREI":"Tichri","CHESHVAN":"Hechvan","KISLEV":"Kislev","TEVET":"Tevet","SHEVAT":"Chevat","ADAR":"Adar","ADAR_I":"Adar I","ADAR_II":"Adar II"},"monthsGen":{"NISAN":"Nissan","IYAR":"Iyar","SIVAN":"Sivan","TAMMUZ":"Tamouz","AV":"Av","ELUL":"Eloul","TISHREI":"Tichri","CHESHVAN":"Hechvan","KISLEV":"Kislev","TEVET":"Tevet","SHEVAT":"Chevat","ADAR":"Adar","ADAR_I":"Adar I","ADAR_II":"Adar II"}}</script>
+<script type="module" src="/assets/js/converter.js?v=5"></script>
+</body>
+</html>

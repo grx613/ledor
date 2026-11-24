@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeDor Kalendář — Jewish birthday &amp; yahrzeit calendar for the whole family</title>
+<meta name="description" content="Free app for families and communities: Hebrew birthdays, yahrzeits and anniversaries by the Hebrew and Gregorian calendars, a shared list synced by PIN, and reminders the evening before, ahead of sunset.">
+<link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/converter/">
+<link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/converter/">
+<link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/converter/">
+<link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/converter/">
+<link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/converter/">
+<link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/converter/">
+<link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/converter/">
+<link rel="canonical" href="https://kalendar.bothub.chat/en/converter/">
+<meta property="og:title" content="LeDor — one list of family dates for the whole family">
+<meta property="og:description" content="Hebrew birthdays, yahrzeits and anniversaries. A shared list by PIN, reminders before sunset. Free, no ads.">
+<meta property="og:image" content="https://kalendar.bothub.chat/assets/img/og/en.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/styles.css?v=5">
+<script>
+(function () {
+  var langs = ["en","he","ru","yi","fr","es"], alias = { iw: 'he', ji: 'yi', uk: 'ru', be: 'ru', kk: 'ru' }, pick = null;
+  try { pick = localStorage.getItem('ledor-lang'); } catch (e) {}
+  if (langs.indexOf(pick) < 0) {
+    pick = null;
+    var list = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < list.length && !pick; i++) {
+      var c = String(list[i]).toLowerCase().split('-')[0]; c = alias[c] || c;
+      if (langs.indexOf(c) >= 0) pick = c;
+    }
+  }
+  location.replace('/' + (pick || 'en') + '/converter/' + location.hash);
+})();
+</script>
+</head>
+<body>
+<main class="doc choose"><img src="/assets/img/mark.svg" alt="" width="72" height="72"><h1>LeDor Kalendář</h1><ul><li><a href="/en/converter/" hreflang="en" lang="en">English</a></li><li><a href="/he/converter/" hreflang="he" lang="he">עברית</a></li><li><a href="/ru/converter/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/yi/converter/" hreflang="yi" lang="yi">ייִדיש</a></li><li><a href="/fr/converter/" hreflang="fr" lang="fr">Français</a></li><li><a href="/es/converter/" hreflang="es" lang="es">Español</a></li></ul></main>
+</body>
+</html>

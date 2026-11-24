@@ -1,26 +1,33 @@
-// Интерфейс онлайн-конвертера на главной странице (русская версия).
+// Онлайн-конвертер дат. Тексты — из <script id="i18n"> на странице (tools/site/i18n/<lang>.mjs → js).
 import * as H from './hebrew-calendar.js';
 
-const NOM = { NISAN: 'Нисан', IYAR: 'Ияр', SIVAN: 'Сиван', TAMMUZ: 'Таммуз', AV: 'Ав', ELUL: 'Элул', TISHREI: 'Тишрей', CHESHVAN: 'Хешван', KISLEV: 'Кислев', TEVET: 'Тевет', SHEVAT: 'Шват', ADAR: 'Адар', ADAR_I: 'Адар I', ADAR_II: 'Адар II' };
-const GEN = { NISAN: 'Нисана', IYAR: 'Ияра', SIVAN: 'Сивана', TAMMUZ: 'Таммуза', AV: 'Ава', ELUL: 'Элула', TISHREI: 'Тишрея', CHESHVAN: 'Хешвана', KISLEV: 'Кислева', TEVET: 'Тевета', SHEVAT: 'Швата', ADAR: 'Адара', ADAR_I: 'Адара I', ADAR_II: 'Адара II' };
-const HE = { NISAN: 'ניסן', IYAR: 'אייר', SIVAN: 'סיוון', TAMMUZ: 'תמוז', AV: 'אב', ELUL: 'אלול', TISHREI: 'תשרי', CHESHVAN: 'חשוון', KISLEV: 'כסלו', TEVET: 'טבת', SHEVAT: 'שבט', ADAR: 'אדר', ADAR_I: 'אדר א׳', ADAR_II: 'אדר ב׳' };
-const G_NOM = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-const G_GEN = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-const WD = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
-const WD_SHORT = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+const T = JSON.parse(document.getElementById('i18n').textContent);
+const L = T.lang;
+const MONTH_ORDER = ['TISHREI', 'CHESHVAN', 'KISLEV', 'TEVET', 'SHEVAT', 'ADAR', 'ADAR_I', 'ADAR_II', 'NISAN', 'IYAR', 'SIVAN', 'TAMMUZ', 'AV', 'ELUL'];
 
-const hebText = (h) => `${h.day} ${GEN[h.month]} ${h.year}`;
+const num = (n) => (T.letters ? H.gematriya(n) : String(n));
+const fill = (tpl, v) => tpl.replace(/\{(\w+)\}/g, (_, k) => v[k]);
+const rules = new Intl.PluralRules(L);
+const plural = (forms, n) => fill(forms[rules.select(n)] ?? forms.other, { n });
+const date = (g) => new Date(Date.UTC(g.y, g.m - 1, g.d, 12));
+const fmt = (opts) => { const f = new Intl.DateTimeFormat(L, { timeZone: 'UTC', ...opts }); return (g) => f.format(date(g)).replace(/\s?г\.$/, ''); };
+const gregText = fmt({ day: 'numeric', month: 'long', year: 'numeric' });
+const gregDayMonth = fmt({ day: 'numeric', month: 'long' });
+const weekdayLong = fmt({ weekday: 'long' });
+const gregShort = fmt({ weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+const gregFull = fmt({ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const monthName = (m) => { const s = new Intl.DateTimeFormat(L, { month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2000, m - 1, 1, 12))); return s.charAt(0).toUpperCase() + s.slice(1); };
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const hebText = (h) => `${num(h.day)} ${T.monthsGen[h.month]} ${num(h.year)}`;
 const hebNative = (h) => `${H.gematriya(h.day)} ב${HE[h.month]} ${H.gematriya(h.year)}`;
-const gregText = (g) => `${g.d} ${G_GEN[g.m - 1]} ${g.y}`;
-const gregShort = (g) => `${WD_SHORT[H.weekday(g)]}, ${gregText(g)}`;
-const plural = (n, a, b, c) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? a : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? b : c; };
+const HE = { NISAN: 'ניסן', IYAR: 'אייר', SIVAN: 'סיוון', TAMMUZ: 'תמוז', AV: 'אב', ELUL: 'אלול', TISHREI: 'תשרי', CHESHVAN: 'חשוון', KISLEV: 'כסלו', TEVET: 'טבת', SHEVAT: 'שבט', ADAR: 'אדר', ADAR_I: 'אדר א׳', ADAR_II: 'אדר ב׳' };
 const prevDay = (g) => { const d = new Date(Date.UTC(g.y, g.m - 1, g.d - 1)); return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() }; };
 const daysBetween = (a, b) => Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / 86400000);
 
 const $ = (id) => document.getElementById(id);
 const now = new Date();
 const today = { y: now.getFullYear(), m: now.getMonth() + 1, d: now.getDate() };
-
 const state = { mode: 'g2h', after: false };
 
 function fillSelect(sel, items, value) {
@@ -30,10 +37,10 @@ function fillSelect(sel, items, value) {
 
 function setupInputs() {
   fillSelect($('g-day'), Array.from({ length: 31 }, (_, i) => [i + 1, i + 1]), today.d);
-  fillSelect($('g-month'), G_NOM.map((n, i) => [i + 1, n]), today.m);
+  fillSelect($('g-month'), Array.from({ length: 12 }, (_, i) => [i + 1, monthName(i + 1)]), today.m);
   $('g-year').value = today.y;
   const h = H.gregorianToHebrew(today);
-  fillSelect($('h-day'), Array.from({ length: 30 }, (_, i) => [i + 1, i + 1]), h.day);
+  fillSelect($('h-day'), Array.from({ length: 30 }, (_, i) => [i + 1, num(i + 1)]), h.day);
   $('h-year').value = h.year;
   refreshHebMonths(h.month);
 }
@@ -41,23 +48,23 @@ function setupInputs() {
 function refreshHebMonths(keep) {
   const y = parseInt($('h-year').value, 10);
   const valid = Number.isInteger(y) && y > 3761 && y < 7000;
-  const months = valid ? H.monthsOfYear(y) : ['TISHREI', 'CHESHVAN', 'KISLEV', 'TEVET', 'SHEVAT', 'ADAR', 'ADAR_I', 'ADAR_II', 'NISAN', 'IYAR', 'SIVAN', 'TAMMUZ', 'AV', 'ELUL'];
+  const months = valid ? H.monthsOfYear(y) : MONTH_ORDER;
   let want = keep ?? $('h-month').value;
   if (valid && !months.includes(want)) want = want === 'ADAR' ? 'ADAR_II' : want?.startsWith('ADAR') ? 'ADAR' : months[0];
-  fillSelect($('h-month'), months.map((c) => [c, NOM[c]]), want);
+  fillSelect($('h-month'), months.map((c) => [c, T.monthsNom[c]]), want);
 }
 
 function readInput() {
   if (state.mode === 'g2h') {
     const g = { y: parseInt($('g-year').value, 10), m: parseInt($('g-month').value, 10), d: parseInt($('g-day').value, 10) };
-    if (!(g.y >= 1600 && g.y <= 2200)) return { error: 'Введите год от 1600 до 2200.' };
+    if (!(g.y >= 1600 && g.y <= 2200)) return { error: T.errGYear };
     const real = new Date(Date.UTC(g.y, g.m - 1, g.d));
-    if (real.getUTCMonth() + 1 !== g.m) return { error: 'Такой даты не существует.' };
+    if (real.getUTCMonth() + 1 !== g.m) return { error: T.errNoDate };
     return { g, h: H.gregorianToHebrew(g, state.after) };
   }
   const h = { year: parseInt($('h-year').value, 10), month: $('h-month').value, day: parseInt($('h-day').value, 10) };
-  if (!(h.year >= 5360 && h.year <= 5960)) return { error: 'Введите еврейский год от 5360 до 5960.' };
-  if (!H.isValid(h)) return { error: `В месяце ${NOM[h.month]} ${h.year} года ${H.daysInMonth(h.year, h.month)} дней.` };
+  if (!(h.year >= 5360 && h.year <= 5960)) return { error: T.errHYear };
+  if (!H.isValid(h)) return { error: fill(T.errMonthDays, { month: T.monthsNom[h.month], year: num(h.year), n: H.daysInMonth(h.year, h.month) }) };
   return { h, g: H.hebrewToGregorian(h) };
 }
 
@@ -78,43 +85,40 @@ function render() {
   }
   out.className = 'result';
   if (state.mode === 'g2h') {
-    out.innerHTML = `<div class="label">Еврейская дата</div>
+    out.innerHTML = `<div class="label">${T.hebLabel}</div>
       <div class="big">${hebText(r.h)}</div>
-      <div class="he" dir="rtl" lang="he">${hebNative(r.h)}</div>
-      <div class="note">${WD[H.weekday(r.g)]}${state.after ? ' вечером — еврейский день уже наступил' : ''}</div>`;
+      ${T.letters ? '' : `<div class="he" dir="rtl" lang="he">${hebNative(r.h)}</div>`}
+      <div class="note">${cap(weekdayLong(r.g))}${state.after ? T.evening : ''}</div>`;
   } else {
-    out.innerHTML = `<div class="label">Григорианская дата</div>
-      <div class="big">${WD[H.weekday(r.g)]}, ${gregText(r.g)}</div>
-      <div class="note">Еврейский день начинается накануне вечером, с заходом солнца ${gregText(prevDay(r.g)).replace(/ \d+$/, '')}.</div>`;
+    out.innerHTML = `<div class="label">${T.gregLabel}</div>
+      <div class="big">${cap(gregFull(r.g))}</div>
+      <div class="note">${fill(T.eveNote, { date: gregDayMonth(prevDay(r.g)) })}</div>`;
   }
 
-  // Дополнительно: бар/бат-мицва, ближайший день рождения и йорцайт
   const m = H.mitzvahDates(r.h);
   const bday = H.nextOccurrence('BIRTHDAY', r.h, today);
   const yz = H.nextOccurrence('YAHRZEIT', r.h, today);
   const rows = [];
-  if (bday) rows.push(`<p>Ближайший еврейский день рождения: <b>${hebText(bday.hebrew)}</b> — ${gregShort(bday.gregorian)}${bday.years > 0 ? `, исполнится ${bday.years} ${plural(bday.years, 'год', 'года', 'лет')}` : ''}.</p>`);
-  rows.push(`<p>Бар-мицва (13 лет): <b>${hebText(m.bar.hebrew)}</b> — ${gregShort(m.bar.gregorian)}</p>`);
-  rows.push(`<p>Бат-мицва (12 лет): <b>${hebText(m.bat.hebrew)}</b> — ${gregShort(m.bat.gregorian)}</p>`);
-  $('birth').innerHTML = `<h3>Если это дата рождения</h3>${rows.join('')}`;
+  if (bday) rows.push(`<p>${fill(T.nextBday, { heb: hebText(bday.hebrew), greg: gregShort(bday.gregorian) })}${bday.years > 0 ? plural(T.turns, bday.years) : ''}.</p>`);
+  rows.push(`<p>${T.bar}: <b>${hebText(m.bar.hebrew)}</b> — ${gregShort(m.bar.gregorian)}</p>`);
+  rows.push(`<p>${T.bat}: <b>${hebText(m.bat.hebrew)}</b> — ${gregShort(m.bat.gregorian)}</p>`);
+  $('birth').innerHTML = `<h3>${T.ifBirth}</h3>${rows.join('')}`;
 
-  let yzHtml = '<h3>Если это дата смерти (йорцайт)</h3>';
+  let yzHtml = `<h3>${T.ifDeath}</h3>`;
   if (yz) {
     const ty = yz.hebrew.year;
-    yzHtml += `<p>Ближайший йорцайт: <b>${hebText(yz.hebrew)}</b> — ${gregShort(yz.gregorian)}. Свечу зажигают накануне вечером.</p><table>`;
+    yzHtml += `<p>${fill(T.nextYz, { heb: hebText(yz.hebrew), greg: gregShort(yz.gregorian) })}</p><table>`;
     for (let y = ty; y < ty + 10; y++) {
       const h = H.hebrewAnniversary('YAHRZEIT', r.h, y);
       yzHtml += `<tr><td>${hebText(h)}</td><td>${gregShort(H.hebrewToGregorian(h))}</td></tr>`;
     }
     yzHtml += '</table>';
-  } else yzHtml += '<p>Йорцайт начинается со следующего года после даты.</p>';
+  } else yzHtml += `<p>${T.yzNextYear}</p>`;
   $('yahrzeit').innerHTML = yzHtml;
   $('extras').hidden = false;
 
   const left = bday ? daysBetween(today, bday.gregorian) : null;
-  $('cta').textContent = left != null
-    ? `До ближайшего еврейского дня рождения — ${left} ${plural(left, 'день', 'дня', 'дней')}. Приложение LeDor напомнит накануне вечером и в сам день.`
-    : 'Приложение LeDor напомнит о дате каждый год — накануне вечером и в сам день.';
+  $('cta').textContent = (left != null ? plural(T.ctaDays, left) + ' ' : '') + T.ctaApp;
 }
 
 document.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => { state.mode = b.dataset.mode; render(); }));
@@ -124,7 +128,3 @@ $('h-year').addEventListener('input', () => { refreshHebMonths(); render(); });
 
 setupInputs();
 render();
-
-// Галерея скриншотов: стрелки на компьютере
-const shots = $('shots');
-document.querySelectorAll('[data-scroll]').forEach((b) => b.addEventListener('click', () => shots.scrollBy({ left: Number(b.dataset.scroll) * 260, behavior: 'smooth' })));

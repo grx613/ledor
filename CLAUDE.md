@@ -31,6 +31,8 @@ cd android && ./gradlew :domain:test                  # быстрые тест�
 cd android && ./gradlew :domain:test :app:testDebugUnitTest :app:lintDebug :app:assembleDebug   # полная проверка
 cd android && ./gradlew :app:recordRoborazziDebug     # снимки экранов → app/build/outputs/roborazzi/
 node --test website/tests/*.test.mjs                          # тесты конвертера сайта
+node tools/site/build.mjs                             # собрать страницы сайта из tools/site/i18n/*.mjs
+tools/deploy/publish.sh                               # выложить website/ на kalendar.bothub.chat
 cd tools/golden && npm ci && node generate.mjs        # пересоздать эталонные векторы (обычно не нужно)
 ```
 

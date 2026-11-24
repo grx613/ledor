@@ -23,7 +23,8 @@ import org.ledor.ui.navigation.FeedbackRoute
 
 /** Адреса — BACKLOG B-3, B-4, B-8. Репозиторий — GitHub (Q-03). */
 const val SITE_URL = "https://kalendar.bothub.chat"
-const val PRIVACY_URL = "$SITE_URL/privacy/"
+/** Страницы сайта на языке интерфейса: /en/, /he/, /ru/ … (теги совпадают с R.string.locale_tag). */
+fun sitePage(localeTag: String, page: String = "") = "$SITE_URL/$localeTag/" + if (page.isEmpty()) "" else "$page/"
 const val AUTHOR_CHANNEL_URL = "https://t.me/bothub_founder"
 const val SOURCE_URL = "https://github.com/grx613/ledor"
 
@@ -57,8 +58,9 @@ fun AboutScreen(nav: androidx.navigation.NavController) {
                 TextButton(onClick = { open(AUTHOR_CHANNEL_URL) }, contentPadding = PaddingValues(0.dp)) { Text(stringResource(R.string.about_author_channel)) }
             }
             SectionCard {
-                TextButton(onClick = { open(SITE_URL) }) { Text(stringResource(R.string.about_site)) }
-                TextButton(onClick = { open(PRIVACY_URL) }) { Text(stringResource(R.string.about_privacy)) }
+                val lang = stringResource(R.string.locale_tag)
+                TextButton(onClick = { open(sitePage(lang)) }) { Text(stringResource(R.string.about_site)) }
+                TextButton(onClick = { open(sitePage(lang, "privacy")) }) { Text(stringResource(R.string.about_privacy)) }
                 if (SOURCE_URL.isNotEmpty()) TextButton(onClick = { open(SOURCE_URL) }) { Text(stringResource(R.string.about_source)) }
                 TextButton(onClick = { nav.navigate(FeedbackRoute()) }) { Text(stringResource(R.string.feedback_title)) }
                 TextButton(onClick = { licenses = !licenses }) { Text(stringResource(R.string.about_licenses)) }
