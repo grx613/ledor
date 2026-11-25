@@ -394,4 +394,14 @@
     <string name="holiday_fast_dawn">Fast from dawn until nightfall</string>
     <string name="notif_holiday_tomorrow_title">Tomorrow: %s</string>
     <string name="notif_fast_dawn">The fast lasts from dawn until nightfall.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">The first year</string>
+    <string name="milestone_shloshim">Shloshim (30 days)</string>
+    <string name="milestone_11_months">11 months (end of Kaddish)</string>
+    <string name="milestone_12_months">12 months (end of mourning)</string>
+    <string name="milestone_first_yahrzeit">First yahrzeit</string>
+    <string name="milestone_passed">passed</string>
+    <string name="first_year_note">Dates are counted from the day of death. Shloshim is counted from the burial, and a festival may shorten it. Eleven and twelve months apply to mourning for a parent; many communities end Kaddish a day earlier. Ask your rabbi.</string>
+    <string name="yizkor">Yizkor</string>
+    <string name="notif_yizkor">Yizkor: %s.</string>
 </resources>

@@ -10,6 +10,11 @@ import kotlinx.serialization.json.jsonPrimitive
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.ledor.domain.calendar.HebrewDate
+import org.ledor.domain.calendar.HebrewMonth
+import org.ledor.domain.event.MourningCalculator
+import org.ledor.domain.event.MourningMilestone
+import org.ledor.domain.event.YahrzeitAdarPolicy
 import org.ledor.domain.holiday.CandleLightingCalculator
 import org.ledor.domain.holiday.Holiday
 import org.ledor.domain.holiday.Holidays
@@ -54,6 +59,44 @@ class HolidaysTest {
         assertEquals(LocalDate.of(2026, 12, 12), list[0].end)
         assertEquals(listOf(LocalDate.of(2026, 11, 28), LocalDate.of(2026, 12, 5)),
             Holidays.shabbats(LocalDate.of(2026, 11, 25), LocalDate.of(2026, 12, 5)))
+    }
+
+    @Test
+    fun yizkorDays() {
+        fun day(year: Int, il: Boolean, h: Holiday) = Holidays.inHebrewYear(year, il).first { it.holiday == h }.let { Holidays.yizkorDay(it) }
+        // 5787: Шавуот — 11 июня 2027 (пт); в диаспоре Изкор во второй день.
+        assertEquals(LocalDate.of(2027, 6, 11), day(5787, true, Holiday.SHAVUOT))
+        assertEquals(LocalDate.of(2027, 6, 12), day(5787, false, Holiday.SHAVUOT))
+        // Последний день Песаха: 21 Нисана в Израиле, 22 Нисана в диаспоре.
+        assertEquals(LocalDate.of(2027, 4, 28), day(5787, true, Holiday.PESACH_VII))
+        assertEquals(LocalDate.of(2027, 4, 29), day(5787, false, Holiday.PESACH_VII))
+        assertEquals(LocalDate.of(2026, 9, 21), day(5787, false, Holiday.YOM_KIPPUR))
+        assertEquals(LocalDate.of(2026, 10, 3), day(5787, false, Holiday.SHMINI_ATZERET))
+        assertEquals(4, Holidays.inHebrewYear(5787, false).count { Holidays.yizkorDay(it) != null })
+    }
+
+    @Test
+    fun mourningFirstYear() {
+        val p = YahrzeitAdarPolicy.ADAR_I
+        // 5787 — високосный: смерть 10 Нисана 5786 → 11 месяцев — 10 Адара I, 12 месяцев — 10 Адара II, йорцайт — 10 Нисана.
+        val a = MourningCalculator.firstYear(HebrewDate(5786, HebrewMonth.NISAN, 10), p)
+        assertEquals(listOf(MourningMilestone.SHLOSHIM, MourningMilestone.ELEVEN_MONTHS, MourningMilestone.TWELVE_MONTHS, MourningMilestone.FIRST_YAHRZEIT),
+            a.map { it.milestone })
+        assertEquals(HebrewDate(5787, HebrewMonth.ADAR_I, 10), a[1].hebrewDate)
+        assertEquals(HebrewDate(5787, HebrewMonth.ADAR_II, 10), a[2].hebrewDate)
+        assertEquals(HebrewDate(5787, HebrewMonth.NISAN, 10), a[3].hebrewDate)
+        assertEquals(a.map { it.date }.sorted(), a.map { it.date })
+        // Обычный год: 12 месяцев совпадают с йорцайтом — отдельной вехи нет.
+        val b = MourningCalculator.firstYear(HebrewDate(5785, HebrewMonth.TISHREI, 10), p)
+        assertEquals(listOf(MourningMilestone.SHLOSHIM, MourningMilestone.ELEVEN_MONTHS, MourningMilestone.FIRST_YAHRZEIT), b.map { it.milestone })
+        assertEquals(HebrewDate(5785, HebrewMonth.ELUL, 10), b[1].hebrewDate)
+        assertEquals(HebrewDate(5786, HebrewMonth.TISHREI, 10), b[2].hebrewDate)
+        // Шлошим — 30-й день: смерть 1 Тишрея 5787 (12.09.2026) → 30 Тишрея (11.10.2026).
+        val c = MourningCalculator.firstYear(HebrewDate(5787, HebrewMonth.TISHREI, 1), p)[0]
+        assertEquals(LocalDate.of(2026, 10, 11), c.date)
+        assertEquals(HebrewDate(5787, HebrewMonth.TISHREI, 30), c.hebrewDate)
+        // 30-е число, которого нет в следующем месяце, — последний день месяца.
+        assertEquals(HebrewDate(5786, HebrewMonth.ADAR, 29), MourningCalculator.addMonths(HebrewDate(5786, HebrewMonth.SHEVAT, 30), 1))
     }
 
     @Test

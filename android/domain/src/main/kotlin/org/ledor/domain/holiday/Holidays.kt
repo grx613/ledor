@@ -106,6 +106,16 @@ object Holidays {
             .sortedBy { it.start }
     }
 
+    /**
+     * День, когда читают Изкор: Йом Кипур, Шмини Ацерет, последний день Песаха и Шавуот
+     * (в диаспоре у двух последних — второй день). null — в этот праздник Изкор не читают.
+     */
+    fun yizkorDay(o: HolidayOccurrence): LocalDate? = when (o.holiday) {
+        Holiday.YOM_KIPPUR, Holiday.SHMINI_ATZERET -> o.start
+        Holiday.PESACH_VII, Holiday.SHAVUOT -> o.end
+        else -> null
+    }
+
     /** Субботы в [from, toInclusive]. */
     fun shabbats(from: LocalDate, toInclusive: LocalDate): List<LocalDate> {
         val first = from.plusDays(((DayOfWeek.SATURDAY.value - from.dayOfWeek.value + 7) % 7).toLong())

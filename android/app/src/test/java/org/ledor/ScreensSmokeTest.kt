@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import org.ledor.domain.calendar.CalendarKind
@@ -191,6 +192,21 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onNodeWithText(s(R.string.about)).performClick()
         rule.waitForIdle()
         shot("13_about")
+        // Первый год после смерти: веха «Шлошим» в ближайших событиях ведёт в карточку йорцайта с блоком «Первый год».
+        val death = org.ledor.domain.calendar.HebrewCalendarMath.fromGregorian(java.time.LocalDate.now().minusDays(28))
+        kotlinx.coroutines.runBlocking {
+            container.eventRepository.save(Event("8", "local", names[1], EventType.YAHRZEIT, null, true, CalendarKind.HEBREW,
+                EventDate.fromHebrew(HebrewParts.of(death)), null))
+        }
+        rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.tab_calendar)).performClick()
+        rule.waitUntil(5_000) { rule.onAllNodesWithText(s(R.string.milestone_shloshim)).fetchSemanticsNodes().isNotEmpty() }
+        rule.onNodeWithText(s(R.string.milestone_shloshim)).performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.first_year_title)).assertExists()
+        rule.onNodeWithText(s(R.string.milestone_first_yahrzeit)).assertExists()
+        shot("16_first_year")
     }
 }
 

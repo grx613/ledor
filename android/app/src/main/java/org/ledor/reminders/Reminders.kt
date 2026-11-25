@@ -24,6 +24,7 @@ import org.ledor.data.local.AppDatabase
 import org.ledor.data.local.toDomain
 import org.ledor.data.holiday.HOLIDAYS_LIST_ID
 import org.ledor.data.holiday.HolidayEvents
+import org.ledor.data.holiday.MilestoneEvents
 import org.ledor.data.prefs.SettingsStore
 import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.event.Event
@@ -86,6 +87,7 @@ class ReminderScheduler(
     private val alarms: AlarmGateway,
     private val notifier: NotificationFactory,
     private val holidays: HolidayEvents,
+    private val milestones: MilestoneEvents,
     private val clock: Clock = Clock.systemDefaultZone(),
 ) {
     private val mutex = Mutex()
@@ -95,7 +97,10 @@ class ReminderScheduler(
         val zone = ZoneId.systemDefault()
         val s = settings.current()
         val notifyLists = db.lists().getAll().filter { it.notifyEnabled }.map { it.id }.toSet()
-        val events = db.events().getVisible().filter { it.listId in notifyLists }.map { it.toDomain() }
+        val allEvents = db.events().getVisible()
+        val own = allEvents.filter { it.listId in notifyLists }.map { it.toDomain() }
+        // Вехи первого года (шлошим, 11 и 12 месяцев) напоминают как обычные события того же списка (B-26).
+        val events = own + milestones.build(own, now.atZone(zone).toLocalDate(), s.adarPolicy)
         val sunset = sunsetProvider(s.cityId, zone)
         val watermark = settings.watermark() ?: now.toEpochMilli().also { settings.setWatermark(it) }
 
@@ -103,7 +108,8 @@ class ReminderScheduler(
         // Праздники и Шабат: только напоминание накануне вечером — в сам день телефон не беспокоит (B-25).
         val holidayEvents = if (!s.holidays.notify) emptyList() else holidays.build(
             s.holidays, cities().byId(s.cityId), from = today.minusDays(2), to = today.plusDays(400),
-            shabbatFrom = today.minusDays(2), shabbatTo = today.plusDays(400), nextDays = false)
+            shabbatFrom = today.minusDays(2), shabbatTo = today.plusDays(400), nextDays = false,
+            yizkor = allEvents.any { it.type == EventType.YAHRZEIT.name })
         val eveOnly = s.reminders.copy(eveEnabled = true, dayEnabled = false)
         fun plan(from: Instant, to: Instant) = (ReminderPlanner.plan(events, s.reminders, sunset, zone, s.adarPolicy, from, to) +
             ReminderPlanner.plan(holidayEvents, eveOnly, sunset, zone, s.adarPolicy, from, to)).sortedBy { it.triggerAt }

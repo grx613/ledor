@@ -400,4 +400,14 @@
     <string name="holiday_fast_dawn">Пост с рассвета до выхода звёзд</string>
     <string name="notif_holiday_tomorrow_title">Завтра: %s</string>
     <string name="notif_fast_dawn">Пост — с рассвета до выхода звёзд.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">Первый год</string>
+    <string name="milestone_shloshim">Шлошим (30 дней)</string>
+    <string name="milestone_11_months">11 месяцев (конец кадиша)</string>
+    <string name="milestone_12_months">12 месяцев (конец траура)</string>
+    <string name="milestone_first_yahrzeit">Первый йорцайт</string>
+    <string name="milestone_passed">прошло</string>
+    <string name="first_year_note">Даты считаются от дня смерти. Шлошим принято считать от похорон, и праздник может его сократить. 11 и 12 месяцев относятся к трауру по родителям; во многих общинах кадиш заканчивают на день раньше. Уточните у раввина.</string>
+    <string name="yizkor">Изкор</string>
+    <string name="notif_yizkor">Изкор — %s.</string>
 </resources>

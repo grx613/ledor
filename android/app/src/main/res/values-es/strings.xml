@@ -395,4 +395,14 @@
     <string name="holiday_fast_dawn">Ayuno desde el alba hasta el anochecer</string>
     <string name="notif_holiday_tomorrow_title">Mañana: %s</string>
     <string name="notif_fast_dawn">El ayuno dura desde el alba hasta el anochecer.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">El primer año</string>
+    <string name="milestone_shloshim">Shloshim (30 días)</string>
+    <string name="milestone_11_months">11 meses (fin del Kadish)</string>
+    <string name="milestone_12_months">12 meses (fin del duelo)</string>
+    <string name="milestone_first_yahrzeit">Primer yahrzeit</string>
+    <string name="milestone_passed">pasado</string>
+    <string name="first_year_note">Las fechas se cuentan desde el día del fallecimiento. Los shloshim se cuentan desde el entierro, y una fiesta puede acortarlos. Los 11 y 12 meses corresponden al duelo por un padre o una madre; muchas comunidades terminan el Kadish un día antes. Consulta a tu rabino.</string>
+    <string name="yizkor">Yizkor</string>
+    <string name="notif_yizkor">Yizkor: %s.</string>
 </resources>

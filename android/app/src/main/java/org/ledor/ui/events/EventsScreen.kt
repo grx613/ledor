@@ -48,7 +48,7 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
 
     val items = upcoming.orEmpty().filter { filter == null || it.event.listId == filter }
     val upcomingIds = upcoming.orEmpty().map { it.event.id }.toSet()
-    val past = events.orEmpty().filter { it.id !in upcomingIds && !org.ledor.data.holiday.HolidayEvents.isBuiltIn(it.id) && (filter == null || it.listId == filter) }
+    val past = events.orEmpty().filter { it.id !in upcomingIds && !org.ledor.data.holiday.HolidayEvents.isBuiltIn(it.id) && !org.ledor.data.holiday.MilestoneEvents.isMilestone(it.id) && (filter == null || it.listId == filter) }
         .mapNotNull { e -> OccurrenceCalculator.oneOff(e)?.let { e to it } }
         .sortedByDescending { it.second.date }
 

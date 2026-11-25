@@ -40,11 +40,13 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val settings: StateFlow<AppSettings?> = container.settingsStore.settings
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    /** События пользователя и встроенного списка праздников (B-25): на год назад и на десять вперёд. */
+    /** События пользователя, вехи первого года по йорцайтам (B-26) и встроенный список праздников (B-25, на год назад и на десять вперёд). */
     val events: StateFlow<List<Event>?> = combine(container.eventRepository.observeAll(), settings, today, container.localeTag) { own, s, t, _ ->
         if (s == null) null
-        else own + container.holidayEvents.build(s.holidays, container.cityCatalog.byId(s.cityId),
-            from = t.minusYears(1), to = t.plusYears(10), shabbatFrom = t, shabbatTo = t.plusDays(13), nextDays = true)
+        else own + container.milestoneEvents.build(own, t, s.adarPolicy) +
+            container.holidayEvents.build(s.holidays, container.cityCatalog.byId(s.cityId),
+                from = t.minusYears(1), to = t.plusYears(10), shabbatFrom = t, shabbatTo = t.plusDays(13), nextDays = true,
+                yizkor = own.any { it.type == org.ledor.domain.event.EventType.YAHRZEIT })
     }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     val lists: StateFlow<List<ListWithCount>> = container.listRepository.observeLists()

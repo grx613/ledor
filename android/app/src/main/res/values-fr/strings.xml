@@ -395,4 +395,14 @@
     <string name="holiday_fast_dawn">Jeûne de l’aube à la tombée de la nuit</string>
     <string name="notif_holiday_tomorrow_title">Demain : %s</string>
     <string name="notif_fast_dawn">Le jeûne dure de l’aube à la tombée de la nuit.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">La première année</string>
+    <string name="milestone_shloshim">Chlochim (30 jours)</string>
+    <string name="milestone_11_months">11 mois (fin du Kaddich)</string>
+    <string name="milestone_12_months">12 mois (fin du deuil)</string>
+    <string name="milestone_first_yahrzeit">Premier yahrzeit</string>
+    <string name="milestone_passed">passé</string>
+    <string name="first_year_note">Les dates sont comptées à partir du jour du décès. Les chlochim se comptent depuis l’enterrement, et une fête peut les abréger. Les 11 et 12 mois concernent le deuil d’un parent ; beaucoup de communautés arrêtent le Kaddich un jour plus tôt. Demandez à votre rabbin.</string>
+    <string name="yizkor">Yizkor</string>
+    <string name="notif_yizkor">Yizkor : %s.</string>
 </resources>

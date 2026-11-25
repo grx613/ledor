@@ -118,6 +118,27 @@ fun EventDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
                 }
             }
 
+            // Первый год после смерти: шлошим, 11 и 12 месяцев, первый йорцайт (B-26).
+            org.ledor.data.holiday.MilestoneEvents.firstYear(e, today, policy)?.let { milestones ->
+                SectionCard(title = stringResource(R.string.first_year_title)) {
+                    milestones.forEach { m ->
+                        val days = ChronoUnit.DAYS.between(today, m.date)
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Column(Modifier.weight(1f)) {
+                                Text(stringResource(org.ledor.data.holiday.MilestoneEvents.labelRes(m.milestone)), style = MaterialTheme.typography.bodyLarge)
+                                Text("${f.hebrewDate(m.hebrewDate)} · ${f.gregorianShortWeekday(m.date)}",
+                                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                            Spacer(Modifier.width(8.dp))
+                            Text(if (days < 0) stringResource(R.string.milestone_passed) else f.relativeDays(days),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = if (days < 0) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.primary)
+                        }
+                    }
+                    Text(stringResource(R.string.first_year_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+
             e.note?.let { SectionCard(title = stringResource(R.string.field_note)) { Text(it) } }
             if (!canEdit) Text(stringResource(R.string.read_only_list), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(24.dp))

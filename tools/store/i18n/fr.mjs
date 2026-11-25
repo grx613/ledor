@@ -1,8 +1,8 @@
 // Français. Fiche LeDor sur Google Play : titre ≤30, description courte ≤80, complète ≤4000, légendes.
 export default {
   lang: 'fr', play: 'fr-FR', dir: 'ltr',
-  title: 'LeDor : calendrier hébraïque',
-  short: 'Fêtes juives, anniversaires hébraïques et yahrzeits : rappels, listes partagées',
+  title: 'LeDor: anniversaires, yahrzeit',
+  short: 'Calendrier hébraïque : fêtes juives, rappels avant le coucher du soleil, listes',
   full: `LeDor est un calendrier hébraïque pour la famille : il vous rappelle les anniversaires, les yahrzeits, les dates de famille et les fêtes juives selon les calendriers hébraïque et grégorien — et permet à toute la famille ou à la communauté de tenir une seule liste de dates partagée.
 
 DES RAPPELS AU BON MOMENT
@@ -22,6 +22,10 @@ SELON LES RÈGLES DU CALENDRIER HÉBRAÏQUE
 • Dates de bar et bat mitsva à partir de la date de naissance.
 • Le coucher du soleil compte : vous ne savez pas si le soleil était déjà couché à l'heure de la naissance ? Indiquez l'heure et la ville, LeDor vous le dira.
 • Convertisseur de dates : du grégorien à l'hébraïque et inversement.
+
+LA PREMIÈRE ANNÉE ET YIZKOR
+• Après un décès récent : chlochim, 11 et 12 mois et premier yahrzeit — dates et rappels.
+• Les jours de Yizkor sont indiqués dans les rappels des fêtes.
 
 FÊTES JUIVES ET ALLUMAGE DES BOUGIES
 • Liste intégrée des fêtes et des jeûnes — dans le calendrier, avec un rappel la veille au soir.

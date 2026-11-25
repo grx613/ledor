@@ -1,8 +1,8 @@
 // Español. Ficha de LeDor en Google Play: título ≤30, descripción breve ≤80, completa ≤4000, pies de foto.
 export default {
   lang: 'es', play: 'es-ES', dir: 'ltr',
-  title: 'LeDor: calendario hebreo',
-  short: 'Fiestas judías, cumpleaños hebreos y yahrzeits: avisos y listas en familia',
+  title: 'LeDor: cumpleaños y yahrzeit',
+  short: 'Calendario hebreo: fiestas judías, avisos antes del atardecer, listas en familia',
   full: `LeDor es un calendario hebreo para la familia: te recuerda cumpleaños, yahrzeits, fechas familiares y fiestas judías según los calendarios hebreo y gregoriano, y permite que toda la familia o la comunidad lleve una sola lista de fechas compartida.
 
 RECORDATORIOS A TIEMPO
@@ -22,6 +22,10 @@ SEGÚN LAS REGLAS DEL CALENDARIO HEBREO
 • Fechas de bar y bat mitzvá a partir de la fecha de nacimiento.
 • La puesta del sol cuenta: ¿no sabes si ya se había puesto el sol a la hora del nacimiento? Indica la hora y la ciudad y LeDor te lo dirá.
 • Conversor de fechas: de gregoriano a hebreo y al revés.
+
+EL PRIMER AÑO Y YIZKOR
+• Tras una pérdida reciente: shloshim, 11 y 12 meses y el primer yahrzeit — fechas y avisos.
+• Los días de Yizkor se indican en los avisos de las fiestas.
 
 FIESTAS JUDÍAS Y ENCENDIDO DE VELAS
 • Lista integrada de fiestas y ayunos — en el calendario y con un aviso la víspera.

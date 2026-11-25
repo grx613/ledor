@@ -49,7 +49,7 @@ class AppContainer(private val context: Context) {
     }
 
     val reminderScheduler by lazy {
-        ReminderScheduler(database, settingsStore, { cityCatalog }, AndroidAlarmGateway(context), notifications, holidayEvents)
+        ReminderScheduler(database, settingsStore, { cityCatalog }, AndroidAlarmGateway(context), notifications, holidayEvents, milestoneEvents)
     }
 
     val syncEngine by lazy {
@@ -59,6 +59,7 @@ class AppContainer(private val context: Context) {
     }
 
     val holidayEvents by lazy { org.ledor.data.holiday.HolidayEvents(context) }
+    val milestoneEvents by lazy { org.ledor.data.holiday.MilestoneEvents(context) }
     /** Язык приложения: при смене названия праздников пересчитываются. */
     val localeTag = kotlinx.coroutines.flow.MutableStateFlow("")
 

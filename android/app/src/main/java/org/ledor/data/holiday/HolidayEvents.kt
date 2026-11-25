@@ -106,8 +106,10 @@ class HolidayEvents(private val baseContext: Context) {
      * [nextDays] — добавлять ли вторые и следующие дни праздников (нужны только календарю).
      * Шабаты — за [shabbatFrom]..[shabbatTo]: только при включённом переключателе и выбранном городе; если в субботу
      * начинается праздник со свечами, отдельной строки Шабата нет (напоминание было бы вторым о том же).
+     * [yizkor] — у пользователя есть йорцайты: у четырёх праздников отмечается день Изкора (B-26).
      */
-    fun build(s: HolidaySettings, city: City?, from: LocalDate, to: LocalDate, shabbatFrom: LocalDate, shabbatTo: LocalDate, nextDays: Boolean): List<Event> {
+    fun build(s: HolidaySettings, city: City?, from: LocalDate, to: LocalDate, shabbatFrom: LocalDate, shabbatTo: LocalDate, nextDays: Boolean,
+              yizkor: Boolean = false): List<Event> {
         if (!s.enabled) return emptyList()
         val ctx = context
         val f = DateFormatters(ctx)
@@ -132,8 +134,13 @@ class HolidayEvents(private val baseContext: Context) {
             }
             val row = if (candles == null || city == null) starts else starts + " · " +
                 ctx.getString(if (candles.afterNightfall) R.string.holiday_candles_after else R.string.holiday_candles_eve, time(candles, city))
-            val notification = if (h.dawn) ctx.getString(R.string.notif_fast_dawn) else candleNote(candles, city)
-            result += event("$MAIN${h.name}:${o.start}", name, kind, o.start, note(row, notification))
+            val yizkorDay = if (yizkor) Holidays.yizkorDay(o) else null
+            val notification = listOfNotNull(
+                (if (h.dawn) ctx.getString(R.string.notif_fast_dawn) else candleNote(candles, city)).takeIf { it.isNotEmpty() },
+                yizkorDay?.let { ctx.getString(R.string.notif_yizkor, f.gregorianDayMonthWeekday(it)) },
+            ).joinToString(" ")
+            val rowWithYizkor = if (yizkorDay == null) row else row + " · " + ctx.getString(R.string.yizkor)
+            result += event("$MAIN${h.name}:${o.start}", name, kind, o.start, note(rowWithYizkor, notification))
             // Седьмой день Песаха — отдельная строка списка, поэтому дни Песаха дальше шестого не дублируем.
             val lastDay = if (h == Holiday.PESACH) minOf(o.days, 6) else o.days
             if (nextDays) for (n in 2..lastDay) {

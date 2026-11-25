@@ -390,4 +390,14 @@
     <string name="holiday_fast_dawn">דער תּענית איז פֿון קאַיאָר ביז צאת־הכּוכבֿים</string>
     <string name="notif_holiday_tomorrow_title">מאָרגן: %s</string>
     <string name="notif_fast_dawn">דער תּענית איז פֿון קאַיאָר ביז צאת־הכּוכבֿים.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">דאָס ערשטע יאָר</string>
+    <string name="milestone_shloshim">שלושים (30 טעג)</string>
+    <string name="milestone_11_months">11 חדשים (סוף קדיש)</string>
+    <string name="milestone_12_months">12 חדשים (סוף אַבֿלות)</string>
+    <string name="milestone_first_yahrzeit">דער ערשטער יאָרצײַט</string>
+    <string name="milestone_passed">פֿאַרבײַ</string>
+    <string name="first_year_note">די דאַטעס ווערן גערעכנט פֿונעם טאָג פֿון דער פּטירה. שלושים רעכנט מען פֿון דער לוויה, און אַ יום־טובֿ קען זיי פֿאַרקירצן. 11 און 12 חדשים זענען פֿאַר אַבֿלות נאָך עלטערן; אין אַ סך קהילות ענדיקט מען קדיש אַ טאָג פֿריִער. פֿרעגט אַ רבֿ.</string>
+    <string name="yizkor">יזכּור</string>
+    <string name="notif_yizkor">יזכּור: %s.</string>
 </resources>

@@ -1,8 +1,8 @@
 // English (default). LeDor Google Play listing: title ≤30, short ≤80, full ≤4000, screenshot captions.
 export default {
   lang: 'en', play: 'en-US', dir: 'ltr',
-  title: 'LeDor Hebrew Calendar Yahrzeit',
-  short: 'Jewish holidays, Hebrew birthday & yahrzeit reminders, shared family lists',
+  title: 'LeDor Hebrew Birthday Yahrzeit',
+  short: 'Hebrew calendar: holidays, birthday & yahrzeit reminders, shared family lists',
   full: `LeDor is a Hebrew calendar for the family: it reminds you of birthdays, yahrzeits, family dates and Jewish holidays by the Hebrew and Gregorian calendars — and lets your whole family or community keep one shared list of dates.
 
 REMINDERS ON TIME
@@ -22,6 +22,10 @@ DONE THE HEBREW-CALENDAR WAY
 • Bar and bat mitzvah dates from the date of birth.
 • Sunset matters: not sure whether the sun had already set at the time of birth? Enter the time and city and LeDor will tell you.
 • Date converter: Gregorian to Hebrew and back.
+
+THE FIRST YEAR AND YIZKOR
+• For a recent loss: shloshim, 11 and 12 months and the first yahrzeit — dates and reminders.
+• Yizkor days are marked in holiday reminders.
 
 JEWISH HOLIDAYS AND CANDLE LIGHTING
 • Built-in list of Jewish holidays and fasts — in the calendar, with a reminder the evening before.

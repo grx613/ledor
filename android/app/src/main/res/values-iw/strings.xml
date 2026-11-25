@@ -395,4 +395,14 @@
     <string name="holiday_fast_dawn">הצום מעלות השחר עד צאת הכוכבים</string>
     <string name="notif_holiday_tomorrow_title">מחר: %s</string>
     <string name="notif_fast_dawn">הצום מעלות השחר עד צאת הכוכבים.</string>
+    <!-- Первый год после смерти и Изкор (B-26) -->
+    <string name="first_year_title">השנה הראשונה</string>
+    <string name="milestone_shloshim">שלושים</string>
+    <string name="milestone_11_months">י״א חודש (סיום אמירת קדיש)</string>
+    <string name="milestone_12_months">י״ב חודש (סיום האבלות)</string>
+    <string name="milestone_first_yahrzeit">יארצייט ראשון</string>
+    <string name="milestone_passed">עבר</string>
+    <string name="first_year_note">התאריכים נספרים מיום הפטירה. את השלושים מונים מיום הקבורה, וחג עשוי לקצר אותם. י״א וי״ב חודש נוגעים לאבלות על הורים; בקהילות רבות מסיימים את הקדיש יום קודם. כדאי לשאול רב.</string>
+    <string name="yizkor">יזכור</string>
+    <string name="notif_yizkor">יזכור: %s.</string>
 </resources>

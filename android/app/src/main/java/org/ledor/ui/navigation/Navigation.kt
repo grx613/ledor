@@ -159,8 +159,9 @@ fun KalendarRoot(showBrandSplash: Boolean, openEventId: StateFlow<String?>, onEv
                     composable<EventDetailRoute> {
                         val id = it.toRoute<EventDetailRoute>().id
                         // У праздника нет своей карточки — открывается встроенный список.
+                        // У вехи первого года тоже — открывается карточка йорцайта.
                         if (org.ledor.data.holiday.HolidayEvents.isBuiltIn(id)) org.ledor.ui.holidays.HolidaysScreen(vm, nav)
-                        else EventDetailScreen(vm, nav, id)
+                        else EventDetailScreen(vm, nav, if (org.ledor.data.holiday.MilestoneEvents.isMilestone(id)) org.ledor.data.holiday.MilestoneEvents.parentId(id) else id)
                     }
                     composable<HolidaysRoute> { org.ledor.ui.holidays.HolidaysScreen(vm, nav) }
                     composable<EditorRoute> { EventEditorScreen(vm, nav, it.toRoute<EditorRoute>()) }
