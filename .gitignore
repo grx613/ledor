@@ -39,3 +39,11 @@ tools/server/public-api-key
 
 # Файлы для Google Play, выложенные на сайт только для скачивания заказчиком
 /website/*.zip
+
+# iOS / Xcode
+/ios/Config.xcconfig
+/ios/build/
+/ios/Domain/.build/
+/ios/Domain/.swiftpm/
+xcuserdata/
+*.xcuserstate

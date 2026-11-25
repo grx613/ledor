@@ -1,0 +1,6 @@
+// Общие настройки сборки. Локальные значения (публичный ключ сервера) — в Config.xcconfig рядом,
+// он не коммитится; образец — Config.example.xcconfig.
+LEDOR_API_URL = https:/$()/kalendar.bothub.chat
+LEDOR_API_KEY =
+
+#include? "Config.xcconfig"

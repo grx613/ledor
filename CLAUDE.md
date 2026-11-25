@@ -11,7 +11,7 @@
 | Android (`android/`) | версия 0.6.0, пакет `org.ledor`; раздаётся APK с сайта; идёт публикация в Google Play (`docs/PLAN.md`, M15; пошагово — `docs/store/google-play.md`) |
 | Сервер (`supabase/migrations/`, `tools/server/`) | свой: PostgreSQL + PostgREST за Caddy, `https://kalendar.bothub.chat/rest/v1/rpc/…` |
 | Сайт (`website/`, `tools/site/`) | `https://kalendar.bothub.chat`, 6 языков; страницы генерируются |
-| iOS (`ios/`) | не начат; задание и вехи I0–I9 — `docs/09-ios-notes.md`; делается на Mac |
+| iOS (`ios/`) | веха I0: проект, пакет `Domain`, заставка в симуляторе; задание и вехи I0–I9 — `docs/09-ios-notes.md`; делается на Mac |
 
 Образец поведения — Android-приложение. Документы описывают текущее состояние; если документ и код расходятся — прав код,
 а документ надо исправить.
@@ -50,6 +50,8 @@ node tools/store/build.mjs dist/store && sh dist/store/render.sh   # текст�
 node --test website/tests/*.test.mjs                  # тесты календаря сайта
 node tools/site/build.mjs                             # собрать страницы сайта из tools/site/i18n/*.mjs
 tools/deploy/publish.sh                               # выложить website/ на kalendar.bothub.chat (на сервере)
+cd ios/Domain && swift test                          # iOS: тесты логики (на Mac)
+cd ios && xcodebuild -project LeDor.xcodeproj -scheme LeDor -destination 'platform=iOS Simulator,name=iPhone 17' -derivedDataPath build/DerivedData build   # iOS: сборка
 SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный ключ> node --test tools/rpc-smoke/smoke.mjs   # проверка сервера
 cd tools/golden && npm ci && node generate.mjs        # пересоздать эталонные векторы (обычно не нужно)
 node tools/golden/holidays.mjs                        # векторы праздников и свечей из API Hebcal (обычно не нужно)
