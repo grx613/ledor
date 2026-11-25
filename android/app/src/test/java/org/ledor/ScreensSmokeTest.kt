@@ -163,6 +163,20 @@ abstract class ScreensSmokeTest(private val lang: String) {
         shot("14_list_share")
         rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.waitForIdle()
+        // Встроенный список праздников: с городом видно время зажигания свечей, включён и Шабат.
+        val container = (rule.activity.application as KalendarApp).container
+        kotlinx.coroutines.runBlocking {
+            container.settingsStore.setCity("il-jerusalem")
+            container.settingsStore.setHolidays(org.ledor.data.prefs.HolidaySettings(shabbat = true))
+        }
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.holidays_title)).performScrollTo().performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.holiday_chanukah)).assertExists()
+        rule.onNodeWithText(s(R.string.shabbat)).assertExists()
+        shot("15_holidays")
+        rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
         rule.onNodeWithText(s(R.string.create_list)).performClick()
         rule.waitForIdle()
         shot("11_list_create")

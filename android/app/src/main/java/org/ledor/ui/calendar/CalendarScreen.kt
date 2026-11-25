@@ -22,6 +22,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -212,14 +213,15 @@ fun CalendarScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues, s
                 }
             } else {
                 val all = upcoming
-                if (all != null && events?.isEmpty() == true) {
+                if (all != null && events?.none { it.listId != org.ledor.data.holiday.HOLIDAYS_LIST_ID } == true) {
                     item {
                         EmptyState(stringResource(R.string.empty_events)) {
                             Button(onClick = { nav.navigate(EditorRoute()) }) { Text(stringResource(R.string.add_event)) }
                             OutlinedButton(onClick = { nav.navigate(ListJoinRoute()) }) { Text(stringResource(R.string.join_list)) }
                         }
                     }
-                } else if (all != null) {
+                }
+                if (all != null && all.isNotEmpty()) {
                     val within = all.filter { it.daysUntil <= 30 }
                     val shown = if (within.size >= 5) within else all.take(5)
                     item { BlockTitle(stringResource(R.string.upcoming_events)) {} }
@@ -249,7 +251,8 @@ fun gridCells(first: LocalDate, last: LocalDate, firstDow: DayOfWeek): List<Loca
 }
 
 fun occurrencesIn(events: List<Event>, from: LocalDate, to: LocalDate, policy: YahrzeitAdarPolicy): Map<LocalDate, List<Pair<Event, Occurrence>>> =
-    events.flatMap { e -> OccurrenceCalculator.between(e, from, to, policy).map { e to it } }
+    events.filter { !org.ledor.data.holiday.HolidayEvents.isShabbat(it.id) }   // суббота в сетке и так выделена
+        .flatMap { e -> OccurrenceCalculator.between(e, from, to, policy).map { e to it } }
         .sortedBy { it.first.title }
         .groupBy { it.second.date }
 
@@ -343,7 +346,10 @@ private fun MonthGrid(
                             Spacer(Modifier.height(3.dp))
                             Row(horizontalArrangement = Arrangement.spacedBy(2.dp), verticalAlignment = Alignment.CenterVertically) {
                                 dayOcc.take(3).forEach { (e, _) ->
-                                    Box(Modifier.size(5.dp).clip(CircleShape).background(if (isSel) fg else extra.forType(e.type).copy(alpha = alpha)))
+                                    // Праздник — золотой ромб, событие — кружок цвета типа.
+                                    if (e.listId == org.ledor.data.holiday.HOLIDAYS_LIST_ID)
+                                        Box(Modifier.size(5.dp).rotate(45f).background(if (isSel) fg else extra.gold.copy(alpha = alpha)))
+                                    else Box(Modifier.size(5.dp).clip(CircleShape).background(if (isSel) fg else extra.forType(e.type).copy(alpha = alpha)))
                                 }
                                 if (dayOcc.size > 3) Text("+${dayOcc.size - 3}", fontSize = 8.sp, color = fg.copy(alpha = alpha))
                             }

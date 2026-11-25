@@ -341,4 +341,57 @@
         <item>Tish</item><item>Chesh</item><item>Kis</item><item>Tev</item><item>Shev</item>
         <item>Adar</item><item>Adar I</item><item>Adar II</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">Jewish holidays</string>
+    <string name="holidays_sub">Holidays and fasts in the calendar, reminders the evening before</string>
+    <string name="holidays_show">Show in the calendar and events</string>
+    <string name="holidays_notify">Remind the evening before</string>
+    <string name="holidays_notify_hint">At the time set for the evening-before reminder in Settings. No reminders on the holiday itself.</string>
+    <string name="holidays_shabbat">Shabbat: candle lighting</string>
+    <string name="holidays_shabbat_hint">The coming Shabbat in events and a Friday reminder with the candle-lighting time</string>
+    <string name="holidays_city_needed">Choose a city to see candle-lighting times.</string>
+    <string name="holidays_choose_city">Choose city</string>
+    <string name="holidays_region_israel">Holidays as observed in Israel.</string>
+    <string name="holidays_region_diaspora">Holidays as observed in the Diaspora (two festival days).</string>
+    <string name="holidays_candles_rule">Candle lighting: %1$d minutes before sunset in %2$s.</string>
+    <string name="holidays_upcoming">Upcoming</string>
+    <string name="holiday_kind_festival">Holiday</string>
+    <string name="holiday_kind_fast">Fast</string>
+    <string name="holiday_kind_memorial">Memorial day</string>
+    <string name="holiday_day_n">%1$s · day %2$d</string>
+    <string name="holiday_candles_eve">candles at %s</string>
+    <string name="holiday_candles_after">candles after %s</string>
+    <string name="shabbat">Shabbat</string>
+    <string name="shabbat_candles_label">Candles on Friday at %s</string>
+    <string name="notif_holiday_eve_title">This evening: %s</string>
+    <string name="notif_candles">Candle lighting at %s.</string>
+    <string name="notif_candles_after">Candles are lit after Shabbat ends, not before %s.</string>
+    <string name="holiday_rosh_hashana">Rosh Hashanah</string>
+    <string name="holiday_tzom_gedaliah">Fast of Gedaliah</string>
+    <string name="holiday_yom_kippur">Yom Kippur</string>
+    <string name="holiday_sukkot">Sukkot</string>
+    <string name="holiday_shmini_atzeret">Shemini Atzeret and Simchat Torah</string>
+    <string name="holiday_chanukah">Hanukkah</string>
+    <string name="holiday_asara_betevet">Tenth of Tevet</string>
+    <string name="holiday_tu_bishvat">Tu BiShvat</string>
+    <string name="holiday_taanit_esther">Fast of Esther</string>
+    <string name="holiday_purim">Purim</string>
+    <string name="holiday_shushan_purim">Shushan Purim</string>
+    <string name="holiday_pesach">Pesach</string>
+    <string name="holiday_pesach_vii">Seventh day of Pesach</string>
+    <string name="holiday_yom_hashoah">Yom HaShoah</string>
+    <string name="holiday_yom_hazikaron">Yom HaZikaron</string>
+    <string name="holiday_yom_haatzmaut">Yom HaAtzmaut</string>
+    <string name="holiday_lag_baomer">Lag BaOmer</string>
+    <string name="holiday_yom_yerushalayim">Yom Yerushalayim</string>
+    <string name="holiday_shavuot">Shavuot</string>
+    <string name="holiday_tzom_tammuz">Seventeenth of Tammuz</string>
+    <string name="holiday_tisha_bav">Tisha B’Av</string>
+    <string name="holiday_tu_bav">Tu B’Av</string>
+    <string name="holiday_from_eve">From the evening of %s</string>
+    <string name="holiday_first_candle">First candle on the evening of %s</string>
+    <string name="holiday_fast_dawn">Fast from dawn until nightfall</string>
+    <string name="notif_holiday_tomorrow_title">Tomorrow: %s</string>
+    <string name="notif_fast_dawn">The fast lasts from dawn until nightfall.</string>
 </resources>

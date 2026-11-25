@@ -21,6 +21,16 @@ import java.time.LocalTime
 enum class ThemeMode { SYSTEM, LIGHT, DARK }
 enum class GridMode { GREGORIAN, HEBREW }
 
+/** Встроенный список «Еврейские праздники» (B-25). */
+data class HolidaySettings(
+    /** Показывать праздники в календаре и в событиях. */
+    val enabled: Boolean = true,
+    /** Напоминать накануне вечером. */
+    val notify: Boolean = true,
+    /** Шабат: напоминание в пятницу со временем зажигания свечей. */
+    val shabbat: Boolean = false,
+)
+
 data class AppSettings(
     val onboardingImportShown: Boolean = false,
     val reminders: ReminderSettings = ReminderSettings(),
@@ -31,6 +41,7 @@ data class AppSettings(
     val gridMode: GridMode = GridMode.HEBREW,
     val adarPolicy: YahrzeitAdarPolicy = YahrzeitAdarPolicy.ADAR_I,
     val lastListId: String? = null,
+    val holidays: HolidaySettings = HolidaySettings(),
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -54,6 +65,9 @@ class SettingsStore(private val context: Context) {
         val lastSync = longPreferencesKey("lastSyncAttemptAt")
         val notices = stringPreferencesKey("pendingNotices")
         val lastList = stringPreferencesKey("lastListId")
+        val holidays = booleanPreferencesKey("holidaysEnabled")
+        val holidaysNotify = booleanPreferencesKey("holidaysNotify")
+        val shabbat = booleanPreferencesKey("shabbatCandles")
     }
 
     private val store get() = context.dataStore
@@ -80,6 +94,7 @@ class SettingsStore(private val context: Context) {
             gridMode = p[K.grid]?.let { runCatching { GridMode.valueOf(it) }.getOrNull() } ?: GridMode.HEBREW,
             adarPolicy = p[K.adar]?.let { runCatching { YahrzeitAdarPolicy.valueOf(it) }.getOrNull() } ?: YahrzeitAdarPolicy.ADAR_I,
             lastListId = p[K.lastList],
+            holidays = HolidaySettings(p[K.holidays] ?: true, p[K.holidaysNotify] ?: true, p[K.shabbat] ?: false),
         )
     }
 
@@ -98,6 +113,9 @@ class SettingsStore(private val context: Context) {
     suspend fun setGridMode(v: GridMode) = store.edit { it[K.grid] = v.name }
     suspend fun setAdarPolicy(v: YahrzeitAdarPolicy) = store.edit { it[K.adar] = v.name }
     suspend fun setLastListId(v: String) = store.edit { it[K.lastList] = v }
+    suspend fun setHolidays(v: HolidaySettings) = store.edit {
+        it[K.holidays] = v.enabled; it[K.holidaysNotify] = v.notify; it[K.shabbat] = v.shabbat
+    }
 
     suspend fun watermark(): Long? = store.data.first()[K.watermark]
     suspend fun setWatermark(v: Long) = store.edit { it[K.watermark] = v }

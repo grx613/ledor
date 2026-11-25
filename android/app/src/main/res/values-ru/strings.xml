@@ -347,4 +347,57 @@
         <item>Тиш</item><item>Хеш</item><item>Кис</item><item>Тев</item><item>Шв</item>
         <item>Адар</item><item>Ад I</item><item>Ад II</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">Еврейские праздники</string>
+    <string name="holidays_sub">Праздники и посты в календаре, напоминания накануне</string>
+    <string name="holidays_show">Показывать в календаре и событиях</string>
+    <string name="holidays_notify">Напоминать накануне вечером</string>
+    <string name="holidays_notify_hint">В то же время, что и напоминание накануне в настройках. В сам праздник напоминаний нет.</string>
+    <string name="holidays_shabbat">Шабат: зажигание свечей</string>
+    <string name="holidays_shabbat_hint">Ближайший Шабат в событиях и напоминание в пятницу со временем зажигания свечей</string>
+    <string name="holidays_city_needed">Чтобы видеть время зажигания свечей, выберите город.</string>
+    <string name="holidays_choose_city">Выбрать город</string>
+    <string name="holidays_region_israel">Праздники — как в Израиле.</string>
+    <string name="holidays_region_diaspora">Праздники — как в диаспоре (два праздничных дня).</string>
+    <string name="holidays_candles_rule">Зажигание свечей — за %1$d мин. до захода солнца, город: %2$s.</string>
+    <string name="holidays_upcoming">Ближайшие</string>
+    <string name="holiday_kind_festival">Праздник</string>
+    <string name="holiday_kind_fast">Пост</string>
+    <string name="holiday_kind_memorial">Памятный день</string>
+    <string name="holiday_day_n">%1$s · день %2$d</string>
+    <string name="holiday_candles_eve">свечи в %s</string>
+    <string name="holiday_candles_after">свечи после %s</string>
+    <string name="shabbat">Шабат</string>
+    <string name="shabbat_candles_label">Свечи в пятницу в %s</string>
+    <string name="notif_holiday_eve_title">Сегодня вечером: %s</string>
+    <string name="notif_candles">Зажигание свечей в %s.</string>
+    <string name="notif_candles_after">Свечи зажигают после исхода Шабата, не раньше %s.</string>
+    <string name="holiday_rosh_hashana">Рош ха-Шана</string>
+    <string name="holiday_tzom_gedaliah">Пост Гедальи</string>
+    <string name="holiday_yom_kippur">Йом Кипур</string>
+    <string name="holiday_sukkot">Суккот</string>
+    <string name="holiday_shmini_atzeret">Шмини Ацерет и Симхат Тора</string>
+    <string name="holiday_chanukah">Ханука</string>
+    <string name="holiday_asara_betevet">Пост 10 Тевета</string>
+    <string name="holiday_tu_bishvat">Ту би-Шват</string>
+    <string name="holiday_taanit_esther">Пост Эстер</string>
+    <string name="holiday_purim">Пурим</string>
+    <string name="holiday_shushan_purim">Шушан Пурим</string>
+    <string name="holiday_pesach">Песах</string>
+    <string name="holiday_pesach_vii">Седьмой день Песаха</string>
+    <string name="holiday_yom_hashoah">Йом ха-Шоа</string>
+    <string name="holiday_yom_hazikaron">Йом ха-Зикарон</string>
+    <string name="holiday_yom_haatzmaut">Йом ха-Ацмаут</string>
+    <string name="holiday_lag_baomer">Лаг ба-Омер</string>
+    <string name="holiday_yom_yerushalayim">День Иерусалима</string>
+    <string name="holiday_shavuot">Шавуот</string>
+    <string name="holiday_tzom_tammuz">Пост 17 Таммуза</string>
+    <string name="holiday_tisha_bav">Девятое Ава</string>
+    <string name="holiday_tu_bav">Ту бе-Ав</string>
+    <string name="holiday_from_eve">С вечера %s</string>
+    <string name="holiday_first_candle">Первая свеча — вечером %s</string>
+    <string name="holiday_fast_dawn">Пост с рассвета до выхода звёзд</string>
+    <string name="notif_holiday_tomorrow_title">Завтра: %s</string>
+    <string name="notif_fast_dawn">Пост — с рассвета до выхода звёзд.</string>
 </resources>

@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        (application as KalendarApp).container.localeTag.value = resources.configuration.locales[0].toLanguageTag()
         if (savedInstanceState == null) openEvent.value = intent.getStringExtra(NotificationFactory.EXTRA_EVENT_ID)
         setContent {
             KalendarRoot(

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import org.ledor.KalendarApp
 import org.ledor.data.local.ListEntity
 import org.ledor.data.local.ListWithCount
+import org.ledor.data.holiday.HolidayEvents
 import org.ledor.data.prefs.AppSettings
 import org.ledor.domain.event.Event
 import org.ledor.domain.event.Occurrence
@@ -39,8 +40,12 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val settings: StateFlow<AppSettings?> = container.settingsStore.settings
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    val events: StateFlow<List<Event>?> = container.eventRepository.observeAll()
-        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+    /** События пользователя и встроенного списка праздников (B-25): на год назад и на десять вперёд. */
+    val events: StateFlow<List<Event>?> = combine(container.eventRepository.observeAll(), settings, today, container.localeTag) { own, s, t, _ ->
+        if (s == null) null
+        else own + container.holidayEvents.build(s.holidays, container.cityCatalog.byId(s.cityId),
+            from = t.minusYears(1), to = t.plusYears(10), shabbatFrom = t, shabbatTo = t.plusDays(13), nextDays = true)
+    }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     val lists: StateFlow<List<ListWithCount>> = container.listRepository.observeLists()
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
@@ -55,11 +60,22 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val upcoming: StateFlow<List<UpcomingItem>?> = combine(events, lists, settings, today) { ev, ls, s, t ->
         if (ev == null || s == null) return@combine null
         val byId = ls.associate { it.list.id to it.list }
+        var shabbatShown = false
         ev.mapNotNull { e ->
             OccurrenceCalculator.next(e, t, s.adarPolicy)?.let { o ->
                 UpcomingItem(e, o, byId[e.listId], java.time.temporal.ChronoUnit.DAYS.between(t, o.date))
             }
-        }.sortedWith(compareBy({ it.occurrence.date }, { it.event.title }))
+        }.sortedWith(compareBy({ it.occurrence.date }, { it.event.title })).filter { u ->
+            val id = u.event.id
+            when {
+                !HolidayEvents.isBuiltIn(id) -> true
+                // Праздники — на год вперёд; второй и следующие дни — только сегодняшний; Шабат — только ближайший.
+                u.daysUntil > 366 -> false
+                HolidayEvents.isNextDay(id) -> u.daysUntil == 0L
+                HolidayEvents.isShabbat(id) -> !shabbatShown.also { shabbatShown = true }
+                else -> true
+            }
+        }
     }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
@@ -82,6 +98,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun setOnboardingShown() = viewModelScope.launch { container.settingsStore.setOnboardingShown() }
     fun disableHealthWarnings() = viewModelScope.launch { container.settingsStore.setHealthWarnings(false) }
     fun setGridMode(m: org.ledor.data.prefs.GridMode) = viewModelScope.launch { container.settingsStore.setGridMode(m) }
+
+    fun setHolidays(v: org.ledor.data.prefs.HolidaySettings) = viewModelScope.launch { container.settingsStore.setHolidays(v) }
 
     fun listsById(): Map<String, ListEntity> = lists.value.associate { it.list.id to it.list }
 }

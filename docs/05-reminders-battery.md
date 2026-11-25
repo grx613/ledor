@@ -90,7 +90,9 @@ interface AlarmGateway {                       // абстракция для т
 <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 <!-- Android 12–12L -->
 <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
-<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+<!-- WorkManager приносит службу переднего плана; LeDor её не использует — удалена из манифеста -->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" tools:node="remove" />
+<service android:name="androidx.work.impl.foreground.SystemForegroundService" tools:node="remove" />
 
 <receiver android:name=".reminders.ReminderReceiver" android:exported="false" />
 <receiver android:name=".reminders.SystemEventsReceiver" android:exported="false">
@@ -105,8 +107,8 @@ interface AlarmGateway {                       // абстракция для т
 ```
 
 `minSdk = 26` — каналы уведомлений и `java.time` доступны без условий и десугаринга.
-Риски по политике Google Play для `USE_EXACT_ALARM` и `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` и запасные варианты —
-в `08-store-compliance.md` §3.
+`REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` убрано в 0.4.0: прямой запрос «не экономить батарею» нарушает правила Google Play.
+Риск по `USE_EXACT_ALARM` и запасной вариант — в `08-store-compliance.md` §3.
 
 ## 4. Уведомления
 
@@ -154,7 +156,7 @@ class ReminderHealthChecker(context: Context) {
 | `NOTIFICATIONS_OFF` | API 33+: нет `POST_NOTIFICATIONS`; любой API: `!NotificationManagerCompat.areNotificationsEnabled()` или важность канала `IMPORTANCE_NONE` | сначала системный запрос разрешения (API 33+, если ещё можно спрашивать); иначе `Settings.ACTION_APP_NOTIFICATION_SETTINGS` |
 | `EXACT_ALARMS_DENIED` | API 31+: `!alarmManager.canScheduleExactAlarms()` | `Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM` + `package:` URI |
 | `BACKGROUND_RESTRICTED` | API 28+: `activityManager.isBackgroundRestricted` | `Settings.ACTION_APPLICATION_DETAILS_SETTINGS` |
-| `BATTERY_OPTIMIZED` | `!powerManager.isIgnoringBatteryOptimizations(packageName)` | `Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` + `package:` URI; при `ActivityNotFoundException` → `ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS` → карточка приложения |
+| `BATTERY_OPTIMIZED` | `!powerManager.isIgnoringBatteryOptimizations(packageName)` | `ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS` (общий список) → карточка приложения; прямой запрос `ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` не используется (правила Google Play) |
 
 Запуск любого системного экрана — в `try/catch (ActivityNotFoundException)` с откатом на
 `ACTION_APPLICATION_DETAILS_SETTINGS`.
@@ -222,3 +224,14 @@ PeriodicWorkRequestBuilder<SyncWorker>(24, TimeUnit.HOURS)
 | Ресиверы | `SystemEventsReceiver` на каждое действие вызывает `rearm()` |
 
 Ручная проверка на реальном телефоне — чек-лист в `PLAN.md` (раздел «Ручная приёмка»).
+
+## 9. Праздники и Шабат (встроенный список, B-25)
+
+- События списка «Еврейские праздники» в базе не хранятся: `HolidayEvents.build(...)` вычисляет их на 400 дней вперёд при
+  каждом `rearm()` и отдаёт планировщику вместе с событиями пользователя. Отдельных будильников нет — та же цепочка из одного.
+- Для них планируется **только напоминание накануне** (`EVE`), по времени из настроек напоминания накануне, даже если для
+  событий оно выключено. В сам праздник и в Шабат телефон не беспокоит.
+- Управление: «Напоминать накануне вечером» в списке праздников (и переключатель на карточке в «Списках»); Шабат — отдельный
+  переключатель, работает только при выбранном городе.
+- Изменение этих настроек и города запускает `rearm()` (подписка в `AppContainer`).
+- Нажатие на уведомление открывает экран списка праздников.

@@ -100,6 +100,7 @@ export default {
       { q: '¿En qué idiomas está LeDor?', a: 'English, עברית, Русский, ייִדיש, Français, Español. En hebreo e ídish la interfaz va de derecha a izquierda y las fechas hebreas se escriben con letras.' },
       { q: '¿Puedo pasar mis eventos a una lista compartida?', a: 'Sí. Al crear una lista, marca «Mover eventos de la lista personal», o abre la lista personal y elige «Mover eventos a una lista en la nube».' },
       { q: '¿Hay tema oscuro?', a: 'Sí: claro, oscuro o según el sistema, en «Ajustes → Apariencia».' },
+      { q: '¿Muestra LeDor las fiestas judías y la hora del encendido de velas?', a: 'Sí. En «Listas» hay una lista integrada «Fiestas judías»: las fiestas y los ayunos aparecen en el calendario, con un aviso la víspera. Para Shabat y las fiestas se muestra la hora del encendido de velas en tu ciudad; el aviso de Shabat se activa aparte. Puedes desactivar los avisos y simplemente consultar las fechas.' },
       { q: '¿Hay versión para iPhone?', a: 'Pronto. Por ahora LeDor está disponible para Android.' },
       { q: '¿Cuánto cuesta la app?', a: 'Es gratis, sin anuncios ni contenido de pago. El proyecto no es comercial y es de código abierto.' },
     ],

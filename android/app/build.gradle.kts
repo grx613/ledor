@@ -13,6 +13,12 @@ val localProps = Properties().apply {
     if (f.exists()) f.inputStream().use { load(it) }
 }
 
+// Ключ загрузки для Google Play и APK на сайте: android/keystore.properties (в Git не попадает, см. 08 §1).
+val keystoreProps = Properties().apply {
+    val f = rootProject.file("keystore.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}
+
 android {
     namespace = "org.ledor"
     compileSdk { version = release(37) { minorApiLevel = 1 } }
@@ -20,19 +26,28 @@ android {
         applicationId = "org.ledor"
         minSdk = 26
         targetSdk = 36
-        versionCode = 5
-        versionName = "0.3.2"
+        versionCode = 8
+        versionName = "0.5.1"
         buildConfigField("String", "SUPABASE_URL", "\"${localProps.getProperty("supabase.url", "")}\"")
         buildConfigField("String", "SUPABASE_KEY", "\"${localProps.getProperty("supabase.key", "")}\"")
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
+    signingConfigs {
+        if (keystoreProps.getProperty("storeFile") != null) create("upload") {
+            storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+            storePassword = keystoreProps.getProperty("storePassword")
+            keyAlias = keystoreProps.getProperty("keyAlias")
+            keyPassword = keystoreProps.getProperty("keyPassword")
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("debug")
+            // Без keystore.properties release подписывается отладочным ключом — годится только для локальной проверки.
+            signingConfig = signingConfigs.findByName("upload") ?: signingConfigs.getByName("debug")
         }
     }
     testOptions {

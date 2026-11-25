@@ -342,4 +342,57 @@
         <item>Tish</item><item>Jesh</item><item>Kis</item><item>Tev</item><item>Shev</item>
         <item>Adar</item><item>Adar I</item><item>Adar II</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">Fiestas judías</string>
+    <string name="holidays_sub">Fiestas y ayunos en el calendario, avisos la víspera</string>
+    <string name="holidays_show">Mostrar en el calendario y en los eventos</string>
+    <string name="holidays_notify">Avisar la víspera por la tarde</string>
+    <string name="holidays_notify_hint">A la hora fijada en los ajustes para el aviso de la víspera. El día de la fiesta no hay avisos.</string>
+    <string name="holidays_shabbat">Shabat: encendido de velas</string>
+    <string name="holidays_shabbat_hint">El próximo Shabat en los eventos y un aviso el viernes con la hora del encendido</string>
+    <string name="holidays_city_needed">Elige una ciudad para ver la hora del encendido de velas.</string>
+    <string name="holidays_choose_city">Elegir ciudad</string>
+    <string name="holidays_region_israel">Fiestas según la costumbre de Israel.</string>
+    <string name="holidays_region_diaspora">Fiestas según la costumbre de la diáspora (dos días festivos).</string>
+    <string name="holidays_candles_rule">Encendido de velas: %1$d minutos antes de la puesta del sol, ciudad: %2$s.</string>
+    <string name="holidays_upcoming">Próximas</string>
+    <string name="holiday_kind_festival">Fiesta</string>
+    <string name="holiday_kind_fast">Ayuno</string>
+    <string name="holiday_kind_memorial">Día de recuerdo</string>
+    <string name="holiday_day_n">%1$s · día %2$d</string>
+    <string name="holiday_candles_eve">velas a las %s</string>
+    <string name="holiday_candles_after">velas después de las %s</string>
+    <string name="shabbat">Shabat</string>
+    <string name="shabbat_candles_label">Velas el viernes a las %s</string>
+    <string name="notif_holiday_eve_title">Esta tarde: %s</string>
+    <string name="notif_candles">Encendido de velas a las %s.</string>
+    <string name="notif_candles_after">Las velas se encienden al terminar Shabat, no antes de las %s.</string>
+    <string name="holiday_rosh_hashana">Rosh Hashaná</string>
+    <string name="holiday_tzom_gedaliah">Ayuno de Guedaliá</string>
+    <string name="holiday_yom_kippur">Yom Kipur</string>
+    <string name="holiday_sukkot">Sucot</string>
+    <string name="holiday_shmini_atzeret">Sheminí Atzéret y Simjat Torá</string>
+    <string name="holiday_chanukah">Janucá</string>
+    <string name="holiday_asara_betevet">Ayuno del 10 de Tevet</string>
+    <string name="holiday_tu_bishvat">Tu Bishvat</string>
+    <string name="holiday_taanit_esther">Ayuno de Ester</string>
+    <string name="holiday_purim">Purim</string>
+    <string name="holiday_shushan_purim">Shushán Purim</string>
+    <string name="holiday_pesach">Pésaj</string>
+    <string name="holiday_pesach_vii">Séptimo día de Pésaj</string>
+    <string name="holiday_yom_hashoah">Yom Hashoá</string>
+    <string name="holiday_yom_hazikaron">Yom Hazikarón</string>
+    <string name="holiday_yom_haatzmaut">Yom Haatzmaut</string>
+    <string name="holiday_lag_baomer">Lag Baómer</string>
+    <string name="holiday_yom_yerushalayim">Yom Yerushalaim</string>
+    <string name="holiday_shavuot">Shavuot</string>
+    <string name="holiday_tzom_tammuz">Ayuno del 17 de Tamuz</string>
+    <string name="holiday_tisha_bav">Tishá Beav</string>
+    <string name="holiday_tu_bav">Tu Beav</string>
+    <string name="holiday_from_eve">Desde la tarde del %s</string>
+    <string name="holiday_first_candle">Primera vela la tarde del %s</string>
+    <string name="holiday_fast_dawn">Ayuno desde el alba hasta el anochecer</string>
+    <string name="notif_holiday_tomorrow_title">Mañana: %s</string>
+    <string name="notif_fast_dawn">El ayuno dura desde el alba hasta el anochecer.</string>
 </resources>

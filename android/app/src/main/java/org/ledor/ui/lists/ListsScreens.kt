@@ -115,6 +115,7 @@ private fun SimpleTopBar(title: String, nav: NavController) {
 @Composable
 fun ListsScreen(vm: AppViewModel, nav: NavController) {
     val lists by vm.lists.collectAsStateWithLifecycle()
+    val settings by vm.settings.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val ctx = LocalContext.current
     var refreshing by remember { mutableStateOf(false) }
@@ -171,6 +172,24 @@ fun ListsScreen(vm: AppViewModel, nav: NavController) {
                                 }
                             }
                             Switch(checked = l.notifyEnabled, onCheckedChange = { v -> scope.launch { vm.container.listRepository.setNotifyEnabled(l.id, v) } })
+                        }
+                    }
+                }
+                item {
+                    val h = settings?.holidays ?: return@item
+                    Surface(
+                        Modifier.fillMaxWidth().clickable { nav.navigate(org.ledor.ui.navigation.HolidaysRoute) },
+                        shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surface,
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                    ) {
+                        Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                            org.ledor.ui.components.MagenDavid(Modifier.size(24.dp), org.ledor.ui.theme.KalendarColors.extra.gold, 1.8.dp)
+                            Spacer(Modifier.width(12.dp))
+                            Column(Modifier.weight(1f)) {
+                                Text(stringResource(R.string.holidays_title), style = MaterialTheme.typography.titleMedium)
+                                Text(stringResource(R.string.holidays_sub), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                            Switch(checked = h.enabled && h.notify, onCheckedChange = { v -> vm.setHolidays(h.copy(enabled = h.enabled || v, notify = v)) })
                         }
                     }
                 }

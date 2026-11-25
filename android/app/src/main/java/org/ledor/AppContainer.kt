@@ -49,7 +49,7 @@ class AppContainer(private val context: Context) {
     }
 
     val reminderScheduler by lazy {
-        ReminderScheduler(database, settingsStore, { cityCatalog }, AndroidAlarmGateway(context), notifications)
+        ReminderScheduler(database, settingsStore, { cityCatalog }, AndroidAlarmGateway(context), notifications, holidayEvents)
     }
 
     val syncEngine by lazy {
@@ -57,6 +57,10 @@ class AppContainer(private val context: Context) {
             deletedNotice = { name -> context.getString(R.string.notice_list_deleted, name) },
             afterSync = { rearmRequests.tryEmit(Unit) })
     }
+
+    val holidayEvents by lazy { org.ledor.data.holiday.HolidayEvents(context) }
+    /** Язык приложения: при смене названия праздников пересчитываются. */
+    val localeTag = kotlinx.coroutines.flow.MutableStateFlow("")
 
     val eventRepository by lazy { EventRepository(database, changeListener) }
     val listRepository by lazy { ListRepository(database, rpc, syncEngine, changeListener) }
@@ -67,7 +71,7 @@ class AppContainer(private val context: Context) {
         appScope.launch {
             merge(
                 rearmRequests,
-                settingsStore.settings.map { Triple(it.reminders, it.cityId, it.adarPolicy) }.distinctUntilChanged().drop(1).map { },
+                settingsStore.settings.map { listOf(it.reminders, it.cityId, it.adarPolicy, it.holidays) }.distinctUntilChanged().drop(1).map { },
                 database.lists().observeAll().map { l -> l.map { it.id to it.notifyEnabled } }.distinctUntilChanged().drop(1).map { },
             ).debounce(500).collect { runCatching { reminderScheduler.rearm() } }
         }

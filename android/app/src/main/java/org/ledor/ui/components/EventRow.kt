@@ -1,7 +1,9 @@
 package org.ledor.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.draw.clip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,7 +47,7 @@ fun EventRow(
     occurrence: Occurrence?,
     daysUntil: Long?,
     list: ListEntity?,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)?,
     primary: CalendarKind = CalendarKind.HEBREW,
     showList: Boolean = true,
     pending: Boolean = false,
@@ -58,14 +60,17 @@ fun EventRow(
     val second = if (primary == CalendarKind.HEBREW) greg else heb
     val age = f.agePhrase(event.type, occurrence?.yearsSince)
     val rel = daysUntil?.let {
-        if (it == 1L && occurrence?.startsEveBefore == true) stringResource(R.string.rel_tomorrow_eve) else f.relativeDays(it)
+        // Пост «с рассвета» накануне вечером ещё не начинается.
+        val fromEve = occurrence?.startsEveBefore == true && org.ledor.data.holiday.HolidayEvents.holidayOf(event.id)?.dawn != true
+        if (it == 1L && fromEve) stringResource(R.string.rel_tomorrow_eve) else f.relativeDays(it)
     }
+    val holidayLine = if (event.listId == org.ledor.data.holiday.HOLIDAYS_LIST_ID) org.ledor.data.holiday.HolidayEvents.rowLine(event) else null
     Row(
-        Modifier.fillMaxWidth().clickable(onClick = onClick).padding(horizontal = 16.dp, vertical = 10.dp)
-            .semantics(mergeDescendants = true) { contentDescription = listOfNotNull(event.title, typeLabel, first, rel, age).joinToString(", ") },
+        Modifier.fillMaxWidth().then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier).padding(horizontal = 16.dp, vertical = 10.dp)
+            .semantics(mergeDescendants = true) { contentDescription = listOfNotNull(event.title, typeLabel, first, holidayLine, rel, age).joinToString(", ") },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        EventTypeIcon(event.type)
+        if (event.listId == org.ledor.data.holiday.HOLIDAYS_LIST_ID) HolidayIcon() else EventTypeIcon(event.type)
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -87,6 +92,7 @@ fun EventRow(
                 }
                 second?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1) }
             }
+            holidayLine?.let { Text(it, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.primary) }
             if (showList && list != null && list.id != LOCAL_LIST_ID) ListBadge(listDisplayName(list), list.colorIndex)
         }
         if (rel != null) {
@@ -102,6 +108,16 @@ fun EventRow(
             )
         }
     }
+}
+
+/** Значок события из встроенного списка праздников. */
+@Composable
+fun HolidayIcon(size: androidx.compose.ui.unit.Dp = 40.dp) {
+    val gold = KalendarColors.extra.gold
+    androidx.compose.foundation.layout.Box(
+        Modifier.size(size).clip(androidx.compose.foundation.shape.CircleShape).background(gold.copy(alpha = 0.16f)),
+        contentAlignment = Alignment.Center,
+    ) { MagenDavid(Modifier.size(size * 0.55f), gold, 1.8.dp) }
 }
 
 /** ✡ — отмечается по еврейскому календарю, ○ — по григорианскому. */

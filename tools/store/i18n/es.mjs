@@ -1,0 +1,49 @@
+// Español. Ficha de LeDor en Google Play: título ≤30, descripción breve ≤80, completa ≤4000, pies de foto.
+export default {
+  lang: 'es', play: 'es-ES', dir: 'ltr',
+  title: 'LeDor: calendario hebreo',
+  short: 'Fiestas judías, cumpleaños hebreos y yahrzeits: avisos y listas en familia',
+  full: `LeDor es un calendario hebreo para la familia: te recuerda cumpleaños, yahrzeits, fechas familiares y fiestas judías según los calendarios hebreo y gregoriano, y permite que toda la familia o la comunidad lleve una sola lista de fechas compartida.
+
+RECORDATORIOS A TIEMPO
+• La víspera por la tarde — a la hora que elijas antes de la puesta del sol en tu ciudad (3 horas por defecto), para tener tiempo de llamar, preparar la mesa o encender una vela de recuerdo.
+• Y otra vez el mismo día — al mediodía o a la hora que elijas.
+• Para cada evento decides el calendario: hebreo, gregoriano o ambos.
+
+UNA LISTA PARA LA FAMILIA Y LA COMUNIDAD
+• Crea una lista — «Familia Cohen», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.
+• Tus familiares escriben el nombre de la lista y el PIN y ven las mismas fechas, con recordatorios en su propio teléfono.
+• Un PIN normal permite ver; un PIN maestro permite añadir y editar fechas.
+• Varias listas a la vez, cada una con su color. Sin registro, sin correo y sin contraseñas. Funciona también sin conexión.
+
+SEGÚN LAS REGLAS DEL CALENDARIO HEBREO
+• Las dos fechas juntas — en el calendario, en la lista y en cada evento.
+• Yahrzeit en año embolismal: Adar I o Adar II según la costumbre elegida; 30 de Jeshván y 30 de Kislev contemplados.
+• Fechas de bar y bat mitzvá a partir de la fecha de nacimiento.
+• La puesta del sol cuenta: ¿no sabes si ya se había puesto el sol a la hora del nacimiento? Indica la hora y la ciudad y LeDor te lo dirá.
+• Conversor de fechas: de gregoriano a hebreo y al revés.
+
+FIESTAS JUDÍAS Y ENCENDIDO DE VELAS
+• Lista integrada de fiestas y ayunos — en el calendario y con un aviso la víspera.
+• Hora del encendido de velas de Shabat y de las fiestas en tu ciudad.
+• Fechas de Israel o de la diáspora según tu ciudad. Los avisos se pueden desactivar — las fechas siguen en el calendario.
+
+LIGERA Y HONESTA
+• No gasta batería: sin servicios en segundo plano ni ubicación; la app solo se despierta a la hora del recordatorio.
+• Seis idiomas: English, עברית, Русский, ייִדיש, Français, Español. En hebreo y yidis las fechas se escriben con letras hebreas.
+• Tema claro y oscuro.
+• Gratis, sin anuncios, analítica ni contenido de pago. Código abierto (GPL-3.0).
+
+¿Encontraste un error o tienes una idea? Escribe desde la app: Más → Enviar comentarios.`,
+  whatsNew: 'Primera versión en Google Play.',
+  feature: 'Cumpleaños y yahrzeits — toda la familia los recuerda',
+  shots: {
+    '03_calendar': 'Las dos fechas en cada día',
+    '10_lists': 'Listas de familia y comunidad',
+    '14_list_share': 'Comparte una lista con tu familia',
+    '15_holidays': 'Fiestas judías y encendido de velas',
+    '05_events': 'Todos los eventos por mes',
+    '08_editor': 'Hebreo, gregoriano o ambos',
+    '07_converter': 'Conversor según la puesta del sol',
+  },
+};

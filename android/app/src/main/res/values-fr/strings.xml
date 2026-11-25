@@ -342,4 +342,57 @@
         <item>Tich</item><item>Hech</item><item>Kis</item><item>Tev</item><item>Chev</item>
         <item>Adar</item><item>Adar I</item><item>Adar II</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">Fêtes juives</string>
+    <string name="holidays_sub">Fêtes et jeûnes dans le calendrier, rappels la veille au soir</string>
+    <string name="holidays_show">Afficher dans le calendrier et les événements</string>
+    <string name="holidays_notify">Rappeler la veille au soir</string>
+    <string name="holidays_notify_hint">À l’heure définie dans les réglages pour le rappel de la veille. Aucun rappel le jour de la fête.</string>
+    <string name="holidays_shabbat">Chabbat : allumage des bougies</string>
+    <string name="holidays_shabbat_hint">Le prochain Chabbat dans les événements et un rappel le vendredi avec l’heure d’allumage</string>
+    <string name="holidays_city_needed">Choisissez une ville pour voir l’heure d’allumage des bougies.</string>
+    <string name="holidays_choose_city">Choisir une ville</string>
+    <string name="holidays_region_israel">Fêtes selon l’usage d’Israël.</string>
+    <string name="holidays_region_diaspora">Fêtes selon l’usage de la diaspora (deux jours de fête).</string>
+    <string name="holidays_candles_rule">Allumage des bougies : %1$d minutes avant le coucher du soleil, ville : %2$s.</string>
+    <string name="holidays_upcoming">À venir</string>
+    <string name="holiday_kind_festival">Fête</string>
+    <string name="holiday_kind_fast">Jeûne</string>
+    <string name="holiday_kind_memorial">Jour du souvenir</string>
+    <string name="holiday_day_n">%1$s · jour %2$d</string>
+    <string name="holiday_candles_eve">bougies à %s</string>
+    <string name="holiday_candles_after">bougies après %s</string>
+    <string name="shabbat">Chabbat</string>
+    <string name="shabbat_candles_label">Bougies vendredi à %s</string>
+    <string name="notif_holiday_eve_title">Ce soir : %s</string>
+    <string name="notif_candles">Allumage des bougies à %s.</string>
+    <string name="notif_candles_after">Les bougies s’allument après la sortie de Chabbat, pas avant %s.</string>
+    <string name="holiday_rosh_hashana">Roch Hachana</string>
+    <string name="holiday_tzom_gedaliah">Jeûne de Guedalia</string>
+    <string name="holiday_yom_kippur">Yom Kippour</string>
+    <string name="holiday_sukkot">Souccot</string>
+    <string name="holiday_shmini_atzeret">Chemini Atseret et Sim’hat Torah</string>
+    <string name="holiday_chanukah">Hanoucca</string>
+    <string name="holiday_asara_betevet">Jeûne du 10 Tevet</string>
+    <string name="holiday_tu_bishvat">Tou Bichvat</string>
+    <string name="holiday_taanit_esther">Jeûne d’Esther</string>
+    <string name="holiday_purim">Pourim</string>
+    <string name="holiday_shushan_purim">Chouchan Pourim</string>
+    <string name="holiday_pesach">Pessa’h</string>
+    <string name="holiday_pesach_vii">Septième jour de Pessa’h</string>
+    <string name="holiday_yom_hashoah">Yom HaShoah</string>
+    <string name="holiday_yom_hazikaron">Yom HaZikaron</string>
+    <string name="holiday_yom_haatzmaut">Yom HaAtsmaout</string>
+    <string name="holiday_lag_baomer">Lag Baomer</string>
+    <string name="holiday_yom_yerushalayim">Yom Yerouchalayim</string>
+    <string name="holiday_shavuot">Chavouot</string>
+    <string name="holiday_tzom_tammuz">Jeûne du 17 Tamouz</string>
+    <string name="holiday_tisha_bav">Ticha Beav</string>
+    <string name="holiday_tu_bav">Tou Beav</string>
+    <string name="holiday_from_eve">Dès le soir du %s</string>
+    <string name="holiday_first_candle">Première bougie le soir du %s</string>
+    <string name="holiday_fast_dawn">Jeûne de l’aube à la tombée de la nuit</string>
+    <string name="notif_holiday_tomorrow_title">Demain : %s</string>
+    <string name="notif_fast_dawn">Le jeûne dure de l’aube à la tombée de la nuit.</string>
 </resources>

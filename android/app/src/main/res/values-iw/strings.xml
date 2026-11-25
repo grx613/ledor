@@ -342,4 +342,57 @@
         <item>תשרי</item><item>חשוון</item><item>כסלו</item><item>טבת</item><item>שבט</item>
         <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">חגי ישראל</string>
+    <string name="holidays_sub">חגים וצומות בלוח, תזכורת בערב שלפני</string>
+    <string name="holidays_show">הצגה בלוח ובאירועים</string>
+    <string name="holidays_notify">תזכורת בערב שלפני</string>
+    <string name="holidays_notify_hint">בשעה שנקבעה בהגדרות לתזכורת בערב שלפני. בחג עצמו אין תזכורות.</string>
+    <string name="holidays_shabbat">שבת: הדלקת נרות</string>
+    <string name="holidays_shabbat_hint">השבת הקרובה באירועים ותזכורת ביום שישי עם זמן הדלקת הנרות</string>
+    <string name="holidays_city_needed">כדי לראות את זמן הדלקת הנרות, בחרו עיר.</string>
+    <string name="holidays_choose_city">בחירת עיר</string>
+    <string name="holidays_region_israel">החגים כמנהג ארץ ישראל.</string>
+    <string name="holidays_region_diaspora">החגים כמנהג חוץ לארץ (שני ימים טובים).</string>
+    <string name="holidays_candles_rule">הדלקת נרות: %1$d דקות לפני השקיעה, העיר: %2$s.</string>
+    <string name="holidays_upcoming">הקרובים</string>
+    <string name="holiday_kind_festival">חג</string>
+    <string name="holiday_kind_fast">צום</string>
+    <string name="holiday_kind_memorial">יום זיכרון</string>
+    <string name="holiday_day_n">%1$s · יום %2$d</string>
+    <string name="holiday_candles_eve">הדלקת נרות ב-%s</string>
+    <string name="holiday_candles_after">הדלקת נרות אחרי %s</string>
+    <string name="shabbat">שבת</string>
+    <string name="shabbat_candles_label">הדלקת נרות ביום שישי ב-%s</string>
+    <string name="notif_holiday_eve_title">הערב: %s</string>
+    <string name="notif_candles">הדלקת נרות ב-%s.</string>
+    <string name="notif_candles_after">מדליקים נרות אחרי צאת השבת, לא לפני %s.</string>
+    <string name="holiday_rosh_hashana">ראש השנה</string>
+    <string name="holiday_tzom_gedaliah">צום גדליה</string>
+    <string name="holiday_yom_kippur">יום כיפור</string>
+    <string name="holiday_sukkot">סוכות</string>
+    <string name="holiday_shmini_atzeret">שמיני עצרת ושמחת תורה</string>
+    <string name="holiday_chanukah">חנוכה</string>
+    <string name="holiday_asara_betevet">עשרה בטבת</string>
+    <string name="holiday_tu_bishvat">ט״ו בשבט</string>
+    <string name="holiday_taanit_esther">תענית אסתר</string>
+    <string name="holiday_purim">פורים</string>
+    <string name="holiday_shushan_purim">שושן פורים</string>
+    <string name="holiday_pesach">פסח</string>
+    <string name="holiday_pesach_vii">שביעי של פסח</string>
+    <string name="holiday_yom_hashoah">יום השואה</string>
+    <string name="holiday_yom_hazikaron">יום הזיכרון</string>
+    <string name="holiday_yom_haatzmaut">יום העצמאות</string>
+    <string name="holiday_lag_baomer">ל״ג בעומר</string>
+    <string name="holiday_yom_yerushalayim">יום ירושלים</string>
+    <string name="holiday_shavuot">שבועות</string>
+    <string name="holiday_tzom_tammuz">שבעה עשר בתמוז</string>
+    <string name="holiday_tisha_bav">תשעה באב</string>
+    <string name="holiday_tu_bav">ט״ו באב</string>
+    <string name="holiday_from_eve">מתחיל בערב %s</string>
+    <string name="holiday_first_candle">נר ראשון בערב %s</string>
+    <string name="holiday_fast_dawn">הצום מעלות השחר עד צאת הכוכבים</string>
+    <string name="notif_holiday_tomorrow_title">מחר: %s</string>
+    <string name="notif_fast_dawn">הצום מעלות השחר עד צאת הכוכבים.</string>
 </resources>

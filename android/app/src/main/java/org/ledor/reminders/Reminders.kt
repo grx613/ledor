@@ -22,6 +22,8 @@ import org.ledor.MainActivity
 import org.ledor.R
 import org.ledor.data.local.AppDatabase
 import org.ledor.data.local.toDomain
+import org.ledor.data.holiday.HOLIDAYS_LIST_ID
+import org.ledor.data.holiday.HolidayEvents
 import org.ledor.data.prefs.SettingsStore
 import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.event.Event
@@ -83,6 +85,7 @@ class ReminderScheduler(
     private val cities: () -> CityCatalog,
     private val alarms: AlarmGateway,
     private val notifier: NotificationFactory,
+    private val holidays: HolidayEvents,
     private val clock: Clock = Clock.systemDefaultZone(),
 ) {
     private val mutex = Mutex()
@@ -96,10 +99,17 @@ class ReminderScheduler(
         val sunset = sunsetProvider(s.cityId, zone)
         val watermark = settings.watermark() ?: now.toEpochMilli().also { settings.setWatermark(it) }
 
-        val due = ReminderPlanner.plan(events, s.reminders, sunset, zone, s.adarPolicy,
-            Instant.ofEpochMilli(watermark), now)
         val today = now.atZone(zone).toLocalDate()
-        val byId = events.associateBy { it.id }
+        // Праздники и Шабат: только напоминание накануне вечером — в сам день телефон не беспокоит (B-25).
+        val holidayEvents = if (!s.holidays.notify) emptyList() else holidays.build(
+            s.holidays, cities().byId(s.cityId), from = today.minusDays(2), to = today.plusDays(400),
+            shabbatFrom = today.minusDays(2), shabbatTo = today.plusDays(400), nextDays = false)
+        val eveOnly = s.reminders.copy(eveEnabled = true, dayEnabled = false)
+        fun plan(from: Instant, to: Instant) = (ReminderPlanner.plan(events, s.reminders, sunset, zone, s.adarPolicy, from, to) +
+            ReminderPlanner.plan(holidayEvents, eveOnly, sunset, zone, s.adarPolicy, from, to)).sortedBy { it.triggerAt }
+
+        val due = plan(Instant.ofEpochMilli(watermark), now)
+        val byId = (events + holidayEvents).associateBy { it.id }
         for (r in due) {
             val fresh = when (r.kind) {
                 ReminderKind.EVE -> today.isBefore(r.occurrenceDate)
@@ -110,8 +120,7 @@ class ReminderScheduler(
         }
         settings.setWatermark(now.toEpochMilli())
 
-        val next = ReminderPlanner.plan(events, s.reminders, sunset, zone, s.adarPolicy, now, now.plus(Duration.ofDays(400)))
-            .firstOrNull()
+        val next = plan(now, now.plus(Duration.ofDays(400))).firstOrNull()
         if (next == null) alarms.cancel() else alarms.set(next.triggerAt.toEpochMilli(), alarms.canScheduleExact())
     }
 
@@ -146,6 +155,10 @@ class NotificationFactory(private val baseContext: Context) {
         val hebrew = HebrewCalendarMath.fromGregorian(r.occurrenceDate)
         val age = f.agePhrase(e.type, r.yearsSince)
         val (title, text) = when {
+            // Пост «с рассвета» начинается завтра утром, остальные праздники — сегодня вечером.
+            e.listId == HOLIDAYS_LIST_ID -> context.getString(
+                if (HolidayEvents.holidayOf(e.id)?.dawn == true) R.string.notif_holiday_tomorrow_title else R.string.notif_holiday_eve_title, e.title) to
+                listOfNotNull(context.getString(R.string.notif_eve_starts, f.hebrewDate(hebrew)), HolidayEvents.notificationLine(e)).joinToString(" ")
             r.kind == ReminderKind.DAY -> context.getString(R.string.notif_day_title, type, e.title) to
                 listOfNotNull("${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.", age).joinToString(" ")
             r.calendar == CalendarKind.GREGORIAN && e.recurring -> context.getString(R.string.notif_eve_greg_title, type, e.title) to
@@ -235,7 +248,6 @@ class ReminderHealthChecker(private val context: Context) {
         HealthIssue.EXACT_ALARMS_DENIED -> listOf(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, pkgUri))
         HealthIssue.BACKGROUND_RESTRICTED -> emptyList()
         HealthIssue.BATTERY_OPTIMIZED -> listOf(
-            Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, pkgUri),
             Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS),
         )
     } + Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, pkgUri)

@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import org.ledor.R
+import org.ledor.data.holiday.HOLIDAYS_LIST_ID
 import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.event.OccurrenceCalculator
 import org.ledor.ui.AppViewModel
@@ -47,7 +48,7 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
 
     val items = upcoming.orEmpty().filter { filter == null || it.event.listId == filter }
     val upcomingIds = upcoming.orEmpty().map { it.event.id }.toSet()
-    val past = events.orEmpty().filter { it.id !in upcomingIds && (filter == null || it.listId == filter) }
+    val past = events.orEmpty().filter { it.id !in upcomingIds && !org.ledor.data.holiday.HolidayEvents.isBuiltIn(it.id) && (filter == null || it.listId == filter) }
         .mapNotNull { e -> OccurrenceCalculator.oneOff(e)?.let { e to it } }
         .sortedByDescending { it.second.date }
 
@@ -76,15 +77,17 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
                 Tab(tab == 0, { tab = 0 }, text = { Text(stringResource(R.string.tab_hebrew_calendar)) })
                 Tab(tab == 1, { tab = 1 }, text = { Text(stringResource(R.string.tab_gregorian_calendar)) })
             }
-            if (lists.size > 1) {
+            val hasHolidays = upcoming.orEmpty().any { it.event.listId == HOLIDAYS_LIST_ID }
+            if (lists.size > 1 || hasHolidays) {
                 Row(Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(filter == null, { filter = null }, label = { Text(stringResource(R.string.all_lists)) })
                     lists.forEach { l ->
                         FilterChip(filter == l.list.id, { filter = l.list.id }, label = { Text(listDisplayName(l.list)) })
                     }
+                    if (hasHolidays) FilterChip(filter == HOLIDAYS_LIST_ID, { filter = HOLIDAYS_LIST_ID }, label = { Text(stringResource(R.string.holidays_title)) })
                 }
             }
-            if (events?.isEmpty() == true) {
+            if (events?.none { it.listId != HOLIDAYS_LIST_ID } == true && items.isEmpty()) {
                 EmptyState(stringResource(R.string.empty_events)) {
                     Button(onClick = { nav.navigate(EditorRoute()) }) { Text(stringResource(R.string.add_event)) }
                     OutlinedButton(onClick = { nav.navigate(ListJoinRoute()) }) { Text(stringResource(R.string.join_list)) }

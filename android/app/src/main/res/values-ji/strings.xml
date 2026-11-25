@@ -337,4 +337,57 @@
         <item>תּשרי</item><item>חשוון</item><item>כּסלו</item><item>טבֿת</item><item>שבֿט</item>
         <item>אדר</item><item>אדר א׳</item><item>אדר ב׳</item>
     </string-array>
+
+    <!-- Встроенный список «Еврейские праздники» (B-25) -->
+    <string name="holidays_title">ייִדישע יום־טובֿים</string>
+    <string name="holidays_sub">יום־טובֿים און תּעניתים אינעם לוח, דערמאָנונגען דעם אָוונט פֿריִער</string>
+    <string name="holidays_show">ווײַזן אינעם לוח און אין די געשעענישן</string>
+    <string name="holidays_notify">דערמאָנען דעם אָוונט פֿריִער</string>
+    <string name="holidays_notify_hint">אין דער צײַט וואָס איז באַשטימט אין די אײַנשטעלונגען פֿאַר דער דערמאָנונג דעם אָוונט פֿריִער. אין יום־טובֿ אַליין זענען ניטאָ קיין דערמאָנונגען.</string>
+    <string name="holidays_shabbat">שבת: ליכט־בענטשן</string>
+    <string name="holidays_shabbat_hint">דער קומענדיקער שבת אין די געשעענישן און אַ דערמאָנונג פֿרײַטיק מיט דער צײַט פֿון ליכט־בענטשן</string>
+    <string name="holidays_city_needed">כּדי צו זען די צײַט פֿון ליכט־בענטשן, קלײַבט אויס אַ שטאָט.</string>
+    <string name="holidays_choose_city">אויסקלײַבן אַ שטאָט</string>
+    <string name="holidays_region_israel">יום־טובֿים ווי אין ארץ־ישׂראל.</string>
+    <string name="holidays_region_diaspora">יום־טובֿים ווי אין חוץ־לאָרץ (צוויי טעג יום־טובֿ).</string>
+    <string name="holidays_candles_rule">ליכט־בענטשן: %1$d מינוט פֿאַר דער שקיעה, שטאָט: %2$s.</string>
+    <string name="holidays_upcoming">די קומענדיקע</string>
+    <string name="holiday_kind_festival">יום־טובֿ</string>
+    <string name="holiday_kind_fast">תּענית</string>
+    <string name="holiday_kind_memorial">אָנדענק־טאָג</string>
+    <string name="holiday_day_n">%1$s · טאָג %2$d</string>
+    <string name="holiday_candles_eve">ליכט־בענטשן %s</string>
+    <string name="holiday_candles_after">ליכט־בענטשן נאָך %s</string>
+    <string name="shabbat">שבת</string>
+    <string name="shabbat_candles_label">ליכט־בענטשן פֿרײַטיק %s</string>
+    <string name="notif_holiday_eve_title">הײַנט אין אָוונט: %s</string>
+    <string name="notif_candles">ליכט־בענטשן %s.</string>
+    <string name="notif_candles_after">מע צינדט ליכט נאָך מוצאי־שבת, ניט פֿריִער ווי %s.</string>
+    <string name="holiday_rosh_hashana">ראָש־השנה</string>
+    <string name="holiday_tzom_gedaliah">צום גדליה</string>
+    <string name="holiday_yom_kippur">יום־כּיפּור</string>
+    <string name="holiday_sukkot">סוכּות</string>
+    <string name="holiday_shmini_atzeret">שמיני־עצרת און שׂמחת־תּורה</string>
+    <string name="holiday_chanukah">חנוכּה</string>
+    <string name="holiday_asara_betevet">עשׂרה בטבֿת</string>
+    <string name="holiday_tu_bishvat">חמישה־עשׂר בשבֿט</string>
+    <string name="holiday_taanit_esther">תּענית אסתּר</string>
+    <string name="holiday_purim">פּורים</string>
+    <string name="holiday_shushan_purim">שושן־פּורים</string>
+    <string name="holiday_pesach">פּסח</string>
+    <string name="holiday_pesach_vii">שבֿיעי של פּסח</string>
+    <string name="holiday_yom_hashoah">יום־השואה</string>
+    <string name="holiday_yom_hazikaron">יום־הזכּרון</string>
+    <string name="holiday_yom_haatzmaut">יום־העצמאות</string>
+    <string name="holiday_lag_baomer">ל״ג בעומר</string>
+    <string name="holiday_yom_yerushalayim">יום ירושלים</string>
+    <string name="holiday_shavuot">שבֿועות</string>
+    <string name="holiday_tzom_tammuz">שבֿעה־עשׂר בתּמוז</string>
+    <string name="holiday_tisha_bav">תּשעה־באָבֿ</string>
+    <string name="holiday_tu_bav">ט״ו באָבֿ</string>
+    <string name="holiday_from_eve">הייבט זיך אָן %s אין אָוונט</string>
+    <string name="holiday_first_candle">דאָס ערשטע ליכטל — %s אין אָוונט</string>
+    <string name="holiday_fast_dawn">דער תּענית איז פֿון קאַיאָר ביז צאת־הכּוכבֿים</string>
+    <string name="notif_holiday_tomorrow_title">מאָרגן: %s</string>
+    <string name="notif_fast_dawn">דער תּענית איז פֿון קאַיאָר ביז צאת־הכּוכבֿים.</string>
 </resources>

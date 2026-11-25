@@ -4,11 +4,11 @@
 календарям, с общими списками для семьи и общины; свой сервер и сайт. Название — **LeDor** (слоган «LeDor VaDor»,
 надпись «Kalendář»), автор — Гершон. Общение с заказчиком — на русском.
 
-## Состояние (2026-11-24)
+## Состояние (2026-11-25)
 
 | Часть | Состояние |
 |---|---|
-| Android (`android/`) | версия 0.3.2, пакет `org.ledor`; раздаётся APK с сайта; публикация в Google Play — впереди (`docs/PLAN.md`, M15) |
+| Android (`android/`) | версия 0.5.1, пакет `org.ledor`; раздаётся APK с сайта; идёт публикация в Google Play (`docs/PLAN.md`, M15; пошагово — `docs/store/google-play.md`) |
 | Сервер (`supabase/migrations/`, `tools/server/`) | свой: PostgreSQL + PostgREST за Caddy, `https://kalendar.bothub.chat/rest/v1/rpc/…` |
 | Сайт (`website/`, `tools/site/`) | `https://kalendar.bothub.chat`, 6 языков; страницы генерируются |
 | iOS (`ios/`) | не начат; задание и вехи I0–I9 — `docs/09-ios-notes.md`; делается на Mac |
@@ -32,6 +32,7 @@
 | `docs/06-design-system.md` | цвета, шрифт, компоненты, знак и заставка |
 | `docs/07-website.md` | сайт: структура, языки, SEO, политика конфиденциальности, сборка и выкладка |
 | `docs/08-store-compliance.md` | требования Google Play и App Store, что ещё не готово |
+| `docs/store/google-play.md` | публикация в Google Play пошагово: ответы на анкеты, тексты и картинки (`tools/store/`) |
 | `docs/09-ios-notes.md` | iOS: отличия от Android, вехи I0–I9 |
 | `docs/PLAN.md` | что сделано, что дальше, ручная приёмка, журнал |
 | `docs/DECISIONS.md` | действующие решения, открытые вопросы, история изменений |
@@ -44,12 +45,14 @@ source tools/env.sh                                   # JAVA_HOME, ANDROID_HOME
 cd android && ./gradlew :domain:test                  # быстрые тесты логики
 cd android && ./gradlew :domain:test :app:testDebugUnitTest :app:lintDebug :app:assembleDebug   # полная проверка
 cd android && ./gradlew :app:recordRoborazziDebug     # снимки экранов → app/build/screens/<язык>/
-cd android && ./gradlew :app:assembleRelease          # APK → app/build/outputs/apk/release/
+cd android && ./gradlew :app:assembleRelease :app:bundleRelease   # APK и AAB (подпись — android/keystore.properties)
+node tools/store/build.mjs dist/store && sh dist/store/render.sh   # тексты и картинки для Google Play
 node --test website/tests/*.test.mjs                  # тесты календаря сайта
 node tools/site/build.mjs                             # собрать страницы сайта из tools/site/i18n/*.mjs
 tools/deploy/publish.sh                               # выложить website/ на kalendar.bothub.chat (на сервере)
 SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный ключ> node --test tools/rpc-smoke/smoke.mjs   # проверка сервера
 cd tools/golden && npm ci && node generate.mjs        # пересоздать эталонные векторы (обычно не нужно)
+node tools/golden/holidays.mjs                        # векторы праздников и свечей из API Hebcal (обычно не нужно)
 ```
 
 ## Нерушимые правила

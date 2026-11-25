@@ -1,6 +1,6 @@
 # 02. Архитектура проекта
 
-Описывает Android-версию 0.3.2 и общий репозиторий (обновлено 2026-11-24). iOS — `09-ios-notes.md`.
+Описывает Android-версию 0.5.1 и общий репозиторий (обновлено 2026-11-24). iOS — `09-ios-notes.md`.
 
 ## 1. Репозиторий (монорепозиторий)
 
@@ -84,7 +84,10 @@ android {
 без Android и эмулятора; её границы совпадают с тем, что потом переносится на Swift.
 
 Идентификаторы: `applicationId` и `namespace` — **`org.ledor`**, пакеты кода — `org.ledor…`.
-Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 5 / 0.3.2).
+Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 8 / 0.5.1).
+Подпись release: ключ загрузки из `android/keystore.properties` (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`;
+файл и `android/keystore/*.jks` не коммитятся). Без этого файла release подписывается отладочным ключом — только для
+локальной проверки. `./gradlew :app:bundleRelease` → `app/build/outputs/bundle/release/app-release.aab` для Google Play.
 Адрес сервера и публичный ключ берутся из `android/local.properties` (`supabase.url`, `supabase.key`; файл не коммитится,
 образец — `local.properties.example`) и попадают в `BuildConfig`.
 
@@ -112,6 +115,7 @@ AppContainer.kt        KalendarApp (Application, Configuration.Provider для W
                        ручное внедрение зависимостей (lazy-поля), без фреймворков
 MainActivity.kt        единственная Activity: enableEdgeToEdge(), setContent { KalendarRoot() }
 
+data/holiday/          HolidayEvents.kt — события встроенного списка праздников (вычисляются, в базе их нет); домен — `org.ledor.domain.holiday`, экран — `ui/holidays/`
 data/local/            Database.kt (AppDatabase, ListEntity, EventEntity, ListDao, EventDao), Mappers.kt
 data/prefs/            SettingsStore.kt (DataStore Preferences), AppSettings
 data/remote/           SupabaseRpc.kt — клиент сервера на OkHttp (имя историческое: сервер свой), RpcResult, DTO

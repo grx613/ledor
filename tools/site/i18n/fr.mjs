@@ -100,6 +100,7 @@ export default {
       { q: 'Dans quelles langues LeDor est-il disponible ?', a: 'English, עברית, Русский, ייִדיש, Français, Español. En hébreu et en yiddish, l’interface s’affiche de droite à gauche et les dates hébraïques sont écrites en lettres.' },
       { q: 'Puis-je transférer mes événements vers une liste partagée ?', a: 'Oui. En créant une liste, cochez « Transférer les événements de la liste personnelle », ou ouvrez la liste personnelle et choisissez « Transférer les événements vers une liste cloud ».' },
       { q: 'Y a-t-il un thème sombre ?', a: 'Oui : clair, sombre ou selon le système — dans « Réglages → Apparence ».' },
+      { q: 'LeDor affiche-t-il les fêtes juives et l’heure d’allumage des bougies ?', a: 'Oui. Dans « Listes », une liste intégrée « Fêtes juives » affiche les fêtes et les jeûnes dans le calendrier, avec un rappel la veille au soir. Pour Chabbat et les fêtes, l’heure d’allumage des bougies dans votre ville est indiquée ; le rappel de Chabbat s’active séparément. Vous pouvez désactiver les rappels et simplement consulter les dates.' },
       { q: 'Existe-t-il une version iPhone ?', a: 'Bientôt. LeDor est pour l’instant disponible sur Android.' },
       { q: 'Combien coûte l’application ?', a: 'Elle est gratuite, sans publicité ni contenu payant. Le projet est non commercial et open source.' },
     ],

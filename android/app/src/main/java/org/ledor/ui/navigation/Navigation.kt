@@ -72,6 +72,7 @@ import kotlinx.serialization.Serializable
 @Serializable object AboutRoute
 @Serializable data class FeedbackRoute(val prefill: String? = null)
 @Serializable data class EventDetailRoute(val id: String)
+@Serializable object HolidaysRoute
 
 /** Редактор: либо существующее событие (id), либо новое с подставленной датой. */
 @Serializable
@@ -155,7 +156,13 @@ fun KalendarRoot(showBrandSplash: Boolean, openEventId: StateFlow<String?>, onEv
                     composable<CityPickerRoute> { CityPickerScreen(vm, nav) }
                     composable<AboutRoute> { AboutScreen(nav) }
                     composable<FeedbackRoute> { FeedbackScreen(nav, it.toRoute<FeedbackRoute>().prefill) }
-                    composable<EventDetailRoute> { EventDetailScreen(vm, nav, it.toRoute<EventDetailRoute>().id) }
+                    composable<EventDetailRoute> {
+                        val id = it.toRoute<EventDetailRoute>().id
+                        // У праздника нет своей карточки — открывается встроенный список.
+                        if (org.ledor.data.holiday.HolidayEvents.isBuiltIn(id)) org.ledor.ui.holidays.HolidaysScreen(vm, nav)
+                        else EventDetailScreen(vm, nav, id)
+                    }
+                    composable<HolidaysRoute> { org.ledor.ui.holidays.HolidaysScreen(vm, nav) }
                     composable<EditorRoute> { EventEditorScreen(vm, nav, it.toRoute<EditorRoute>()) }
                 }
             }
