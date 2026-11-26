@@ -21,6 +21,8 @@
 1. `git pull`. Над проектом работают две сессии — на сервере (Android, сайт, бэкенд) и на Mac (iOS, консоли магазинов);
    они общаются записками в `docs/sync/`. Прочитай `docs/sync/README.md` и свой входящий файл: сессия на сервере —
    `to-server.md`, сессия на Mac — `to-mac.md`. Так же — когда заказчик говорит «проверь почту».
+   Затем запусти в фоне наблюдатель за почтой: `tools/sync/watch.sh <свой входящий файл>` — он разбудит сессию,
+   когда придёт записка (`docs/sync/README.md`, «Автоматическая проверка почты»).
 2. Прочитай этот файл и `docs/PLAN.md` («Что дальше»). Для iOS — `docs/09-ios-notes.md`.
 3. Прочитай только документы, относящиеся к задаче. Не читай всё подряд.
 4. Работай в порядке: тесты → код → проверка → обновить документы → запись в «Журнал» в `PLAN.md`.
@@ -62,6 +64,7 @@ cd ios && xcodebuild -project LeDor.xcodeproj -scheme LeDor -destination 'platfo
 SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный ключ> node --test tools/rpc-smoke/smoke.mjs   # проверка сервера
 cd tools/golden && npm ci && node generate.mjs        # пересоздать эталонные векторы (обычно не нужно)
 node tools/golden/holidays.mjs                        # векторы праздников и свечей из API Hebcal (обычно не нужно)
+tools/sync/watch.sh to-server.md                      # в фоне: ждать записку от второй сессии (на Mac — to-mac.md)
 ```
 
 ## Нерушимые правила
