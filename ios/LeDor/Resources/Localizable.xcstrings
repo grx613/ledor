@@ -1004,6 +1004,47 @@
         }
       }
     },
+    "app_name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor"
+          }
+        }
+      }
+    },
     "back": {
       "extractionState": "manual",
       "localizations": {
@@ -2476,6 +2517,580 @@
           "stringUnit": {
             "state": "translated",
             "value": "ענדערן די געשעעניש"
+          }
+        }
+      }
+    },
+    "egg_back": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "He will be back. LeDor will remind you in time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volverá. LeDor te lo recordará a tiempo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il reviendra. LeDor vous le rappellera à temps."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוא עוד יחזור. LeDor יזכיר בזמן."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Он ещё вернётся. А LeDor напомнит вовремя."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ער וועט נאָך צוריקקומען. LeDor וועט דערמאָנען אין צײַט."
+          }
+        }
+      }
+    },
+    "egg_excuses.0": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call them tomorrow"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya llamarás mañana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu appelleras demain"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תתקשרו מחר"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Позвонишь завтра"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איר וועט מאָרגן אָנקלינגען"
+          }
+        }
+      }
+    },
+    "egg_excuses.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Congratulate them later"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya felicitarás luego"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu féliciteras plus tard"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תברכו אחר כך"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поздравишь потом"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איר וועט שפּעטער ווינטשן"
+          }
+        }
+      }
+    },
+    "egg_excuses.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light the candle later"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La vela, ya la encenderás"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La bougie, tu l’allumeras plus tard"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "את הנר תדליקו אחר כך"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свечу зажжёшь позже"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דאָס ליכט וועט איר שפּעטער אָנצינדן"
+          }
+        }
+      }
+    },
+    "egg_excuses.3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who remembers these dates anyway"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quién se acuerda de esas fechas?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qui se souvient de ces dates ?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מי בכלל זוכר תאריכים"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да кто помнит эти даты"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ווער געדענקט דען די דאַטעס"
+          }
+        }
+      }
+    },
+    "egg_excuses.4": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Five more minutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cinco minutos más"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore cinq minutes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עוד חמש דקות"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ещё пять минут"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נאָך פֿינף מינוט"
+          }
+        }
+      }
+    },
+    "egg_excuses.5": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They won’t mind"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se van a ofender"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ils ne t’en voudront pas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הם לא ייעלבו"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Они не обидятся"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "זיי וועלן זיך נישט באַליידיקן"
+          }
+        }
+      }
+    },
+    "egg_excuses.6": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All right, all right…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vale, vale…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bon, bon…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טוב, טוב…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ладно, ладно…"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גוט, גוט…"
+          }
+        }
+      }
+    },
+    "egg_quote": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who is mighty? One who conquers his inclination."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quién es fuerte? El que domina su inclinación."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qui est fort ? Celui qui domine son penchant."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кто силён? Тот, кто побеждает своё влечение."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ווער איז אַ גיבור? דער וואָס איז כּובש זײַן יצר."
+          }
+        }
+      }
+    },
+    "egg_quote_he": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איזהו גיבור? הכובש את יצרו."
+          }
+        }
+      }
+    },
+    "egg_quote_source": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirkei Avot 4:1"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirkei Avot 4:1"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirké Avot 4:1"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אבות ד, א"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пиркей Авот 4:1"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אָבות ד, א"
+          }
+        }
+      }
+    },
+    "egg_steps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taps left: %1$ld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltan %1$ld…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %1$ld…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עוד %1$ld…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ещё %1$ld…"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נאָך %1$ld…"
+          }
+        }
+      }
+    },
+    "egg_yetzer_abbr": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצה״ר"
+          }
+        }
+      }
+    },
+    "egg_yetzer_name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetzer Hara"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yétzer Hará"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetser Hara"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצר הרע"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ецер а-Ра"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצר־הרע"
           }
         }
       }
@@ -13549,6 +14164,88 @@
         }
       }
     },
+    "slogan_hebrew": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדור ודור"
+          }
+        }
+      }
+    },
+    "slogan_latin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LeDor VaDor"
+          }
+        }
+      }
+    },
     "sunday": {
       "extractionState": "manual",
       "localizations": {
@@ -14939,6 +15636,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "ווערסיע %1$@"
+          }
+        }
+      }
+    },
+    "wordmark": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalendář"
           }
         }
       }

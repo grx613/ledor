@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Переносит строки Android (android/app/src/main/res/values*/strings.xml) в String Catalog iOS
 (ios/LeDor/Resources/Localizable.xcstrings) и добавляет строки только для iOS из tools/strings-ios.json.
-Ключи — имена Android; массивы — <имя>.<индекс>; форматы %s/%d → %@/%ld. Запуск: python3 ios/tools/strings.py"""
+Ключи — имена Android; массивы — <имя>.<индекс>; форматы %s/%d → %@/%ld; непереводимые строки (translatable="false")
+берутся из values/ и одинаковы во всех языках. Запуск: python3 ios/tools/strings.py"""
 import json, re, sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -10,9 +11,10 @@ ROOT = Path(__file__).resolve().parents[2]
 RES = ROOT / "android/app/src/main/res"
 OUT = ROOT / "ios/LeDor/Resources/Localizable.xcstrings"
 LANGS = {"en": "values", "ru": "values-ru", "he": "values-iw", "yi": "values-ji", "fr": "values-fr", "es": "values-es"}
-# Только для Android: батарея, точные будильники, подсказки производителей, каналы уведомлений, лицензии Java-библиотек.
+# Только для Android: батарея, точные будильники, подсказки производителей, каналы уведомлений, лицензии Java-библиотек,
+# проверка обновлений (на iOS обновления приходят через App Store и TestFlight, D-56).
 SKIP = re.compile(r"^(health_(banner|exact|bg|battery|no_reminders|disable|sheet|open_setting)\w*|hint_(samsung|xiaomi|huawei|oppo|vivo)"
-                  r"|channel_\w+|licenses_text|feedback_meta_detail|set_health_warnings|locale_tag)$")
+                  r"|channel_\w+|update_\w+|licenses_text|feedback_meta_detail|set_health_warnings|locale_tag)$")
 
 
 def unescape(s):
@@ -45,6 +47,10 @@ def unit(value):
 
 def main():
     data = {lang: read(folder) for lang, folder in LANGS.items()}
+    fixed = {el.get("name"): unescape(text(el)) for el in ET.parse(RES / "values/strings.xml").getroot()
+             if el.tag == "string" and el.get("translatable") == "false" and not SKIP.match(el.get("name"))}
+    for strings, _ in data.values():
+        strings.update(fixed)
     keys = sorted(set(data["en"][0]) | set(data["en"][1]))
     out = {"sourceLanguage": "en", "version": "1.0", "strings": {}}
     for key in keys:

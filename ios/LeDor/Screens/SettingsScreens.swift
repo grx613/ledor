@@ -162,12 +162,17 @@ struct CityPickerScreen: View {
 struct AboutScreen: View {
     @Environment(\.openURL) private var openURL
     @State private var licenses = false
+    @State private var eggTaps = EggTaps()
+    @State private var egg = false
+    @State private var eggHint: Int?
+    @State private var eggHintTask: Task<Void, Never>?
 
     var body: some View {
         List {
             Section {
                 VStack(spacing: 8) {
-                    LogoBlock(onDark: false, markSize: 88)
+                    // ABT-6: семь нажатий на знак открывают пасхалку; на последних трёх — подсказка, сколько осталось.
+                    LogoBlock(onDark: false, markSize: 88).contentShape(Rectangle()).onTapGesture(perform: tapLogo)
                     Text(L.f("version", AppConfig.version)).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant)
                 }
                 .frame(maxWidth: .infinity)
@@ -194,6 +199,30 @@ struct AboutScreen: View {
         .navigationTitle(L.t("about"))
         .navigationBarTitleDisplayMode(.inline)
         .ledorScreen()
+        .overlay(alignment: .bottom) {
+            if let left = eggHint {
+                Text(L.f("egg_steps", left))
+                    .font(Typography.rubik(14)).foregroundStyle(Palette.background)
+                    .padding(.horizontal, 16).padding(.vertical, 10)
+                    .background(Palette.onSurface.opacity(0.88), in: Capsule())
+                    .padding(.bottom, 32)
+                    .transition(.opacity)
+                    .allowsHitTesting(false)
+            }
+        }
+        .fullScreenCover(isPresented: $egg) { YetzerGame(onClose: { egg = false }) }
+    }
+
+    private func tapLogo() {
+        let left = eggTaps.tap(at: ProcessInfo.processInfo.systemUptime)
+        eggHintTask?.cancel()
+        withAnimation { eggHint = (1...Egg.hintFrom).contains(left) ? left : nil }
+        if left == 0 { egg = true }
+        guard eggHint != nil else { return }
+        eggHintTask = Task {
+            try? await Task.sleep(for: .seconds(1.5))
+            if !Task.isCancelled { withAnimation { eggHint = nil } }
+        }
     }
 
     private func link(_ title: String, _ url: String) -> some View {

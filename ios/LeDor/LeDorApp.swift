@@ -13,8 +13,8 @@ struct LeDorApp: App {
         }
         .backgroundTask(.appRefresh(ReminderNotifications.refreshTaskId)) {
             // Фон: синхронизация общих списков и перестройка очереди уведомлений; следующий запуск — не раньше чем через сутки.
-            await ReminderNotifications.scheduleRefresh()
-            await model.data.syncAll()
+            ReminderNotifications.scheduleRefresh()
+            _ = await model.data.syncAll()
             await model.rearmNow()
         }
     }
