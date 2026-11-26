@@ -195,6 +195,7 @@
     <string name="imported_n">Eventos importados: %1$d</string>
     <string name="synced_at">Sincronizado: %1$s</string>
     <string name="lists_hint_notify">El interruptor de la derecha activa y desactiva las notificaciones de la lista.</string>
+    <string name="lists_hint_holidays">En «Fiestas judías» activa y desactiva toda la lista.</string>
     <string name="pull_to_sync">Desliza hacia abajo para sincronizar.</string>
     <string name="list_notifications">Notificaciones de esta lista</string>
     <string name="pin_codes">PIN</string>
@@ -273,6 +274,7 @@
     <string name="health_disable_confirm">Desactivar</string>
     <string name="health_sheet_title">Qué hay que activar</string>
     <string name="health_open_setting">Abrir el ajuste</string>
+    <string name="health_allow">Permitir</string>
     <string name="health_all_ok">Todo configurado ✓</string>
     <string name="health_notif_title">Las notificaciones están desactivadas</string>
     <string name="health_notif_text">Permite que la app muestre notificaciones; si no, los recordatorios no aparecerán.</string>
@@ -281,7 +283,7 @@
     <string name="health_bg_title">El trabajo en segundo plano está limitado</string>
     <string name="health_bg_text">El teléfono bloquea por completo la app en segundo plano. Quita la restricción de batería.</string>
     <string name="health_battery_title">El ahorro de batería está activado para la app</string>
-    <string name="health_battery_text">En la página de la app que se abre, toca «Batería» → «Sin restricciones» (en Samsung, añade también la app a «Aplicaciones que nunca entran en suspensión»). Si no, el teléfono puede dormir la app y los recordatorios no llegarán. La app no funciona en segundo plano ni gasta batería: solo se despierta en el momento del recordatorio.</string>
+    <string name="health_battery_text">Toca el botón y permítelo en la ventana que aparece. Si no, el teléfono puede dormir la app y los recordatorios no llegarán. La app no funciona en segundo plano ni gasta batería: solo se despierta en el momento del recordatorio.</string>
     <string name="hint_samsung">Samsung: Ajustes → Mantenimiento del dispositivo → Batería → Límites de uso en segundo plano → Aplicaciones que nunca entran en suspensión.</string>
     <string name="hint_xiaomi">Xiaomi: Ajustes → Aplicaciones → LeDor → Ahorro de batería → Sin restricciones; activa también «Inicio automático».</string>
     <string name="hint_huawei">Huawei/Honor: Ajustes → Batería → Inicio de aplicaciones → LeDor → Gestionar manualmente, activa todos los interruptores.</string>

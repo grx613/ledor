@@ -195,6 +195,7 @@
     <string name="imported_n">Événements importés : %1$d</string>
     <string name="synced_at">Synchronisé : %1$s</string>
     <string name="lists_hint_notify">L’interrupteur à droite active ou désactive les notifications de la liste.</string>
+    <string name="lists_hint_holidays">Pour « Fêtes juives », il active ou désactive toute la liste.</string>
     <string name="pull_to_sync">Tirez vers le bas pour synchroniser.</string>
     <string name="list_notifications">Notifications de cette liste</string>
     <string name="pin_codes">Codes PIN</string>
@@ -273,6 +274,7 @@
     <string name="health_disable_confirm">Désactiver</string>
     <string name="health_sheet_title">À activer</string>
     <string name="health_open_setting">Ouvrir le réglage</string>
+    <string name="health_allow">Autoriser</string>
     <string name="health_all_ok">Tout est réglé ✓</string>
     <string name="health_notif_title">Les notifications sont désactivées</string>
     <string name="health_notif_text">Autorisez l’application à afficher des notifications, sinon les rappels n’apparaîtront pas.</string>
@@ -281,7 +283,7 @@
     <string name="health_bg_title">Travail en arrière-plan limité</string>
     <string name="health_bg_text">Le téléphone bloque complètement l’application en arrière-plan. Levez la restriction de batterie.</string>
     <string name="health_battery_title">L’économie de batterie est activée pour l’application</string>
-    <string name="health_battery_text">Sur la page de l’application qui s’ouvre, touchez « Batterie » → « Non restreinte » (sur Samsung, ajoutez aussi l’application aux « Applications jamais en veille »). Sinon, le téléphone peut endormir l’application et les rappels n’arriveront pas. L’application ne tourne pas en arrière-plan et ne consomme pas de batterie — elle ne se réveille qu’au moment d’un rappel.</string>
+    <string name="health_battery_text">Touchez le bouton et autorisez dans la fenêtre qui s’affiche. Sinon, le téléphone peut endormir l’application et les rappels n’arriveront pas. L’application ne tourne pas en arrière-plan et ne consomme pas de batterie — elle ne se réveille qu’au moment d’un rappel.</string>
     <string name="hint_samsung">Samsung : Paramètres → Maintenance de l’appareil → Batterie → Limites d’utilisation en arrière-plan → Applications jamais en veille.</string>
     <string name="hint_xiaomi">Xiaomi : Paramètres → Applications → LeDor → Économiseur de batterie → Aucune restriction ; activez aussi « Démarrage automatique ».</string>
     <string name="hint_huawei">Huawei/Honor : Paramètres → Batterie → Lancement d’applications → LeDor → Gérer manuellement, activez tous les interrupteurs.</string>

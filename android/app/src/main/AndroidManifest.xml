@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+    <!-- Главная функция LeDor — вовремя напомнить о дне рождения или йорцайте, даже если приложение не открывали
+         месяцами. Телефоны (Samsung и др.) усыпляют такие приложения и не дают сработать будильникам, поэтому
+         пользователь одним нажатием разрешает не ограничивать LeDor (D-51, docs/08-store-compliance.md §3). -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" tools:ignore="BatteryLife" />
     <!-- WorkManager приносит службу переднего плана; LeDor её не использует (05 §1) — убираем, чтобы не объяснять это Google Play. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" tools:node="remove" />
 

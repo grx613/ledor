@@ -194,6 +194,7 @@
     <string name="imported_n">Events imported: %1$d</string>
     <string name="synced_at">Synced: %1$s</string>
     <string name="lists_hint_notify">The switch on the right turns notifications for a list on and off.</string>
+    <string name="lists_hint_holidays">For “Jewish holidays” it turns the whole list on and off.</string>
     <string name="pull_to_sync">Pull down to sync.</string>
     <string name="list_notifications">Notifications for this list</string>
     <string name="pin_codes">PINs</string>
@@ -272,6 +273,7 @@
     <string name="health_disable_confirm">Turn off</string>
     <string name="health_sheet_title">What to enable</string>
     <string name="health_open_setting">Open setting</string>
+    <string name="health_allow">Allow</string>
     <string name="health_all_ok">All set ✓</string>
     <string name="health_notif_title">Notifications are off</string>
     <string name="health_notif_text">Allow the app to show notifications, otherwise reminders will not appear.</string>
@@ -280,7 +282,7 @@
     <string name="health_bg_title">Background work is restricted</string>
     <string name="health_bg_text">The phone fully blocks the app in the background. Remove the battery restriction.</string>
     <string name="health_battery_title">Battery saving is on for the app</string>
-    <string name="health_battery_text">On the app page that opens, tap “Battery” → “Unrestricted” (on Samsung, also add the app to “Never sleeping apps”). Otherwise the phone may put the app to sleep and reminders will not arrive. The app does not run in the background and does not drain the battery — it wakes up only at the moment of a reminder.</string>
+    <string name="health_battery_text">Tap the button and allow it in the window that appears. Otherwise the phone may put the app to sleep and reminders will not arrive. The app does not run in the background and does not drain the battery — it wakes up only at the moment of a reminder.</string>
     <string name="hint_samsung">Samsung: Settings → Device care → Battery → Background usage limits → Never sleeping apps.</string>
     <string name="hint_xiaomi">Xiaomi: Settings → Apps → LeDor → Battery saver → No restrictions; also enable “Autostart”.</string>
     <string name="hint_huawei">Huawei/Honor: Settings → Battery → App launch → LeDor → Manage manually, turn on all switches.</string>

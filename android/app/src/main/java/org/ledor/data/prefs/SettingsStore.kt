@@ -23,8 +23,8 @@ enum class GridMode { GREGORIAN, HEBREW }
 
 /** Встроенный список «Еврейские праздники» (B-25). */
 data class HolidaySettings(
-    /** Показывать праздники в календаре и в событиях. */
-    val enabled: Boolean = true,
+    /** Показывать праздники в календаре и в событиях. По умолчанию выключено (B-31): включает сам пользователь. */
+    val enabled: Boolean = false,
     /** Напоминать накануне вечером. */
     val notify: Boolean = true,
     /** Шабат: напоминание в пятницу со временем зажигания свечей. */
@@ -94,7 +94,7 @@ class SettingsStore(private val context: Context) {
             gridMode = p[K.grid]?.let { runCatching { GridMode.valueOf(it) }.getOrNull() } ?: GridMode.HEBREW,
             adarPolicy = p[K.adar]?.let { runCatching { YahrzeitAdarPolicy.valueOf(it) }.getOrNull() } ?: YahrzeitAdarPolicy.ADAR_I,
             lastListId = p[K.lastList],
-            holidays = HolidaySettings(p[K.holidays] ?: true, p[K.holidaysNotify] ?: true, p[K.shabbat] ?: false),
+            holidays = HolidaySettings(p[K.holidays] ?: false, p[K.holidaysNotify] ?: true, p[K.shabbat] ?: false),
         )
     }
 

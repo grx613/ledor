@@ -26,6 +26,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -189,12 +190,14 @@ fun ListsScreen(vm: AppViewModel, nav: NavController) {
                                 Text(stringResource(R.string.holidays_title), style = MaterialTheme.typography.titleMedium)
                                 Text(stringResource(R.string.holidays_sub), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
-                            Switch(checked = h.enabled && h.notify, onCheckedChange = { v -> vm.setHolidays(h.copy(enabled = h.enabled || v, notify = v)) })
+                            // Главный выключатель списка: выключен — праздников нет ни в календаре, ни в событиях, ни в напоминаниях.
+                            Switch(checked = h.enabled, onCheckedChange = { v -> vm.setHolidays(h.copy(enabled = v)) },
+                                modifier = Modifier.testTag("holidays_switch"))
                         }
                     }
                 }
                 item {
-                    Text(stringResource(R.string.lists_hint_notify), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.lists_hint_notify) + " " + stringResource(R.string.lists_hint_holidays), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     if (hasCloud) Text(stringResource(R.string.pull_to_sync), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }

@@ -100,7 +100,7 @@ export default {
       { q: 'Which languages does LeDor support?', a: 'English, עברית, Русский, ייִדיש, Français, Español. In Hebrew and Yiddish the interface is right-to-left and Hebrew dates are written in letters.' },
       { q: 'Can I move my events to a shared list?', a: 'Yes. When creating a list, check “Move events from the personal list”, or open the personal list and choose “Move events to a cloud list”.' },
       { q: 'Is there a dark theme?', a: 'Yes: light, dark or system — under “Settings → Appearance”.' },
-      { q: 'Does LeDor show Jewish holidays and candle-lighting times?', a: 'Yes. Under Lists there is a built-in “Jewish holidays” list: holidays and fasts appear in the calendar, with a reminder the evening before. For Shabbat and holidays it shows the candle-lighting time in your city; the Shabbat reminder is switched on separately. You can turn reminders off and simply look up the dates.' },
+      { q: 'Does LeDor show Jewish holidays and candle-lighting times?', a: 'Yes. Under Lists there is a built-in “Jewish holidays” list. It is off by default — turn it on with its switch. Holidays and fasts then appear in the calendar, with a reminder the evening before. For Shabbat and holidays it shows the candle-lighting time in your city; the Shabbat reminder is switched on separately. You can turn reminders off and simply look up the dates.' },
       { q: 'Is there an iPhone version?', a: 'Coming soon. LeDor is currently available for Android.' },
       { q: 'How much does the app cost?', a: 'It is free, with no ads or paid content. The project is non-commercial and open source.' },
     ],

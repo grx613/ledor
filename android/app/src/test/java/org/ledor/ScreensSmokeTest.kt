@@ -3,6 +3,7 @@ package org.ledor
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
@@ -27,6 +28,15 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 abstract class ScreensSmokeTest(private val lang: String) {
     @get:Rule val rule = createAndroidComposeRule<MainActivity>()
+
+    /** DataStore завершает запись через главный цикл — в Robolectric его надо прокручивать самим. */
+    private fun waitFor(cond: () -> Boolean) {
+        val end = System.currentTimeMillis() + 5_000
+        while (!cond()) {
+            check(System.currentTimeMillis() < end) { "условие не выполнилось за 5 с" }
+            rule.mainClock.advanceTimeBy(50); org.robolectric.shadows.ShadowLooper.idleMainLooper(); Thread.sleep(20)
+        }
+    }
 
     private fun shot(name: String) = rule.onRoot().captureRoboImage("build/screens/$lang/$name.png")
     private fun s(id: Int) = rule.activity.getString(id)
@@ -92,6 +102,8 @@ abstract class ScreensSmokeTest(private val lang: String) {
         // Витрина: без плашки «напоминания могут не прийти», вид по умолчанию — еврейский.
         c.settingsStore.setHealthWarnings(false)
         c.settingsStore.setGridMode(org.ledor.data.prefs.GridMode.HEBREW)
+        // Праздники по умолчанию выключены (B-31) — для витрины включаем.
+        c.settingsStore.setHolidays(org.ledor.data.prefs.HolidaySettings(enabled = true))
     }
 
     @Test fun launchAndScreens() {
@@ -194,8 +206,15 @@ abstract class ScreensSmokeTest(private val lang: String) {
         val container = (rule.activity.application as KalendarApp).container
         kotlinx.coroutines.runBlocking {
             container.settingsStore.setCity("il-jerusalem")
-            container.settingsStore.setHolidays(org.ledor.data.prefs.HolidaySettings(shabbat = true))
+            container.settingsStore.setHolidays(org.ledor.data.prefs.HolidaySettings(enabled = true, shabbat = true))
         }
+        rule.waitForIdle()
+        // Переключатель на карточке праздников — главный выключатель списка (B-31): раньше он отключал только напоминания.
+        val holidaysOn = { kotlinx.coroutines.runBlocking { container.settingsStore.current() }.holidays.enabled }
+        rule.onNodeWithTag("holidays_switch").performScrollTo().performClick()
+        waitFor { !holidaysOn() }
+        rule.onNodeWithTag("holidays_switch").performClick()
+        waitFor { holidaysOn() }
         rule.waitForIdle()
         rule.onNodeWithText(s(R.string.holidays_title)).performScrollTo().performClick()
         rule.waitForIdle()

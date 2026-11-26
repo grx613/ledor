@@ -48,20 +48,19 @@ class DateFormatters(private val context: Context) {
     fun hebrewMonthTitle(year: Int, m: HebrewMonth) = "${monthNom(m)} ${num(year)}"
 
     /**
-     * Даты наступления события (D-46). По еврейскому календарю — обе даты, первой — календарь [first].
-     * По григорианскому — только григорианская: еврейская дата того же дня датой события не является
-     * («30 апреля» ≠ день рождения «23 Нисана») и только сбивает с толку.
+     * Даты наступления события (D-54): главная и «на какое число она выпадает в другом календаре».
+     * Наступление по григорианскому календарю — григорианская дата всегда первой: еврейская дата того же дня
+     * датой события не является («30 апреля» ≠ день рождения «23 Нисана») и заголовком строки не бывает.
+     * Наступление по еврейскому — обе даты настоящие, первой идёт календарь [first] (вкладка списка).
      */
-    fun occurrenceDates(o: Occurrence, first: CalendarKind = CalendarKind.HEBREW): List<String> {
+    fun occurrenceDates(o: Occurrence, first: CalendarKind = o.calendar): List<String> {
         val greg = gregorianShortWeekday(o.date)
-        if (o.calendar == CalendarKind.GREGORIAN) return listOf(greg)
         val heb = hebrewDate(o.hebrewDate)
-        return if (first == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
+        return if (o.calendar == CalendarKind.HEBREW && first == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
     }
 
-    /** То же одной строкой: «пт, 16 апреля 2027 (9 Нисана 5787)» или «пт, 30 апреля 2027». */
-    fun occurrenceDatesInline(o: Occurrence): String =
-        occurrenceDates(o, CalendarKind.GREGORIAN).let { if (it.size == 2) "${it[0]} (${it[1]})" else it[0] }
+    /** Одной строкой, григорианская дата первой: «ср, 5 мая 2027 (28 Нисана 5787)». */
+    fun occurrenceDatesInline(o: Occurrence): String = occurrenceDates(o, CalendarKind.GREGORIAN).let { "${it[0]} (${it[1]})" }
 
     fun gregorian(d: LocalDate): String = fFull.format(d)
     fun gregorianWeekday(d: LocalDate): String = fWeekday.format(d)

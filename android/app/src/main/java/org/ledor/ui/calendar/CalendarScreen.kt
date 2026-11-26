@@ -136,6 +136,7 @@ fun CalendarScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues, s
         )
     }
     if (showHealth) HealthSheet(health, vm.container.healthChecker, vm::onResume) { showHealth = false }
+    val fixHealth = org.ledor.ui.settings.rememberHealthFixer(vm.container.healthChecker, vm::onResume)
     if (confirmNoReminders) ConfirmDialog(
         stringResource(R.string.health_disable_title), stringResource(R.string.health_disable_text), stringResource(R.string.health_disable_confirm),
         onConfirm = { vm.disableHealthWarnings(); confirmNoReminders = false }, onDismiss = { confirmNoReminders = false }, destructive = false,
@@ -173,7 +174,10 @@ fun CalendarScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues, s
                     if (health.isNotEmpty() && s.reminders.anyEnabled && s.healthWarningsEnabled) {
                         WarningBanner(stringResource(R.string.health_banner_title), stringResource(R.string.health_banner_text)) {
                             TextButton(onClick = { confirmNoReminders = true }) { Text(stringResource(R.string.health_no_reminders)) }
-                            Button(onClick = { showHealth = true }) { Text(stringResource(R.string.health_fix)) }
+                            // Мешает только экономия батареи — сразу системное окно с кнопкой «Разрешить» (D-51).
+                            Button(onClick = {
+                                if (health.singleOrNull() == org.ledor.reminders.HealthIssue.BATTERY_OPTIMIZED) fixHealth(health.single()) else showHealth = true
+                            }) { Text(stringResource(R.string.health_fix)) }
                         }
                     }
                 }

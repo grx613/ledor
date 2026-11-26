@@ -200,6 +200,7 @@
     <string name="imported_n">Импортировано событий: %1$d</string>
     <string name="synced_at">Синхронизировано: %1$s</string>
     <string name="lists_hint_notify">Переключатель справа включает и выключает уведомления по списку.</string>
+    <string name="lists_hint_holidays">У «Еврейских праздников» он включает и выключает весь список.</string>
     <string name="pull_to_sync">Потяните вниз, чтобы синхронизировать.</string>
     <string name="list_notifications">Уведомления по этому списку</string>
     <string name="pin_codes">ПИН-коды</string>
@@ -278,6 +279,7 @@
     <string name="health_disable_confirm">Отключить</string>
     <string name="health_sheet_title">Что нужно включить</string>
     <string name="health_open_setting">Открыть настройку</string>
+    <string name="health_allow">Разрешить</string>
     <string name="health_all_ok">Всё настроено ✓</string>
     <string name="health_notif_title">Уведомления выключены</string>
     <string name="health_notif_text">Разрешите приложению показывать уведомления — иначе напоминания не появятся.</string>
@@ -286,7 +288,7 @@
     <string name="health_bg_title">Работа в фоне ограничена</string>
     <string name="health_bg_text">Телефон полностью блокирует приложение в фоне. Снимите ограничение батареи.</string>
     <string name="health_battery_title">Включена экономия батареи для приложения</string>
-    <string name="health_battery_text">На открывшейся странице приложения нажмите «Батарея» → «Не ограничено» (на Samsung ещё добавьте приложение в «Никогда не спящие»). Иначе телефон может усыпить приложение, и напоминания не придут. Приложение не работает в фоне и не расходует заряд — оно просыпается только в момент напоминания.</string>
+    <string name="health_battery_text">Нажмите кнопку и разрешите в появившемся окне. Иначе телефон может усыпить приложение, и напоминания не придут. Приложение не работает в фоне и не расходует заряд — оно просыпается только в момент напоминания.</string>
     <string name="hint_samsung">Samsung: Настройки → Обслуживание устройства → Батарея → Ограничения в фоновом режиме → Никогда не спящие приложения.</string>
     <string name="hint_xiaomi">Xiaomi: Настройки → Приложения → LeDor → Контроль активности → Нет ограничений; включите также «Автозапуск».</string>
     <string name="hint_huawei">Huawei/Honor: Настройки → Батарея → Запуск приложений → LeDor → Управлять вручную, включите все переключатели.</string>

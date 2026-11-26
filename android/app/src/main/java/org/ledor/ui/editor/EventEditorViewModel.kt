@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import org.ledor.KalendarApp
 import org.ledor.data.local.LOCAL_LIST_ID
+import org.ledor.data.local.ListEntity
 import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.calendar.HebrewCalendarMath as M
 import org.ledor.domain.calendar.HebrewMonth
@@ -13,6 +14,7 @@ import org.ledor.ui.navigation.EditorRoute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -85,14 +87,13 @@ class EventEditorViewModel(app: Application) : AndroidViewModel(app) {
         if (_state.value.loaded) return
         viewModelScope.launch {
             val settings = c.settingsStore.current()
-            val lists = c.listRepository.observeAll()
             val existing = route.id?.let { c.eventRepository.get(it) }
             if (existing != null) {
                 val list = c.listRepository.get(existing.listId)
                 _state.value = fromEvent(existing).copy(loaded = true, readOnly = list?.canEdit != true)
                 return@launch
             }
-            val lastList = settings.lastListId?.let { c.listRepository.get(it) }?.takeIf { it.canEdit }?.id ?: LOCAL_LIST_ID
+            val lastList = defaultListId(c.listRepository.observeAll().first(), settings.lastListId)
             var s = EditorState(loaded = true, listId = route.listId ?: lastList)
             route.type?.let { t -> val type = EventType.parse(t); s = s.copy(type = type, recurring = EventDefaults.recurring(type)) }
             route.title?.let { s = s.copy(title = it) }
@@ -205,4 +206,13 @@ class EventEditorViewModel(app: Application) : AndroidViewModel(app) {
             if (e.title.isNotEmpty()) { c.eventRepository.save(e); onDone() }
         }
     }
+}
+
+/**
+ * Список по умолчанию для нового события (EVT-2, B-30). Есть облачный список с правом редактирования — он:
+ * последний использованный, иначе первый по порядку. Облачных нет — личный.
+ */
+fun defaultListId(lists: List<ListEntity>, lastListId: String?): String {
+    val cloud = lists.filter { it.isCloud && it.canEdit }
+    return (cloud.firstOrNull { it.id == lastListId } ?: cloud.firstOrNull())?.id ?: LOCAL_LIST_ID
 }

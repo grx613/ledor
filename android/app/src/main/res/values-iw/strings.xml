@@ -195,6 +195,7 @@
     <string name="imported_n">יובאו אירועים: %1$d</string>
     <string name="synced_at">סונכרן: %1$s</string>
     <string name="lists_hint_notify">המתג מימין מפעיל ומכבה התראות עבור הרשימה.</string>
+    <string name="lists_hint_holidays">ב„חגי ישראל” הוא מפעיל ומכבה את כל הרשימה.</string>
     <string name="pull_to_sync">משכו למטה כדי לסנכרן.</string>
     <string name="list_notifications">התראות עבור רשימה זו</string>
     <string name="pin_codes">קודים</string>
@@ -273,6 +274,7 @@
     <string name="health_disable_confirm">כיבוי</string>
     <string name="health_sheet_title">מה צריך להפעיל</string>
     <string name="health_open_setting">פתיחת ההגדרה</string>
+    <string name="health_allow">לאפשר</string>
     <string name="health_all_ok">הכול מוגדר ✓</string>
     <string name="health_notif_title">ההתראות כבויות</string>
     <string name="health_notif_text">אפשרו לאפליקציה להציג התראות — אחרת התזכורות לא יופיעו.</string>
@@ -281,7 +283,7 @@
     <string name="health_bg_title">העבודה ברקע מוגבלת</string>
     <string name="health_bg_text">הטלפון חוסם את האפליקציה ברקע לחלוטין. הסירו את הגבלת הסוללה.</string>
     <string name="health_battery_title">חיסכון בסוללה פעיל לאפליקציה</string>
-    <string name="health_battery_text">בדף האפליקציה שייפתח הקישו „סוללה” ← „ללא הגבלה” (בסמסונג — הוסיפו גם את האפליקציה ל„אפליקציות שלעולם אינן במצב שינה”). אחרת הטלפון עלול להרדים את האפליקציה והתזכורות לא יגיעו. האפליקציה אינה פועלת ברקע ואינה צורכת סוללה — היא מתעוררת רק ברגע התזכורת.</string>
+    <string name="health_battery_text">הקישו על הכפתור ואשרו בחלון שייפתח. אחרת הטלפון עלול להרדים את האפליקציה והתזכורות לא יגיעו. האפליקציה אינה פועלת ברקע ואינה צורכת סוללה — היא מתעוררת רק ברגע התזכורת.</string>
     <string name="hint_samsung">סמסונג: הגדרות ← טיפול במכשיר ← סוללה ← הגבלות שימוש ברקע ← אפליקציות שלעולם אינן במצב שינה.</string>
     <string name="hint_xiaomi">שיאומי: הגדרות ← אפליקציות ← LeDor ← חיסכון בסוללה ← ללא הגבלות; הפעילו גם „הפעלה אוטומטית”.</string>
     <string name="hint_huawei">Huawei/Honor: הגדרות ← סוללה ← הפעלת אפליקציות ← LeDor ← ניהול ידני, הפעילו את כל המתגים.</string>

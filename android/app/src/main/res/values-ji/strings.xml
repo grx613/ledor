@@ -190,6 +190,7 @@
     <string name="imported_n">אימפּאָרטירטע געשעענישן: %1$d</string>
     <string name="synced_at">סינכראָניזירט: %1$s</string>
     <string name="lists_hint_notify">דער שאַלטער אויף דער זײַט צינדט אָן און לעשט אויס די מעלדונגען פֿאַר דער רשימה.</string>
+    <string name="lists_hint_holidays">בײַ „ייִדישע יום־טובֿים“ צינדט ער אָן און לעשט אויס די גאַנצע רשימה.</string>
     <string name="pull_to_sync">ציט אַראָפּ כּדי צו סינכראָניזירן.</string>
     <string name="list_notifications">מעלדונגען פֿאַר דער רשימה</string>
     <string name="pin_codes">PIN־קאָדן</string>
@@ -268,6 +269,7 @@
     <string name="health_disable_confirm">אויסלעשן</string>
     <string name="health_sheet_title">וואָס מע דאַרף אָנצינדן</string>
     <string name="health_open_setting">עפֿענען די באַשטעלונג</string>
+    <string name="health_allow">דערלויבן</string>
     <string name="health_all_ok">אַלץ איז אײַנגעשטעלט ✓</string>
     <string name="health_notif_title">מעלדונגען זײַנען אויסגעלאָשן</string>
     <string name="health_notif_text">ערלויבט דער אַפּ צו ווײַזן מעלדונגען — אַנדערש וועלן די דערמאָנונגען נישט באַווײַזן זיך.</string>
@@ -276,7 +278,7 @@
     <string name="health_bg_title">די אַרבעט אין הינטערגרונט איז באַגרענעצט</string>
     <string name="health_bg_text">דער טעלעפֿאָן בלאָקירט אינגאַנצן די אַפּ אין הינטערגרונט. נעמט אַראָפּ די באַטאַרעי־באַגרענעצונג.</string>
     <string name="health_battery_title">באַטאַרעי־שפּאָרונג איז אָנגעצונדן פֿאַר דער אַפּ</string>
-    <string name="health_battery_text">אויף דעם בלאַט פֿון דער אַפּ וואָס עפֿנט זיך, דריקט „באַטאַרעי“ ← „אָן באַגרענעצונג“ (אויף Samsung — לייגט אויך צו די אַפּ צו „קיינמאָל נישט שלאָפֿנדיקע אַפּס“). אַנדערש קען דער טעלעפֿאָן אײַנשלעפֿערן די אַפּ, און די דערמאָנונגען וועלן נישט אָנקומען. די אַפּ אַרבעט נישט אין הינטערגרונט און פֿאַרברויכט נישט די באַטאַרעי — זי וואַכט אויף נאָר אין דער מינוט פֿון דער דערמאָנונג.</string>
+    <string name="health_battery_text">דריקט דאָס קנעפּל און דערלויבט אין דעם פֿענצטער וואָס עפֿנט זיך. אַנדערש קען דער טעלעפֿאָן אײַנשלעפֿערן די אַפּ, און די דערמאָנונגען וועלן נישט אָנקומען. די אַפּ אַרבעט נישט אין הינטערגרונט און פֿאַרברויכט נישט די באַטאַרעי — זי וואַכט אויף נאָר אין דער מינוט פֿון דער דערמאָנונג.</string>
     <string name="hint_samsung">Samsung: Settings ← Device care ← Battery ← Background usage limits ← Never sleeping apps.</string>
     <string name="hint_xiaomi">Xiaomi: Settings ← Apps ← LeDor ← Battery saver ← No restrictions; אויך „Autostart“.</string>
     <string name="hint_huawei">Huawei/Honor: Settings ← Battery ← App launch ← LeDor ← Manage manually.</string>

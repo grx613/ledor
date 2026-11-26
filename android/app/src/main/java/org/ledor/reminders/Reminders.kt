@@ -167,7 +167,8 @@ class NotificationFactory(private val baseContext: Context) {
                 listOfNotNull(context.getString(R.string.notif_eve_starts, f.hebrewDate(hebrew)), HolidayEvents.notificationLine(e)).joinToString(" ")
             r.kind == ReminderKind.DAY -> context.getString(R.string.notif_day_title, type, e.title) to
                 listOfNotNull(
-                    if (r.calendar == CalendarKind.GREGORIAN) "${f.gregorian(r.occurrenceDate)}." else "${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.",
+                    // Главная дата — первой (D-54).
+                    if (r.calendar == CalendarKind.GREGORIAN) "${f.gregorian(r.occurrenceDate)} · ${f.hebrewDate(hebrew)}." else "${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.",
                     age,
                 ).joinToString(" ")
             r.calendar == CalendarKind.GREGORIAN && e.recurring -> context.getString(R.string.notif_eve_greg_title, type, e.title) to
@@ -250,15 +251,16 @@ class ReminderHealthChecker(private val context: Context) {
 
     private val pkgUri get() = Uri.parse("package:${context.packageName}")
 
+    @android.annotation.SuppressLint("BatteryLife")
     fun fixIntents(issue: HealthIssue): List<Intent> = when (issue) {
         HealthIssue.NOTIFICATIONS_OFF -> listOf(
             Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName),
         )
         HealthIssue.EXACT_ALARMS_DENIED -> listOf(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, pkgUri))
         HealthIssue.BACKGROUND_RESTRICTED -> emptyList()
-        // Страница приложения: «Батарея» → «Не ограничено». Общий список оптимизации батареи не подходит —
-        // на Samsung он по умолчанию показывает только уже не оптимизируемые приложения (D-45).
-        HealthIssue.BATTERY_OPTIMIZED -> emptyList()
+        // Системное окно «Разрешить работу в фоне?» — одно нажатие (D-51). Не открылось — страница приложения:
+        // «Батарея» → «Не ограничено». Общий список оптимизации не подходит: на Samsung в нём не найти приложение (D-45).
+        HealthIssue.BATTERY_OPTIMIZED -> listOf(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, pkgUri))
     } + Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, pkgUri)
 
     fun manufacturerHint(): Int? {

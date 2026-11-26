@@ -90,7 +90,9 @@ fun HealthChecklist(issues: List<HealthIssue>, checker: ReminderHealthChecker, o
                                 Text(stringResource(it), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
-                        FilledTonalButton(onClick = { fix(issue) }) { Text(stringResource(R.string.health_open_setting)) }
+                        FilledTonalButton(onClick = { fix(issue) }) {
+                            Text(stringResource(if (issue == HealthIssue.BATTERY_OPTIMIZED) R.string.health_allow else R.string.health_open_setting))
+                        }
                     }
                 }
             }

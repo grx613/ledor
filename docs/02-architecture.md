@@ -1,6 +1,6 @@
 # 02. Архитектура проекта
 
-Описывает Android-версию 0.6.3 и общий репозиторий (обновлено 2026-11-24). iOS — `09-ios-notes.md`.
+Описывает Android-версию 0.6.4 и общий репозиторий (обновлено 2026-11-24). iOS — `09-ios-notes.md`.
 
 ## 1. Репозиторий (монорепозиторий)
 
@@ -84,7 +84,7 @@ android {
 без Android и эмулятора; её границы совпадают с тем, что потом переносится на Swift.
 
 Идентификаторы: `applicationId` и `namespace` — **`org.ledor`**, пакеты кода — `org.ledor…`.
-Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 12 / 0.6.3).
+Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 13 / 0.6.4).
 Подпись release: ключ загрузки из `android/keystore.properties` (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`;
 файл и `android/keystore/*.jks` не коммитятся). Без этого файла release подписывается отладочным ключом — только для
 локальной проверки. `./gradlew :app:bundleRelease` → `app/build/outputs/bundle/release/app-release.aab` для Google Play.

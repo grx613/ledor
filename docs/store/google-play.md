@@ -68,6 +68,20 @@
 
 Если Google откажет — `08-store-compliance.md` §3: заменить на `SCHEDULE_EXACT_ALARM`, код менять не нужно.
 
+### 2.3. Запрос «не экономить батарею» (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+
+Отдельной анкеты в консоли нет. Разрешение возвращено в 0.6.4 по решению заказчика (D-51): главная функция приложения —
+напоминания, а телефоны усыпляют редко открываемые приложения. Если Google спросит или отклонит выпуск — ответ:
+
+> LeDor's core function is delivering reminders about birthdays, yahrzeits and family dates that the user entered.
+> The app is typically opened only a few times a year, so device power management puts it to sleep: on Samsung devices
+> sleeping apps have alarms restricted and deep sleeping apps cannot run until opened (Samsung's own documentation),
+> and the reminder is silently lost. This breaks the core function. The app therefore asks the user once, with the
+> standard system dialog, to exempt it from battery optimization. LeDor does not run in the background: it has no
+> foreground service, no wake locks of its own, no network polling; it wakes only at the moment of a reminder.
+
+Если отклонят окончательно — убрать разрешение (`08-store-compliance.md` §3, последний столбец) и выпустить заново.
+
 ## 3. Страница приложения (Main store listing)
 
 «Развитие» → «Страница приложения» (Grow → Store presence → Main store listing):
