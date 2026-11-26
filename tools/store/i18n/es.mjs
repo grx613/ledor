@@ -2,20 +2,21 @@
 export default {
   lang: 'es', play: 'es-ES', dir: 'ltr',
   title: 'LeDor: cumpleaños y yahrzeit',
-  short: 'Calendario hebreo: fiestas judías, avisos antes del atardecer, listas en familia',
-  full: `LeDor es un calendario hebreo para la familia: te recuerda cumpleaños, yahrzeits, fechas familiares y fiestas judías según los calendarios hebreo y gregoriano, y permite que toda la familia o la comunidad lleve una sola lista de fechas compartida.
+  short: `Calendario familiar compartido: cumpleaños hebreos, yahrzeits y avisos`,
+  full: `LeDor es un calendario familiar compartido para las fechas judías. Crea una lista «Familia Cohen», compártela con tu pareja, tus hijos y tus familiares, y todos tendrán los mismos cumpleaños, yahrzeits y aniversarios: quien añada una fecha, aparece en cada teléfono, con recordatorios según los calendarios hebreo y gregoriano.
+
+CALENDARIO FAMILIAR COMPARTIDO
+• La añada quien la añada —tú, tu pareja o tu madre—, todos la ven y el recordatorio llega a cada teléfono.
+• Crea una lista — «Familia Cohen», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.
+• Tus familiares escriben el nombre de la lista y el PIN y ven las mismas fechas, con recordatorios en su propio teléfono.
+• Un PIN normal permite ver; un PIN maestro permite añadir y editar fechas.
+• Varias listas a la vez, cada una con su color. Sin registro, sin correo y sin contraseñas. Funciona también sin conexión.
 
 RECORDATORIOS A TIEMPO
 • La víspera por la tarde — a la hora que elijas antes de la puesta del sol en tu ciudad (3 horas por defecto), para tener tiempo de llamar, preparar la mesa o encender una vela de recuerdo.
 • Y otra vez el mismo día — al mediodía o a la hora que elijas.
 • Para cada evento decides el calendario: hebreo, gregoriano o ambos.
 • Para que los recordatorios no se pierdan, LeDor pide una sola vez que el ahorro de batería no lo limite: los teléfonos ponen en reposo las apps que se abren poco, y sus recordatorios no llegan.
-
-UNA LISTA PARA LA FAMILIA Y LA COMUNIDAD
-• Crea una lista — «Familia Cohen», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.
-• Tus familiares escriben el nombre de la lista y el PIN y ven las mismas fechas, con recordatorios en su propio teléfono.
-• Un PIN normal permite ver; un PIN maestro permite añadir y editar fechas.
-• Varias listas a la vez, cada una con su color. Sin registro, sin correo y sin contraseñas. Funciona también sin conexión.
 
 SEGÚN LAS REGLAS DEL CALENDARIO HEBREO
 • Las dos fechas juntas — en el calendario, en la lista y en cada evento.
@@ -43,9 +44,9 @@ LIGERA Y HONESTA
   whatsNew: 'Primera versión en Google Play.',
   feature: 'Cumpleaños y yahrzeits — toda la familia los recuerda',
   shots: {
-    '03_calendar': 'Las dos fechas en cada día',
-    '10_lists': 'Listas de familia y comunidad',
+    '10_lists': 'Calendario familiar compartido',
     '14_list_share': 'Comparte una lista con tu familia',
+    '03_calendar': 'Las dos fechas en cada día',
     '15_holidays': 'Fiestas judías y encendido de velas',
     '05_events': 'Todos los eventos por mes',
     '08_editor': 'Hebreo, gregoriano o ambos',

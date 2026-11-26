@@ -2,20 +2,21 @@
 export default {
   lang: 'en', play: 'en-US', dir: 'ltr',
   title: 'LeDor: Jewish Family Calendar',
-  short: 'Hebrew calendar: holidays, birthday & yahrzeit reminders, shared family lists',
-  full: `LeDor is a Hebrew calendar for the family: it reminds you of birthdays, yahrzeits, family dates and Jewish holidays by the Hebrew and Gregorian calendars — and lets your whole family or community keep one shared list of dates.
+  short: `Shared family calendar: Hebrew birthdays & yahrzeits, reminders for everyone`,
+  full: `LeDor is a shared family calendar for Jewish dates. Create a list — “The Cohen Family” — share it with your spouse, children and relatives, and everyone sees the same birthdays, yahrzeits and anniversaries: whoever adds a date, it appears on every phone, with reminders by the Hebrew and Gregorian calendars.
+
+SHARED FAMILY CALENDAR
+• Whoever adds a date — you, your spouse or your mother — everyone sees it, and the reminder comes to every phone.
+• Create a list — "The Cohen Family", "Our community", "Friends" — and send an invitation via WhatsApp or Telegram.
+• Relatives enter the list name and PIN and see the same dates, with reminders on their own phones.
+• A regular PIN lets people view; a master PIN lets them add and edit dates.
+• Several lists at once, each with its own color. No sign-up, no email, no passwords. Works offline too.
 
 REMINDERS ON TIME
 • The evening before — a chosen time before sunset in your city (3 hours by default), so there is time to call, set the table or light a memorial candle.
 • And once more on the day itself — at noon or at a time you choose.
 • For each event you decide how it is observed: by the Hebrew date, the Gregorian date, or both.
 • So that reminders are not lost, LeDor asks once to be excluded from battery saving: phones put rarely opened apps to sleep, and their reminders do not arrive.
-
-ONE LIST FOR FAMILY AND COMMUNITY
-• Create a list — "The Cohen Family", "Our community", "Friends" — and send an invitation via WhatsApp or Telegram.
-• Relatives enter the list name and PIN and see the same dates, with reminders on their own phones.
-• A regular PIN lets people view; a master PIN lets them add and edit dates.
-• Several lists at once, each with its own color. No sign-up, no email, no passwords. Works offline too.
 
 DONE THE HEBREW-CALENDAR WAY
 • Both dates side by side — in the calendar, in the list and on every event.
@@ -43,9 +44,9 @@ Found a mistake or have an idea? Write from the app: More → Send feedback.`,
   whatsNew: 'First release on Google Play.',
   feature: 'Birthdays and yahrzeits — remembered by the whole family',
   shots: {
-    '03_calendar': 'Both dates on every day',
-    '10_lists': 'Family and community lists',
+    '10_lists': 'Shared family calendar',
     '14_list_share': 'Share a list with your family',
+    '03_calendar': 'Both dates on every day',
     '15_holidays': 'Jewish holidays and candle lighting',
     '05_events': 'All events by month',
     '08_editor': 'Hebrew, Gregorian or both calendars',

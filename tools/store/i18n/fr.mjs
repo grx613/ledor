@@ -2,20 +2,21 @@
 export default {
   lang: 'fr', play: 'fr-FR', dir: 'ltr',
   title: 'LeDor: anniversaires, yahrzeit',
-  short: 'Calendrier hébraïque : fêtes juives, rappels avant le coucher du soleil, listes',
-  full: `LeDor est un calendrier hébraïque pour la famille : il vous rappelle les anniversaires, les yahrzeits, les dates de famille et les fêtes juives selon les calendriers hébraïque et grégorien — et permet à toute la famille ou à la communauté de tenir une seule liste de dates partagée.
+  short: `Calendrier familial partagé : anniversaires hébraïques, yahrzeits, rappels`,
+  full: `LeDor est un calendrier familial partagé pour les dates juives. Créez une liste « Famille Cohen », partagez-la avec votre conjoint, vos enfants et vos proches — et tous ont les mêmes anniversaires, yahrzeits et dates de famille : quel que soit celui qui ajoute une date, elle apparaît sur chaque téléphone, avec des rappels selon les calendriers hébraïque et grégorien.
+
+CALENDRIER FAMILIAL PARTAGÉ
+• Que la date soit ajoutée par vous, votre conjoint ou votre mère, tout le monde la voit, et le rappel arrive sur chaque téléphone.
+• Créez une liste — « Famille Cohen », « Notre communauté », « Amis » — et envoyez une invitation par WhatsApp ou Telegram.
+• Vos proches saisissent le nom de la liste et le code PIN et voient les mêmes dates, avec des rappels sur leur propre téléphone.
+• Un PIN simple permet de consulter ; un PIN maître permet d'ajouter et de modifier des dates.
+• Plusieurs listes à la fois, chacune avec sa couleur. Sans inscription, sans e-mail, sans mot de passe. Fonctionne aussi hors ligne.
 
 DES RAPPELS AU BON MOMENT
 • La veille au soir — à l'heure choisie avant le coucher du soleil dans votre ville (3 heures par défaut), pour avoir le temps d'appeler, de dresser la table ou d'allumer une bougie du souvenir.
 • Et encore une fois le jour même — à midi ou à l'heure de votre choix.
 • Pour chaque événement, vous choisissez le calendrier : hébraïque, grégorien ou les deux.
 • Pour que les rappels ne se perdent pas, LeDor demande une seule fois à ne pas être limité par l'économie de batterie : les téléphones mettent en veille les applications rarement ouvertes, et leurs rappels n'arrivent pas.
-
-UNE LISTE POUR LA FAMILLE ET LA COMMUNAUTÉ
-• Créez une liste — « Famille Cohen », « Notre communauté », « Amis » — et envoyez une invitation par WhatsApp ou Telegram.
-• Vos proches saisissent le nom de la liste et le code PIN et voient les mêmes dates, avec des rappels sur leur propre téléphone.
-• Un PIN simple permet de consulter ; un PIN maître permet d'ajouter et de modifier des dates.
-• Plusieurs listes à la fois, chacune avec sa couleur. Sans inscription, sans e-mail, sans mot de passe. Fonctionne aussi hors ligne.
 
 SELON LES RÈGLES DU CALENDRIER HÉBRAÏQUE
 • Les deux dates côte à côte — dans le calendrier, dans la liste et sur chaque événement.
@@ -43,9 +44,9 @@ Une erreur ou une idée ? Écrivez depuis l'application : Plus → Envoyer un av
   whatsNew: 'Première version sur Google Play.',
   feature: 'Anniversaires et yahrzeits — toute la famille s’en souvient',
   shots: {
-    '03_calendar': 'Les deux dates chaque jour',
-    '10_lists': 'Listes de famille et de communauté',
+    '10_lists': 'Calendrier familial partagé',
     '14_list_share': 'Partagez une liste avec vos proches',
+    '03_calendar': 'Les deux dates chaque jour',
     '15_holidays': 'Fêtes juives et allumage des bougies',
     '05_events': 'Tous les événements par mois',
     '08_editor': 'Hébraïque, grégorien ou les deux',
