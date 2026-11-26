@@ -1,0 +1,31 @@
+# LeDor (kalendar.bothub.chat): DNS имени указывает сюда, без прокси Cloudflare — из России Cloudflare и Hetzner
+# блокируются (D-58). Всё пересылается на сервер LeDor в Hetzner по адресу, с Host и SNI kalendar.bothub.chat.
+# Своих данных здесь нет: база, сайт и API — на Hetzner. Копия блока — tools/deploy/kalendar-mirror.caddy в репозитории LeDor.
+kalendar.bothub.chat {
+	encode zstd gzip
+	request_body {
+		max_size 512KB
+	}
+	reverse_proxy https://2.31.88.30:443 {
+		header_up Host kalendar.bothub.chat
+		# Из этого заголовка сервер берёт адрес посетителя для лимитов подбора ПИН. Ставим сами, из реального соединения.
+		header_up CF-Connecting-IP {http.request.remote.host}
+		header_up -X-Forwarded-For
+		transport http {
+			tls_server_name kalendar.bothub.chat
+		}
+	}
+}
+
+# Порт 80: проверки Let's Encrypt для сертификата на Hetzner (он продлевает свой сам) — туда; остальное — на https.
+# Свои проверки этот Caddy перехватывает сам, раньше маршрутов.
+http://kalendar.bothub.chat {
+	handle /.well-known/acme-challenge/* {
+		reverse_proxy http://2.31.88.30:80 {
+			header_up Host kalendar.bothub.chat
+		}
+	}
+	handle {
+		redir https://{host}{uri} 308
+	}
+}

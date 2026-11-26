@@ -203,7 +203,7 @@ export default {
 <p>Anyone who knows its name and PIN. You decide whom to give the PIN to and are responsible for the consent of the people whose dates you add.</p>
 
 <h2>8. Who receives data</h2>
-<p>No one, except where required by law. The website uses the Cloudflare network, which technically processes visitors’ IP addresses. Feedback is delivered to the author via Telegram.</p>
+<p>No one, except where required by law. Requests to the website and server pass through the Timeweb hosting service, which technically processes visitors’ IP addresses. Feedback is delivered to the author via Telegram.</p>
 
 <h2 id="delete">9. Your rights and deleting data</h2>
 <p>You can ask what data about you is stored, correct it or delete it.</p>

@@ -203,7 +203,7 @@ export default {
 <p>Cualquiera que conozca su nombre y su PIN. Tú decides a quién das el PIN y respondes del consentimiento de las personas cuyas fechas añades.</p>
 
 <h2>8. Destinatarios</h2>
-<p>Nadie, salvo obligación legal. El sitio usa la red de Cloudflare, que trata técnicamente las direcciones IP de los visitantes. Los comentarios llegan al autor por Telegram.</p>
+<p>Nadie, salvo obligación legal. Las solicitudes al sitio y al servidor pasan por el alojamiento Timeweb, que trata técnicamente las direcciones IP de los visitantes. Los comentarios llegan al autor por Telegram.</p>
 
 <h2 id="delete">9. Tus derechos y eliminación de datos</h2>
 <p>Puedes saber qué datos tuyos se guardan, rectificarlos o eliminarlos.</p>
