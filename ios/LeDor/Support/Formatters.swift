@@ -66,18 +66,18 @@ struct Formatters {
         return f.string(from: instant)
     }
 
-    /// Две даты наступления (D-54, заменяет D-46): главная крупно, под ней — тот же день в другом календаре.
-    /// По еврейскому календарю первой идёт календарь `first` (вкладка); по григорианскому — всегда григорианская:
-    /// еврейская дата того же дня заголовком строки не бывает.
-    func occurrenceDates(_ o: Occurrence, first: CalendarKind? = nil) -> [String] {
+    /// Даты наступления (D-55): первой — главная, второй — тот же день в другом календаре. Главная — дата, которую
+    /// отмечают; она одна и та же из года в год: «30 апреля» у наступления по григорианскому календарю, «28 Нисана» —
+    /// по еврейскому. От вкладки списка порядок не зависит.
+    func occurrenceDates(_ o: Occurrence) -> [String] {
         let greg = gregorianShortWeekday(o.date)
         let heb = hebrewDate(o.hebrewDate)
-        return o.calendar == .hebrew && (first ?? o.calendar) == .hebrew ? [heb, greg] : [greg, heb]
+        return o.calendar == .hebrew ? [heb, greg] : [greg, heb]
     }
 
-    /// Одной строкой, григорианская дата первой: «ср, 5 мая 2027 (28 Нисана 5787)».
+    /// Одной строкой, главная дата первой: «28 Нисана 5787 (ср, 5 мая 2027)».
     func occurrenceDatesInline(_ o: Occurrence) -> String {
-        let d = occurrenceDates(o, first: .gregorian)
+        let d = occurrenceDates(o)
         return "\(d[0]) (\(d[1]))"
     }
 

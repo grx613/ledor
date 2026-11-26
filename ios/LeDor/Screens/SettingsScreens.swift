@@ -27,7 +27,9 @@ struct MoreScreen: View {
     }
 }
 
-private func timeBinding(_ get: @escaping () -> TimeOfDay, _ set: @escaping (TimeOfDay) -> Void) -> Binding<Date> {
+@MainActor
+private func timeBinding(_ get: @escaping @MainActor @Sendable () -> TimeOfDay,
+                         _ set: @escaping @MainActor @Sendable (TimeOfDay) -> Void) -> Binding<Date> {
     Binding(get: { Zoned.instant(CivilDate(year: 2001, month: 1, day: 1)!, get(), .current) },
             set: { set(Zoned.timeOfDay($0, .current)) })
 }
@@ -56,13 +58,13 @@ struct SettingsScreen: View {
                                           set: { m.settings.reminders.eveMinutesBeforeSunset = Int($0 / 30) * 30 }),
                            in: 0...360, step: 30).disabled(!r.eveEnabled)
                 } else {
-                    DatePicker(L.t("set_time"), selection: timeBinding({ r.eveFixedTime }, { m.settings.reminders.eveFixedTime = $0 }),
+                    DatePicker(L.t("set_time"), selection: timeBinding({ r.eveFixedTime }, { model.settings.reminders.eveFixedTime = $0 }),
                                displayedComponents: .hourAndMinute).disabled(!r.eveEnabled)
                 }
             }
             Section(L.t("set_day_title")) {
                 Toggle(L.t("set_enabled"), isOn: $m.settings.reminders.dayEnabled)
-                DatePicker(L.t("set_time"), selection: timeBinding({ r.dayTime }, { m.settings.reminders.dayTime = $0 }),
+                DatePicker(L.t("set_time"), selection: timeBinding({ r.dayTime }, { model.settings.reminders.dayTime = $0 }),
                            displayedComponents: .hourAndMinute).disabled(!r.dayEnabled)
             }
             Section {
@@ -125,6 +127,7 @@ struct SettingsScreen: View {
     }
 }
 
+@MainActor
 func openAppSettings() {
     if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
 }

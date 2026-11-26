@@ -103,7 +103,6 @@ struct ListsScreen: View {
                             .labelsHidden().fixedSize()
                     }
                 }
-                let h = model.settings.holidays
                 HStack(spacing: 12) {
                     NavigationLink(value: Route.holidays) {
                         HStack(spacing: 12) {

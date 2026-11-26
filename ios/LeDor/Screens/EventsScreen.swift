@@ -62,7 +62,7 @@ struct EventsScreen: View {
                 Section {
                     ForEach(group) { u in
                         NavigationLink(value: Route.event(u.event.id)) {
-                            EventRow(event: u.event, occurrence: u.occurrence, daysUntil: u.daysUntil, primary: kind, showList: filter == nil)
+                            EventRow(event: u.event, occurrence: u.occurrence, daysUntil: u.daysUntil, showList: filter == nil)
                         }
                     }
                 } header: {
@@ -76,7 +76,7 @@ struct EventsScreen: View {
                     }
                     if showPast {
                         ForEach(past, id: \.0.id) { e, o in
-                            NavigationLink(value: Route.event(e.id)) { EventRow(event: e, occurrence: o, daysUntil: nil, primary: kind) }
+                            NavigationLink(value: Route.event(e.id)) { EventRow(event: e, occurrence: o, daysUntil: nil) }
                         }
                     }
                 }
@@ -146,7 +146,7 @@ struct EventDetailScreen: View {
                                      : o.calendar == .hebrew ? "observe_hebrew" : "observe_gregorian"))
                                 .font(Typography.rubik(12, .medium))
                             Text(f.relativeDays(today.days(until: o.date)).capitalizedFirst(L.locale)).font(Typography.rubik(24, .medium))
-                            Text(f.occurrenceDates(o, first: .gregorian).joined(separator: " · ")).font(Typography.rubik(14))
+                            Text(f.occurrenceDates(o).joined(separator: " · ")).font(Typography.rubik(14))
                             if o.startsEveBefore {
                                 Text(L.f("conv_eve_note", f.gregorianDayMonth(o.date.adding(days: -1)))).font(Typography.rubik(12))
                             }

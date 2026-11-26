@@ -183,7 +183,7 @@ private struct MonthHeader: View {
     let mode: GridMode
     let onPrev: () -> Void
     let onNext: () -> Void
-    let onMode: (GridMode) -> Void
+    let onMode: @MainActor @Sendable (GridMode) -> Void
 
     var body: some View {
         VStack(spacing: 8) {

@@ -57,14 +57,13 @@ struct EventRow: View {
     let event: Event
     let occurrence: Occurrence?
     let daysUntil: Int?
-    var primary: CalendarKind = .hebrew
     var showList = true
 
     var body: some View {
         let f = Formatters()
         let typeLabel = f.typeLabel(event, occurrence?.yearsSince)
-        // Главная дата крупно, тот же день в другом календаре — мелко (D-54).
-        let dates = occurrence.map { f.occurrenceDates($0, first: primary) } ?? []
+        // Крупно — дата, которую отмечают; мелко — тот же день в другом календаре (D-55). Вкладка порядок не меняет.
+        let dates = occurrence.map { f.occurrenceDates($0) } ?? []
         let first = dates.first
         let second = dates.count > 1 ? dates[1] : nil
         let age = f.agePhrase(event.type, occurrence?.yearsSince)
