@@ -235,6 +235,12 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.waitForIdle()
         shot("11_list_create")
         rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
+        // Для инструкции на сайте (B-38): экран «Подключить список».
+        rule.onNodeWithText(s(R.string.join_list)).performClick()
+        rule.waitForIdle()
+        shot("11b_list_join")
+        rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.waitForIdle()
         rule.onNodeWithText(s(R.string.feedback_title)).performClick()

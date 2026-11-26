@@ -226,5 +226,64 @@ export default {
 <p>Si la política cambia, la nueva versión aparecerá en esta página con una nueva fecha. Los cambios importantes se anunciarán en la app.</p>`,
   },
 
+  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  family: {
+    "title": "Un solo calendario para toda la familia — listas compartidas en LeDor",
+    "description": "Cómo tú y tu familia ven los mismos cumpleaños y yahrzeits y reciben recordatorios: una lista compartida de LeDor en cinco pasos.",
+    "h1": "Un solo calendario para toda la familia",
+    "intro": "Tú y tu pareja (o toda la familia) queréis ver las mismas fechas: quien añada un cumpleaños, aparece para los dos, y el recordatorio llega a ambos teléfonos. Para eso está la <b>lista compartida</b> de LeDor. Solo la ven las personas a las que das su nombre y su código.",
+    "link": "Guía paso a paso con imágenes →",
+    "footer": "Listas compartidas: cómo funcionan",
+    "steps": [
+      {
+        "t": "Abre «Listas»",
+        "p": "En el calendario o en «Eventos», toca «Listas» arriba. Ahí está tu lista «Personal» (solo existe en este teléfono) y los botones «Crear» y «Conectar».",
+        "shot": "10_lists"
+      },
+      {
+        "t": "Crea una lista compartida",
+        "p": "Toca «Crear». Elige un nombre — por ejemplo, «Familia Cohen» — y dos códigos: un <b>PIN de lectura</b> (4–8 dígitos, solo para ver) y un <b>PIN maestro</b> (6–12 dígitos, para añadir y editar). Si tu lista personal ya tiene fechas, marca pasar los eventos de la lista personal.",
+        "shot": "11_list_create"
+      },
+      {
+        "t": "Compártela con tu familia",
+        "p": "Abre la nueva lista. Para que tu pareja también pueda añadir fechas, activa «Compartir el permiso de edición» y toca WhatsApp o Telegram. A los familiares que solo necesitan ver las fechas, envíales la invitación sin ese interruptor.",
+        "shot": "14_list_share"
+      },
+      {
+        "t": "Ellos conectan la lista",
+        "p": "Instalan LeDor, abren «Listas» → «Conectar» e introducen el nombre de la lista y el código del mensaje. Nada más: sin registro ni correo.",
+        "shot": "11b_list_join"
+      },
+      {
+        "t": "Listo — un calendario para todos",
+        "p": "Ahora lo que añada cualquiera de vosotros lo ven todos, y los recordatorios llegan a cada teléfono. Los eventos nuevos van por defecto a la lista compartida. Una etiqueta de color indica a qué lista pertenece cada evento.",
+        "shot": "05_events"
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Quién más puede ver nuestra lista?",
+        "a": "Nadie. Una lista solo se abre con su nombre <b>y</b> su código. El servidor no permite adivinar: tras varios errores, los intentos se limitan."
+      },
+      {
+        "q": "¿Qué diferencia hay entre los dos códigos?",
+        "a": "El PIN de lectura sirve para ver las fechas y recibir recordatorios. El PIN maestro, además, para añadir, editar y borrar. Da el PIN maestro solo a personas de confianza."
+      },
+      {
+        "q": "Al abrirla por primera vez, la app preguntó por «importar una lista». ¿Qué archivo hace falta?",
+        "a": "Ninguno. Es lo mismo que «Conectar»: si un familiar ya creó una lista compartida, introduce su nombre y su código. Si no, toca «No» y crea la tuya como se explica arriba."
+      },
+      {
+        "q": "¿Y si no quiero compartir nada?",
+        "a": "Usa la lista «Personal»: se guarda solo en tu teléfono y no se envía a ningún sitio."
+      },
+      {
+        "q": "¿Se pueden tener varias listas?",
+        "a": "Sí: «Familia», «Comunidad», «Amigos» — cada una con su color y sus códigos. Las notificaciones se activan por separado para cada lista."
+      }
+    ]
+  },
+
   root: { choose: 'Elige un idioma' },
 };

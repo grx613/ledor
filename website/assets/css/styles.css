@@ -263,3 +263,21 @@ footer nav a:hover { color: var(--primary); }
 .choose a { display: block; padding: 12px; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; background: var(--surface); }
 .choose img { margin: 0 auto; }
 @media (max-width: 560px) { .cta-row .btn-light { flex: 1 1 100%; } .cta-band { padding: 44px 18px; border-radius: 26px; } }
+
+/* «Один календарь на всю семью» (/family/) */
+.guide-head { padding-bottom: 32px; }
+.guide-head h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 14px; }
+.guide { list-style: none; margin: 0 0 40px; padding: 0; display: grid; gap: 48px; }
+.guide-step { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: center; }
+.guide-step:nth-child(even) { grid-template-columns: 260px minmax(0, 1fr); }
+.guide-step:nth-child(even) .guide-text { order: 2; }
+.guide-text h2 { font-size: 24px; margin: 0 0 10px; }
+.guide-text p { margin: 0; color: var(--muted); font-size: 17px; }
+.guide-text .num { width: 36px; height: 36px; border-radius: 50%; background: #0B3FAE; color: #fff; display: grid; place-items: center; font-weight: 700; margin-bottom: 12px; }
+.guide-step .phone { width: 100%; }
+.guide-link { margin: 24px 0 0; font-weight: 600; }
+@media (max-width: 700px) {
+  .guide-step, .guide-step:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .guide-step:nth-child(even) .guide-text { order: 0; }
+  .guide-step .phone { width: min(100%, 260px); margin: 0 auto; }
+}

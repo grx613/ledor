@@ -226,5 +226,64 @@ export default {
 <p>If the policy changes, the new version will appear on this page with a new date. We will announce significant changes in the app.</p>`,
   },
 
+  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  family: {
+    "title": "One calendar for the whole family — shared lists in LeDor",
+    "description": "How you and your family can see the same birthdays and yahrzeits and get reminders: a LeDor shared list in five steps.",
+    "h1": "One calendar for the whole family",
+    "intro": "You and your spouse (or the whole family) want to see the same dates: whoever adds a birthday, it shows up for both of you, and the reminder comes to both phones. That is what a LeDor <b>shared list</b> is for. Only people you give its name and code can see it.",
+    "link": "Step-by-step guide with pictures →",
+    "footer": "Shared lists: how it works",
+    "steps": [
+      {
+        "t": "Open “Lists”",
+        "p": "On the calendar or in “Events”, tap “Lists” at the top. You will see your “Personal” list (it lives only on this phone) and the “Create” and “Connect” buttons.",
+        "shot": "10_lists"
+      },
+      {
+        "t": "Create a shared list",
+        "p": "Tap “Create”. Choose a name — say, “The Cohen Family” — and two codes: a <b>read PIN</b> (4–8 digits, for viewing only) and a <b>master PIN</b> (6–12 digits, for adding and editing). If your “Personal” list already has dates, tick “Move events from the personal list”.",
+        "shot": "11_list_create"
+      },
+      {
+        "t": "Share it with your family",
+        "p": "Open the new list. So that your spouse can add dates too, turn on “Share editing rights” and tap WhatsApp or Telegram. For relatives who only need to see the dates, send the invitation without that switch.",
+        "shot": "14_list_share"
+      },
+      {
+        "t": "They connect the list",
+        "p": "They install LeDor, open “Lists” → “Connect” and enter the list name and code from the message. Nothing else: no sign-up, no email.",
+        "shot": "11b_list_join"
+      },
+      {
+        "t": "Done — one calendar for everyone",
+        "p": "Now whatever any of you adds, everyone sees, and reminders come to every phone. New events go to the shared list by default. A colored tag shows which list an event belongs to.",
+        "shot": "05_events"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Who else can see our list?",
+        "a": "No one. A list opens only with its name <b>and</b> code. The server does not allow guessing: after a few wrong tries, attempts are limited."
+      },
+      {
+        "q": "What is the difference between the two codes?",
+        "a": "The read PIN lets you see the dates and get reminders. The master PIN also lets you add, edit and delete. Give the master PIN only to people you trust."
+      },
+      {
+        "q": "On first launch the app asked about “importing a list”. What file do I need?",
+        "a": "None. It is the same as “Connect”: if a relative has already created a shared list, enter its name and code. If not, tap “No” and create your own as described above."
+      },
+      {
+        "q": "What if I do not want to share anything?",
+        "a": "Use the “Personal” list: it is stored only on your phone and is never sent anywhere."
+      },
+      {
+        "q": "Can I have several lists?",
+        "a": "Yes: “Family”, “Community”, “Friends” — each with its own color and codes. Notifications can be turned on or off for each list."
+      }
+    ]
+  },
+
   root: { choose: 'Choose a language' },
 };

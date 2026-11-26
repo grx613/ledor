@@ -34,8 +34,8 @@
     <string name="next_month">Mes siguiente</string>
 
     <!-- Primer inicio -->
-    <string name="onboarding_title">¿Importar una lista de cumpleaños?</string>
-    <string name="onboarding_text">Si tu familia o comunidad ya tiene una lista, introduce su nombre y su PIN.</string>
+    <string name="onboarding_title">¿Tu familia ya tiene una lista compartida?</string>
+    <string name="onboarding_text">Una lista compartida son las mismas fechas en los teléfonos de toda la familia. Si un familiar ya la creó, introduce su nombre y su PIN. Si no, toca «No»: podrás crear tu propia lista más tarde en «Listas».</string>
 
     <!-- Calendario -->
     <string name="grid_gregorian">Meses gregorianos</string>
@@ -192,7 +192,7 @@
     <string name="join_explain">Introduce el nombre de la lista y después el PIN. Sirve tanto el PIN normal (solo lectura) como el PIN maestro (edición).</string>
     <string name="pin_code">PIN</string>
     <string name="pin_any_hint">PIN normal o PIN maestro</string>
-    <string name="imported_n">Eventos importados: %1$d</string>
+    <string name="imported_n">Lista conectada. Eventos: %1$d</string>
     <string name="synced_at">Sincronizado: %1$s</string>
     <string name="lists_hint_notify">El interruptor de la derecha activa y desactiva las notificaciones de la lista.</string>
     <string name="lists_hint_holidays">En «Fiestas judías» activa y desactiva toda la lista.</string>

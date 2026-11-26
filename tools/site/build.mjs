@@ -10,7 +10,7 @@ const SITE = 'https://kalendar.bothub.chat';
 const LANGS = ['en', 'he', 'ru', 'yi', 'fr', 'es'];     // порядок — как в приложении
 const DEFAULT = 'en';
 const APK = readFileSync(join(ROOT, 'tools', 'site', 'apk-name.txt'), 'utf8').trim();   // ledor-X.Y.Z.apk
-const ASSET_V = '7';
+const ASSET_V = '8';
 const CHANNEL = 'https://t.me/bothub_founder';
 const SOURCE = 'https://github.com/grx613/ledor';
 const LIST_COLORS = ['#D4A72C', '#1FA187', '#6A58B5'];   // как цвета списков в приложении на снимках
@@ -97,7 +97,7 @@ function footer(l) {
   return `<footer>
   <div class="wrap">
     <span class="wordmark">Kalendář</span>
-    <nav><a href="/${l}/converter/">${t.footer.converter}</a><a href="/${l}/#faq">${t.footer.faq}</a><a href="/${l}/privacy/">${t.footer.privacy}</a><a href="/${l}/privacy/#delete">${t.footer.delete}</a><a href="${SOURCE}" rel="noopener">GitHub</a><a href="${CHANNEL}" rel="noopener">Telegram</a></nav>
+    <nav><a href="/${l}/converter/">${t.footer.converter}</a><a href="/${l}/family/">${t.family.footer}</a><a href="/${l}/#faq">${t.footer.faq}</a><a href="/${l}/privacy/">${t.footer.privacy}</a><a href="/${l}/privacy/#delete">${t.footer.delete}</a><a href="${SOURCE}" rel="noopener">GitHub</a><a href="${CHANNEL}" rel="noopener">Telegram</a></nav>
     <div>© 2026 LeDor · ${t.footer.copy}</div>
   </div>
 </footer>`;
@@ -182,6 +182,7 @@ ${header(l, '')}
       ${t.share.points.map((p) => `<li>${p}</li>`).join('\n      ')}
     </ul>
     <p class="fineprint">${t.share.sync}</p>
+    <p class="center guide-link"><a href="/${l}/family/">${t.family.link}</a></p>
   </div>
 </section>
 
@@ -332,6 +333,44 @@ ${footer(l)}
 `;
 }
 
+// «Один календарь на всю семью» (B-38): пошаговая инструкция про общие списки со снимками экранов.
+function familyPage(l) {
+  const t = T[l]; const f = t.family;
+  const steps = f.steps.map((st, i) => `<li class="guide-step">
+      <div class="guide-text"><div class="num">${i + 1}</div><h2>${st.t}</h2><p>${st.p}</p></div>
+      ${phone(l, st.shot, strip(st.t), i === 0)}
+    </li>`).join('\n    ');
+  return `${head(l, 'family', f.title, f.description, ld([faqLd(f.faq)]))}
+<body>
+${header(l, 'family')}
+<main>
+<section class="guide-head">
+  <div class="wrap">
+    <h1>${f.h1}</h1>
+    <p class="sub">${f.intro}</p>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="wrap">
+    <ol class="guide">
+    ${steps}
+    </ol>
+    ${ctaRow(t)}
+  </div>
+</section>
+<section class="alt">
+  <div class="wrap faq">
+    <h2>${t.faq.h2}</h2>
+    ${faqHtml(f.faq)}
+  </div>
+</section>
+</main>
+${footer(l)}
+</body>
+</html>
+`;
+}
+
 // Корень и старые адреса (/privacy/, /converter/): выбор языка по браузеру, иначе английский.
 function redirectPage(page) {
   const links = LANGS.map((x) => `<li><a href="/${x}/${page ? page + '/' : ''}" hreflang="${x}" lang="${x}">${T[x].name}</a></li>`).join('');
@@ -376,7 +415,7 @@ ${alts}
 }
 
 function sitemap() {
-  const pages = ['', 'converter', 'privacy'];
+  const pages = ['', 'converter', 'privacy', 'family'];
   const rows = pages.flatMap((p) => LANGS.map((l) => `  <url><loc>${url(l, p)}</loc>
 ${LANGS.map((x) => `    <xhtml:link rel="alternate" hreflang="${x}" href="${url(x, p)}"/>`).join('\n')}
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${p ? p + '/' : ''}"/>
@@ -392,13 +431,15 @@ for (const l of LANGS) {
   write(`${l}/index.html`, indexPage(l));
   write(`${l}/converter/index.html`, converterPage(l));
   write(`${l}/privacy/index.html`, privacyPage(l));
+  write(`${l}/family/index.html`, familyPage(l));
 }
 write('index.html', redirectPage(''));
 write('converter/index.html', redirectPage('converter'));
 write('privacy/index.html', redirectPage('privacy'));
+write('family/index.html', redirectPage('family'));
 write('sitemap.xml', sitemap());
 // Номер последней версии Android — его читает кнопка «Проверить обновление» в приложении (docs/01, ABT-5).
 const APK_VERSION = /^ledor-(\d+(?:\.\d+){1,3})\.apk$/.exec(APK)?.[1];
 if (!APK_VERSION) throw new Error(`tools/site/apk-name.txt: ожидается ledor-X.Y.Z.apk, а там «${APK}»`);
 write('version.json', JSON.stringify({ android: { version: APK_VERSION, apk: APK } }) + '\n');
-console.log(`Сайт собран: ${LANGS.length} языков × 3 страницы, APK ${APK}`);
+console.log(`Сайт собран: ${LANGS.length} языков × 4 страницы, APK ${APK}`);

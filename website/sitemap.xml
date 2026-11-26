@@ -162,4 +162,58 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/privacy/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/privacy/"/>
   </url>
+  <url><loc>https://kalendar.bothub.chat/en/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
+  <url><loc>https://kalendar.bothub.chat/he/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
+  <url><loc>https://kalendar.bothub.chat/ru/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
+  <url><loc>https://kalendar.bothub.chat/yi/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
+  <url><loc>https://kalendar.bothub.chat/fr/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
+  <url><loc>https://kalendar.bothub.chat/es/family/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kalendar.bothub.chat/en/family/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://kalendar.bothub.chat/he/family/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://kalendar.bothub.chat/ru/family/"/>
+    <xhtml:link rel="alternate" hreflang="yi" href="https://kalendar.bothub.chat/yi/family/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://kalendar.bothub.chat/fr/family/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kalendar.bothub.chat/es/family/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kalendar.bothub.chat/family/"/>
+  </url>
 </urlset>

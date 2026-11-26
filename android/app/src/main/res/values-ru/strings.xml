@@ -34,8 +34,8 @@
     <string name="next_month">Следующий месяц</string>
 
     <!-- Первый запуск -->
-    <string name="onboarding_title">Хотите импортировать список дней рождения?</string>
-    <string name="onboarding_text">Если у вашей семьи или общины уже есть список, введите его название и ПИН-код.</string>
+    <string name="onboarding_title">У вашей семьи уже есть общий список?</string>
+    <string name="onboarding_text">Общий список — это одни и те же даты на телефонах всей семьи. Если кто-то из родных уже создал его, введите его название и ПИН-код. Если нет — нажмите «Нет»: свой список можно создать потом в разделе «Списки».</string>
 
     <!-- Календарь -->
     <string name="grid_gregorian">Обычные месяцы</string>
@@ -197,7 +197,7 @@
     <string name="join_explain">Введите название списка, а затем ПИН-код. Подойдёт и обычный ПИН (только чтение), и Мастер-ПИН (редактирование).</string>
     <string name="pin_code">ПИН-код</string>
     <string name="pin_any_hint">Обычный ПИН или Мастер-ПИН</string>
-    <string name="imported_n">Импортировано событий: %1$d</string>
+    <string name="imported_n">Список подключён. Событий: %1$d</string>
     <string name="synced_at">Синхронизировано: %1$s</string>
     <string name="lists_hint_notify">Переключатель справа включает и выключает уведомления по списку.</string>
     <string name="lists_hint_holidays">У «Еврейских праздников» он включает и выключает весь список.</string>

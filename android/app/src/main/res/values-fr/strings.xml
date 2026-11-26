@@ -34,8 +34,8 @@
     <string name="next_month">Mois suivant</string>
 
     <!-- Premier lancement -->
-    <string name="onboarding_title">Importer une liste d’anniversaires ?</string>
-    <string name="onboarding_text">Si votre famille ou votre communauté a déjà une liste, saisissez son nom et son code PIN.</string>
+    <string name="onboarding_title">Votre famille a-t-elle déjà une liste partagée ?</string>
+    <string name="onboarding_text">Une liste partagée, ce sont les mêmes dates sur les téléphones de toute la famille. Si un proche l’a déjà créée, saisissez son nom et son code PIN. Sinon, touchez « Non » : vous pourrez créer votre propre liste plus tard dans « Listes ».</string>
 
     <!-- Calendrier -->
     <string name="grid_gregorian">Mois grégoriens</string>
@@ -192,7 +192,7 @@
     <string name="join_explain">Saisissez le nom de la liste, puis le code PIN. Le code ordinaire (lecture seule) comme le code maître (modification) conviennent.</string>
     <string name="pin_code">Code PIN</string>
     <string name="pin_any_hint">Code ordinaire ou code maître</string>
-    <string name="imported_n">Événements importés : %1$d</string>
+    <string name="imported_n">Liste connectée. Événements : %1$d</string>
     <string name="synced_at">Synchronisé : %1$s</string>
     <string name="lists_hint_notify">L’interrupteur à droite active ou désactive les notifications de la liste.</string>
     <string name="lists_hint_holidays">Pour « Fêtes juives », il active ou désactive toute la liste.</string>

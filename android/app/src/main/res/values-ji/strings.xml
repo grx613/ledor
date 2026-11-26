@@ -34,8 +34,8 @@
     <string name="next_month">קומענדיקער חודש</string>
 
     <!-- ערשטער אָנהייב -->
-    <string name="onboarding_title">אימפּאָרטירן אַ רשימה פֿון געבורטסטעג?</string>
-    <string name="onboarding_text">אויב אײַער משפּחה אָדער קהילה האָט שוין אַ רשימה, שרײַבט אַרײַן איר נאָמען און PIN.</string>
+    <string name="onboarding_title">האָט אײַער משפּחה שוין אַ געמיינזאַמע רשימה?</string>
+    <string name="onboarding_text">אַ געמיינזאַמע רשימה איז די זעלבע דאַטעס אויף די טעלעפֿאָנען פֿון דער גאַנצער משפּחה. אויב עמעצער פֿון די קרובים האָט זי שוין געשאַפֿן, שרײַבט אַרײַן איר נאָמען און PIN. אויב נישט — דריקט „ניין”: אַן אייגענע רשימה קען מען שאַפֿן שפּעטער אין „רשימות”.</string>
 
     <!-- לוח -->
     <string name="grid_gregorian">גרעגאָריאַנישע חדשים</string>
@@ -187,7 +187,7 @@
     <string name="join_explain">שרײַבט אַרײַן דעם נאָמען פֿון דער רשימה און דערנאָך דעם PIN. עס פּאַסט סײַ דער געוויינלעכער PIN (נאָר לייענען), סײַ דער מאַסטער־PIN (רעדאַקטירן).</string>
     <string name="pin_code">PIN</string>
     <string name="pin_any_hint">געוויינלעכער אָדער מאַסטער־PIN</string>
-    <string name="imported_n">אימפּאָרטירטע געשעענישן: %1$d</string>
+    <string name="imported_n">די רשימה איז פֿאַרבונדן. געשעענישן: %1$d</string>
     <string name="synced_at">סינכראָניזירט: %1$s</string>
     <string name="lists_hint_notify">דער שאַלטער אויף דער זײַט צינדט אָן און לעשט אויס די מעלדונגען פֿאַר דער רשימה.</string>
     <string name="lists_hint_holidays">בײַ „ייִדישע יום־טובֿים“ צינדט ער אָן און לעשט אויס די גאַנצע רשימה.</string>

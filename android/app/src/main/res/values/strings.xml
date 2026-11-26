@@ -38,8 +38,8 @@
     <string name="next_month">Next month</string>
 
     <!-- First launch -->
-    <string name="onboarding_title">Import a birthday list?</string>
-    <string name="onboarding_text">If your family or community already has a list, enter its name and PIN.</string>
+    <string name="onboarding_title">Does your family already have a shared list?</string>
+    <string name="onboarding_text">A shared list keeps the same dates on every family phone. If a relative has already created one, enter its name and PIN. If not, tap “No” — you can create your own list later in “Lists”.</string>
 
     <!-- Calendar -->
     <string name="grid_gregorian">Gregorian months</string>
@@ -191,7 +191,7 @@
     <string name="join_explain">Enter the list name, then the PIN. Either the regular PIN (read only) or the Master PIN (editing) works.</string>
     <string name="pin_code">PIN</string>
     <string name="pin_any_hint">Regular PIN or Master PIN</string>
-    <string name="imported_n">Events imported: %1$d</string>
+    <string name="imported_n">List connected. Events: %1$d</string>
     <string name="synced_at">Synced: %1$s</string>
     <string name="lists_hint_notify">The switch on the right turns notifications for a list on and off.</string>
     <string name="lists_hint_holidays">For “Jewish holidays” it turns the whole list on and off.</string>

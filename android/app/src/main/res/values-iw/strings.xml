@@ -34,8 +34,8 @@
     <string name="next_month">החודש הבא</string>
 
     <!-- הפעלה ראשונה -->
-    <string name="onboarding_title">לייבא רשימת ימי הולדת?</string>
-    <string name="onboarding_text">אם למשפחה או לקהילה שלכם כבר יש רשימה, הזינו את שמה ואת קוד ה־PIN.</string>
+    <string name="onboarding_title">יש כבר למשפחה שלכם רשימה משותפת?</string>
+    <string name="onboarding_text">רשימה משותפת היא אותם תאריכים בטלפונים של כל המשפחה. אם מישהו מבני המשפחה כבר יצר אותה, הזינו את שמה ואת קוד ה־PIN. אם לא — הקישו „לא”: אפשר ליצור רשימה משלכם אחר כך בקטע „רשימות”.</string>
 
     <!-- לוח שנה -->
     <string name="grid_gregorian">חודשים לועזיים</string>
@@ -192,7 +192,7 @@
     <string name="join_explain">הזינו את שם הרשימה ואחר כך את הקוד. מתאים גם הקוד הרגיל (קריאה בלבד) וגם קוד המאסטר (עריכה).</string>
     <string name="pin_code">קוד PIN</string>
     <string name="pin_any_hint">קוד רגיל או קוד מאסטר</string>
-    <string name="imported_n">יובאו אירועים: %1$d</string>
+    <string name="imported_n">הרשימה חוברה. אירועים: %1$d</string>
     <string name="synced_at">סונכרן: %1$s</string>
     <string name="lists_hint_notify">המתג מימין מפעיל ומכבה התראות עבור הרשימה.</string>
     <string name="lists_hint_holidays">ב„חגי ישראל” הוא מפעיל ומכבה את כל הרשימה.</string>

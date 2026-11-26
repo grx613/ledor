@@ -226,5 +226,64 @@ export default {
 <p>Si la politique change, la nouvelle version apparaîtra sur cette page avec une nouvelle date. Les changements importants seront annoncés dans l’application.</p>`,
   },
 
+  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  family: {
+    "title": "Un seul calendrier pour toute la famille — listes partagées dans LeDor",
+    "description": "Comment vous et vos proches voyez les mêmes anniversaires et yahrzeits et recevez les rappels : une liste partagée LeDor en cinq étapes.",
+    "h1": "Un seul calendrier pour toute la famille",
+    "intro": "Vous et votre conjoint (ou toute la famille) voulez voir les mêmes dates : quel que soit celui qui ajoute un anniversaire, il apparaît chez vous deux, et le rappel arrive sur les deux téléphones. C’est à cela que sert une <b>liste partagée</b> LeDor. Seules les personnes à qui vous donnez son nom et son code peuvent la voir.",
+    "link": "Guide pas à pas en images →",
+    "footer": "Listes partagées : comment ça marche",
+    "steps": [
+      {
+        "t": "Ouvrez « Listes »",
+        "p": "Dans le calendrier ou dans « Événements », touchez « Listes » en haut. Vous y voyez votre liste « Personnelle » (elle n’existe que sur ce téléphone) et les boutons « Créer » et « Connecter ».",
+        "shot": "10_lists"
+      },
+      {
+        "t": "Créez une liste partagée",
+        "p": "Touchez « Créer ». Choisissez un nom — par exemple « Famille Cohen » — et deux codes : un <b>code PIN de lecture</b> (4 à 8 chiffres, pour consulter seulement) et un <b>code maître</b> (6 à 12 chiffres, pour ajouter et modifier). Si votre liste personnelle contient déjà des dates, cochez le transfert des événements de la liste personnelle.",
+        "shot": "11_list_create"
+      },
+      {
+        "t": "Partagez-la avec vos proches",
+        "p": "Ouvrez la nouvelle liste. Pour que votre conjoint puisse aussi ajouter des dates, activez « Partager le droit de modification » et touchez WhatsApp ou Telegram. Aux proches qui doivent seulement voir les dates, envoyez l’invitation sans cet interrupteur.",
+        "shot": "14_list_share"
+      },
+      {
+        "t": "Ils connectent la liste",
+        "p": "Ils installent LeDor, ouvrent « Listes » → « Connecter » et saisissent le nom de la liste et le code du message. Rien d’autre : ni inscription, ni e-mail.",
+        "shot": "11b_list_join"
+      },
+      {
+        "t": "C’est prêt — un calendrier pour tous",
+        "p": "Désormais, tout ce que l’un de vous ajoute, tous le voient, et les rappels arrivent sur chaque téléphone. Les nouveaux événements vont par défaut dans la liste partagée. Une étiquette de couleur indique la liste de chaque événement.",
+        "shot": "05_events"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Qui d’autre peut voir notre liste ?",
+        "a": "Personne. Une liste ne s’ouvre qu’avec son nom <b>et</b> son code. Le serveur empêche de deviner : après quelques erreurs, les tentatives sont limitées."
+      },
+      {
+        "q": "Quelle différence entre les deux codes ?",
+        "a": "Le code PIN de lecture permet de voir les dates et de recevoir les rappels. Le code maître permet aussi d’ajouter, de modifier et de supprimer. Ne donnez le code maître qu’aux personnes de confiance."
+      },
+      {
+        "q": "Au premier lancement, l’application a parlé d’« importer une liste ». Quel fichier faut-il ?",
+        "a": "Aucun. C’est la même chose que « Connecter » : si un proche a déjà créé une liste partagée, saisissez son nom et son code. Sinon, touchez « Non » et créez la vôtre comme décrit plus haut."
+      },
+      {
+        "q": "Et si je ne veux rien partager ?",
+        "a": "Utilisez la liste « Personnelle » : elle n’est enregistrée que sur votre téléphone et n’est envoyée nulle part."
+      },
+      {
+        "q": "Peut-on avoir plusieurs listes ?",
+        "a": "Oui : « Famille », « Communauté », « Amis » — chacune avec sa couleur et ses codes. Les notifications se règlent liste par liste."
+      }
+    ]
+  },
+
   root: { choose: 'Choisissez une langue' },
 };
