@@ -1168,6 +1168,88 @@
         }
       }
     },
+    "change_pins": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change PIN codes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar los PIN"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier les codes PIN"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שינוי קודי PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить ПИН-коды"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ענדערן די PIN־קאָדן"
+          }
+        }
+      }
+    },
+    "change_pins_text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phones already connected keep working. New members will need the new code — send them a fresh invitation."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los teléfonos ya conectados siguen funcionando. Los nuevos miembros necesitarán el código nuevo: envíales otra invitación."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les téléphones déjà connectés continuent de fonctionner. Les nouveaux membres auront besoin du nouveau code : renvoyez-leur une invitation."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טלפונים שכבר מחוברים ימשיכו לעבוד. משתתפים חדשים יצטרכו את הקוד החדש — שלחו להם הזמנה מחדש."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уже подключённые телефоны продолжат работать. Новым участникам понадобится новый код — отправьте им приглашение заново."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טעלעפֿאָנען וואָס זענען שוין פֿאַרבונדן, וועלן ווײַטער אַרבעטן. נײַע מיטגלידער וועלן דאַרפֿן דעם נײַעם קאָד — שיקט זיי אַ נײַע פֿאַרבעטונג."
+          }
+        }
+      }
+    },
     "city_none": {
       "extractionState": "manual",
       "localizations": {
@@ -1984,6 +2066,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "שאַפֿן אַ רשימה"
+          }
+        }
+      }
+    },
+    "current_master_pin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current master PIN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN maestro actual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code maître actuel"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קוד המאסטר הנוכחי"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Текущий Мастер-ПИН"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דער איצטיקער מאַסטער־PIN"
           }
         }
       }
@@ -10741,6 +10864,47 @@
         }
       }
     },
+    "notice_list_demoted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The master PIN of “%1$@” was changed — you can now only view it. To edit again, enter the new master PIN."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se cambió el PIN maestro de «%1$@»: ahora solo puedes verla. Para editar de nuevo, introduce el nuevo PIN maestro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le code maître de « %1$@ » a été modifié : vous pouvez seulement consulter la liste. Pour la modifier à nouveau, saisissez le nouveau code maître."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קוד המאסטר של „%1$@” שונה — עכשיו אפשר רק לצפות. כדי לערוך שוב, הזינו את קוד המאסטר החדש."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В списке «%1$@» сменили Мастер-ПИН — теперь вы можете только смотреть. Чтобы снова редактировать, введите новый Мастер-ПИН."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דער מאַסטער־PIN פֿון „%1$@“ איז געענדערט — איצט קענט איר נאָר קוקן. כּדי ווידער צו רעדאַקטירן, שרײַבט אַרײַן דעם נײַעם מאַסטער־PIN."
+          }
+        }
+      }
+    },
     "notif_candle": {
       "extractionState": "manual",
       "localizations": {
@@ -11971,6 +12135,47 @@
         }
       }
     },
+    "pins_changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN codes changed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN cambiados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codes PIN modifiés"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קודי ה־PIN שונו"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ПИН-коды изменены"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "די PIN־קאָדן זענען געענדערט"
+          }
+        }
+      }
+    },
     "pins_explain": {
       "extractionState": "manual",
       "localizations": {
@@ -12182,37 +12387,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "4–8 digits"
+            "value": "4–8 digits. You can type your own — for example, an easy one for your community."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "4–8 dígitos"
+            "value": "4–8 dígitos. Puedes escribir el tuyo, por ejemplo uno sencillo para la comunidad."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "4 à 8 chiffres"
+            "value": "4 à 8 chiffres. Vous pouvez saisir le vôtre — par exemple un code simple pour la communauté."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "4–8 ספרות"
+            "value": "4–8 ספרות. אפשר להזין קוד משלכם — למשל קוד פשוט לקהילה."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "4–8 цифр"
+            "value": "4–8 цифр. Можно ввести свой — например, простой для общины."
           }
         },
         "yi": {
           "stringUnit": {
             "state": "translated",
-            "value": "4–8 ציפֿערן"
+            "value": "4–8 ציפֿערן. מע קען אַרײַנשרײַבן אַן אייגענעם — למשל, אַ פּשוטן פֿאַר דער קהילה."
           }
         }
       }

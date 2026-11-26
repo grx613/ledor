@@ -136,6 +136,23 @@ public final class DataService: Sendable {
         return .ok(true)
     }
 
+    /// B-40: новые ПИН-коды. На этом телефоне они сразу сохраняются; остальные подключённые телефоны работают дальше по
+    /// своим токенам и получат новый ПИН-код для чтения при синхронизации.
+    public func changePins(listId: String, currentMasterPin: String, newReadPin: String, newMasterPin: String) async -> RpcResult<Bool> {
+        guard let list = await store.state.list(listId) else { return .error(code: "NOT_FOUND") }
+        guard let token = list.accessToken else { return .error(code: "UNAUTHORIZED") }
+        let r = await rpc.changePins(listId: listId, token: token, masterPin: currentMasterPin, newReadPin: newReadPin, newMasterPin: newMasterPin)
+        if case .ok = r {
+            await store.mutate { db in
+                guard var l = db.list(listId) else { return }
+                l.readPin = newReadPin
+                l.masterPin = newMasterPin
+                db.upsert(l)
+            }
+        }
+        return r
+    }
+
     public func setNotifyEnabled(listId: String, _ enabled: Bool) async {
         await store.mutate { db in
             guard var l = db.list(listId) else { return }
@@ -168,7 +185,12 @@ public final class DataService: Sendable {
         }
     }
 
-    public func clearNotices() async { await store.mutate { $0.deletedListNotices = [] } }
+    public func clearNotices() async {
+        await store.mutate { db in
+            db.deletedListNotices = []
+            db.demotedListNotices = []
+        }
+    }
 
     // MARK: - Синхронизация (`04-backend.md` §5)
 
@@ -241,8 +263,12 @@ public final class DataService: Sendable {
                     if re.deleted { db.deleteEvent(re.id) } else { db.upsert(EventRecord(remote: re, listId: listId)) }
                 }
                 guard var l = db.list(listId) else { return }
+                let role = ListRole(rawValue: resp.role) ?? l.role
+                // B-40: стал читателем — Мастер-ПИН на телефоне больше не действует, его не хранить и не предлагать.
+                if l.role == .editor && role == .reader { db.demotedListNotices.append(resp.list.name) }
+                if role == .reader { l.masterPin = nil }
                 l.name = resp.list.name
-                l.role = ListRole(rawValue: resp.role) ?? l.role
+                l.role = role
                 l.readPin = resp.readPin ?? l.readPin
                 l.lastSyncedRev = resp.list.revision
                 l.lastSyncAt = Date()
@@ -267,7 +293,9 @@ public final class DataService: Sendable {
             case "FORBIDDEN":
                 db.events.removeAll { $0.listId == list.id && $0.syncState != .synced }
                 guard var l = db.list(list.id) else { return }
+                if l.role == .editor { db.demotedListNotices.append(l.name) }
                 l.role = .reader
+                l.masterPin = nil
                 l.lastSyncedRev = 0
                 db.upsert(l)
             default: break

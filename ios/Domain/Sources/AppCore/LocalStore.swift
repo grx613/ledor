@@ -6,9 +6,21 @@ public struct DatabaseState: Codable, Sendable, Equatable {
     public var events: [EventRecord] = []
     /// Названия общих списков, удалённых владельцем, — показываются пользователю один раз.
     public var deletedListNotices: [String] = []
+    /// Названия списков, где сменили Мастер-ПИН и этот телефон стал читателем (B-40), — тоже один раз.
+    public var demotedListNotices: [String] = []
     public var lastSyncAttempt: Date?
 
     public init() {}
+
+    /// Поля, которых нет в файле старой версии, берутся по умолчанию — файл не теряется при обновлении приложения.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        lists = try c.decodeIfPresent([ListRecord].self, forKey: .lists) ?? [ListRecord.personal]
+        events = try c.decodeIfPresent([EventRecord].self, forKey: .events) ?? []
+        deletedListNotices = try c.decodeIfPresent([String].self, forKey: .deletedListNotices) ?? []
+        demotedListNotices = try c.decodeIfPresent([String].self, forKey: .demotedListNotices) ?? []
+        lastSyncAttempt = try c.decodeIfPresent(Date.self, forKey: .lastSyncAttempt)
+    }
 
     public var sortedLists: [ListRecord] { lists.sorted { ($0.sortOrder, $0.createdAt) < ($1.sortOrder, $1.createdAt) } }
     public func list(_ id: String) -> ListRecord? { lists.first { $0.id == id } }

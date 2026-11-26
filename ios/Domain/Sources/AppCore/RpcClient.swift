@@ -144,6 +144,12 @@ public struct RpcClient: Sendable {
         await call("delete_list", ["p_list_id": listId, "p_token": token, "p_master_pin": masterPin]).map { _ in true }
     }
 
+    /// B-40: сменить ПИН-коды списка по действующему Мастер-ПИНу (миграция 0003).
+    public func changePins(listId: String, token: String, masterPin: String, newReadPin: String, newMasterPin: String) async -> RpcResult<Bool> {
+        await call("change_pins", ["p_list_id": listId, "p_token": token, "p_master_pin": masterPin,
+                                   "p_new_read_pin": newReadPin, "p_new_master_pin": newMasterPin]).map { _ in true }
+    }
+
     /// Отзыв (B-2). `meta` — техданные, только если пользователь согласился их приложить.
     public func submitFeedback(message: String, contact: String?, meta: [String: String]?) async -> RpcResult<Bool> {
         await call("submit_feedback", ["p_message": message, "p_contact": contact, "p_meta": meta ?? [:]]).map { _ in true }

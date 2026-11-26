@@ -161,7 +161,8 @@ struct ListCreateScreen: View {
                 PinField(label: L.t("read_pin"), value: $readPin, maxLen: 8) {
                     Button(L.t("regenerate")) { readPin = PinGenerator.generate(length: 6) }.buttonStyle(.borderless)
                 }
-                if !readOk { Text(L.t("read_pin_hint")).font(Typography.rubik(12)).foregroundStyle(Palette.error) }
+                // B-40: свой код можно ввести вместо предложенного — например, простой для общины.
+                Text(L.t("read_pin_hint")).font(Typography.rubik(12)).foregroundStyle(readOk ? Palette.onSurfaceVariant : Palette.error)
                 PinField(label: L.t("master_pin"), value: $masterPin, maxLen: 12) {
                     Button(L.t("regenerate")) { masterPin = PinGenerator.generate(length: 8) }.buttonStyle(.borderless)
                 }
@@ -283,6 +284,7 @@ struct ListDetailScreen: View {
     @State private var masterWarn = false
     @State private var syncing = false
     @State private var toast: String?
+    @State private var changePins = false
 
     var body: some View {
         if let l = model.list(id) { content(l) } else { Color.clear.onAppear { dismiss() } }
@@ -333,6 +335,7 @@ struct ListDetailScreen: View {
                     if let pin = l.readPin { pinRow(L.t("read_pin"), pin) }
                     if let pin = l.masterPin { pinRow(L.t("master_pin"), pin) }
                     if l.role == .reader { Text(L.t("reader_hint")).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant) }
+                    if l.role == .editor { Button(L.t("change_pins")) { changePins = true } }
                 }
                 Section(L.t("share")) {
                     if l.masterPin != nil {
@@ -390,6 +393,7 @@ struct ListDetailScreen: View {
             }
             Button(L.t("cancel"), role: .cancel) {}
         } message: { Text(L.t("delete_cloud_text")) }
+        .sheet(isPresented: $changePins) { ChangePinsSheet(list: l) { toast = L.t("pins_changed") } }
         .toast($toast)
         .ledorScreen()
     }
@@ -404,6 +408,64 @@ struct ListDetailScreen: View {
     private func enc(_ s: String) -> String { s.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? s }
 
     private func open(_ url: String) { if let u = URL(string: url) { openURL(u) } }
+}
+
+/// B-40: смена ПИН-кодов списка, как `ChangePinsDialog` на Android. Правила полей — `ChangePinsForm` в `AppCore`.
+/// Сервер при смене Мастер-ПИНа делает остальных редакторов читателями (на случай, если старый код утёк).
+struct ChangePinsSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    let list: ListRecord
+    let onDone: () -> Void
+    @State private var form: ChangePinsForm
+    @State private var busy = false
+    @State private var error: String?
+
+    init(list: ListRecord, onDone: @escaping () -> Void) {
+        self.list = list
+        self.onDone = onDone
+        _form = State(initialValue: ChangePinsForm(readPin: list.readPin ?? "", masterPin: list.masterPin ?? "",
+                                                   masterStored: list.masterPin != nil))
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    PinField(label: L.t("read_pin"), value: $form.read, maxLen: 8) { EmptyView() }
+                    Text(L.t("read_pin_hint")).font(Typography.rubik(12))
+                        .foregroundStyle(form.readOk ? Palette.onSurfaceVariant : Palette.error)
+                    PinField(label: L.t("master_pin"), value: $form.master, maxLen: 12, visibleInitially: false) { EmptyView() }
+                    Text(L.t("master_pin_hint")).font(Typography.rubik(12))
+                        .foregroundStyle(form.masterOk ? Palette.onSurfaceVariant : Palette.error)
+                    if !form.masterStored {
+                        PinField(label: L.t("current_master_pin"), value: $form.current, maxLen: 12, visibleInitially: false) { EmptyView() }
+                    }
+                } footer: { Text(L.t("change_pins_text")) }
+                if let error { Section { Text(error).foregroundStyle(Palette.error) } }
+            }
+            .navigationTitle(L.t("change_pins"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button(L.t("cancel")) { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    if busy { ProgressView() } else { Button(L.t("save")) { save() }.disabled(!form.canSave) }
+                }
+            }
+            .ledorScreen()
+        }
+    }
+
+    private func save() {
+        busy = true
+        error = nil
+        Task {
+            let r = await model.data.changePins(listId: list.id, currentMasterPin: form.current, newReadPin: form.read,
+                                                newMasterPin: form.master)
+            busy = false
+            if case .ok = r { onDone(); dismiss() } else { error = rpcErrorText(r) }
+        }
+    }
 }
 
 extension View {

@@ -72,6 +72,9 @@ struct CalendarScreen: View {
             Section {
                 if let notice = model.db.deletedListNotices.first {
                     InfoBanner(text: L.f("notice_list_deleted", notice)) { model.dismissNotices() }
+                } else if let notice = model.db.demotedListNotices.first {
+                    // B-40: в списке сменили Мастер-ПИН — этот телефон теперь только читает.
+                    InfoBanner(text: L.f("notice_list_demoted", notice)) { model.dismissNotices() }
                 }
                 if model.health.hasIssues && model.settings.healthWarningsEnabled {
                     HealthBanner()
