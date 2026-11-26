@@ -95,7 +95,7 @@ export default {
       { q: 'Can I celebrate a birthday by both calendars?', a: 'Yes. Choose “By both calendars” — there will be two dates a year, and LeDor reminds you of each. The year of birth is needed to convert the date.' },
       { q: 'Does it account for sunset?', a: 'Yes. When entering a date you can mark “after sunset” — the Hebrew date is then the next one. The evening reminder comes a chosen time before sunset in your city. Not sure whether the sun had set? Enter the time and city — the app works it out.' },
       { q: 'How is a yahrzeit calculated in a leap year?', a: 'For someone who passed away in Adar of a regular year, Ashkenazi custom observes it in Adar I and Sephardi custom in Adar II; you choose the custom in settings. The rules for the 30th of Cheshvan and Kislev are applied too.' },
-      { q: 'Does the app work offline?', a: 'Yes. The internet is needed only for shared lists; changes are sent once you are back online.' },
+      { q: 'Does the app work offline?', a: 'Yes. The internet is needed only for shared lists, for sending feedback and for checking for updates when you tap the button; changes are sent once you are back online.' },
       { q: 'How much battery does the app use?', a: 'Practically none. There are no background services, no location and no permanent connection. The phone wakes LeDor for a split second only at the moment of a reminder — the evening before and on the day — and, if you use a shared list, once a day to sync, when the system finds it convenient.' },
       { q: 'Which languages does LeDor support?', a: 'English, עברית, Русский, ייִדיש, Français, Español. In Hebrew and Yiddish the interface is right-to-left and Hebrew dates are written in letters.' },
       { q: 'Can I move my events to a shared list?', a: 'Yes. When creating a list, check “Move events from the personal list”, or open the personal list and choose “Move events to a cloud list”.' },
@@ -161,7 +161,7 @@ export default {
     title: 'Privacy Policy — LeDor',
     description: 'What data the LeDor app processes, where it is stored, for how long and how to delete it.',
     h1: 'Privacy Policy',
-    updated: 'Version of 24 November 2026',
+    updated: 'Version of 26 November 2026',
     body: `<p>This policy explains what data the LeDor mobile app and the kalendar.bothub.chat website process, why, for how long it is kept and how you can control it.</p>
 
 <h2>1. Who is responsible</h2>
@@ -185,7 +185,7 @@ export default {
 <h2>4. What is stored on the server</h2>
 <p><b>Shared lists</b> — only if you create or connect a shared list: the list name, events (name or title, type, dates, note), technical timestamps and versions. The regular PIN is stored so editors can share the list; the Master PIN only as an irreversible hash. Purpose: syncing the list between members.</p>
 <p><b>Feedback</b> — if you send feedback: its text and, only if you provided or allowed them, a contact for a reply and technical details (app version, phone model, Android version, language). Events and PINs are never included. Purpose: replying to you and improving the app. Feedback is forwarded to the author via Telegram.</p>
-<p><b>Technical data</b> — every request to the server involves your IP address. To protect against PIN guessing, only its irreversible hash is stored.</p>
+<p><b>Technical data</b> — every request to the server involves your IP address. To protect against PIN guessing, only its irreversible hash is stored. When you tap “Check for updates”, the app requests the latest version number from this website; nothing about you or your events is sent.</p>
 <p>Data is stored on the developer’s server; connections are encrypted (HTTPS).</p>
 
 <h2>5. How long data is kept</h2>

@@ -305,6 +305,14 @@
     <!-- אודות -->
     <string name="about_text">האפליקציה ללא מטרות רווח וחינמית. אין בה פרסומות ואין בה איסוף נתונים. קוד המקור פתוח (Open Source) — כל אחד יכול לבדוק איך היא פועלת ולהציע שיפורים.</string>
     <string name="about_source">קוד המקור ב־GitHub</string>
+    <string name="update_check">בדיקת עדכון</string>
+    <string name="update_checking">בודקים…</string>
+    <string name="update_latest">מותקנת הגרסה העדכנית</string>
+    <string name="update_available">גרסה %1$s זמינה</string>
+    <string name="update_button">עדכון</string>
+    <string name="update_failed">הבדיקה נכשלה. ודאו שיש חיבור לאינטרנט.</string>
+    <string name="update_hint_play">ייפתח Google Play. אם עדיין אין שם כפתור „עדכון”, הגרסה החדשה נמצאת בבדיקה של Google ותופיע בהמשך.</string>
+    <string name="update_hint_site">הקובץ יורד מאתר LeDor. בסיום ההורדה פתחו אותו ואשרו את ההתקנה. הנתונים שלכם יישארו במקומם.</string>
     <string name="about_site">אתר האפליקציה</string>
     <string name="about_author">יוצר: גרשון</string>
     <string name="about_author_channel">ערוץ הטלגרם של היוצר</string>

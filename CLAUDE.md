@@ -8,7 +8,7 @@
 
 | Часть | Состояние |
 |---|---|
-| Android (`android/`) | версия 0.6.5, пакет `org.ledor`; раздаётся APK с сайта; идёт публикация в Google Play (`docs/PLAN.md`, M15; пошагово — `docs/store/google-play.md`) |
+| Android (`android/`) | версия 0.6.6, пакет `org.ledor`; раздаётся APK с сайта; идёт публикация в Google Play (`docs/PLAN.md`, M15; пошагово — `docs/store/google-play.md`) |
 | Сервер (`supabase/migrations/`, `tools/server/`) | свой: PostgreSQL + PostgREST за Caddy, `https://kalendar.bothub.chat/rest/v1/rpc/…` |
 | Сайт (`website/`, `tools/site/`) | `https://kalendar.bothub.chat`, 6 языков; страницы генерируются |
 | iOS (`ios/`) | вехи I0–I7 в коде, проверено в симуляторе; TestFlight ждёт Apple Developer Program; задание и состояние — `docs/09-ios-notes.md` §12, §16; делается на Mac |

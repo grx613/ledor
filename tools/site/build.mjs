@@ -397,4 +397,8 @@ write('index.html', redirectPage(''));
 write('converter/index.html', redirectPage('converter'));
 write('privacy/index.html', redirectPage('privacy'));
 write('sitemap.xml', sitemap());
+// Номер последней версии Android — его читает кнопка «Проверить обновление» в приложении (docs/01, ABT-5).
+const APK_VERSION = /^ledor-(\d+(?:\.\d+){1,3})\.apk$/.exec(APK)?.[1];
+if (!APK_VERSION) throw new Error(`tools/site/apk-name.txt: ожидается ledor-X.Y.Z.apk, а там «${APK}»`);
+write('version.json', JSON.stringify({ android: { version: APK_VERSION, apk: APK } }) + '\n');
 console.log(`Сайт собран: ${LANGS.length} языков × 3 страницы, APK ${APK}`);

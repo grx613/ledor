@@ -43,6 +43,7 @@ Google Play Console Help и App Store Review Guidelines; этот докумен
 | `FOREGROUND_SERVICE` (приносит WorkManager) | **Убрано в 0.4.0** вместе со службой `SystemForegroundService`: LeDor не использует службы переднего плана, декларация не нужна. | — |
 | `POST_NOTIFICATIONS` | Стандартный запрос. | — |
 | `RECEIVE_BOOT_COMPLETED` | Восстановление напоминаний после перезагрузки. | — |
+| `REQUEST_INSTALL_PACKAGES` | **Не запрашивается.** Правило Google Play: приложение из магазина не обновляет себя в обход магазина. Кнопка «Обновить» (`01`, ABT-5) у копии из Google Play открывает только страницу в Google Play; у копии с сайта — загрузку APK в браузере. Откуда установлена копия, приложение узнаёт у системы. Тесты `updateGoesWhereTheAppCameFrom`, `appDoesNotInstallPackagesItself`. | — |
 
 ## 4. Пользовательское содержимое и модерация
 

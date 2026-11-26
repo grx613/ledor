@@ -95,7 +95,7 @@ export default {
       { q: '¿Puedo celebrar un cumpleaños según ambos calendarios?', a: 'Sí. Elige «Según ambos calendarios»: habrá dos fechas al año y LeDor te recordará cada una. Hace falta el año de nacimiento para convertir la fecha.' },
       { q: '¿Se tiene en cuenta la puesta de sol?', a: 'Sí. Al introducir una fecha puedes marcar «después del ocaso»: entonces la fecha hebrea es la siguiente. El recordatorio de la víspera llega el tiempo que elijas antes de la puesta de sol en tu ciudad. ¿No sabes si ya se había puesto el sol? Indica la hora y la ciudad y la app lo calcula.' },
       { q: '¿Cómo se calcula un yahrzeit en año bisiesto?', a: 'Para quien falleció en Adar de un año común: según la costumbre asquenazí, en Adar I; según la sefardí, en Adar II; la costumbre se elige en ajustes. También se aplican las reglas del 30 de Jeshván y Kislev.' },
-      { q: '¿Funciona la app sin internet?', a: 'Sí. Internet solo hace falta para las listas compartidas; los cambios se envían cuando vuelve la conexión.' },
+      { q: '¿Funciona la app sin internet?', a: 'Sí. Internet solo hace falta para las listas compartidas, para enviar comentarios y para buscar actualizaciones cuando tú lo pides; los cambios se envían cuando vuelve la conexión.' },
       { q: '¿Cuánta energía consume la app?', a: 'Prácticamente nada. No hay servicios en segundo plano, ni ubicación, ni conexión permanente. El móvil despierta LeDor una fracción de segundo solo en el momento del recordatorio —la víspera y el mismo día— y, si usas una lista compartida, una vez al día para sincronizar, cuando al sistema le conviene.' },
       { q: '¿En qué idiomas está LeDor?', a: 'English, עברית, Русский, ייִדיש, Français, Español. En hebreo e ídish la interfaz va de derecha a izquierda y las fechas hebreas se escriben con letras.' },
       { q: '¿Puedo pasar mis eventos a una lista compartida?', a: 'Sí. Al crear una lista, marca «Mover eventos de la lista personal», o abre la lista personal y elige «Mover eventos a una lista en la nube».' },
@@ -161,7 +161,7 @@ export default {
     title: 'Política de privacidad — LeDor',
     description: 'Qué datos trata la app LeDor, dónde se guardan, durante cuánto tiempo y cómo eliminarlos.',
     h1: 'Política de privacidad',
-    updated: 'Versión del 24 de noviembre de 2026',
+    updated: 'Versión del 26 de noviembre de 2026',
     body: `<p>Esta política explica qué datos tratan la app móvil LeDor y el sitio kalendar.bothub.chat, para qué, durante cuánto tiempo se conservan y cómo controlarlos.</p>
 
 <h2>1. Responsable</h2>
@@ -185,7 +185,7 @@ export default {
 <h2>4. Lo que se guarda en el servidor</h2>
 <p><b>Listas compartidas</b> — solo si creas o conectas una lista compartida: nombre de la lista, eventos (nombre o título, tipo, fechas, nota), marcas de tiempo y versiones técnicas. El PIN normal se guarda para que los editores puedan compartir la lista; el PIN maestro, solo como hash irreversible. Finalidad: sincronizar la lista entre sus miembros.</p>
 <p><b>Comentarios</b> — si envías un comentario: su texto y, solo si los indicaste o lo permitiste, un contacto para responder y datos técnicos (versión de la app, modelo del móvil, versión de Android, idioma). Los eventos y los PIN nunca se incluyen. Finalidad: responderte y mejorar la app. El comentario se reenvía al autor por Telegram.</p>
-<p><b>Datos técnicos</b> — cada petición al servidor implica tu dirección IP. Para proteger contra la adivinación de PIN, solo se guarda su hash irreversible.</p>
+<p><b>Datos técnicos</b> — cada petición al servidor implica tu dirección IP. Para proteger contra la adivinación de PIN, solo se guarda su hash irreversible. Cuando tocas «Buscar actualizaciones», la app pide a este sitio el número de la última versión; no se envía ningún dato sobre ti ni sobre tus eventos.</p>
 <p>Los datos se guardan en el servidor del desarrollador; las conexiones van cifradas (HTTPS).</p>
 
 <h2>5. Plazos de conservación</h2>

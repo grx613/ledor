@@ -95,7 +95,7 @@ export default {
       { q: 'Peut-on fêter un anniversaire selon les deux calendriers ?', a: 'Oui. Choisissez « Selon les deux calendriers » — il y aura deux dates par an et LeDor rappellera chacune. L’année de naissance est nécessaire pour convertir la date.' },
       { q: 'Le coucher du soleil est-il pris en compte ?', a: 'Oui. En saisissant une date, vous pouvez indiquer « après le coucher » — la date hébraïque est alors la suivante. Le rappel de la veille arrive le temps choisi avant le coucher du soleil dans votre ville. Vous ne savez pas si le soleil était couché ? Indiquez l’heure et la ville — l’application le calcule.' },
       { q: 'Comment se calcule une yahrzeit en année embolismique ?', a: 'Pour un décès en Adar d’une année simple : en Adar I selon la coutume ashkénaze, en Adar II selon la coutume séfarade ; la coutume se choisit dans les réglages. Les règles du 30 Hechvan et Kislev sont aussi appliquées.' },
-      { q: 'L’application fonctionne-t-elle hors ligne ?', a: 'Oui. Internet n’est nécessaire que pour les listes partagées ; les modifications partent dès que la connexion revient.' },
+      { q: 'L’application fonctionne-t-elle hors ligne ?', a: 'Oui. Internet n’est nécessaire que pour les listes partagées, l’envoi d’un avis et la vérification des mises à jour à votre demande ; les modifications partent dès que la connexion revient.' },
       { q: 'Combien d’énergie consomme l’application ?', a: 'Presque rien. Pas de service en arrière-plan, pas de géolocalisation, pas de connexion permanente. Le téléphone réveille LeDor une fraction de seconde au moment d’un rappel — la veille et le jour même — et, si vous utilisez une liste partagée, une fois par jour pour la synchronisation, quand le système le juge opportun.' },
       { q: 'Dans quelles langues LeDor est-il disponible ?', a: 'English, עברית, Русский, ייִדיש, Français, Español. En hébreu et en yiddish, l’interface s’affiche de droite à gauche et les dates hébraïques sont écrites en lettres.' },
       { q: 'Puis-je transférer mes événements vers une liste partagée ?', a: 'Oui. En créant une liste, cochez « Transférer les événements de la liste personnelle », ou ouvrez la liste personnelle et choisissez « Transférer les événements vers une liste cloud ».' },
@@ -161,7 +161,7 @@ export default {
     title: 'Politique de confidentialité — LeDor',
     description: 'Quelles données l’application LeDor traite, où elles sont conservées, combien de temps et comment les supprimer.',
     h1: 'Politique de confidentialité',
-    updated: 'Version du 24 novembre 2026',
+    updated: 'Version du 26 novembre 2026',
     body: `<p>Cette politique explique quelles données l’application mobile LeDor et le site kalendar.bothub.chat traitent, pourquoi, combien de temps elles sont conservées et comment les contrôler.</p>
 
 <h2>1. Responsable du traitement</h2>
@@ -185,7 +185,7 @@ export default {
 <h2>4. Ce qui est conservé sur le serveur</h2>
 <p><b>Listes partagées</b> — seulement si vous créez ou connectez une liste partagée : nom de la liste, événements (nom ou titre, type, dates, note), horodatages et versions techniques. Le code ordinaire est conservé pour que les éditeurs puissent partager la liste ; le code maître uniquement sous forme d’empreinte irréversible. Finalité : synchroniser la liste entre ses membres.</p>
 <p><b>Avis</b> — si vous envoyez un avis : son texte et, seulement si vous les avez indiqués ou autorisés, un contact pour la réponse et des données techniques (version de l’application, modèle du téléphone, version d’Android, langue). Les événements et les codes PIN n’y figurent jamais. Finalité : vous répondre et améliorer l’application. L’avis est transmis à l’auteur via Telegram.</p>
-<p><b>Données techniques</b> — chaque requête au serveur implique votre adresse IP. Pour protéger contre la recherche de codes PIN, seule son empreinte irréversible est conservée.</p>
+<p><b>Données techniques</b> — chaque requête au serveur implique votre adresse IP. Pour protéger contre la recherche de codes PIN, seule son empreinte irréversible est conservée. Lorsque vous touchez « Vérifier les mises à jour », l’application demande à ce site le numéro de la dernière version ; aucune information sur vous ou vos événements n’est envoyée.</p>
 <p>Les données sont conservées sur le serveur du développeur ; les connexions sont chiffrées (HTTPS).</p>
 
 <h2>5. Durée de conservation</h2>

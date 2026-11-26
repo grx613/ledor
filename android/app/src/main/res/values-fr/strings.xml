@@ -305,6 +305,14 @@
     <!-- À propos -->
     <string name="about_text">L’application est non commerciale et gratuite. Elle ne contient aucune publicité et ne collecte aucune donnée. Le code source est ouvert (Open Source) — chacun peut vérifier son fonctionnement et proposer des améliorations.</string>
     <string name="about_source">Code source sur GitHub</string>
+    <string name="update_check">Vérifier les mises à jour</string>
+    <string name="update_checking">Vérification…</string>
+    <string name="update_latest">Vous avez la dernière version</string>
+    <string name="update_available">La version %1$s est disponible</string>
+    <string name="update_button">Mettre à jour</string>
+    <string name="update_failed">Vérification impossible. Vérifiez la connexion à Internet.</string>
+    <string name="update_hint_play">Google Play va s’ouvrir. S’il n’y a pas encore de bouton « Mettre à jour », la nouvelle version est en cours de validation par Google et apparaîtra plus tard.</string>
+    <string name="update_hint_site">Le fichier sera téléchargé depuis le site de LeDor. Une fois le téléchargement terminé, ouvrez-le et confirmez l’installation. Vos données restent en place.</string>
     <string name="about_site">Site de l’application</string>
     <string name="about_author">Auteur : Gershon</string>
     <string name="about_author_channel">Chaîne Telegram de l’auteur</string>

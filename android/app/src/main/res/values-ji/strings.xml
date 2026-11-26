@@ -300,6 +300,14 @@
     <!-- וועגן דער אַפּ -->
     <string name="about_text">די אַפּ איז נישט־קאָמערציעל און אומזיסט. אין איר איז נישטאָ קיין רעקלאַמע און קיין זאַמלען דאַטן. דער מקור־קאָד איז אָפֿן (Open Source) — יעדער קען איבערקוקן ווי זי אַרבעט און פֿאָרשלאָגן פֿאַרבעסערונגען.</string>
     <string name="about_source">מקור־קאָד אויף GitHub</string>
+    <string name="update_check">זוכן אַ דערהײַנטיקונג</string>
+    <string name="update_checking">מע קאָנטראָלירט…</string>
+    <string name="update_latest">איר האָט די לעצטע ווערסיע</string>
+    <string name="update_available">ווערסיע %1$s איז פֿאַראַן</string>
+    <string name="update_button">דערהײַנטיקן</string>
+    <string name="update_failed">ס׳איז נישט געלונגען צו קאָנטראָלירן. זעט צי ס׳איז דאָ אינטערנעט.</string>
+    <string name="update_hint_play">Google Play וועט זיך עפֿענען. אויב דאָרט איז נאָך נישטאָ דאָס קנעפּל „דערהײַנטיקן”, ווערט די נײַע ווערסיע נאָך געפּרוּווט בײַ Google און וועט שפּעטער דערשײַנען.</string>
+    <string name="update_hint_site">די טעקע ווערט אַראָפּגעלאָדן פֿונעם LeDor־וועבזײַטל. נאָכן אַראָפּלאָדן עפֿנט זי און באַשטעטיקט די אינסטאַלירונג. אײַערע דאַטן בלײַבן אויפֿן אָרט.</string>
     <string name="about_site">וועבזײַטל פֿון דער אַפּ</string>
     <string name="about_author">מחבר: גרשון</string>
     <string name="about_author_channel">דעם מחברס טעלעגראַם־קאַנאַל</string>

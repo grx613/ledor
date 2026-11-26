@@ -39,6 +39,7 @@ class AppContainer(private val context: Context) {
     val cityCatalog by lazy { CityCatalog.loadFromResources() }
     val notifications by lazy { NotificationFactory(context) }
     val healthChecker by lazy { ReminderHealthChecker(context) }
+    val updateChecker by lazy { org.ledor.update.UpdateChecker(context, org.ledor.ui.about.SITE_URL) }
     val syncScheduler by lazy { SyncScheduler(context) }
 
     private val rearmRequests = MutableSharedFlow<Unit>(extraBufferCapacity = 1)

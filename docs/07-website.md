@@ -23,6 +23,7 @@ website/
 ├── <lang>/privacy/index.html            политика конфиденциальности
 ├── sitemap.xml, robots.txt, favicon.svg
 ├── ledor-X.Y.Z.apk, ledor.apk           сборка для скачивания (не в git)
+├── version.json                         номер последней версии Android из `apk-name.txt`; его читает кнопка «Проверить обновление» (`01`, ABT-5)
 ├── assets/css/styles.css                все стили
 ├── assets/js/hebrew-calendar.js         арифметика календаря (общая с тестами)
 ├── assets/js/converter.js               интерфейс конвертера; тексты — из <script id="i18n"> на странице

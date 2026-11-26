@@ -310,6 +310,14 @@
     <!-- О программе -->
     <string name="about_text">Приложение некоммерческое и бесплатное. В нём нет рекламы и сбора данных. Исходный код открыт (Open Source) — любой может проверить, как оно работает, и предложить улучшения.</string>
     <string name="about_source">Исходный код на GitHub</string>
+    <string name="update_check">Проверить обновление</string>
+    <string name="update_checking">Проверяем…</string>
+    <string name="update_latest">У вас последняя версия</string>
+    <string name="update_available">Доступна версия %1$s</string>
+    <string name="update_button">Обновить</string>
+    <string name="update_failed">Не удалось проверить. Проверьте подключение к интернету.</string>
+    <string name="update_hint_play">Откроется Google Play. Если кнопки «Обновить» там ещё нет, новая версия проходит проверку Google и появится позже.</string>
+    <string name="update_hint_site">Файл скачается с сайта LeDor. Когда загрузка закончится, откройте его и подтвердите установку. Ваши данные останутся на месте.</string>
     <string name="about_site">Сайт приложения</string>
     <string name="about_author">Автор: Гершон</string>
     <string name="about_author_channel">Канал автора в Telegram</string>
