@@ -9353,37 +9353,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Events imported: %1$ld"
+            "value": "List connected. Events: %1$ld"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eventos importados: %1$ld"
+            "value": "Lista conectada. Eventos: %1$ld"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Événements importés : %1$ld"
+            "value": "Liste connectée. Événements : %1$ld"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "יובאו אירועים: %1$ld"
+            "value": "הרשימה חוברה. אירועים: %1$ld"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Импортировано событий: %1$ld"
+            "value": "Список подключён. Событий: %1$ld"
           }
         },
         "yi": {
           "stringUnit": {
             "state": "translated",
-            "value": "אימפּאָרטירטע געשעענישן: %1$ld"
+            "value": "די רשימה איז פֿאַרבונדן. געשעענישן: %1$ld"
           }
         }
       }
@@ -11608,37 +11608,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "If your family or community already has a list, enter its name and PIN."
+            "value": "A shared list keeps the same dates on every family phone. If a relative has already created one, enter its name and PIN. If not, tap “No” — you can create your own list later in “Lists”."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si tu familia o comunidad ya tiene una lista, introduce su nombre y su PIN."
+            "value": "Una lista compartida son las mismas fechas en los teléfonos de toda la familia. Si un familiar ya la creó, introduce su nombre y su PIN. Si no, toca «No»: podrás crear tu propia lista más tarde en «Listas»."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si votre famille ou votre communauté a déjà une liste, saisissez son nom et son code PIN."
+            "value": "Une liste partagée, ce sont les mêmes dates sur les téléphones de toute la famille. Si un proche l’a déjà créée, saisissez son nom et son code PIN. Sinon, touchez « Non » : vous pourrez créer votre propre liste plus tard dans « Listes »."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "אם למשפחה או לקהילה שלכם כבר יש רשימה, הזינו את שמה ואת קוד ה־PIN."
+            "value": "רשימה משותפת היא אותם תאריכים בטלפונים של כל המשפחה. אם מישהו מבני המשפחה כבר יצר אותה, הזינו את שמה ואת קוד ה־PIN. אם לא — הקישו „לא”: אפשר ליצור רשימה משלכם אחר כך בקטע „רשימות”."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Если у вашей семьи или общины уже есть список, введите его название и ПИН-код."
+            "value": "Общий список — это одни и те же даты на телефонах всей семьи. Если кто-то из родных уже создал его, введите его название и ПИН-код. Если нет — нажмите «Нет»: свой список можно создать потом в разделе «Списки»."
           }
         },
         "yi": {
           "stringUnit": {
             "state": "translated",
-            "value": "אויב אײַער משפּחה אָדער קהילה האָט שוין אַ רשימה, שרײַבט אַרײַן איר נאָמען און PIN."
+            "value": "אַ געמיינזאַמע רשימה איז די זעלבע דאַטעס אויף די טעלעפֿאָנען פֿון דער גאַנצער משפּחה. אויב עמעצער פֿון די קרובים האָט זי שוין געשאַפֿן, שרײַבט אַרײַן איר נאָמען און PIN. אויב נישט — דריקט „ניין”: אַן אייגענע רשימה קען מען שאַפֿן שפּעטער אין „רשימות”."
           }
         }
       }
@@ -11649,37 +11649,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Import a birthday list?"
+            "value": "Does your family already have a shared list?"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¿Importar una lista de cumpleaños?"
+            "value": "¿Tu familia ya tiene una lista compartida?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Importer une liste d’anniversaires ?"
+            "value": "Votre famille a-t-elle déjà une liste partagée ?"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לייבא רשימת ימי הולדת?"
+            "value": "יש כבר למשפחה שלכם רשימה משותפת?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хотите импортировать список дней рождения?"
+            "value": "У вашей семьи уже есть общий список?"
           }
         },
         "yi": {
           "stringUnit": {
             "state": "translated",
-            "value": "אימפּאָרטירן אַ רשימה פֿון געבורטסטעג?"
+            "value": "האָט אײַער משפּחה שוין אַ געמיינזאַמע רשימה?"
           }
         }
       }
