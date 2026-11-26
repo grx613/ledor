@@ -318,6 +318,20 @@
     <string name="update_failed">Не удалось проверить. Проверьте подключение к интернету.</string>
     <string name="update_hint_play">Откроется Google Play. Если кнопки «Обновить» там ещё нет, новая версия проходит проверку Google и появится позже.</string>
     <string name="update_hint_site">Файл скачается с сайта LeDor. Когда загрузка закончится, откройте его и подтвердите установку. Ваши данные останутся на месте.</string>
+    <string name="egg_steps">Ещё %1$d…</string>
+    <string name="egg_yetzer_name">Ецер а-Ра</string>
+    <string-array name="egg_excuses">
+        <item>Позвонишь завтра</item>
+        <item>Поздравишь потом</item>
+        <item>Свечу зажжёшь позже</item>
+        <item>Да кто помнит эти даты</item>
+        <item>Ещё пять минут</item>
+        <item>Они не обидятся</item>
+        <item>Ладно, ладно…</item>
+    </string-array>
+    <string name="egg_quote">Кто силён? Тот, кто побеждает своё влечение.</string>
+    <string name="egg_quote_source">Пиркей Авот 4:1</string>
+    <string name="egg_back">Он ещё вернётся. А LeDor напомнит вовремя.</string>
     <string name="about_site">Сайт приложения</string>
     <string name="about_author">Автор: Гершон</string>
     <string name="about_author_channel">Канал автора в Telegram</string>

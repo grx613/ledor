@@ -313,6 +313,20 @@
     <string name="update_failed">No se pudo comprobar. Revisa la conexión a internet.</string>
     <string name="update_hint_play">Se abrirá Google Play. Si aún no aparece el botón «Actualizar», la nueva versión está en revisión de Google y aparecerá más tarde.</string>
     <string name="update_hint_site">El archivo se descargará del sitio de LeDor. Cuando termine la descarga, ábrelo y confirma la instalación. Tus datos se conservan.</string>
+    <string name="egg_steps">Faltan %1$d…</string>
+    <string name="egg_yetzer_name">Yétzer Hará</string>
+    <string-array name="egg_excuses">
+        <item>Ya llamarás mañana</item>
+        <item>Ya felicitarás luego</item>
+        <item>La vela, ya la encenderás</item>
+        <item>¿Quién se acuerda de esas fechas?</item>
+        <item>Cinco minutos más</item>
+        <item>No se van a ofender</item>
+        <item>Vale, vale…</item>
+    </string-array>
+    <string name="egg_quote">¿Quién es fuerte? El que domina su inclinación.</string>
+    <string name="egg_quote_source">Pirkei Avot 4:1</string>
+    <string name="egg_back">Volverá. LeDor te lo recordará a tiempo.</string>
     <string name="about_site">Sitio web de la app</string>
     <string name="about_author">Autor: Gershon</string>
     <string name="about_author_channel">Canal de Telegram del autor</string>

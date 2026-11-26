@@ -84,7 +84,7 @@ android {
 без Android и эмулятора; её границы совпадают с тем, что потом переносится на Swift.
 
 Идентификаторы: `applicationId` и `namespace` — **`org.ledor`**, пакеты кода — `org.ledor…`.
-Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 15 / 0.6.6).
+Версия — `versionCode` / `versionName` в `android/app/build.gradle.kts` (сейчас 16 / 0.6.6).
 Подпись release: ключ загрузки из `android/keystore.properties` (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`;
 файл и `android/keystore/*.jks` не коммитятся). Без этого файла release подписывается отладочным ключом — только для
 локальной проверки. `./gradlew :app:bundleRelease` → `app/build/outputs/bundle/release/app-release.aab` для Google Play.

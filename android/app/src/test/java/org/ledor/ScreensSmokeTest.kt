@@ -224,6 +224,8 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.waitForIdle()
         rule.onNodeWithText(s(R.string.holidays_title)).performScrollTo().performClick()
         rule.waitForIdle()
+        // Список праздников строится в фоне — ждать, а не проверять сразу.
+        waitFor { rule.onAllNodesWithText(s(R.string.holiday_chanukah)).fetchSemanticsNodes().isNotEmpty() }
         rule.onNodeWithText(s(R.string.holiday_chanukah)).assertExists()
         rule.onNodeWithText(s(R.string.shabbat)).assertExists()
         shot("15_holidays")

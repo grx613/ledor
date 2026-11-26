@@ -308,6 +308,20 @@
     <string name="update_failed">ס׳איז נישט געלונגען צו קאָנטראָלירן. זעט צי ס׳איז דאָ אינטערנעט.</string>
     <string name="update_hint_play">Google Play וועט זיך עפֿענען. אויב דאָרט איז נאָך נישטאָ דאָס קנעפּל „דערהײַנטיקן”, ווערט די נײַע ווערסיע נאָך געפּרוּווט בײַ Google און וועט שפּעטער דערשײַנען.</string>
     <string name="update_hint_site">די טעקע ווערט אַראָפּגעלאָדן פֿונעם LeDor־וועבזײַטל. נאָכן אַראָפּלאָדן עפֿנט זי און באַשטעטיקט די אינסטאַלירונג. אײַערע דאַטן בלײַבן אויפֿן אָרט.</string>
+    <string name="egg_steps">נאָך %1$d…</string>
+    <string name="egg_yetzer_name">יצר־הרע</string>
+    <string-array name="egg_excuses">
+        <item>איר וועט מאָרגן אָנקלינגען</item>
+        <item>איר וועט שפּעטער ווינטשן</item>
+        <item>דאָס ליכט וועט איר שפּעטער אָנצינדן</item>
+        <item>ווער געדענקט דען די דאַטעס</item>
+        <item>נאָך פֿינף מינוט</item>
+        <item>זיי וועלן זיך נישט באַליידיקן</item>
+        <item>גוט, גוט…</item>
+    </string-array>
+    <string name="egg_quote">ווער איז אַ גיבור? דער וואָס איז כּובש זײַן יצר.</string>
+    <string name="egg_quote_source">אָבות ד, א</string>
+    <string name="egg_back">ער וועט נאָך צוריקקומען. LeDor וועט דערמאָנען אין צײַט.</string>
     <string name="about_site">וועבזײַטל פֿון דער אַפּ</string>
     <string name="about_author">מחבר: גרשון</string>
     <string name="about_author_channel">דעם מחברס טעלעגראַם־קאַנאַל</string>

@@ -313,6 +313,20 @@
     <string name="update_failed">Vérification impossible. Vérifiez la connexion à Internet.</string>
     <string name="update_hint_play">Google Play va s’ouvrir. S’il n’y a pas encore de bouton « Mettre à jour », la nouvelle version est en cours de validation par Google et apparaîtra plus tard.</string>
     <string name="update_hint_site">Le fichier sera téléchargé depuis le site de LeDor. Une fois le téléchargement terminé, ouvrez-le et confirmez l’installation. Vos données restent en place.</string>
+    <string name="egg_steps">Encore %1$d…</string>
+    <string name="egg_yetzer_name">Yetser Hara</string>
+    <string-array name="egg_excuses">
+        <item>Tu appelleras demain</item>
+        <item>Tu féliciteras plus tard</item>
+        <item>La bougie, tu l’allumeras plus tard</item>
+        <item>Qui se souvient de ces dates ?</item>
+        <item>Encore cinq minutes</item>
+        <item>Ils ne t’en voudront pas</item>
+        <item>Bon, bon…</item>
+    </string-array>
+    <string name="egg_quote">Qui est fort ? Celui qui domine son penchant.</string>
+    <string name="egg_quote_source">Pirké Avot 4:1</string>
+    <string name="egg_back">Il reviendra. LeDor vous le rappellera à temps.</string>
     <string name="about_site">Site de l’application</string>
     <string name="about_author">Auteur : Gershon</string>
     <string name="about_author_channel">Chaîne Telegram de l’auteur</string>

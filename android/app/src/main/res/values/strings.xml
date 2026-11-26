@@ -312,6 +312,22 @@
     <string name="update_failed">Could not check. Make sure you are connected to the internet.</string>
     <string name="update_hint_play">Google Play will open. If there is no Update button there yet, the new version is still under Google’s review and will appear later.</string>
     <string name="update_hint_site">The file will be downloaded from the LeDor website. When the download finishes, open it and confirm the installation. Your data stays in place.</string>
+    <string name="egg_steps">Taps left: %1$d</string>
+    <string name="egg_yetzer_name">Yetzer Hara</string>
+    <string-array name="egg_excuses">
+        <item>Call them tomorrow</item>
+        <item>Congratulate them later</item>
+        <item>Light the candle later</item>
+        <item>Who remembers these dates anyway</item>
+        <item>Five more minutes</item>
+        <item>They won’t mind</item>
+        <item>All right, all right…</item>
+    </string-array>
+    <string name="egg_quote">Who is mighty? One who conquers his inclination.</string>
+    <string name="egg_quote_source">Pirkei Avot 4:1</string>
+    <string name="egg_back">He will be back. LeDor will remind you in time.</string>
+    <string name="egg_quote_he" translatable="false">איזהו גיבור? הכובש את יצרו.</string>
+    <string name="egg_yetzer_abbr" translatable="false">יצה״ר</string>
     <string name="about_site">App website</string>
     <string name="about_author">Author: Gershon</string>
     <string name="about_author_channel">Author’s Telegram channel</string>

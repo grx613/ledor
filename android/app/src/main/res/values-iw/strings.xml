@@ -313,6 +313,20 @@
     <string name="update_failed">הבדיקה נכשלה. ודאו שיש חיבור לאינטרנט.</string>
     <string name="update_hint_play">ייפתח Google Play. אם עדיין אין שם כפתור „עדכון”, הגרסה החדשה נמצאת בבדיקה של Google ותופיע בהמשך.</string>
     <string name="update_hint_site">הקובץ יורד מאתר LeDor. בסיום ההורדה פתחו אותו ואשרו את ההתקנה. הנתונים שלכם יישארו במקומם.</string>
+    <string name="egg_steps">עוד %1$d…</string>
+    <string name="egg_yetzer_name">יצר הרע</string>
+    <string-array name="egg_excuses">
+        <item>תתקשרו מחר</item>
+        <item>תברכו אחר כך</item>
+        <item>את הנר תדליקו אחר כך</item>
+        <item>מי בכלל זוכר תאריכים</item>
+        <item>עוד חמש דקות</item>
+        <item>הם לא ייעלבו</item>
+        <item>טוב, טוב…</item>
+    </string-array>
+    <string name="egg_quote">איזהו גיבור? הכובש את יצרו.</string>
+    <string name="egg_quote_source">אבות ד, א</string>
+    <string name="egg_back">הוא עוד יחזור. LeDor יזכיר בזמן.</string>
     <string name="about_site">אתר האפליקציה</string>
     <string name="about_author">יוצר: גרשון</string>
     <string name="about_author_channel">ערוץ הטלגרם של היוצר</string>

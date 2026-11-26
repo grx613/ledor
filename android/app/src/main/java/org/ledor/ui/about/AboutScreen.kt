@@ -1,6 +1,9 @@
 package org.ledor.ui.about
 
 import android.content.Intent
+import android.os.SystemClock
+import android.widget.Toast
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,11 +13,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.core.net.toUri
 import kotlinx.coroutines.launch
 import org.ledor.BuildConfig
@@ -41,6 +48,10 @@ fun AboutScreen(nav: androidx.navigation.NavController) {
     val ctx = LocalContext.current
     fun open(url: String) = runCatching { ctx.startActivity(Intent(Intent.ACTION_VIEW, url.toUri())) }
     var licenses by remember { mutableStateOf(false) }
+    val res = LocalResources.current
+    val eggTaps = remember { EggTaps() }
+    var egg by remember { mutableStateOf(false) }
+    var eggHint by remember { mutableStateOf<Toast?>(null) }
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
@@ -56,7 +67,15 @@ fun AboutScreen(nav: androidx.navigation.NavController) {
             verticalArrangement = Arrangement.spacedBy(12.dp), horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(Modifier.height(8.dp))
-            LogoBlock(onDark = false, markSize = 88.dp)
+            // ABT-6: семь нажатий на знак открывают пасхалку; на последних трёх — подсказка, сколько осталось.
+            LogoBlock(onDark = false, markSize = 88.dp, modifier = Modifier.testTag("about_logo").pointerInput(Unit) {
+                detectTapGestures {
+                    val left = eggTaps.tap(SystemClock.uptimeMillis())
+                    eggHint?.cancel()
+                    if (left == 0) egg = true
+                    else if (left <= EGG_HINT_FROM) eggHint = Toast.makeText(ctx, res.getString(R.string.egg_steps, left), Toast.LENGTH_SHORT).also { it.show() }
+                }
+            })
             Text(stringResource(R.string.version, BuildConfig.VERSION_NAME), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             UpdateBlock(remember { (ctx.applicationContext as KalendarApp).container.updateChecker })
             Spacer(Modifier.height(4.dp))
@@ -78,6 +97,9 @@ fun AboutScreen(nav: androidx.navigation.NavController) {
             Wordmark(onDark = false)
             Spacer(Modifier.height(16.dp))
         }
+    }
+    if (egg) Dialog(onDismissRequest = { egg = false }, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        YetzerGame(onClose = { egg = false })
     }
 }
 
