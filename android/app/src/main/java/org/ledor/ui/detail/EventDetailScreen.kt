@@ -96,7 +96,7 @@ fun EventDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
                         else -> R.string.observe_gregorian
                     }), style = MaterialTheme.typography.labelMedium)
                     Text(f.relativeDays(days).replaceFirstChar { it.titlecase() }, style = MaterialTheme.typography.headlineSmall)
-                    Text(f.occurrenceDates(o, CalendarKind.GREGORIAN).joinToString(" · "), style = MaterialTheme.typography.bodyMedium)
+                    Text(f.occurrenceDates(o).joinToString(" · "), style = MaterialTheme.typography.bodyMedium)
                     if (o.startsEveBefore) Text(stringResource(R.string.conv_eve_note, f.gregorianDayMonth(o.date.minusDays(1))), style = MaterialTheme.typography.bodySmall)
                     f.agePhrase(e.type, o.yearsSince)?.let { Text(it, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold) }
                 }

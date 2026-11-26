@@ -128,11 +128,17 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onAllNodesWithText(s(R.string.tab_events))[0].performClick()
         rule.waitForIdle()
         shot("05_events")
-        // «По обоим календарям» (D-46): две строки — по григорианскому (одна дата) и по еврейскому (обе даты).
+        // «По обоим календарям»: две строки, в каждой крупно главная дата — григорианская или еврейская (D-55).
         rule.onAllNodesWithText(names[6])[0].performClick()
         rule.waitForIdle()
         rule.onAllNodesWithText(names[2]).assertCountEquals(2)
         shot("05b_events_both")
+        // На вкладке «Григорианский» меняются только заголовки месяцев: крупная дата в строке та же.
+        rule.onNodeWithText(s(R.string.tab_gregorian_calendar)).performClick()
+        rule.waitForIdle()
+        shot("05c_events_both_gregorian")
+        rule.onNodeWithText(s(R.string.tab_hebrew_calendar)).performClick()
+        rule.waitForIdle()
         // В карточке — по блоку на каждую из двух ближайших дат.
         rule.onAllNodesWithText(names[2])[0].performClick()
         rule.waitForIdle()

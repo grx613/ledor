@@ -107,8 +107,7 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
                         )
                     }
                     items(group, key = { "${it.event.id}@${it.occurrence.date}" }) { u ->
-                        EventRow(u.event, u.occurrence, u.daysUntil, u.list, onClick = { nav.navigate(EventDetailRoute(u.event.id)) }, primary = kind,
-                            showList = filter == null)
+                        EventRow(u.event, u.occurrence, u.daysUntil, u.list, onClick = { nav.navigate(EventDetailRoute(u.event.id)) }, showList = filter == null)
                     }
                 }
                 if (past.isNotEmpty()) {
@@ -119,7 +118,7 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
                         }
                     }
                     if (showPast) items(past, key = { "p" + it.first.id }) { (e, o) ->
-                        EventRow(e, o, null, listsById[e.listId], onClick = { nav.navigate(EventDetailRoute(e.id)) }, primary = kind)
+                        EventRow(e, o, null, listsById[e.listId], onClick = { nav.navigate(EventDetailRoute(e.id)) })
                     }
                 }
             }

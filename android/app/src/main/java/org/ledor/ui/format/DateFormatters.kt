@@ -48,19 +48,18 @@ class DateFormatters(private val context: Context) {
     fun hebrewMonthTitle(year: Int, m: HebrewMonth) = "${monthNom(m)} ${num(year)}"
 
     /**
-     * Даты наступления события (D-54): главная и «на какое число она выпадает в другом календаре».
-     * Наступление по григорианскому календарю — григорианская дата всегда первой: еврейская дата того же дня
-     * датой события не является («30 апреля» ≠ день рождения «23 Нисана») и заголовком строки не бывает.
-     * Наступление по еврейскому — обе даты настоящие, первой идёт календарь [first] (вкладка списка).
+     * Даты наступления события (D-55): первой — главная, второй — тот же день в другом календаре.
+     * Главная — дата, которую отмечают; она одна и та же из года в год: «30 апреля» у наступления по григорианскому
+     * календарю, «28 Нисана» — по еврейскому. Вторая каждый год другая. От вкладки списка порядок не зависит.
      */
-    fun occurrenceDates(o: Occurrence, first: CalendarKind = o.calendar): List<String> {
+    fun occurrenceDates(o: Occurrence): List<String> {
         val greg = gregorianShortWeekday(o.date)
         val heb = hebrewDate(o.hebrewDate)
-        return if (o.calendar == CalendarKind.HEBREW && first == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
+        return if (o.calendar == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
     }
 
-    /** Одной строкой, григорианская дата первой: «ср, 5 мая 2027 (28 Нисана 5787)». */
-    fun occurrenceDatesInline(o: Occurrence): String = occurrenceDates(o, CalendarKind.GREGORIAN).let { "${it[0]} (${it[1]})" }
+    /** Одной строкой, главная дата первой: «28 Нисана 5787 (ср, 5 мая 2027)». */
+    fun occurrenceDatesInline(o: Occurrence): String = occurrenceDates(o).let { "${it[0]} (${it[1]})" }
 
     fun gregorian(d: LocalDate): String = fFull.format(d)
     fun gregorianWeekday(d: LocalDate): String = fWeekday.format(d)
