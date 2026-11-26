@@ -18,7 +18,7 @@
 | Android | 0.5.1, пакет `org.ledor`; раздаётся APK с сайта; идёт публикация в Google Play (`docs/store/google-play.md`) |
 | Сервер | свой: PostgreSQL + PostgREST за Caddy, `https://kalendar.bothub.chat/rest/v1/rpc/<функция>` |
 | Сайт | `https://kalendar.bothub.chat/<lang>/` — 6 языков, политика конфиденциальности, конвертер |
-| iOS | I0 сделана (§16) |
+| iOS | I0–I7 в коде, I8 частично (§16); на настоящем iPhone и в TestFlight не проверялось |
 
 ## 2. Главное о продукте — учесть на iOS
 
@@ -236,18 +236,29 @@ RATE_LIMITED, UNAUTHORIZED, FORBIDDEN, LIST_DELETED, INVALID_EVENT, FOREIGN_ID, 
 в напоминание накануне четырёх праздников, если есть хоть один йорцайт. Строки: `first_year_title`, `milestone_*`,
 `first_year_note`, `yizkor`, `notif_yizkor`.
 
-## 16. Как устроен `ios/` (после I0)
+## 16. Как устроен `ios/`
 
 | Путь | Что |
 |---|---|
 | `LeDor.xcodeproj` | проект без генераторов; группа `LeDor/` синхронизируется с папкой — новые файлы подхватываются сами |
-| `LeDor/` | приложение: `LeDorApp.swift`, `Theme/` (цвета `Palette`, шрифт `Typography`), `Components/` (знак, Маген Давид, `LogoBlock`, `Wordmark`), `Splash/`, `Assets.xcassets` (значок, цвет экрана запуска), `Resources/Rubik.ttf` |
-| `Domain/` | Swift-пакет без UIKit: месяцы (14 кодов), `CalendarKind`, `EventType`; тесты — Swift Testing |
-| `Info.plist` | дополняет сгенерированный: шрифт, экран запуска (тхелет), адрес и ключ сервера из xcconfig |
-| `LeDor.xcconfig`, `Config.example.xcconfig` | общие настройки; локальный `Config.xcconfig` с публичным ключом не коммитится |
+| `Domain/` | Swift-пакет без UIKit, два модуля. `Domain` — перенос `android/domain`: календарь (`CivilDate`, `HebrewCalendarMath`, `Gematriya`), годовщины, наступления, проверка ввода, вехи первого года, праздники и свечи, заход солнца (свой порт NOAA, как `NOAACalculator` в KosherJava), города (`cities.json` — копия файла Android, тест сверяет), планировщик напоминаний. `AppCore` — хранение (`LocalStore`: один JSON-файл в Application Support), клиент сервера (`RpcClient`), синхронизация и списки (`DataService`), настройки (`SettingsStore`, UserDefaults) |
+| `LeDor/Model/` | `AppModel` (общие данные экранов), встроенные события (праздники, Шабат, вехи), очередь уведомлений (`ReminderNotifications`), маршруты |
+| `LeDor/Screens/` | календарь, события, карточка, редактор, конвертер, «Ещё», настройки, город, «О программе», отзыв, праздники, списки (создание, подключение, карточка, «Поделиться») |
+| `LeDor/Support/` | тексты (`L`), форматирование дат (`Formatters`, как `DateFormatters` на Android) |
+| `LeDor/Resources/Localizable.xcstrings` | 354 строки на шести языках; **не править руками** — генерируется `python3 ios/tools/strings.py` из `strings.xml` Android и `ios/tools/strings-ios.json` (строки только для iOS) |
+| `Info.plist`, `LeDor.xcconfig`, `Config.example.xcconfig` | шрифт, экран запуска, фоновое обновление `org.ledor.refresh`; адрес и ключ сервера. Локальный `Config.xcconfig` с публичным ключом не коммитится — без него общие списки пишут «облако не настроено» |
 | `tools/app-icon.swift` | рисует `AppIcon.png` 1024×1024 по геометрии `mark.svg` |
 
-Команды: `cd ios/Domain && swift test`; сборка —
+Проверка: `cd ios/Domain && swift test` (42 теста: все строки `conversions`, `years`, `anniversaries`, `holidays`, `candles`;
+контрольный заход солнца и подсказка; планировщик; хранилище, синхронизация на поддельном сервере). Сборка —
 `cd ios && xcodebuild -project LeDor.xcodeproj -scheme LeDor -destination 'platform=iOS Simulator,name=iPhone 17' -derivedDataPath build/DerivedData build`.
-Версия 0.1.0 (build 1), только iPhone, портретная ориентация. Пока приложение показывает только брендовую заставку;
-переход с неё на календарь (1500 мс, исчезание 250 мс) — на I3, когда появится экран календаря.
+
+Состояние вех: I0–I7 сделаны в коде; I3 проверен в симуляторе (создал событие → точка в сетке, праздники в «Ближайших»),
+he (справа налево, даты буквами) и ru просмотрены на календаре. **Не проверено:** общие списки с настоящим сервером
+(нужен публичный ключ в `Config.xcconfig`), приход уведомлений, фоновое обновление, тёмная тема и все экраны на всех языках
+(I8), настоящий iPhone. I9 (TestFlight, App Store) ждёт Apple Developer Program.
+
+Отличия от Android, сделанные намеренно: экраны на системных компонентах iOS (`Form`, `List`, `NavigationStack`) в цветах
+и шрифте LeDor; язык — системный выбор для приложения (в настройках строка ведёт туда); вместо проверок батареи —
+разрешение на уведомления, «Обновление контента» и предупреждение, если 60 уведомлений покрывают меньше двух недель;
+встроенный список праздников открывается также из «Ещё».

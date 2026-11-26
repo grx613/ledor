@@ -25,6 +25,11 @@ public enum HebrewMonth: String, CaseIterable, Codable, Sendable {
         return [.tishrei, .cheshvan, .kislev, .tevet, .shevat] + adars + [.nisan, .iyar, .sivan, .tammuz, .av, .elul]
     }
 
+    /// Все 14 значений в порядке года от Тишрея — для выбора месяца, когда год неизвестен.
+    public static let orderWithoutYear: [HebrewMonth] = [
+        .tishrei, .cheshvan, .kislev, .tevet, .shevat, .adar, .adarI, .adarII, .nisan, .iyar, .sivan, .tammuz, .av, .elul,
+    ]
+
     /// Наибольший возможный день месяца, когда год неизвестен.
     public var maxDayWithoutYear: Int {
         switch self {
@@ -41,6 +46,21 @@ public enum HebrewMonth: String, CaseIterable, Codable, Sendable {
         default: true
         }
     }
+}
+
+/// Полная еврейская дата; создаётся только валидной (см. `HebrewCalendarMath.isValid`).
+public struct HebrewDate: Hashable, Codable, Sendable, CustomStringConvertible {
+    public let year: Int
+    public let month: HebrewMonth
+    public let day: Int
+
+    public init(year: Int, month: HebrewMonth, day: Int) {
+        self.year = year
+        self.month = month
+        self.day = day
+    }
+
+    public var description: String { "\(day) \(month.rawValue) \(year)" }
 }
 
 public enum CalendarKind: String, CaseIterable, Codable, Sendable {

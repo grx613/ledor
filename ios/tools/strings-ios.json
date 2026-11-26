@@ -1,0 +1,51 @@
+{
+  "_comment": "Строки только для iOS (на Android их нет). Добавляются в Localizable.xcstrings скриптом tools/strings.py; правки — во все 6 языков сразу.",
+  "feedback_meta_detail_ios": {
+    "en": "Version %1$s · %2$s · iOS %3$s. Events and PINs are never sent.",
+    "ru": "Версия %1$s · %2$s · iOS %3$s. События и ПИН-коды не отправляются.",
+    "he": "גרסה %1$s · %2$s · iOS %3$s. אירועים וקודי PIN לעולם אינם נשלחים.",
+    "yi": "ווערסיע %1$s · %2$s · iOS %3$s. געשעענישן און PIN־קאָדן ווערן קיינמאָל ניט געשיקט.",
+    "fr": "Version %1$s · %2$s · iOS %3$s. Les événements et les codes PIN ne sont jamais envoyés.",
+    "es": "Versión %1$s · %2$s · iOS %3$s. Los eventos y los PIN nunca se envían."
+  },
+  "lang_ios_hint": {
+    "en": "The app language is chosen in the iPhone Settings → LeDor → Language.",
+    "ru": "Язык приложения выбирается в Настройках iPhone → LeDor → Язык.",
+    "he": "שפת האפליקציה נבחרת בהגדרות האייפון ← LeDor ← שפה.",
+    "yi": "די שפּראַך פֿון דער אַפּליקאַציע ווערט אויסגעקליבן אין די iPhone־איינשטעלונגען ← LeDor ← שפּראַך.",
+    "fr": "La langue de l’application se choisit dans Réglages de l’iPhone → LeDor → Langue.",
+    "es": "El idioma de la app se elige en Ajustes del iPhone → LeDor → Idioma."
+  },
+  "health_refresh_title": {
+    "en": "Background App Refresh is off",
+    "ru": "Обновление контента в фоне выключено",
+    "he": "רענון ברקע כבוי",
+    "yi": "הינטערגרונט־דערפֿרישונג איז אויסגעלאָשן",
+    "fr": "L’actualisation en arrière-plan est désactivée",
+    "es": "La actualización en segundo plano está desactivada"
+  },
+  "health_refresh_text": {
+    "en": "Without it, reminders are rescheduled only when you open the app.",
+    "ru": "Без него напоминания перестраиваются только когда вы открываете приложение.",
+    "he": "בלעדיו התזכורות מתעדכנות רק כשפותחים את האפליקציה.",
+    "yi": "אָן דעם ווערן די דערמאָנונגען איבערגעשטעלט נאָר ווען איר עפֿנט די אַפּליקאַציע.",
+    "fr": "Sans elle, les rappels ne sont replanifiés qu’à l’ouverture de l’application.",
+    "es": "Sin ella, los recordatorios solo se reprograman cuando abres la app."
+  },
+  "health_queue_text": {
+    "en": "iPhone keeps a limited number of reminders. Open the app at least once every %1$d days so reminders keep coming.",
+    "ru": "iPhone хранит ограниченное число напоминаний. Открывайте приложение хотя бы раз в %1$d дн., чтобы напоминания продолжали приходить.",
+    "he": "האייפון שומר מספר מוגבל של תזכורות. פתחו את האפליקציה לפחות פעם ב־%1$d ימים כדי שהתזכורות ימשיכו להגיע.",
+    "yi": "דער iPhone האַלט אַ באַגרענעצטע צאָל דערמאָנונגען. עפֿנט די אַפּליקאַציע כאָטש איין מאָל אין %1$d טעג, כּדי די דערמאָנונגען זאָלן ווײַטער קומען.",
+    "fr": "L’iPhone conserve un nombre limité de rappels. Ouvrez l’application au moins une fois tous les %1$d jours pour continuer à les recevoir.",
+    "es": "El iPhone guarda un número limitado de recordatorios. Abre la app al menos una vez cada %1$d días para seguir recibiéndolos."
+  },
+  "licenses_text_ios": {
+    "en": "Rubik font — SIL Open Font License 1.1\nThe Hebrew calendar and sunset times are calculated by the app’s own code; no third-party libraries.",
+    "ru": "Шрифт Rubik — SIL Open Font License 1.1\nЕврейский календарь и время захода считает собственный код приложения; сторонних библиотек нет.",
+    "he": "גופן Rubik — SIL Open Font License 1.1\nהלוח העברי וזמני השקיעה מחושבים בקוד של האפליקציה עצמה, ללא ספריות צד שלישי.",
+    "yi": "שריפֿט Rubik — SIL Open Font License 1.1\nדער ייִדישער קאַלענדאַר און די זונפֿאַרגאַנג־צײַטן ווערן אויסגערעכנט מיטן אייגענעם קאָד פֿון דער אַפּליקאַציע; קיין פֿרעמדע ביבליאָטעקן.",
+    "fr": "Police Rubik — SIL Open Font License 1.1\nLe calendrier hébraïque et les heures du coucher du soleil sont calculés par le code de l’application, sans bibliothèque tierce.",
+    "es": "Fuente Rubik — SIL Open Font License 1.1\nEl calendario hebreo y las horas de la puesta del sol se calculan con el propio código de la app, sin bibliotecas de terceros."
+  }
+}

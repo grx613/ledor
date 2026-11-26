@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1000000000000000000B001 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = A1000000000000000000D001 /* Domain */; };
+		A1000000000000000000B002 /* AppCore in Frameworks */ = {isa = PBXBuildFile; productRef = A1000000000000000000D002 /* AppCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000000000000000000B001 /* Domain in Frameworks */,
+				A1000000000000000000B002 /* AppCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +75,7 @@
 			name = LeDor;
 			packageProductDependencies = (
 				A1000000000000000000D001 /* Domain */,
+				A1000000000000000000D002 /* AppCore */,
 			);
 			productName = LeDor;
 			productReference = A1000000000000000000F001 /* LeDor.app */;
@@ -283,6 +286,10 @@
 		A1000000000000000000D001 /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
+		};
+		A1000000000000000000D002 /* AppCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
