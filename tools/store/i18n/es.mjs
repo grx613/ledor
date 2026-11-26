@@ -9,6 +9,7 @@ RECORDATORIOS A TIEMPO
 • La víspera por la tarde — a la hora que elijas antes de la puesta del sol en tu ciudad (3 horas por defecto), para tener tiempo de llamar, preparar la mesa o encender una vela de recuerdo.
 • Y otra vez el mismo día — al mediodía o a la hora que elijas.
 • Para cada evento decides el calendario: hebreo, gregoriano o ambos.
+• Para que los recordatorios no se pierdan, LeDor pide una sola vez que el ahorro de batería no lo limite: los teléfonos ponen en reposo las apps que se abren poco, y sus recordatorios no llegan.
 
 UNA LISTA PARA LA FAMILIA Y LA COMUNIDAD
 • Crea una lista — «Familia Cohen», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.

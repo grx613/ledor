@@ -9,6 +9,7 @@ DES RAPPELS AU BON MOMENT
 • La veille au soir — à l'heure choisie avant le coucher du soleil dans votre ville (3 heures par défaut), pour avoir le temps d'appeler, de dresser la table ou d'allumer une bougie du souvenir.
 • Et encore une fois le jour même — à midi ou à l'heure de votre choix.
 • Pour chaque événement, vous choisissez le calendrier : hébraïque, grégorien ou les deux.
+• Pour que les rappels ne se perdent pas, LeDor demande une seule fois à ne pas être limité par l'économie de batterie : les téléphones mettent en veille les applications rarement ouvertes, et leurs rappels n'arrivent pas.
 
 UNE LISTE POUR LA FAMILLE ET LA COMMUNAUTÉ
 • Créez une liste — « Famille Cohen », « Notre communauté », « Amis » — et envoyez une invitation par WhatsApp ou Telegram.

@@ -9,6 +9,7 @@ REMINDERS ON TIME
 • The evening before — a chosen time before sunset in your city (3 hours by default), so there is time to call, set the table or light a memorial candle.
 • And once more on the day itself — at noon or at a time you choose.
 • For each event you decide how it is observed: by the Hebrew date, the Gregorian date, or both.
+• So that reminders are not lost, LeDor asks once to be excluded from battery saving: phones put rarely opened apps to sleep, and their reminders do not arrive.
 
 ONE LIST FOR FAMILY AND COMMUNITY
 • Create a list — "The Cohen Family", "Our community", "Friends" — and send an invitation via WhatsApp or Telegram.
