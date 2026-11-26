@@ -131,7 +131,7 @@
     <string name="observe_both">Selon les deux calendriers</string>
     <string name="observe_both_hint">Deux dates par an — un rappel pour chacune</string>
     <string name="observe_needs_year">L’année est nécessaire pour convertir la date</string>
-    <string name="next_occurrence">Prochain : %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">Prochain : %1$s — %2$s</string>
     <string name="hint_bar">Bar-mitsva (13 ans) : %1$s — %2$s</string>
     <string name="hint_bat">Bat-mitsva (12 ans) : %1$s — %2$s</string>
     <string name="add_as_event">Ajouter un événement</string>
@@ -281,7 +281,7 @@
     <string name="health_bg_title">Travail en arrière-plan limité</string>
     <string name="health_bg_text">Le téléphone bloque complètement l’application en arrière-plan. Levez la restriction de batterie.</string>
     <string name="health_battery_title">L’économie de batterie est activée pour l’application</string>
-    <string name="health_battery_text">Choisissez « Non restreinte » (sur Samsung, ajoutez l’application aux « Applications jamais en veille »). Sinon, le téléphone peut endormir l’application et les rappels n’arriveront pas. L’application ne tourne pas en arrière-plan et ne consomme pas de batterie — elle ne se réveille qu’au moment d’un rappel.</string>
+    <string name="health_battery_text">Sur la page de l’application qui s’ouvre, touchez « Batterie » → « Non restreinte » (sur Samsung, ajoutez aussi l’application aux « Applications jamais en veille »). Sinon, le téléphone peut endormir l’application et les rappels n’arriveront pas. L’application ne tourne pas en arrière-plan et ne consomme pas de batterie — elle ne se réveille qu’au moment d’un rappel.</string>
     <string name="hint_samsung">Samsung : Paramètres → Maintenance de l’appareil → Batterie → Limites d’utilisation en arrière-plan → Applications jamais en veille.</string>
     <string name="hint_xiaomi">Xiaomi : Paramètres → Applications → LeDor → Économiseur de batterie → Aucune restriction ; activez aussi « Démarrage automatique ».</string>
     <string name="hint_huawei">Huawei/Honor : Paramètres → Batterie → Lancement d’applications → LeDor → Gérer manuellement, activez tous les interrupteurs.</string>

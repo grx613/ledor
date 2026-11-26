@@ -131,7 +131,7 @@
     <string name="observe_both">Según ambos calendarios</string>
     <string name="observe_both_hint">Dos fechas al año — un recordatorio para cada una</string>
     <string name="observe_needs_year">Hace falta el año para convertir la fecha</string>
-    <string name="next_occurrence">Próximo: %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">Próximo: %1$s — %2$s</string>
     <string name="hint_bar">Bar mitzvá (13 años): %1$s — %2$s</string>
     <string name="hint_bat">Bat mitzvá (12 años): %1$s — %2$s</string>
     <string name="add_as_event">Añadir evento</string>
@@ -281,7 +281,7 @@
     <string name="health_bg_title">El trabajo en segundo plano está limitado</string>
     <string name="health_bg_text">El teléfono bloquea por completo la app en segundo plano. Quita la restricción de batería.</string>
     <string name="health_battery_title">El ahorro de batería está activado para la app</string>
-    <string name="health_battery_text">Elige «Sin restricciones» (en Samsung, añade la app a «Aplicaciones que nunca entran en suspensión»). Si no, el teléfono puede dormir la app y los recordatorios no llegarán. La app no funciona en segundo plano ni gasta batería: solo se despierta en el momento del recordatorio.</string>
+    <string name="health_battery_text">En la página de la app que se abre, toca «Batería» → «Sin restricciones» (en Samsung, añade también la app a «Aplicaciones que nunca entran en suspensión»). Si no, el teléfono puede dormir la app y los recordatorios no llegarán. La app no funciona en segundo plano ni gasta batería: solo se despierta en el momento del recordatorio.</string>
     <string name="hint_samsung">Samsung: Ajustes → Mantenimiento del dispositivo → Batería → Límites de uso en segundo plano → Aplicaciones que nunca entran en suspensión.</string>
     <string name="hint_xiaomi">Xiaomi: Ajustes → Aplicaciones → LeDor → Ahorro de batería → Sin restricciones; activa también «Inicio automático».</string>
     <string name="hint_huawei">Huawei/Honor: Ajustes → Batería → Inicio de aplicaciones → LeDor → Gestionar manualmente, activa todos los interruptores.</string>

@@ -131,7 +131,7 @@
     <string name="observe_both">לפי שני הלוחות</string>
     <string name="observe_both_hint">שני תאריכים בשנה — תזכורת לכל אחד</string>
     <string name="observe_needs_year">כדי להמיר את התאריך צריך שנה</string>
-    <string name="next_occurrence">הקרוב: %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">הקרוב: %1$s — %2$s</string>
     <string name="hint_bar">בר מצווה (13): %1$s — %2$s</string>
     <string name="hint_bat">בת מצווה (12): %1$s — %2$s</string>
     <string name="add_as_event">הוספת אירוע</string>
@@ -281,7 +281,7 @@
     <string name="health_bg_title">העבודה ברקע מוגבלת</string>
     <string name="health_bg_text">הטלפון חוסם את האפליקציה ברקע לחלוטין. הסירו את הגבלת הסוללה.</string>
     <string name="health_battery_title">חיסכון בסוללה פעיל לאפליקציה</string>
-    <string name="health_battery_text">בחרו „ללא הגבלה” (בסמסונג — הוסיפו את האפליקציה ל„אפליקציות שלעולם אינן במצב שינה”). אחרת הטלפון עלול להרדים את האפליקציה והתזכורות לא יגיעו. האפליקציה אינה פועלת ברקע ואינה צורכת סוללה — היא מתעוררת רק ברגע התזכורת.</string>
+    <string name="health_battery_text">בדף האפליקציה שייפתח הקישו „סוללה” ← „ללא הגבלה” (בסמסונג — הוסיפו גם את האפליקציה ל„אפליקציות שלעולם אינן במצב שינה”). אחרת הטלפון עלול להרדים את האפליקציה והתזכורות לא יגיעו. האפליקציה אינה פועלת ברקע ואינה צורכת סוללה — היא מתעוררת רק ברגע התזכורת.</string>
     <string name="hint_samsung">סמסונג: הגדרות ← טיפול במכשיר ← סוללה ← הגבלות שימוש ברקע ← אפליקציות שלעולם אינן במצב שינה.</string>
     <string name="hint_xiaomi">שיאומי: הגדרות ← אפליקציות ← LeDor ← חיסכון בסוללה ← ללא הגבלות; הפעילו גם „הפעלה אוטומטית”.</string>
     <string name="hint_huawei">Huawei/Honor: הגדרות ← סוללה ← הפעלת אפליקציות ← LeDor ← ניהול ידני, הפעילו את כל המתגים.</string>

@@ -166,7 +166,10 @@ class NotificationFactory(private val baseContext: Context) {
                 if (HolidayEvents.holidayOf(e.id)?.dawn == true) R.string.notif_holiday_tomorrow_title else R.string.notif_holiday_eve_title, e.title) to
                 listOfNotNull(context.getString(R.string.notif_eve_starts, f.hebrewDate(hebrew)), HolidayEvents.notificationLine(e)).joinToString(" ")
             r.kind == ReminderKind.DAY -> context.getString(R.string.notif_day_title, type, e.title) to
-                listOfNotNull("${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.", age).joinToString(" ")
+                listOfNotNull(
+                    if (r.calendar == CalendarKind.GREGORIAN) "${f.gregorian(r.occurrenceDate)}." else "${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.",
+                    age,
+                ).joinToString(" ")
             r.calendar == CalendarKind.GREGORIAN && e.recurring -> context.getString(R.string.notif_eve_greg_title, type, e.title) to
                 listOfNotNull(f.gregorian(r.occurrenceDate) + ".", age).joinToString(" ")
             e.type == EventType.YAHRZEIT -> context.getString(R.string.notif_eve_yahrzeit_title, e.title) to
@@ -253,9 +256,9 @@ class ReminderHealthChecker(private val context: Context) {
         )
         HealthIssue.EXACT_ALARMS_DENIED -> listOf(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, pkgUri))
         HealthIssue.BACKGROUND_RESTRICTED -> emptyList()
-        HealthIssue.BATTERY_OPTIMIZED -> listOf(
-            Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS),
-        )
+        // Страница приложения: «Батарея» → «Не ограничено». Общий список оптимизации батареи не подходит —
+        // на Samsung он по умолчанию показывает только уже не оптимизируемые приложения (D-45).
+        HealthIssue.BATTERY_OPTIMIZED -> emptyList()
     } + Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, pkgUri)
 
     fun manufacturerHint(): Int? {

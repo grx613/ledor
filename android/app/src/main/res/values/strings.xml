@@ -130,7 +130,7 @@
     <string name="observe_both">By both calendars</string>
     <string name="observe_both_hint">Two dates a year — you get reminders for each</string>
     <string name="observe_needs_year">The year is needed to convert the date</string>
-    <string name="next_occurrence">Next: %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">Next: %1$s — %2$s</string>
     <string name="hint_bar">Bar mitzvah (13): %1$s — %2$s</string>
     <string name="hint_bat">Bat mitzvah (12): %1$s — %2$s</string>
     <string name="add_as_event">Add event</string>
@@ -280,7 +280,7 @@
     <string name="health_bg_title">Background work is restricted</string>
     <string name="health_bg_text">The phone fully blocks the app in the background. Remove the battery restriction.</string>
     <string name="health_battery_title">Battery saving is on for the app</string>
-    <string name="health_battery_text">Choose “Unrestricted” (on Samsung, add the app to “Never sleeping apps”). Otherwise the phone may put the app to sleep and reminders will not arrive. The app does not run in the background and does not drain the battery — it wakes up only at the moment of a reminder.</string>
+    <string name="health_battery_text">On the app page that opens, tap “Battery” → “Unrestricted” (on Samsung, also add the app to “Never sleeping apps”). Otherwise the phone may put the app to sleep and reminders will not arrive. The app does not run in the background and does not drain the battery — it wakes up only at the moment of a reminder.</string>
     <string name="hint_samsung">Samsung: Settings → Device care → Battery → Background usage limits → Never sleeping apps.</string>
     <string name="hint_xiaomi">Xiaomi: Settings → Apps → LeDor → Battery saver → No restrictions; also enable “Autostart”.</string>
     <string name="hint_huawei">Huawei/Honor: Settings → Battery → App launch → LeDor → Manage manually, turn on all switches.</string>

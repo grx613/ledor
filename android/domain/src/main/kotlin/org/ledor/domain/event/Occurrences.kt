@@ -142,6 +142,12 @@ object OccurrenceCalculator {
         return merge(calendars(e).mapNotNull { nextBy(e, it, today, policy) }).firstOrNull()
     }
 
+    /** Ближайшее наступление по каждому календарю события: для «по обоим» — две даты (совпавшие — одна). */
+    fun nextEach(e: Event, today: LocalDate, policy: YahrzeitAdarPolicy): List<Occurrence> {
+        if (!e.recurring) return listOfNotNull(next(e, today, policy))
+        return merge(calendars(e).mapNotNull { nextBy(e, it, today, policy) })
+    }
+
     private fun nextBy(e: Event, cal: CalendarKind, today: LocalDate, policy: YahrzeitAdarPolicy): Occurrence? {
         val candidates = if (cal == CalendarKind.HEBREW) {
             val y = M.hebrewYearOf(today)

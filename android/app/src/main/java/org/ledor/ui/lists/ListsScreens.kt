@@ -140,7 +140,7 @@ fun ListsScreen(vm: AppViewModel, nav: NavController) {
             LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 item {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(onClick = { nav.navigate(ListCreateRoute) }, Modifier.weight(1f)) {
+                        Button(onClick = { nav.navigate(ListCreateRoute()) }, Modifier.weight(1f)) {
                             Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Spacer(Modifier.width(6.dp)); Text(stringResource(R.string.create_list), maxLines = 1)
                         }
                         OutlinedButton(onClick = { nav.navigate(ListJoinRoute()) }, Modifier.weight(1f)) {
@@ -230,14 +230,14 @@ fun PinField(label: String, value: String, onChange: (String) -> Unit, maxLen: I
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListCreateScreen(vm: AppViewModel, nav: NavController) {
+fun ListCreateScreen(vm: AppViewModel, nav: NavController, moveLocal: Boolean = false) {
     val scope = rememberCoroutineScope()
     val lists by vm.lists.collectAsStateWithLifecycle()
     val localCount = lists.firstOrNull { it.list.id == LOCAL_LIST_ID }?.eventCount ?: 0
     var name by rememberSaveable { mutableStateOf("") }
     var readPin by rememberSaveable { mutableStateOf(PinGenerator.generate(6)) }
     var masterPin by rememberSaveable { mutableStateOf(PinGenerator.generate(8)) }
-    var move by rememberSaveable { mutableStateOf(false) }
+    var move by rememberSaveable { mutableStateOf(moveLocal) }
     var busy by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
     var nameStatus by remember { mutableStateOf<Boolean?>(null) }
@@ -424,13 +424,26 @@ fun ListDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
             if (!l.isCloud) {
                 Text(stringResource(R.string.personal_list_explain), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 val targets = lists.filter { it.list.isCloud && it.list.canEdit }
-                if (count > 0 && targets.isNotEmpty()) OutlinedButton(onClick = { moveDialog = true }) { Text(stringResource(R.string.move_to_cloud)) }
+                // B-27: кнопка есть всегда, когда в личном списке есть события. Облачных списков нет — сразу «Создать список»
+                // с включённым переносом; есть — выбор списка или новый.
+                if (count > 0) OutlinedButton(onClick = { if (targets.isEmpty()) nav.navigate(ListCreateRoute(moveLocal = true)) else moveDialog = true }) {
+                    Text(stringResource(R.string.move_to_cloud))
+                }
                 if (moveDialog) AlertDialog(
                     onDismissRequest = { moveDialog = false },
                     title = { Text(stringResource(R.string.move_to_cloud)) },
                     text = {
                         Column { targets.forEach { t ->
-                            TextButton(onClick = { moveDialog = false; scope.launch { vm.container.listRepository.moveLocalEventsTo(t.list.id) } }) { Text(t.list.name) }
+                            TextButton(onClick = {
+                                moveDialog = false
+                                scope.launch {
+                                    vm.container.listRepository.moveLocalEventsTo(t.list.id)
+                                    nav.navigate(ListDetailRoute(t.list.id)) { popUpTo(ListsRoute) }
+                                }
+                            }) { Text(t.list.name) }
+                        }
+                        TextButton(onClick = { moveDialog = false; nav.navigate(ListCreateRoute(moveLocal = true)) }) {
+                            Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Spacer(Modifier.width(6.dp)); Text(stringResource(R.string.create_list))
                         } }
                     },
                     confirmButton = {}, dismissButton = { TextButton(onClick = { moveDialog = false }) { Text(stringResource(R.string.cancel)) } },

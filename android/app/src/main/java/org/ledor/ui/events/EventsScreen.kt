@@ -106,7 +106,7 @@ fun EventsScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues) {
                             modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.background).padding(horizontal = 16.dp, vertical = 8.dp),
                         )
                     }
-                    items(group, key = { it.event.id }) { u ->
+                    items(group, key = { "${it.event.id}@${it.occurrence.date}" }) { u ->
                         EventRow(u.event, u.occurrence, u.daysUntil, u.list, onClick = { nav.navigate(EventDetailRoute(u.event.id)) }, primary = kind,
                             showList = filter == null)
                     }

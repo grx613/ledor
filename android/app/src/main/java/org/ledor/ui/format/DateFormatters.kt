@@ -2,6 +2,7 @@ package org.ledor.ui.format
 
 import android.content.Context
 import org.ledor.R
+import org.ledor.domain.calendar.CalendarKind
 import org.ledor.domain.calendar.Gematriya
 import org.ledor.domain.calendar.HebrewDate
 import org.ledor.domain.calendar.HebrewMonth
@@ -9,6 +10,7 @@ import org.ledor.domain.event.Event
 import org.ledor.domain.event.EventType
 import org.ledor.domain.event.GregorianParts
 import org.ledor.domain.event.HebrewParts
+import org.ledor.domain.event.Occurrence
 import java.time.LocalDate
 import java.time.Month
 import java.time.YearMonth
@@ -44,6 +46,22 @@ class DateFormatters(private val context: Context) {
     fun hebrewDayMonth(day: Int, m: HebrewMonth) = "${num(day)} ${monthGen(m)}"
     fun hebrewParts(h: HebrewParts) = h.year?.let { "${num(h.day)} ${monthGen(h.month)} ${num(it)}" } ?: hebrewDayMonth(h.day, h.month)
     fun hebrewMonthTitle(year: Int, m: HebrewMonth) = "${monthNom(m)} ${num(year)}"
+
+    /**
+     * Даты наступления события (D-46). По еврейскому календарю — обе даты, первой — календарь [first].
+     * По григорианскому — только григорианская: еврейская дата того же дня датой события не является
+     * («30 апреля» ≠ день рождения «23 Нисана») и только сбивает с толку.
+     */
+    fun occurrenceDates(o: Occurrence, first: CalendarKind = CalendarKind.HEBREW): List<String> {
+        val greg = gregorianShortWeekday(o.date)
+        if (o.calendar == CalendarKind.GREGORIAN) return listOf(greg)
+        val heb = hebrewDate(o.hebrewDate)
+        return if (first == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
+    }
+
+    /** То же одной строкой: «пт, 16 апреля 2027 (9 Нисана 5787)» или «пт, 30 апреля 2027». */
+    fun occurrenceDatesInline(o: Occurrence): String =
+        occurrenceDates(o, CalendarKind.GREGORIAN).let { if (it.size == 2) "${it[0]} (${it[1]})" else it[0] }
 
     fun gregorian(d: LocalDate): String = fFull.format(d)
     fun gregorianWeekday(d: LocalDate): String = fWeekday.format(d)

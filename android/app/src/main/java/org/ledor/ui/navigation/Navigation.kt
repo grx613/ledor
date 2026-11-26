@@ -64,7 +64,7 @@ import kotlinx.serialization.Serializable
 @Serializable object ConverterRoute
 @Serializable object MoreRoute
 @Serializable object ListsRoute
-@Serializable object ListCreateRoute
+@Serializable data class ListCreateRoute(val moveLocal: Boolean = false)
 @Serializable data class ListJoinRoute(val name: String? = null)
 @Serializable data class ListDetailRoute(val id: String)
 @Serializable object SettingsRoute
@@ -149,7 +149,7 @@ fun KalendarRoot(showBrandSplash: Boolean, openEventId: StateFlow<String?>, onEv
                     composable<ConverterRoute> { ConverterScreen(nav, padding) }
                     composable<MoreRoute> { MoreScreen(nav, padding) }
                     composable<ListsRoute> { ListsScreen(vm, nav) }
-                    composable<ListCreateRoute> { ListCreateScreen(vm, nav) }
+                    composable<ListCreateRoute> { ListCreateScreen(vm, nav, it.toRoute<ListCreateRoute>().moveLocal) }
                     composable<ListJoinRoute> { ListJoinScreen(nav, it.toRoute<ListJoinRoute>().name) }
                     composable<ListDetailRoute> { ListDetailScreen(vm, nav, it.toRoute<ListDetailRoute>().id) }
                     composable<SettingsRoute> { SettingsScreen(vm, nav) }

@@ -63,8 +63,9 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         if (ev == null || s == null) return@combine null
         val byId = ls.associate { it.list.id to it.list }
         var shabbatShown = false
-        ev.mapNotNull { e ->
-            OccurrenceCalculator.next(e, t, s.adarPolicy)?.let { o ->
+        // «По обоим» календарям — две строки: ближайшая дата по каждому календарю.
+        ev.flatMap { e ->
+            OccurrenceCalculator.nextEach(e, t, s.adarPolicy).map { o ->
                 UpcomingItem(e, o, byId[e.listId], java.time.temporal.ChronoUnit.DAYS.between(t, o.date))
             }
         }.sortedWith(compareBy({ it.occurrence.date }, { it.event.title })).filter { u ->

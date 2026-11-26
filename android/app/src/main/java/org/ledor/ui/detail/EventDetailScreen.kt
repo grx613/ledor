@@ -68,7 +68,9 @@ fun EventDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
     ) { inner ->
         if (e == null) return@Scaffold
         val policy = settings?.adarPolicy ?: org.ledor.domain.event.YahrzeitAdarPolicy.ADAR_I
-        val next = remember(e, today, policy) { OccurrenceCalculator.next(e, today, policy) }
+        // «По обоим календарям» — две ближайшие даты, по карточке на каждую.
+        val nexts = remember(e, today, policy) { OccurrenceCalculator.nextEach(e, today, policy) }
+        val next = nexts.firstOrNull()
         Column(
             Modifier.padding(inner).fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -84,16 +86,22 @@ fun EventDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
             }
             if (pending) Text(stringResource(R.string.pending_upload), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-            if (next != null) {
-                val days = ChronoUnit.DAYS.between(today, next.date)
+            nexts.forEach { o ->
+                val days = ChronoUnit.DAYS.between(today, o.date)
                 HighlightCard {
-                    Text(stringResource(if (e.recurring) R.string.next_label else R.string.date_label), style = MaterialTheme.typography.labelMedium)
+                    Text(stringResource(when {
+                        !e.recurring -> R.string.date_label
+                        nexts.size == 1 -> R.string.next_label
+                        o.calendar == CalendarKind.HEBREW -> R.string.observe_hebrew
+                        else -> R.string.observe_gregorian
+                    }), style = MaterialTheme.typography.labelMedium)
                     Text(f.relativeDays(days).replaceFirstChar { it.titlecase() }, style = MaterialTheme.typography.headlineSmall)
-                    Text("${f.gregorianShortWeekday(next.date)} · ${f.hebrewDate(next.hebrewDate)}", style = MaterialTheme.typography.bodyMedium)
-                    if (next.startsEveBefore) Text(stringResource(R.string.conv_eve_note, f.gregorianDayMonth(next.date.minusDays(1))), style = MaterialTheme.typography.bodySmall)
-                    f.agePhrase(e.type, next.yearsSince)?.let { Text(it, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold) }
+                    Text(f.occurrenceDates(o, CalendarKind.GREGORIAN).joinToString(" · "), style = MaterialTheme.typography.bodyMedium)
+                    if (o.startsEveBefore) Text(stringResource(R.string.conv_eve_note, f.gregorianDayMonth(o.date.minusDays(1))), style = MaterialTheme.typography.bodySmall)
+                    f.agePhrase(e.type, o.yearsSince)?.let { Text(it, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold) }
                 }
-            } else if (!e.recurring) {
+            }
+            if (nexts.isEmpty() && !e.recurring) {
                 HighlightCard { Text(stringResource(R.string.event_passed)) }
             }
 

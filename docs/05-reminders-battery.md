@@ -131,7 +131,7 @@ interface AlarmGateway {                       // абстракция для т
 | EVE, по еврейскому календарю | Сегодня вечером: {type} — {title} | С заходом солнца начинается {еврейская дата}. {возраст} |
 | EVE, йорцайт | Сегодня вечером йорцайт: {title} | С заходом солнца начинается {еврейская дата}. Время зажечь поминальную свечу. {годовщина} |
 | EVE, по григорианскому календарю | Завтра: {type} — {title} | {григорианская дата}. {возраст} |
-| DAY | Сегодня: {type} — {title} | {еврейская дата} · {григорианская дата}. {возраст} |
+| DAY | Сегодня: {type} — {title} | {еврейская дата} · {григорианская дата}. {возраст}; у наступления по григорианскому календарю — только {григорианская дата}. {возраст} (D-46) |
 
 Какой из двух текстов «накануне» показать, определяет календарь **наступления** (`PlannedReminder.calendar`), а не событие:
 у события «по обоим календарям» еврейская дата получает «Сегодня вечером…», григорианская — «Завтра…».
@@ -156,7 +156,7 @@ class ReminderHealthChecker(context: Context) {
 | `NOTIFICATIONS_OFF` | API 33+: нет `POST_NOTIFICATIONS`; любой API: `!NotificationManagerCompat.areNotificationsEnabled()` или важность канала `IMPORTANCE_NONE` | сначала системный запрос разрешения (API 33+, если ещё можно спрашивать); иначе `Settings.ACTION_APP_NOTIFICATION_SETTINGS` |
 | `EXACT_ALARMS_DENIED` | API 31+: `!alarmManager.canScheduleExactAlarms()` | `Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM` + `package:` URI |
 | `BACKGROUND_RESTRICTED` | API 28+: `activityManager.isBackgroundRestricted` | `Settings.ACTION_APPLICATION_DETAILS_SETTINGS` |
-| `BATTERY_OPTIMIZED` | `!powerManager.isIgnoringBatteryOptimizations(packageName)` | `ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS` (общий список) → карточка приложения; прямой запрос `ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` не используется (правила Google Play) |
+| `BATTERY_OPTIMIZED` | `!powerManager.isIgnoringBatteryOptimizations(packageName)` | карточка приложения (`ACTION_APPLICATION_DETAILS_SETTINGS`): «Батарея» → «Не ограничено»; общий список `ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS` не используется — на Samsung в нём не видно приложения (D-45); прямой запрос `ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` не используется (правила Google Play) |
 
 Запуск любого системного экрана — в `try/catch (ActivityNotFoundException)` с откатом на
 `ACTION_APPLICATION_DETAILS_SETTINGS`.

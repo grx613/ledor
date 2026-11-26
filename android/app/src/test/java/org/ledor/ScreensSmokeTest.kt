@@ -1,6 +1,7 @@
 package org.ledor
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
@@ -115,6 +116,21 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onAllNodesWithText(s(R.string.tab_events))[0].performClick()
         rule.waitForIdle()
         shot("05_events")
+        // «По обоим календарям» (D-46): две строки — по григорианскому (одна дата) и по еврейскому (обе даты).
+        rule.onAllNodesWithText(names[6])[0].performClick()
+        rule.waitForIdle()
+        rule.onAllNodesWithText(names[2]).assertCountEquals(2)
+        shot("05b_events_both")
+        // В карточке — по блоку на каждую из двух ближайших дат.
+        rule.onAllNodesWithText(names[2])[0].performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.observe_gregorian)).assertExists()
+        rule.onNodeWithText(s(R.string.observe_hebrew)).assertExists()
+        shot("06b_detail_both")
+        rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.all_lists)).performClick()
+        rule.waitForIdle()
         rule.onNodeWithText(names[0]).performClick()
         rule.waitForIdle()
         shot("06_detail")
@@ -162,6 +178,16 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onNodeWithText(names[6]).performClick()
         rule.waitForIdle()
         shot("14_list_share")
+        rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
+        // B-27: из личного списка — «Перенести события в облачный список…»: выбор списка или новый.
+        rule.onAllNodesWithText(s(R.string.list_personal))[0].performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.move_to_cloud)).performScrollTo().performClick()
+        rule.waitForIdle()
+        rule.onAllNodesWithText(s(R.string.create_list))[0].assertExists()
+        shot("17_move_to_cloud")
+        rule.onNodeWithText(s(R.string.cancel)).performClick()
         rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.waitForIdle()
         // Встроенный список праздников: с городом видно время зажигания свечей, включён и Шабат.

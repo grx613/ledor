@@ -126,7 +126,7 @@
     <string name="observe_both">לויט ביידע לוחות</string>
     <string name="observe_both_hint">צוויי דאַטעס אַ יאָר — אַ דערמאָנונג פֿאַר יעדער</string>
     <string name="observe_needs_year">מע דאַרף דאָס יאָר כּדי איבערצוזעצן די דאַטע</string>
-    <string name="next_occurrence">דער נאָענטסטער: %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">דער נאָענטסטער: %1$s — %2$s</string>
     <string name="hint_bar">בר־מצווה (13): %1$s — %2$s</string>
     <string name="hint_bat">בת־מצווה (12): %1$s — %2$s</string>
     <string name="add_as_event">צולייגן אַ געשעעניש</string>
@@ -276,7 +276,7 @@
     <string name="health_bg_title">די אַרבעט אין הינטערגרונט איז באַגרענעצט</string>
     <string name="health_bg_text">דער טעלעפֿאָן בלאָקירט אינגאַנצן די אַפּ אין הינטערגרונט. נעמט אַראָפּ די באַטאַרעי־באַגרענעצונג.</string>
     <string name="health_battery_title">באַטאַרעי־שפּאָרונג איז אָנגעצונדן פֿאַר דער אַפּ</string>
-    <string name="health_battery_text">קלײַבט „אָן באַגרענעצונג“ (אויף Samsung — לייגט צו די אַפּ צו „קיינמאָל נישט שלאָפֿנדיקע אַפּס“). אַנדערש קען דער טעלעפֿאָן אײַנשלעפֿערן די אַפּ, און די דערמאָנונגען וועלן נישט אָנקומען. די אַפּ אַרבעט נישט אין הינטערגרונט און פֿאַרברויכט נישט די באַטאַרעי — זי וואַכט אויף נאָר אין דער מינוט פֿון דער דערמאָנונג.</string>
+    <string name="health_battery_text">אויף דעם בלאַט פֿון דער אַפּ וואָס עפֿנט זיך, דריקט „באַטאַרעי“ ← „אָן באַגרענעצונג“ (אויף Samsung — לייגט אויך צו די אַפּ צו „קיינמאָל נישט שלאָפֿנדיקע אַפּס“). אַנדערש קען דער טעלעפֿאָן אײַנשלעפֿערן די אַפּ, און די דערמאָנונגען וועלן נישט אָנקומען. די אַפּ אַרבעט נישט אין הינטערגרונט און פֿאַרברויכט נישט די באַטאַרעי — זי וואַכט אויף נאָר אין דער מינוט פֿון דער דערמאָנונג.</string>
     <string name="hint_samsung">Samsung: Settings ← Device care ← Battery ← Background usage limits ← Never sleeping apps.</string>
     <string name="hint_xiaomi">Xiaomi: Settings ← Apps ← LeDor ← Battery saver ← No restrictions; אויך „Autostart“.</string>
     <string name="hint_huawei">Huawei/Honor: Settings ← Battery ← App launch ← LeDor ← Manage manually.</string>

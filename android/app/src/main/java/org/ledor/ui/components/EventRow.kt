@@ -39,7 +39,8 @@ fun listDisplayName(list: ListEntity?): String =
 
 /**
  * Строка события: значок, имя, тип, даты в двух календарях, «через N дней», возраст, метка списка.
- * [primary] — какой календарь показывать крупно.
+ * [primary] — какой календарь показывать крупно у события по еврейскому календарю; у события по григорианскому
+ * дата одна — григорианская (D-46).
  */
 @Composable
 fun EventRow(
@@ -54,10 +55,9 @@ fun EventRow(
 ) {
     val f = rememberFormatters()
     val typeLabel = f.typeLabel(event, occurrence?.yearsSince)
-    val heb = occurrence?.let { f.hebrewDate(it.hebrewDate) }
-    val greg = occurrence?.let { f.gregorianShortWeekday(it.date) }
-    val first = if (primary == CalendarKind.HEBREW) heb else greg
-    val second = if (primary == CalendarKind.HEBREW) greg else heb
+    val dates = occurrence?.let { f.occurrenceDates(it, primary) }.orEmpty()
+    val first = dates.getOrNull(0)
+    val second = dates.getOrNull(1)
     val age = f.agePhrase(event.type, occurrence?.yearsSince)
     val rel = daysUntil?.let {
         // Пост «с рассвета» накануне вечером ещё не начинается.

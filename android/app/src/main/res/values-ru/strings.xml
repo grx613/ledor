@@ -136,7 +136,7 @@
     <string name="observe_both">По обоим календарям</string>
     <string name="observe_both_hint">Две даты в году — напомню о каждой</string>
     <string name="observe_needs_year">Нужен год, чтобы перевести дату</string>
-    <string name="next_occurrence">Ближайшее: %1$s (%2$s) — %3$s</string>
+    <string name="next_occurrence">Ближайшее: %1$s — %2$s</string>
     <string name="hint_bar">Бар-мицва (13 лет): %1$s — %2$s</string>
     <string name="hint_bat">Бат-мицва (12 лет): %1$s — %2$s</string>
     <string name="add_as_event">Добавить событие</string>
@@ -286,7 +286,7 @@
     <string name="health_bg_title">Работа в фоне ограничена</string>
     <string name="health_bg_text">Телефон полностью блокирует приложение в фоне. Снимите ограничение батареи.</string>
     <string name="health_battery_title">Включена экономия батареи для приложения</string>
-    <string name="health_battery_text">Выберите «Не ограничивать» (на Samsung — добавьте приложение в «Никогда не спящие»). Иначе телефон может усыпить приложение, и напоминания не придут. Приложение не работает в фоне и не расходует заряд — оно просыпается только в момент напоминания.</string>
+    <string name="health_battery_text">На открывшейся странице приложения нажмите «Батарея» → «Не ограничено» (на Samsung ещё добавьте приложение в «Никогда не спящие»). Иначе телефон может усыпить приложение, и напоминания не придут. Приложение не работает в фоне и не расходует заряд — оно просыпается только в момент напоминания.</string>
     <string name="hint_samsung">Samsung: Настройки → Обслуживание устройства → Батарея → Ограничения в фоновом режиме → Никогда не спящие приложения.</string>
     <string name="hint_xiaomi">Xiaomi: Настройки → Приложения → LeDor → Контроль активности → Нет ограничений; включите также «Автозапуск».</string>
     <string name="hint_huawei">Huawei/Honor: Настройки → Батарея → Запуск приложений → LeDor → Управлять вручную, включите все переключатели.</string>

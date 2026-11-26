@@ -225,7 +225,7 @@ fun CalendarScreen(vm: AppViewModel, nav: NavController, outer: PaddingValues, s
                     val within = all.filter { it.daysUntil <= 30 }
                     val shown = if (within.size >= 5) within else all.take(5)
                     item { BlockTitle(stringResource(R.string.upcoming_events)) {} }
-                    items(shown, key = { "u" + it.event.id }) { u ->
+                    items(shown, key = { "u${it.event.id}@${it.occurrence.date}" }) { u ->
                         EventRow(u.event, u.occurrence, u.daysUntil, u.list, onClick = { nav.navigate(EventDetailRoute(u.event.id)) })
                     }
                 }

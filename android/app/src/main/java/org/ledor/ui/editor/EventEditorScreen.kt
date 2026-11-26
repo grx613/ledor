@@ -229,15 +229,15 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                 )
             }
 
-            val preview = remember(s, policy, today) {
+            val previews = remember(s, policy, today) {
                 if (EventValidator.validateDate(ed).isEmpty() && !s.yearMissingForOneOff())
-                    OccurrenceCalculator.next(s.toEvent().copy(id = "preview"), today, policy) else null
+                    OccurrenceCalculator.nextEach(s.toEvent().copy(id = "preview"), today, policy) else emptyList()
             }
-            if (preview != null) {
+            previews.forEach { preview ->
                 val days = ChronoUnit.DAYS.between(today, preview.date)
                 val age = f.agePhrase(s.type, preview.yearsSince)
                 Text(
-                    stringResource(R.string.next_occurrence, f.gregorianShortWeekday(preview.date), f.hebrewDate(preview.hebrewDate), f.relativeDays(days)) +
+                    stringResource(R.string.next_occurrence, f.occurrenceDatesInline(preview), f.relativeDays(days)) +
                         (age?.let { ", ${it.replaceFirstChar { c -> c.lowercase() }}" } ?: ""),
                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = 4.dp),

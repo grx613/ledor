@@ -147,6 +147,17 @@ class DomainTest {
         val next = OccurrenceCalculator.next(e, today, policy)!!
         assertEquals(LocalDate.of(2027, 4, 23), next.date)
         assertEquals(CalendarKind.GREGORIAN, next.calendar)
+        // В списке «Ближайшие» — обе даты: и по обычному, и по еврейскому календарю.
+        val each = OccurrenceCalculator.nextEach(e, today, policy)
+        assertEquals(listOf(LocalDate.of(2027, 4, 23), LocalDate.of(2027, 5, 5)), each.map { it.date })
+        assertEquals(listOf(CalendarKind.GREGORIAN, CalendarKind.HEBREW), each.map { it.calendar })
+        // По одному календарю — одна дата, та же, что у next().
+        val single = e.copy(observeBoth = false)
+        assertEquals(listOf(OccurrenceCalculator.next(single, today, policy)), OccurrenceCalculator.nextEach(single, today, policy))
+        // Одна из двух дат уже прошла в этом году — в списке она же в следующем году, порядок по дате.
+        val later = OccurrenceCalculator.nextEach(e, LocalDate.of(2027, 4, 24), policy)
+        assertEquals(listOf(LocalDate.of(2027, 5, 5), LocalDate.of(2028, 4, 23)), later.map { it.date })
+        assertEquals(listOf(CalendarKind.HEBREW, CalendarKind.GREGORIAN), later.map { it.calendar })
         val year = OccurrenceCalculator.between(e, LocalDate.of(2027, 1, 1), LocalDate.of(2027, 12, 31), policy)
         assertEquals(listOf(LocalDate.of(2027, 4, 23), LocalDate.of(2027, 5, 5)), year.map { it.date })
         assertEquals(listOf(CalendarKind.GREGORIAN, CalendarKind.HEBREW), year.map { it.calendar })
