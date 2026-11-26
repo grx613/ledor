@@ -281,3 +281,15 @@ footer nav a:hover { color: var(--primary); }
   .guide-step:nth-child(even) .guide-text { order: 0; }
   .guide-step .phone { width: min(100%, 260px); margin: 0 auto; }
 }
+
+/* Ссылка на «Один календарь на всю семью» — главная особенность LeDor: в шапке и под первым абзацем */
+.top-link { color: var(--text); font-weight: 600; font-size: 15px; text-decoration: none; padding: 8px 10px; border-radius: 10px; white-space: nowrap; }
+.top-link:hover, .top-link[aria-current] { color: #0B3FAE; background: rgba(11, 63, 174, .08); }
+.hero-family { margin: 6px 0 26px; }
+.hero-family a { display: inline-block; font-weight: 600; color: #fff; text-decoration: none; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .35); padding: 10px 18px; border-radius: 999px; }
+.hero-family a:hover { background: rgba(255, 255, 255, .24); }
+a.chips-card { text-decoration: none; color: var(--text); }
+@media (prefers-color-scheme: dark) {
+  .top-link:hover, .top-link[aria-current] { color: #9DB8FF; background: rgba(157, 184, 255, .12); }
+}
+@media (max-width: 760px) { .top-link { display: none; } }

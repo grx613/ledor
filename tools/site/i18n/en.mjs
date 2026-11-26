@@ -234,6 +234,8 @@ export default {
     "intro": "You and your spouse (or the whole family) want to see the same dates: whoever adds a birthday, it shows up for both of you, and the reminder comes to both phones. That is what a LeDor <b>shared list</b> is for. Only people you give its name and code can see it.",
     "link": "Step-by-step guide with pictures →",
     "footer": "Shared lists: how it works",
+    "nav": "One calendar for the family",
+    "heroLink": "How to share one calendar with your family — 5 steps →",
     "steps": [
       {
         "t": "Open “Lists”",

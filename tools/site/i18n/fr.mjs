@@ -234,6 +234,8 @@ export default {
     "intro": "Vous et votre conjoint (ou toute la famille) voulez voir les mêmes dates : quel que soit celui qui ajoute un anniversaire, il apparaît chez vous deux, et le rappel arrive sur les deux téléphones. C’est à cela que sert une <b>liste partagée</b> LeDor. Seules les personnes à qui vous donnez son nom et son code peuvent la voir.",
     "link": "Guide pas à pas en images →",
     "footer": "Listes partagées : comment ça marche",
+    "nav": "Un calendrier pour la famille",
+    "heroLink": "Un seul calendrier avec votre famille : 5 étapes →",
     "steps": [
       {
         "t": "Ouvrez « Listes »",

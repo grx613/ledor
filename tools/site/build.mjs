@@ -10,7 +10,7 @@ const SITE = 'https://kalendar.bothub.chat';
 const LANGS = ['en', 'he', 'ru', 'yi', 'fr', 'es'];     // порядок — как в приложении
 const DEFAULT = 'en';
 const APK = readFileSync(join(ROOT, 'tools', 'site', 'apk-name.txt'), 'utf8').trim();   // ledor-X.Y.Z.apk
-const ASSET_V = '8';
+const ASSET_V = '9';
 const CHANNEL = 'https://t.me/bothub_founder';
 const SOURCE = 'https://github.com/grx613/ledor';
 const LIST_COLORS = ['#D4A72C', '#1FA187', '#6A58B5'];   // как цвета списков в приложении на снимках
@@ -85,6 +85,7 @@ function header(l, page) {
   <div class="wrap">
     <a class="brand" href="/${l}/"><img src="/assets/img/mark.svg" alt="" width="34" height="34"><span>LeDor</span></a>
     <div class="top-actions">
+      <a class="top-link" href="/${l}/family/"${page === 'family' ? ' aria-current="page"' : ''}>${t.family.nav}</a>
       <details class="langs"><summary aria-label="${esc(t.nav.lang)}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS.globe}</svg>${l.toUpperCase()}</summary><div class="langs-menu">${langs}</div></details>
       <a class="btn btn-primary" href="/${APK}" download>${t.nav.download}</a>
     </div>
@@ -128,13 +129,14 @@ ${header(l, '')}
       <div class="hero-wordmark">Kalendář</div>
       <h1>${t.hero.h1}</h1>
       <p class="lead">${t.hero.lead}</p>
+      <p class="hero-family"><a href="/${l}/family/">${t.family.heroLink}</a></p>
     ${ctaRow(t, 'download')}
       <p class="hero-note">${t.hero.note}<br>${t.stores.apkNote}</p>
     </div>
     <div class="hero-visual">
       <div class="float float-notif">${notif(t, t.remind.notifs.eve)}</div>
       ${phone(l, '03_calendar', t.hero.alt, true)}
-      <div class="float float-lists chips-card"><small>${t.hero.listsCap}</small>${t.lists.map((n, i) => `<span class="chip"><i style="--c:${LIST_COLORS[i]}"></i>${n}</span>`).join('')}</div>
+      <a class="float float-lists chips-card" href="/${l}/family/"><small>${t.hero.listsCap}</small>${t.lists.map((n, i) => `<span class="chip"><i style="--c:${LIST_COLORS[i]}"></i>${n}</span>`).join('')}</a>
     </div>
   </div>
 </div>

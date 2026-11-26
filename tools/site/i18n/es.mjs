@@ -234,6 +234,8 @@ export default {
     "intro": "Tú y tu pareja (o toda la familia) queréis ver las mismas fechas: quien añada un cumpleaños, aparece para los dos, y el recordatorio llega a ambos teléfonos. Para eso está la <b>lista compartida</b> de LeDor. Solo la ven las personas a las que das su nombre y su código.",
     "link": "Guía paso a paso con imágenes →",
     "footer": "Listas compartidas: cómo funcionan",
+    "nav": "Un calendario para la familia",
+    "heroLink": "Cómo compartir un calendario con tu familia: 5 pasos →",
     "steps": [
       {
         "t": "Abre «Listas»",
