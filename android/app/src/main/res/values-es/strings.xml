@@ -49,6 +49,7 @@
     <string name="join_list">Conectar una lista</string>
     <string name="empty_events">Aún no hay eventos. Añade el primero: un cumpleaños, un yahrzeit o una celebración familiar.</string>
     <string name="notice_list_deleted">El propietario eliminó la lista «%1$s»</string>
+    <string name="notice_list_demoted">Se cambió el PIN maestro de «%1$s»: ahora solo puedes verla. Para editar de nuevo, introduce el nuevo PIN maestro.</string>
 
     <!-- Fechas relativas -->
     <string name="rel_today">hoy</string>
@@ -183,7 +184,7 @@
     <string name="list_name">Nombre de la lista</string>
     <string name="name_free">Nombre disponible ✓</string>
     <string name="read_pin">PIN de lectura</string>
-    <string name="read_pin_hint">4–8 dígitos</string>
+    <string name="read_pin_hint">4–8 dígitos. Puedes escribir el tuyo, por ejemplo uno sencillo para la comunidad.</string>
     <string name="master_pin">PIN maestro para editar</string>
     <string name="master_pin_hint">6–12 dígitos, distinto del PIN de lectura</string>
     <string name="regenerate">Nuevo</string>
@@ -199,6 +200,10 @@
     <string name="pull_to_sync">Desliza hacia abajo para sincronizar.</string>
     <string name="list_notifications">Notificaciones de esta lista</string>
     <string name="pin_codes">PIN</string>
+    <string name="change_pins">Cambiar los PIN</string>
+    <string name="change_pins_text">Los teléfonos ya conectados siguen funcionando. Los nuevos miembros necesitarán el código nuevo: envíales otra invitación.</string>
+    <string name="current_master_pin">PIN maestro actual</string>
+    <string name="pins_changed">PIN cambiados</string>
     <string name="reader_hint">Tienes acceso de solo lectura. Para editar, introduce el PIN maestro.</string>
     <string name="share">Compartir</string>
     <string name="share_edit_rights">Compartir el permiso de edición</string>

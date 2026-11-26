@@ -49,6 +49,7 @@
     <string name="join_list">Подключить список</string>
     <string name="empty_events">Пока нет событий. Добавьте первое — день рождения, йорцайт или семейный праздник.</string>
     <string name="notice_list_deleted">Список «%1$s» удалён владельцем</string>
+    <string name="notice_list_demoted">В списке «%1$s» сменили Мастер-ПИН — теперь вы можете только смотреть. Чтобы снова редактировать, введите новый Мастер-ПИН.</string>
 
     <!-- Относительные даты -->
     <string name="rel_today">сегодня</string>
@@ -188,7 +189,7 @@
     <string name="list_name">Название списка</string>
     <string name="name_free">Название свободно ✓</string>
     <string name="read_pin">ПИН-код для чтения</string>
-    <string name="read_pin_hint">4–8 цифр</string>
+    <string name="read_pin_hint">4–8 цифр. Можно ввести свой — например, простой для общины.</string>
     <string name="master_pin">Мастер-ПИН для редактирования</string>
     <string name="master_pin_hint">6–12 цифр, не совпадает с ПИН-кодом для чтения</string>
     <string name="regenerate">Новый</string>
@@ -204,6 +205,10 @@
     <string name="pull_to_sync">Потяните вниз, чтобы синхронизировать.</string>
     <string name="list_notifications">Уведомления по этому списку</string>
     <string name="pin_codes">ПИН-коды</string>
+    <string name="change_pins">Изменить ПИН-коды</string>
+    <string name="change_pins_text">Уже подключённые телефоны продолжат работать. Новым участникам понадобится новый код — отправьте им приглашение заново.</string>
+    <string name="current_master_pin">Текущий Мастер-ПИН</string>
+    <string name="pins_changed">ПИН-коды изменены</string>
     <string name="reader_hint">У вас доступ только для чтения. Чтобы редактировать, введите Мастер-ПИН.</string>
     <string name="share">Поделиться</string>
     <string name="share_edit_rights">Поделиться правом редактирования</string>

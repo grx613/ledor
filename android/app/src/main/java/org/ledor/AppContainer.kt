@@ -56,7 +56,8 @@ class AppContainer(private val context: Context) {
     val syncEngine by lazy {
         SyncEngine(database, rpc, settingsStore,
             deletedNotice = { name -> context.getString(R.string.notice_list_deleted, name) },
-            afterSync = { rearmRequests.tryEmit(Unit) })
+            afterSync = { rearmRequests.tryEmit(Unit) },
+            demotedNotice = { name -> context.getString(R.string.notice_list_demoted, name) })
     }
 
     val holidayEvents by lazy { org.ledor.data.holiday.HolidayEvents(context) }

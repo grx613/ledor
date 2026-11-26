@@ -164,6 +164,18 @@ class ListRepository(
         return r
     }
 
+    /**
+     * B-40: новые ПИН-коды. На этом телефоне они сразу сохраняются; остальные подключённые телефоны работают дальше по
+     * своим токенам и получат новый ПИН-код для чтения при синхронизации.
+     */
+    suspend fun changePins(listId: String, currentMasterPin: String, newReadPin: String, newMasterPin: String): RpcResult<Unit> {
+        val list = db.lists().get(listId) ?: return RpcResult.Error("NOT_FOUND")
+        val token = list.accessToken ?: return RpcResult.Error("UNAUTHORIZED")
+        val r = rpc.changePins(listId, token, currentMasterPin, newReadPin, newMasterPin)
+        if (r is RpcResult.Ok) db.lists().get(listId)?.let { db.lists().upsert(it.copy(readPin = newReadPin, masterPin = newMasterPin)) }
+        return r
+    }
+
     suspend fun setNotifyEnabled(listId: String, enabled: Boolean) {
         db.lists().get(listId)?.let { db.lists().upsert(it.copy(notifyEnabled = enabled)) }
         listener.onChanged(null)
@@ -191,6 +203,8 @@ class SyncEngine(
     private val settings: SettingsStore,
     private val deletedNotice: (String) -> String,
     private val afterSync: suspend () -> Unit,
+    /** B-40: сменили Мастер-ПИН — этот телефон больше не редактор. */
+    private val demotedNotice: (String) -> String = { it },
 ) {
     private val mutex = Mutex()
 
@@ -254,8 +268,12 @@ class SyncEngine(
                         if (re.deleted) db.events().delete(re.id)
                         else db.events().upsert(re.toEntity(listId))
                     }
+                    // B-40: стал читателем — Мастер-ПИН на телефоне больше не действует, его не хранить и не предлагать.
+                    val demoted = list.role == ListRole.EDITOR && resp.role == ListRole.READER
+                    if (demoted) settings.pushNotice(demotedNotice(resp.list.name))
                     list = list.copy(
                         name = resp.list.name, role = resp.role, readPin = resp.readPin ?: list.readPin,
+                        masterPin = if (resp.role == ListRole.READER) null else list.masterPin,
                         lastSyncedRev = resp.list.revision, lastSyncAt = System.currentTimeMillis(),
                     )
                     db.lists().upsert(list)
@@ -276,7 +294,8 @@ class SyncEngine(
             "UNAUTHORIZED" -> db.lists().upsert(list.copy(state = ListState.ACCESS_LOST))
             "FORBIDDEN" -> {
                 db.events().deletePendingInList(list.id)
-                db.lists().upsert(list.copy(role = ListRole.READER, lastSyncedRev = 0))
+                if (list.role == ListRole.EDITOR) settings.pushNotice(demotedNotice(list.name))
+                db.lists().upsert(list.copy(role = ListRole.READER, masterPin = null, lastSyncedRev = 0))
             }
         }
         return Outcome.OTHER

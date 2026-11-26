@@ -49,6 +49,7 @@
     <string name="join_list">Connecter une liste</string>
     <string name="empty_events">Pas encore d’événements. Ajoutez le premier : un anniversaire, une yahrzeit ou une fête de famille.</string>
     <string name="notice_list_deleted">La liste « %1$s » a été supprimée par son propriétaire</string>
+    <string name="notice_list_demoted">Le code maître de « %1$s » a été modifié : vous pouvez seulement consulter la liste. Pour la modifier à nouveau, saisissez le nouveau code maître.</string>
 
     <!-- Dates relatives -->
     <string name="rel_today">aujourd’hui</string>
@@ -183,7 +184,7 @@
     <string name="list_name">Nom de la liste</string>
     <string name="name_free">Nom disponible ✓</string>
     <string name="read_pin">Code PIN de lecture</string>
-    <string name="read_pin_hint">4 à 8 chiffres</string>
+    <string name="read_pin_hint">4 à 8 chiffres. Vous pouvez saisir le vôtre — par exemple un code simple pour la communauté.</string>
     <string name="master_pin">Code maître pour modifier</string>
     <string name="master_pin_hint">6 à 12 chiffres, différent du code de lecture</string>
     <string name="regenerate">Nouveau</string>
@@ -199,6 +200,10 @@
     <string name="pull_to_sync">Tirez vers le bas pour synchroniser.</string>
     <string name="list_notifications">Notifications de cette liste</string>
     <string name="pin_codes">Codes PIN</string>
+    <string name="change_pins">Modifier les codes PIN</string>
+    <string name="change_pins_text">Les téléphones déjà connectés continuent de fonctionner. Les nouveaux membres auront besoin du nouveau code : renvoyez-leur une invitation.</string>
+    <string name="current_master_pin">Code maître actuel</string>
+    <string name="pins_changed">Codes PIN modifiés</string>
     <string name="reader_hint">Vous avez un accès en lecture seule. Pour modifier, saisissez le code maître.</string>
     <string name="share">Partager</string>
     <string name="share_edit_rights">Partager le droit de modification</string>

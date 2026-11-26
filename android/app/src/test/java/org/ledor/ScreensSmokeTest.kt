@@ -196,6 +196,9 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onNodeWithText(names[6]).performClick()
         rule.waitForIdle()
         shot("14_list_share")
+        // B-40: кнопка смены ПИН-кодов — у редактора. Само окно — в ChangePinsTest: поле ввода во всплывающем окне
+        // в Robolectric не даёт Compose успокоиться.
+        rule.onNodeWithTag("change_pins").performScrollTo().assertExists()
         rule.activity.onBackPressedDispatcher.onBackPressed()
         rule.waitForIdle()
         // B-27: из личного списка — «Перенести события в облачный список…»: выбор списка или новый.

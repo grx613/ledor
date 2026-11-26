@@ -49,6 +49,7 @@
     <string name="join_list">חיבור רשימה</string>
     <string name="empty_events">עדיין אין אירועים. הוסיפו את הראשון: יום הולדת, יארצייט או שמחה משפחתית.</string>
     <string name="notice_list_deleted">הרשימה „%1$s” נמחקה על ידי הבעלים</string>
+    <string name="notice_list_demoted">קוד המאסטר של „%1$s” שונה — עכשיו אפשר רק לצפות. כדי לערוך שוב, הזינו את קוד המאסטר החדש.</string>
 
     <!-- תאריכים יחסיים -->
     <string name="rel_today">היום</string>
@@ -183,7 +184,7 @@
     <string name="list_name">שם הרשימה</string>
     <string name="name_free">השם פנוי ✓</string>
     <string name="read_pin">קוד PIN לקריאה</string>
-    <string name="read_pin_hint">4–8 ספרות</string>
+    <string name="read_pin_hint">4–8 ספרות. אפשר להזין קוד משלכם — למשל קוד פשוט לקהילה.</string>
     <string name="master_pin">קוד מאסטר לעריכה</string>
     <string name="master_pin_hint">6–12 ספרות, שונה מקוד הקריאה</string>
     <string name="regenerate">חדש</string>
@@ -199,6 +200,10 @@
     <string name="pull_to_sync">משכו למטה כדי לסנכרן.</string>
     <string name="list_notifications">התראות עבור רשימה זו</string>
     <string name="pin_codes">קודים</string>
+    <string name="change_pins">שינוי קודי PIN</string>
+    <string name="change_pins_text">טלפונים שכבר מחוברים ימשיכו לעבוד. משתתפים חדשים יצטרכו את הקוד החדש — שלחו להם הזמנה מחדש.</string>
+    <string name="current_master_pin">קוד המאסטר הנוכחי</string>
+    <string name="pins_changed">קודי ה־PIN שונו</string>
     <string name="reader_hint">יש לכם גישת קריאה בלבד. כדי לערוך, הזינו את קוד המאסטר.</string>
     <string name="share">שיתוף</string>
     <string name="share_edit_rights">שיתוף הרשאת עריכה</string>

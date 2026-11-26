@@ -53,6 +53,7 @@
     <string name="join_list">Connect a list</string>
     <string name="empty_events">No events yet. Add the first one: a birthday, a yahrzeit or a family celebration.</string>
     <string name="notice_list_deleted">The list “%1$s” was deleted by its owner</string>
+    <string name="notice_list_demoted">The master PIN of “%1$s” was changed — you can now only view it. To edit again, enter the new master PIN.</string>
 
     <!-- Relative dates -->
     <string name="rel_today">today</string>
@@ -182,7 +183,7 @@
     <string name="list_name">List name</string>
     <string name="name_free">Name is available ✓</string>
     <string name="read_pin">Read PIN</string>
-    <string name="read_pin_hint">4–8 digits</string>
+    <string name="read_pin_hint">4–8 digits. You can type your own — for example, an easy one for your community.</string>
     <string name="master_pin">Master PIN for editing</string>
     <string name="master_pin_hint">6–12 digits, different from the read PIN</string>
     <string name="regenerate">New</string>
@@ -198,6 +199,10 @@
     <string name="pull_to_sync">Pull down to sync.</string>
     <string name="list_notifications">Notifications for this list</string>
     <string name="pin_codes">PINs</string>
+    <string name="change_pins">Change PIN codes</string>
+    <string name="change_pins_text">Phones already connected keep working. New members will need the new code — send them a fresh invitation.</string>
+    <string name="current_master_pin">Current master PIN</string>
+    <string name="pins_changed">PIN codes changed</string>
     <string name="reader_hint">You have read-only access. Enter the Master PIN to edit.</string>
     <string name="share">Share</string>
     <string name="share_edit_rights">Share editing rights</string>

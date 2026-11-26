@@ -160,6 +160,13 @@ class SupabaseRpc(private val baseUrl: String, private val apiKey: String, clien
             put("p_meta", buildJsonObject { meta?.forEach { (k, v) -> put(k, v) } })
         }).map { }
 
+    /** B-40: сменить ПИН-коды списка по действующему Мастер-ПИНу (миграция 0003). */
+    suspend fun changePins(listId: String, token: String, masterPin: String, newReadPin: String, newMasterPin: String): RpcResult<Unit> =
+        call("change_pins", buildJsonObject {
+            put("p_list_id", listId); put("p_token", token); put("p_master_pin", masterPin)
+            put("p_new_read_pin", newReadPin); put("p_new_master_pin", newMasterPin)
+        }).map { }
+
     suspend fun deleteList(listId: String, token: String, masterPin: String): RpcResult<Unit> =
         call("delete_list", buildJsonObject {
             put("p_list_id", listId); put("p_token", token); put("p_master_pin", masterPin)

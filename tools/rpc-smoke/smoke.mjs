@@ -170,3 +170,27 @@ test('13. submit_feedback (миграция 0002)', async () => {
   const r = await rpc('submit_feedback', { p_message: `Smoke-тест ${suffix}`, p_contact: null, p_meta: { app_version: 'smoke' } });
   assert.equal(r.ok, true, JSON.stringify(r));
 });
+
+test('14. change_pins (миграция 0003): только по Мастер-ПИНу; старые токены работают', async () => {
+  const name = `Smoke Pins ${suffix}`;
+  const c = await rpc('create_list', { p_name: name, p_read_pin: '493817', p_master_pin: '61803398' });
+  assert.equal(c.ok, true, JSON.stringify(c));
+  const entry = [c.list.id, c.token, '61803398'];
+  cleanup.push(entry);
+  const reader = (await rpc('join_list', { p_name: name, p_pin: '493817' })).token;
+  const call = (token, master, read, newMaster) =>
+    rpc('change_pins', { p_list_id: c.list.id, p_token: token, p_master_pin: master, p_new_read_pin: read, p_new_master_pin: newMaster });
+
+  assert.equal((await call(reader, '61803398', '0770', '61803398')).error, 'FORBIDDEN');
+  assert.equal((await call(c.token, '11111111', '0770', '61803398')).error, 'WRONG_PIN');
+  assert.equal((await call(c.token, '61803398', '077', '61803398')).error, 'INVALID_PIN');
+  assert.equal((await call(c.token, '61803398', '271828', '271828')).error, 'PINS_EQUAL');
+
+  const ok = await call(c.token, '61803398', '0770', '27182818');
+  assert.deepEqual([ok.ok, ok.read_pin], [true, '0770']);
+  entry[2] = '27182818';
+  assert.equal((await rpc('join_list', { p_name: name, p_pin: '493817' })).error, 'WRONG_PIN');
+  assert.equal((await rpc('join_list', { p_name: name, p_pin: '0770' })).role, 'READER');
+  assert.equal((await rpc('join_list', { p_name: name, p_pin: '27182818' })).role, 'EDITOR');
+  assert.equal((await rpc('pull_changes', { p_list_id: c.list.id, p_token: reader, p_since: 0 })).read_pin, '0770');
+});

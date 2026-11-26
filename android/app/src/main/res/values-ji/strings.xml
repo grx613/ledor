@@ -49,6 +49,7 @@
     <string name="join_list">פֿאַרבינדן אַ רשימה</string>
     <string name="empty_events">נאָך קיין געשעענישן. לייגט צו די ערשטע: אַ געבורטסטאָג, אַ יאָרצײַט אָדער אַ משפּחה־שׂימחה.</string>
     <string name="notice_list_deleted">די רשימה „%1$s“ איז אויסגעמעקט געוואָרן פֿונעם בעל־הבית</string>
+    <string name="notice_list_demoted">דער מאַסטער־PIN פֿון „%1$s“ איז געענדערט — איצט קענט איר נאָר קוקן. כּדי ווידער צו רעדאַקטירן, שרײַבט אַרײַן דעם נײַעם מאַסטער־PIN.</string>
 
     <!-- רעלאַטיווע דאַטעס -->
     <string name="rel_today">הײַנט</string>
@@ -178,7 +179,7 @@
     <string name="list_name">נאָמען פֿון דער רשימה</string>
     <string name="name_free">דער נאָמען איז פֿרײַ ✓</string>
     <string name="read_pin">PIN צום לייענען</string>
-    <string name="read_pin_hint">4–8 ציפֿערן</string>
+    <string name="read_pin_hint">4–8 ציפֿערן. מע קען אַרײַנשרײַבן אַן אייגענעם — למשל, אַ פּשוטן פֿאַר דער קהילה.</string>
     <string name="master_pin">מאַסטער־PIN צום רעדאַקטירן</string>
     <string name="master_pin_hint">6–12 ציפֿערן, אַנדערש ווי דער PIN צום לייענען</string>
     <string name="regenerate">נײַ</string>
@@ -194,6 +195,10 @@
     <string name="pull_to_sync">ציט אַראָפּ כּדי צו סינכראָניזירן.</string>
     <string name="list_notifications">מעלדונגען פֿאַר דער רשימה</string>
     <string name="pin_codes">PIN־קאָדן</string>
+    <string name="change_pins">ענדערן די PIN־קאָדן</string>
+    <string name="change_pins_text">טעלעפֿאָנען וואָס זענען שוין פֿאַרבונדן, וועלן ווײַטער אַרבעטן. נײַע מיטגלידער וועלן דאַרפֿן דעם נײַעם קאָד — שיקט זיי אַ נײַע פֿאַרבעטונג.</string>
+    <string name="current_master_pin">דער איצטיקער מאַסטער־PIN</string>
+    <string name="pins_changed">די PIN־קאָדן זענען געענדערט</string>
     <string name="reader_hint">איר האָט נאָר צוטריט צום לייענען. כּדי צו רעדאַקטירן, שרײַבט אַרײַן דעם מאַסטער־PIN.</string>
     <string name="share">טיילן</string>
     <string name="share_edit_rights">טיילן דאָס רעכט צו רעדאַקטירן</string>

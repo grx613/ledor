@@ -395,6 +395,7 @@ fun ListDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
     var deleteDialog by remember { mutableStateOf(false) }
     var deletePin by remember { mutableStateOf("") }
     var deleteError by remember { mutableStateOf<String?>(null) }
+    var pinsDialog by remember { mutableStateOf(false) }
     var shareMaster by remember { mutableStateOf(false) }
     var masterWarn by remember { mutableStateOf(false) }
     var moveDialog by remember { mutableStateOf(false) }
@@ -464,6 +465,9 @@ fun ListDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
                         trailing = { IconButton(onClick = { copy(ctx, pin) }) { Icon(AppIcons.Copy, stringResource(R.string.copy)) } })
                 }
                 if (l.role == ListRole.READER) Text(stringResource(R.string.reader_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                if (l.role == ListRole.EDITOR) OutlinedButton(onClick = { pinsDialog = true }, modifier = Modifier.fillMaxWidth().testTag("change_pins")) {
+                    Text(stringResource(R.string.change_pins))
+                }
             }
 
             SectionCard(title = stringResource(R.string.share)) {
@@ -505,6 +509,10 @@ fun ListDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
             }
         }
 
+        if (pinsDialog) ChangePinsDialog(l, onDone = {
+            pinsDialog = false
+            Toast.makeText(ctx, R.string.pins_changed, Toast.LENGTH_LONG).show()
+        }, onDismiss = { pinsDialog = false }) { cur, read, master -> vm.container.listRepository.changePins(l.id, cur, read, master) }
         if (confirmDisconnect) ConfirmDialog(stringResource(R.string.disconnect_list), stringResource(R.string.disconnect_text), stringResource(R.string.disconnect),
             onConfirm = { confirmDisconnect = false; scope.launch { vm.container.listRepository.disconnect(l.id) } },
             onDismiss = { confirmDisconnect = false })
@@ -523,4 +531,59 @@ fun ListDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
             },
         )
     }
+}
+
+/** Введённые в окне смены ПИН-кодов значения (B-40). Отдельно от окна — чтобы проверять без всплывающего окна. */
+class ChangePinsState(readPin: String, masterPin: String, val masterStored: Boolean) {
+    var read by mutableStateOf(readPin)
+    var master by mutableStateOf(masterPin)
+    var current by mutableStateOf(if (masterStored) masterPin else "")
+    val readOk get() = PinRules.isValidReadPin(read)
+    val masterOk get() = PinRules.isValidMasterPin(master) && master != read
+    val canSave get() = readOk && masterOk && PinRules.isValidMasterPin(current)
+}
+
+@Composable
+fun ChangePinsFields(state: ChangePinsState, error: String?) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        PinField(stringResource(R.string.read_pin), state.read, { state.read = it }, 8, isError = !state.readOk, supporting = stringResource(R.string.read_pin_hint))
+        PinField(stringResource(R.string.master_pin), state.master, { state.master = it }, 12, isError = !state.masterOk,
+            supporting = stringResource(R.string.master_pin_hint), initiallyVisible = false)
+        if (!state.masterStored) PinField(stringResource(R.string.current_master_pin), state.current, { state.current = it }, 12, initiallyVisible = false)
+        error?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+    }
+}
+
+/**
+ * B-40: смена ПИН-кодов списка. ПИН-код для чтения можно сделать простым и запоминающимся (например, для общины),
+ * Мастер-ПИН — по-прежнему 6–12 цифр. Если Мастер-ПИН на этом телефоне не сохранён, его спрашивают отдельно.
+ * Сервер при смене Мастер-ПИНа делает остальных редакторов читателями (на случай, если старый код утёк).
+ */
+@Composable
+fun ChangePinsDialog(
+    l: ListEntity,
+    onDone: () -> Unit,
+    onDismiss: () -> Unit,
+    change: suspend (current: String, read: String, master: String) -> RpcResult<Unit>,
+) {
+    val ctx = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val state = remember { ChangePinsState(l.readPin.orEmpty(), l.masterPin.orEmpty(), l.masterPin != null) }
+    var error by remember { mutableStateOf<String?>(null) }
+    var busy by remember { mutableStateOf(false) }
+    ConfirmDialog(
+        stringResource(R.string.change_pins), stringResource(R.string.change_pins_text), stringResource(R.string.save),
+        destructive = false,
+        confirmEnabled = state.canSave && !busy,
+        onConfirm = {
+            busy = true; error = null
+            scope.launch {
+                val r = change(state.current, state.read, state.master)
+                busy = false
+                if (r is RpcResult.Ok) onDone() else error = rpcErrorText(ctx, r)
+            }
+        },
+        onDismiss = onDismiss,
+        content = { ChangePinsFields(state, error) },
+    )
 }
