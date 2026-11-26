@@ -97,8 +97,8 @@ node --test website/tests/*.test.mjs      # тесты календаря сай
 tools/deploy/publish.sh                   # тесты + rsync в /var/www/kalendar (без sudo)
 ```
 
-- Сервер — Caddy, блок `tools/deploy/kalendar.caddy` (статика + API, см. `04-backend.md`). Перед ним — московский
-  сервер Timeweb, который пересылает запросы (D-58, `04-backend.md` §8); Cloudflare с 26.11.2026 не используется.
+- Сервер — Caddy, блок `tools/deploy/kalendar.caddy` (статика + API, см. `04-backend.md`). Перед ним — прокси-сервер,
+  который пересылает запросы (D-58, `04-backend.md` §8); CDN с 26.11.2026 не используется.
 - Картинки, стили и скрипты браузер кеширует (`/assets/*` — час). Поэтому: при изменении стилей, скриптов или картинок —
   увеличить `ASSET_V` в `build.mjs`; APK выкладывать под новым именем (`ledor-X.Y.Z.apk`) и обновить `apk-name.txt`.
 - Снимки экранов берутся из приложения: `./gradlew :app:recordRoborazziDebug`, затем скопировать нужные файлы из
