@@ -74,6 +74,18 @@ struct EventTests {
         #expect(year.map(\.calendar) == [.gregorian, .hebrew])
         let all = OccurrenceCalculator.between(e, from: date(1991, 1, 1), to: date(2150, 12, 31), policy)
         #expect(all.count == Set(all.map(\.date)).count)
+        // В «Ближайших» — обе даты: по обычному и по еврейскому календарю.
+        let each = OccurrenceCalculator.nextEach(e, today: today, policy)
+        #expect(each.map(\.date) == [date(2027, 4, 23), date(2027, 5, 5)])
+        #expect(each.map(\.calendar) == [.gregorian, .hebrew])
+        // По одному календарю — одна дата, та же, что у next().
+        var single = e
+        single.observeBoth = false
+        #expect(OccurrenceCalculator.nextEach(single, today: today, policy) == [OccurrenceCalculator.next(single, today: today, policy)!])
+        // Одна из двух дат уже прошла — в списке она же в следующем году, порядок по дате.
+        let later = OccurrenceCalculator.nextEach(e, today: date(2027, 4, 24), policy)
+        #expect(later.map(\.date) == [date(2027, 5, 5), date(2028, 4, 23)])
+        #expect(later.map(\.calendar) == [.hebrew, .gregorian])
         var noYear = event(.fromGregorian(GregorianParts(year: nil, month: 4, day: 23), afterSunset: false), observe: .gregorian)
         noYear.observeBoth = true
         #expect(EventValidator.validate(noYear).contains(.observeNeedsYear))

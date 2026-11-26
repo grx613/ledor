@@ -9886,37 +9886,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Next: %1$@ (%2$@) — %3$@"
+            "value": "Next: %1$@ — %2$@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Próximo: %1$@ (%2$@) — %3$@"
+            "value": "Próximo: %1$@ — %2$@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain : %1$@ (%2$@) — %3$@"
+            "value": "Prochain : %1$@ — %2$@"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "הקרוב: %1$@ (%2$@) — %3$@"
+            "value": "הקרוב: %1$@ — %2$@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ближайшее: %1$@ (%2$@) — %3$@"
+            "value": "Ближайшее: %1$@ — %2$@"
           }
         },
         "yi": {
           "stringUnit": {
             "state": "translated",
-            "value": "דער נאָענטסטער: %1$@ (%2$@) — %3$@"
+            "value": "דער נאָענטסטער: %1$@ — %2$@"
           }
         }
       }

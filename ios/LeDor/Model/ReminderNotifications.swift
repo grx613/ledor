@@ -82,7 +82,9 @@ final class ReminderNotifications: Sendable {
             return (L.f(key, e.title), join([L.f("notif_eve_starts", f.hebrewDate(hebrew)), HolidayEvents.notificationLine(e)]))
         }
         if r.kind == .day {
-            return (L.f("notif_day_title", type, e.title), join(["\(f.hebrewDate(hebrew)) · \(f.gregorian(r.occurrenceDate)).", age]))
+            let dates = r.calendar == .gregorian ? "\(f.gregorian(r.occurrenceDate))."
+                : "\(f.hebrewDate(hebrew)) · \(f.gregorian(r.occurrenceDate))."
+            return (L.f("notif_day_title", type, e.title), join([dates, age]))
         }
         if r.calendar == .gregorian && e.recurring {
             return (L.f("notif_eve_greg_title", type, e.title), join([f.gregorian(r.occurrenceDate) + ".", age]))

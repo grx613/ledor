@@ -66,6 +66,21 @@ struct Formatters {
         return f.string(from: instant)
     }
 
+    /// Даты наступления (D-46): по еврейскому календарю — обе даты (`first` — какая первой), по григорианскому — только
+    /// григорианская: еврейская дата того же дня датой события не является («30 апреля» ≠ «23 Нисана»).
+    func occurrenceDates(_ o: Occurrence, first: CalendarKind = .hebrew) -> [String] {
+        let greg = gregorianShortWeekday(o.date)
+        if o.calendar == .gregorian { return [greg] }
+        let heb = hebrewDate(o.hebrewDate)
+        return first == .hebrew ? [heb, greg] : [greg, heb]
+    }
+
+    /// То же одной строкой: «пт, 16 апреля 2027 (9 Нисана 5787)» или «пт, 30 апреля 2027».
+    func occurrenceDatesInline(_ o: Occurrence) -> String {
+        let d = occurrenceDates(o, first: .gregorian)
+        return d.count == 2 ? "\(d[0]) (\(d[1]))" : d[0]
+    }
+
     func relativeDays(_ days: Int) -> String {
         switch days {
         case 0: L.t("rel_today")

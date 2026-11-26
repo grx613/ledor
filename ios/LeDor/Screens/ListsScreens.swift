@@ -78,7 +78,7 @@ struct ListsScreen: View {
         let f = Formatters()
         List {
             Section {
-                NavigationLink(value: Route.listCreate) { Label(L.t("create_list"), systemImage: "plus") }
+                NavigationLink(value: Route.listCreate(moveLocal: false)) { Label(L.t("create_list"), systemImage: "plus") }
                 NavigationLink(value: Route.listJoin(nil)) { Label(L.t("join_list"), systemImage: "person.badge.plus") }
                 if !model.data.cloudConfigured { HighlightCard { Text(L.t("err_cloud_not_configured")) } }
             }
@@ -135,7 +135,9 @@ struct ListsScreen: View {
 
 struct ListCreateScreen: View {
     @Environment(AppModel.self) private var model
-    @Environment(\.dismiss) private var dismiss
+    let moveLocal: Bool
+    @Binding var path: [Route]
+    @State private var loaded = false
     @State private var name = ""
     @State private var readPin = PinGenerator.generate(length: 6)
     @State private var masterPin = PinGenerator.generate(length: 8)
@@ -178,13 +180,15 @@ struct ListCreateScreen: View {
                     error = nil
                     Task {
                         let r = await model.data.create(name: name, readPin: readPin, masterPin: masterPin, moveLocalEvents: move)
-                        if case .ok = r { dismiss() } else { error = rpcErrorText(r) }
+                        // Как на Android: после создания — экран нового списка.
+                        if case .ok(let list) = r { replaceTop(&path, with: .listDetail(list.id)) } else { error = rpcErrorText(r) }
                         busy = false
                     }
                 } label: { if busy { ProgressView() } else { Text(L.t("create")).fontWeight(.semibold) } }
                 .disabled(busy || !nameOk || !readOk || !masterOk || nameFree == false)
             }
         }
+        .onAppear { if !loaded { loaded = true; move = moveLocal } }
         .task(id: name) {
             nameFree = nil
             guard ListNameRules.isValid(name), model.data.cloudConfigured else { return }
@@ -273,6 +277,7 @@ struct ListDetailScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
     let id: String
+    @Binding var path: [Route]
     @State private var confirmDisconnect = false
     @State private var deleteDialog = false
     @State private var deletePin = ""
@@ -305,10 +310,24 @@ struct ListDetailScreen: View {
             if !l.isCloud {
                 Section { Text(L.t("personal_list_explain")).foregroundStyle(Palette.onSurfaceVariant) }
                 let targets = model.lists.filter { $0.isCloud && $0.canEdit }
-                if count > 0 && !targets.isEmpty {
+                // B-27: кнопка есть всегда, когда в личном списке есть события. Облачных списков нет — сразу «Создать список»
+                // с включённым переносом; есть — выбор списка или новый; после переноса открывается экран списка.
+                if count > 0 {
                     Section {
-                        Menu(L.t("move_to_cloud")) {
-                            ForEach(targets) { t in Button(t.name) { Task { await model.data.moveLocalEvents(to: t.id) } } }
+                        if targets.isEmpty {
+                            Button(L.t("move_to_cloud")) { path.append(.listCreate(moveLocal: true)) }
+                        } else {
+                            Menu(L.t("move_to_cloud")) {
+                                ForEach(targets) { t in
+                                    Button(t.name) {
+                                        Task {
+                                            await model.data.moveLocalEvents(to: t.id)
+                                            replaceTop(&path, with: .listDetail(t.id))
+                                        }
+                                    }
+                                }
+                                Button { path.append(.listCreate(moveLocal: true)) } label: { Label(L.t("create_list"), systemImage: "plus") }
+                            }
                         }
                     }
                 }
@@ -401,4 +420,10 @@ extension View {
             }
         }
     }
+}
+
+/// Заменить текущий экран другим (как `popUpTo` на Android): назад — к предыдущему.
+func replaceTop(_ path: inout [Route], with route: Route) {
+    if !path.isEmpty { path.removeLast() }
+    path.append(route)
 }

@@ -9,7 +9,8 @@ struct UpcomingItem: Identifiable {
     let occurrence: Occurrence
     let list: ListRecord?
     let daysUntil: Int
-    var id: String { event.id }
+    /// У события «по обоим календарям» две строки — ключ включает дату.
+    var id: String { "\(event.id)@\(occurrence.date.iso)" }
 }
 
 /// Общие данные всех экранов (как `AppViewModel` + `AppContainer` на Android).
@@ -82,9 +83,11 @@ final class AppModel {
                                   to: CivilDate(year: t.year + 10, month: t.month, day: 1)!, shabbatFrom: t, shabbatTo: t.adding(days: 13),
                                   nextDays: true, yizkor: own.contains { $0.type == .yahrzeit })
         var shabbatShown = false
-        upcoming = events.compactMap { e -> UpcomingItem? in
-            guard let o = OccurrenceCalculator.next(e, today: t, settings.adarPolicy) else { return nil }
-            return UpcomingItem(event: e, occurrence: o, list: db.list(e.listId), daysUntil: t.days(until: o.date))
+        // «По обоим» календарям — две строки: ближайшая дата по каждому календарю (B-28).
+        upcoming = events.flatMap { e in
+            OccurrenceCalculator.nextEach(e, today: t, settings.adarPolicy).map { o in
+                UpcomingItem(event: e, occurrence: o, list: db.list(e.listId), daysUntil: t.days(until: o.date))
+            }
         }
         .sorted { ($0.occurrence.date, $0.event.title) < ($1.occurrence.date, $1.event.title) }
         .filter { u in

@@ -124,7 +124,9 @@ struct EventDetailScreen: View {
             let canEdit = list?.canEdit == true
             let policy = model.settings.adarPolicy
             let today = model.today
-            let next = OccurrenceCalculator.next(e, today: today, policy)
+            // «По обоим календарям» — две ближайшие даты, по блоку на каждую.
+            let nexts = OccurrenceCalculator.nextEach(e, today: today, policy)
+            let next = nexts.first
             List {
                 Section {
                     HStack(spacing: 14) {
@@ -138,17 +140,20 @@ struct EventDetailScreen: View {
                     if model.isPending(e.id) {
                         Text(L.t("pending_upload")).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant)
                     }
-                    if let next {
+                    ForEach(nexts, id: \.date) { o in
                         HighlightCard {
-                            Text(L.t(e.recurring ? "next_label" : "date_label")).font(Typography.rubik(12, .medium))
-                            Text(f.relativeDays(today.days(until: next.date)).capitalizedFirst(L.locale)).font(Typography.rubik(24, .medium))
-                            Text("\(f.gregorianShortWeekday(next.date)) · \(f.hebrewDate(next.hebrewDate))").font(Typography.rubik(14))
-                            if next.startsEveBefore {
-                                Text(L.f("conv_eve_note", f.gregorianDayMonth(next.date.adding(days: -1)))).font(Typography.rubik(12))
+                            Text(L.t(!e.recurring ? "date_label" : nexts.count == 1 ? "next_label"
+                                     : o.calendar == .hebrew ? "observe_hebrew" : "observe_gregorian"))
+                                .font(Typography.rubik(12, .medium))
+                            Text(f.relativeDays(today.days(until: o.date)).capitalizedFirst(L.locale)).font(Typography.rubik(24, .medium))
+                            Text(f.occurrenceDates(o, first: .gregorian).joined(separator: " · ")).font(Typography.rubik(14))
+                            if o.startsEveBefore {
+                                Text(L.f("conv_eve_note", f.gregorianDayMonth(o.date.adding(days: -1)))).font(Typography.rubik(12))
                             }
-                            if let age = f.agePhrase(e.type, next.yearsSince) { Text(age).font(Typography.rubik(14, .semibold)) }
+                            if let age = f.agePhrase(e.type, o.yearsSince) { Text(age).font(Typography.rubik(14, .semibold)) }
                         }
-                    } else if !e.recurring {
+                    }
+                    if nexts.isEmpty && !e.recurring {
                         HighlightCard { Text(L.t("event_passed")) }
                     }
                 }

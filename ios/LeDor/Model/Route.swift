@@ -19,7 +19,8 @@ enum Route: Hashable {
     case event(String)
     case editor(EditorSeed)
     case lists
-    case listCreate
+    /// `moveLocal` — сразу включить перенос событий из личного списка (B-27).
+    case listCreate(moveLocal: Bool)
     case listJoin(String?)
     case listDetail(String)
     case settings

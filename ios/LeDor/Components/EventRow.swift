@@ -63,10 +63,10 @@ struct EventRow: View {
     var body: some View {
         let f = Formatters()
         let typeLabel = f.typeLabel(event, occurrence?.yearsSince)
-        let heb = occurrence.map { f.hebrewDate($0.hebrewDate) }
-        let greg = occurrence.map { f.gregorianShortWeekday($0.date) }
-        let first = primary == .hebrew ? heb : greg
-        let second = primary == .hebrew ? greg : heb
+        // У наступления по григорианскому календарю дата одна — григорианская (D-46).
+        let dates = occurrence.map { f.occurrenceDates($0, first: primary) } ?? []
+        let first = dates.first
+        let second = dates.count > 1 ? dates[1] : nil
         let age = f.agePhrase(event.type, occurrence?.yearsSince)
         let isHoliday = event.listId == holidaysListId
         let holidayLine = isHoliday ? HolidayEvents.rowLine(event) : nil

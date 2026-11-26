@@ -77,6 +77,12 @@ public enum OccurrenceCalculator {
         return merge(calendars(e).compactMap { nextBy(e, $0, today, policy) }).first
     }
 
+    /// Ближайшая дата по каждому календарю события (B-28, D-46): «по обоим» — две даты (совпавшие — одна), иначе — одна.
+    public static func nextEach(_ e: Event, today: CivilDate, _ policy: YahrzeitAdarPolicy) -> [Occurrence] {
+        if !e.recurring { return next(e, today: today, policy).map { [$0] } ?? [] }
+        return merge(calendars(e).compactMap { nextBy(e, $0, today, policy) })
+    }
+
     private static func nextBy(_ e: Event, _ cal: CalendarKind, _ today: CivilDate, _ policy: YahrzeitAdarPolicy) -> Occurrence? {
         let candidates: [Occurrence]
         if cal == .hebrew {

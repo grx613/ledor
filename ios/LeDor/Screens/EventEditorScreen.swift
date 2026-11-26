@@ -145,12 +145,14 @@ struct EventEditorScreen: View {
                 .listRowInsets(EdgeInsets())
             }
             if st.recurring { observeSection(st, ed, f) }
-            if let preview = previewOccurrence(st, ed) {
-                let age = f.agePhrase(st.type, preview.yearsSince).map { ", " + $0.prefix(1).lowercased() + $0.dropFirst() } ?? ""
+            let previews = previewOccurrences(st, ed)
+            if !previews.isEmpty {
                 Section {
-                    Text(L.f("next_occurrence", f.gregorianShortWeekday(preview.date), f.hebrewDate(preview.hebrewDate),
-                             f.relativeDays(model.today.days(until: preview.date))) + age)
-                        .font(Typography.rubik(14)).foregroundStyle(Palette.onSurfaceVariant)
+                    ForEach(previews, id: \.date) { preview in
+                        let age = f.agePhrase(st.type, preview.yearsSince).map { ", " + $0.prefix(1).lowercased() + $0.dropFirst() } ?? ""
+                        Text(L.f("next_occurrence", f.occurrenceDatesInline(preview), f.relativeDays(model.today.days(until: preview.date))) + age)
+                            .font(Typography.rubik(14)).foregroundStyle(Palette.onSurfaceVariant)
+                    }
                 }
                 .listRowBackground(Color.clear)
             }
@@ -246,11 +248,12 @@ struct EventEditorScreen: View {
 
     private func errorText(_ t: String) -> some View { Text(t).font(Typography.rubik(12)).foregroundStyle(Palette.error) }
 
-    private func previewOccurrence(_ st: EditorState, _ ed: EventDate) -> Occurrence? {
-        guard EventValidator.validateDate(ed).isEmpty, !st.yearMissingForOneOff else { return nil }
+    /// «Ближайшее» — по строке на каждую дату («по обоим» — две).
+    private func previewOccurrences(_ st: EditorState, _ ed: EventDate) -> [Occurrence] {
+        guard EventValidator.validateDate(ed).isEmpty, !st.yearMissingForOneOff else { return [] }
         var e = st.toEvent()
         e.id = "preview"
-        return OccurrenceCalculator.next(e, today: model.today, model.settings.adarPolicy)
+        return OccurrenceCalculator.nextEach(e, today: model.today, model.settings.adarPolicy)
     }
 
     private func save() {

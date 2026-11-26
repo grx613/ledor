@@ -60,9 +60,9 @@ struct RouteView: View {
             else { EventDetailScreen(id: MilestoneEvents.isMilestone(id) ? MilestoneEvents.parentId(id) : id) }
         case .editor(let seed): EventEditorScreen(seed: seed)
         case .lists: ListsScreen()
-        case .listCreate: ListCreateScreen()
+        case .listCreate(let moveLocal): ListCreateScreen(moveLocal: moveLocal, path: $path)
         case .listJoin(let name): ListJoinScreen(initialName: name)
-        case .listDetail(let id): ListDetailScreen(id: id)
+        case .listDetail(let id): ListDetailScreen(id: id, path: $path)
         case .settings: SettingsScreen()
         case .cityPicker: CityPickerScreen()
         case .about: AboutScreen()
