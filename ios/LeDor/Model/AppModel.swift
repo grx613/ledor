@@ -101,13 +101,14 @@ final class AppModel {
         }
     }
 
-    /// При возврате в приложение: новая дата, проверка разрешений, перестройка уведомлений, синхронизация раз в 15 минут.
+    /// При каждом открытии приложения (запуск и возврат из фона): новая дата, проверка разрешений, перестройка уведомлений
+    /// и синхронизация общих списков, если с прошлой попытки прошло больше 5 минут (B-39).
     func onActive() async {
         let now = Zoned.civilDate(Date(), .current)
         if now != today { today = now; rebuild() }
         await rearmNow()
         health = await reminders.health(settings: settings)
-        if data.cloudConfigured, (db.lastSyncAttempt.map { Date().timeIntervalSince($0) > 15 * 60 } ?? true),
+        if shouldSyncOnOpen(configured: data.cloudConfigured, now: Date(), lastAttempt: db.lastSyncAttempt),
            db.lists.contains(where: \.isCloud) {
             _ = await data.syncAll()
         }
