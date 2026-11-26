@@ -4755,6 +4755,47 @@
         }
       }
     },
+    "health_allow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autoriser"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לאפשר"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разрешить"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דערלויבן"
+          }
+        }
+      }
+    },
     "health_fix": {
       "extractionState": "manual",
       "localizations": {
@@ -9097,6 +9138,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "רשימות"
+          }
+        }
+      }
+    },
+    "lists_hint_holidays": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For “Jewish holidays” it turns the whole list on and off."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En «Fiestas judías» activa y desactiva toda la lista."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour « Fêtes juives », il active ou désactive toute la liste."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ב„חגי ישראל” הוא מפעיל ומכבה את כל הרשימה."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У «Еврейских праздников» он включает и выключает весь список."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בײַ „ייִדישע יום־טובֿים“ צינדט ער אָן און לעשט אויס די גאַנצע רשימה."
           }
         }
       }

@@ -63,7 +63,7 @@ struct EventRow: View {
     var body: some View {
         let f = Formatters()
         let typeLabel = f.typeLabel(event, occurrence?.yearsSince)
-        // У наступления по григорианскому календарю дата одна — григорианская (D-46).
+        // Главная дата крупно, тот же день в другом календаре — мелко (D-54).
         let dates = occurrence.map { f.occurrenceDates($0, first: primary) } ?? []
         let first = dates.first
         let second = dates.count > 1 ? dates[1] : nil

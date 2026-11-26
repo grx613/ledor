@@ -66,19 +66,19 @@ struct Formatters {
         return f.string(from: instant)
     }
 
-    /// Даты наступления (D-46): по еврейскому календарю — обе даты (`first` — какая первой), по григорианскому — только
-    /// григорианская: еврейская дата того же дня датой события не является («30 апреля» ≠ «23 Нисана»).
-    func occurrenceDates(_ o: Occurrence, first: CalendarKind = .hebrew) -> [String] {
+    /// Две даты наступления (D-54, заменяет D-46): главная крупно, под ней — тот же день в другом календаре.
+    /// По еврейскому календарю первой идёт календарь `first` (вкладка); по григорианскому — всегда григорианская:
+    /// еврейская дата того же дня заголовком строки не бывает.
+    func occurrenceDates(_ o: Occurrence, first: CalendarKind? = nil) -> [String] {
         let greg = gregorianShortWeekday(o.date)
-        if o.calendar == .gregorian { return [greg] }
         let heb = hebrewDate(o.hebrewDate)
-        return first == .hebrew ? [heb, greg] : [greg, heb]
+        return o.calendar == .hebrew && (first ?? o.calendar) == .hebrew ? [heb, greg] : [greg, heb]
     }
 
-    /// То же одной строкой: «пт, 16 апреля 2027 (9 Нисана 5787)» или «пт, 30 апреля 2027».
+    /// Одной строкой, григорианская дата первой: «ср, 5 мая 2027 (28 Нисана 5787)».
     func occurrenceDatesInline(_ o: Occurrence) -> String {
         let d = occurrenceDates(o, first: .gregorian)
-        return d.count == 2 ? "\(d[0]) (\(d[1]))" : d[0]
+        return "\(d[0]) (\(d[1]))"
     }
 
     func relativeDays(_ days: Int) -> String {

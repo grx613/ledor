@@ -140,7 +140,7 @@ struct SettingsTests {
     @Test func defaultsAndRoundTrip() {
         let store = SettingsStore(suite: "ledor-test-\(UUID())")
         var s = store.load()
-        #expect(s.gridMode == .hebrew && s.weekStartsOnSunday && s.holidays.enabled && !s.holidays.shabbat)
+        #expect(s.gridMode == .hebrew && s.weekStartsOnSunday && !s.holidays.enabled && s.holidays.notify && !s.holidays.shabbat)
         #expect(s.reminders.eveMinutesBeforeSunset == 180 && s.reminders.dayTime == .noon)
         s.cityId = "il-jerusalem"
         s.reminders.eveMode = .fixedTime
@@ -148,5 +148,30 @@ struct SettingsTests {
         #expect(store.load() == s)
         let old = try! JSONDecoder().decode(AppSettings.self, from: Data(#"{"cityId":"ru-moscow"}"#.utf8))
         #expect(old.cityId == "ru-moscow" && old.adarPolicy == .adarI)
+    }
+}
+
+/// Как `EditorDefaultsAndHealthTest.defaultListForNewEvent` на Android (D-52).
+struct DefaultListTests {
+    func list(_ id: String, _ kind: ListKind, _ role: ListRole, _ order: Int, _ state: ListState = .active) -> ListRecord {
+        var l = ListRecord(id: id, kind: kind, name: id, role: role, sortOrder: order)
+        l.state = state
+        return l
+    }
+
+    @Test func defaultListForNewEvent() {
+        let local = ListRecord.personal
+        let reader = list("reader", .cloud, .reader, 1)
+        let fam = list("fam", .cloud, .editor, 2)
+        let shul = list("shul", .cloud, .owner, 3)
+        let lost = list("lost", .cloud, .editor, 1, .accessLost)
+        #expect(defaultListId([local], lastListId: nil) == localListId)
+        #expect(defaultListId([local, reader, lost], lastListId: "reader") == localListId)
+        #expect(defaultListId([local, reader, fam], lastListId: nil) == "fam")
+        // Последним пользовались личным — всё равно облачный.
+        #expect(defaultListId([local, fam, shul], lastListId: localListId) == "fam")
+        // Несколько облачных — последний использованный, иначе первый по порядку.
+        #expect(defaultListId([local, fam, shul], lastListId: "shul") == "shul")
+        #expect(defaultListId([local, fam, shul], lastListId: "gone") == "fam")
     }
 }

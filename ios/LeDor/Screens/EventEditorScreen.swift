@@ -33,8 +33,7 @@ struct EventEditorScreen: View {
             return
         }
         var st = EditorState(today: today)
-        let last = model.settings.lastListId.flatMap { model.list($0) }.flatMap { $0.canEdit ? $0.id : nil } ?? localListId
-        st.listId = seed.listId ?? last
+        st.listId = seed.listId ?? defaultListId(model.lists, lastListId: model.settings.lastListId)
         if let t = seed.type { st.type = t; st.recurring = EventDefaults.recurring(t) }
         if let title = seed.title { st.title = title }
         switch seed.calendar {

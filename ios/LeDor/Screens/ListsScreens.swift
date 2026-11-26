@@ -111,13 +111,11 @@ struct ListsScreen: View {
                             subtitled(L.t("holidays_title"), L.t("holidays_sub"))
                         }
                     }
-                    Toggle("", isOn: Binding(get: { h.enabled && h.notify }, set: { v in
-                        m.settings.holidays.enabled = h.enabled || v
-                        m.settings.holidays.notify = v
-                    })).labelsHidden().fixedSize()
+                    // Главный выключатель списка: выключен — праздников нет ни в календаре, ни в событиях, ни в напоминаниях (D-53).
+                    Toggle("", isOn: $m.settings.holidays.enabled).labelsHidden().fixedSize()
                 }
             } footer: {
-                Text(L.t("lists_hint_notify") + (model.lists.contains(where: \.isCloud) ? " " + L.t("pull_to_sync") : ""))
+                Text(L.t("lists_hint_notify") + " " + L.t("lists_hint_holidays") + (model.lists.contains(where: \.isCloud) ? " " + L.t("pull_to_sync") : ""))
             }
         }
         .refreshable {

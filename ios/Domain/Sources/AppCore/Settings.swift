@@ -6,8 +6,8 @@ public enum GridMode: String, Codable, Sendable { case gregorian = "GREGORIAN", 
 
 /// Встроенный список «Еврейские праздники» (B-25).
 public struct HolidaySettings: Codable, Hashable, Sendable {
-    /// Показывать праздники в календаре и в событиях.
-    public var enabled = true
+    /// Показывать праздники в календаре, событиях и напоминаниях. По умолчанию выключено (D-53): включает сам пользователь.
+    public var enabled = false
     /// Напоминать накануне вечером.
     public var notify = true
     /// Шабат: напоминание в пятницу со временем зажигания свечей.
@@ -63,4 +63,11 @@ public struct SettingsStore: Sendable {
     public func save(_ s: AppSettings) {
         if let data = try? JSONEncoder().encode(s) { defaults.set(data, forKey: key) }
     }
+}
+
+/// Список для нового события (D-52): облачный с правом редактирования — последний использованный, иначе первый по порядку;
+/// облачных нет — личный.
+public func defaultListId(_ lists: [ListRecord], lastListId: String?) -> String {
+    let cloud = lists.filter { $0.isCloud && $0.canEdit }
+    return (cloud.first { $0.id == lastListId } ?? cloud.first)?.id ?? localListId
 }
