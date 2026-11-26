@@ -3,11 +3,11 @@ export default {
   lang: 'en', play: 'en-US', dir: 'ltr',
   title: 'LeDor: Jewish Family Calendar',
   short: `Shared family calendar: Hebrew birthdays & yahrzeits, reminders for everyone`,
-  full: `LeDor is a shared family calendar for Jewish dates. Create a list — “The Cohen Family” — share it with your spouse, children and relatives, and everyone sees the same birthdays, yahrzeits and anniversaries: whoever adds a date, it appears on every phone, with reminders by the Hebrew and Gregorian calendars.
+  full: `LeDor is a shared family calendar for Jewish dates. Create a list — “My Family” — share it with your spouse, children and relatives, and everyone sees the same birthdays, yahrzeits and anniversaries: whoever adds a date, it appears on every phone, with reminders by the Hebrew and Gregorian calendars.
 
 SHARED FAMILY CALENDAR
 • Whoever adds a date — you, your spouse or your mother — everyone sees it, and the reminder comes to every phone.
-• Create a list — "The Cohen Family", "Our community", "Friends" — and send an invitation via WhatsApp or Telegram.
+• Create a list — "My Family", "Our community", "Friends" — and send an invitation via WhatsApp or Telegram.
 • Relatives enter the list name and PIN and see the same dates, with reminders on their own phones.
 • A regular PIN lets people view; a master PIN lets them add and edit dates.
 • Several lists at once, each with its own color. No sign-up, no email, no passwords. Works offline too.

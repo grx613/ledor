@@ -42,7 +42,7 @@ export default {
     h2: 'Partagez la liste avec la famille ou la communauté',
     sub: 'Une personne saisit les dates — tous les voient et reçoivent les rappels. Sans inscription, e-mail ni mot de passe.',
     steps: [
-      { t: 'Créez une liste', p: '« Famille Cohen », « Notre communauté », « Amis » — vous pouvez avoir plusieurs listes.' },
+      { t: 'Créez une liste', p: '« Ma famille », « Notre communauté », « Amis » — vous pouvez avoir plusieurs listes.' },
       { t: 'Touchez « Partager »', p: 'LeDor envoie une invitation par WhatsApp ou Telegram, avec le nom de la liste et le code d’accès.' },
       { t: 'Vos proches se connectent', p: 'Ils installent LeDor, saisissent le nom et le code — et voient les mêmes dates, avec des rappels sur leur téléphone.' },
     ],
@@ -244,7 +244,7 @@ export default {
       },
       {
         "t": "Créez une liste partagée",
-        "p": "Touchez « Créer ». Choisissez un nom — par exemple « Famille Cohen » — et deux codes : un <b>code PIN de lecture</b> (4 à 8 chiffres, pour consulter seulement) et un <b>code maître</b> (6 à 12 chiffres, pour ajouter et modifier). Si votre liste personnelle contient déjà des dates, cochez le transfert des événements de la liste personnelle.",
+        "p": "Touchez « Créer ». Choisissez un nom — par exemple « Ma famille » — et deux codes : un <b>code PIN de lecture</b> (4 à 8 chiffres, pour consulter seulement) et un <b>code maître</b> (6 à 12 chiffres, pour ajouter et modifier). Si votre liste personnelle contient déjà des dates, cochez le transfert des événements de la liste personnelle.",
         "shot": "11_list_create"
       },
       {

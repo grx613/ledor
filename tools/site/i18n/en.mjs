@@ -42,7 +42,7 @@ export default {
     h2: 'Share the list with your family or community',
     sub: 'One person adds the dates — everyone sees them and gets reminders. No sign-up, email or passwords.',
     steps: [
-      { t: 'Create a list', p: '“Cohen family”, “Our community”, “Friends” — you can have several lists.' },
+      { t: 'Create a list', p: '“My family”, “Our community”, “Friends” — you can have several lists.' },
       { t: 'Tap “Share”', p: 'LeDor sends an invitation via WhatsApp or Telegram with the list name and access code.' },
       { t: 'Your family connects', p: 'They install LeDor, enter the name and code — and see the same dates, with reminders on their own phone.' },
     ],
@@ -244,7 +244,7 @@ export default {
       },
       {
         "t": "Create a shared list",
-        "p": "Tap “Create”. Choose a name — say, “The Cohen Family” — and two codes: a <b>read PIN</b> (4–8 digits, for viewing only) and a <b>master PIN</b> (6–12 digits, for adding and editing). If your “Personal” list already has dates, tick “Move events from the personal list”.",
+        "p": "Tap “Create”. Choose a name — say, “My Family” — and two codes: a <b>read PIN</b> (4–8 digits, for viewing only) and a <b>master PIN</b> (6–12 digits, for adding and editing). If your “Personal” list already has dates, tick “Move events from the personal list”.",
         "shot": "11_list_create"
       },
       {

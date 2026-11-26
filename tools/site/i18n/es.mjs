@@ -42,7 +42,7 @@ export default {
     h2: 'Comparte la lista con la familia o la comunidad',
     sub: 'Una persona apunta las fechas y todos las ven y reciben recordatorios. Sin registro, correo ni contraseñas.',
     steps: [
-      { t: 'Crea una lista', p: '«Familia Cohen», «Nuestra comunidad», «Amigos»: puedes tener varias listas.' },
+      { t: 'Crea una lista', p: '«Mi familia», «Nuestra comunidad», «Amigos»: puedes tener varias listas.' },
       { t: 'Toca «Compartir»', p: 'LeDor envía una invitación por WhatsApp o Telegram con el nombre de la lista y el código de acceso.' },
       { t: 'Tu familia se conecta', p: 'Instalan LeDor, introducen el nombre y el código, y ven las mismas fechas, con recordatorios en su móvil.' },
     ],
@@ -244,7 +244,7 @@ export default {
       },
       {
         "t": "Crea una lista compartida",
-        "p": "Toca «Crear». Elige un nombre — por ejemplo, «Familia Cohen» — y dos códigos: un <b>PIN de lectura</b> (4–8 dígitos, solo para ver) y un <b>PIN maestro</b> (6–12 dígitos, para añadir y editar). Si tu lista personal ya tiene fechas, marca pasar los eventos de la lista personal.",
+        "p": "Toca «Crear». Elige un nombre — por ejemplo, «Mi familia» — y dos códigos: un <b>PIN de lectura</b> (4–8 dígitos, solo para ver) y un <b>PIN maestro</b> (6–12 dígitos, para añadir y editar). Si tu lista personal ya tiene fechas, marca pasar los eventos de la lista personal.",
         "shot": "11_list_create"
       },
       {

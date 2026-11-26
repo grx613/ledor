@@ -3,11 +3,11 @@ export default {
   lang: 'es', play: 'es-ES', dir: 'ltr',
   title: 'LeDor: cumpleaños y yahrzeit',
   short: `Calendario familiar compartido: cumpleaños hebreos, yahrzeits y avisos`,
-  full: `LeDor es un calendario familiar compartido para las fechas judías. Crea una lista «Familia Cohen», compártela con tu pareja, tus hijos y tus familiares, y todos tendrán los mismos cumpleaños, yahrzeits y aniversarios: quien añada una fecha, aparece en cada teléfono, con recordatorios según los calendarios hebreo y gregoriano.
+  full: `LeDor es un calendario familiar compartido para las fechas judías. Crea una lista «Mi familia», compártela con tu pareja, tus hijos y tus familiares, y todos tendrán los mismos cumpleaños, yahrzeits y aniversarios: quien añada una fecha, aparece en cada teléfono, con recordatorios según los calendarios hebreo y gregoriano.
 
 CALENDARIO FAMILIAR COMPARTIDO
 • La añada quien la añada —tú, tu pareja o tu madre—, todos la ven y el recordatorio llega a cada teléfono.
-• Crea una lista — «Familia Cohen», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.
+• Crea una lista — «Mi familia», «Nuestra comunidad», «Amigos» — y envía una invitación por WhatsApp o Telegram.
 • Tus familiares escriben el nombre de la lista y el PIN y ven las mismas fechas, con recordatorios en su propio teléfono.
 • Un PIN normal permite ver; un PIN maestro permite añadir y editar fechas.
 • Varias listas a la vez, cada una con su color. Sin registro, sin correo y sin contraseñas. Funciona también sin conexión.
