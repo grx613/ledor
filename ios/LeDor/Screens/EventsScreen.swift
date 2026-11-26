@@ -153,6 +153,7 @@ struct EventDetailScreen: View {
                     }
                 }
                 .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
 
                 Section(L.t("original_date")) {

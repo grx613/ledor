@@ -77,8 +77,11 @@ struct SettingsScreen: View {
             }
             Section(L.t("set_health_title")) {
                 let h = model.health
-                healthRow(L.t("health_notif_title"), ok: !h.notificationsOff)
-                healthRow(L.t("health_refresh_title"), ok: !h.backgroundRefreshOff)
+                if !h.hasIssues {
+                    Label(L.t("health_all_ok"), systemImage: "checkmark.circle.fill").foregroundStyle(Palette.success)
+                }
+                if h.notificationsOff { issueRow(L.t("health_notif_title"), L.t("health_notif_text")) }
+                if h.backgroundRefreshOff { issueRow(L.t("health_refresh_title"), L.t("health_refresh_text")) }
                 if let days = h.openEveryDays { Text(L.f("health_queue_text", days)).font(Typography.rubik(13)) }
                 if h.notificationsOff || h.backgroundRefreshOff {
                     Button(L.t("health_open_setting")) { openAppSettings() }
@@ -115,12 +118,9 @@ struct SettingsScreen: View {
         .ledorScreen()
     }
 
-    private func healthRow(_ title: String, ok: Bool) -> some View {
-        HStack {
-            Text(title).foregroundStyle(ok ? Palette.onSurfaceVariant : Palette.onSurface)
-            Spacer()
-            Image(systemName: ok ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
-                .foregroundStyle(ok ? Palette.success : Palette.error)
+    private func issueRow(_ title: String, _ text: String) -> some View {
+        Label { subtitled(title, text) } icon: {
+            Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(Palette.error)
         }
     }
 }

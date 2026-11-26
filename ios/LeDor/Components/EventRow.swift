@@ -105,7 +105,7 @@ struct EventRow: View {
                 let soon = (daysUntil ?? 99) <= 1
                 Text(rel).font(Typography.rubik(12, soon ? .bold : .medium))
                     .foregroundStyle(soon ? Palette.secondary : Palette.primary)
-                    .multilineTextAlignment(.trailing).lineLimit(2).frame(maxWidth: 96, alignment: .trailing)
+                    .multilineTextAlignment(.trailing).lineLimit(3).fixedSize(horizontal: false, vertical: true).frame(maxWidth: 112, alignment: .trailing)
             }
         }
         .padding(.vertical, 4)
