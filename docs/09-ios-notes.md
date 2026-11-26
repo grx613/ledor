@@ -254,8 +254,9 @@ RATE_LIMITED, UNAUTHORIZED, FORBIDDEN, LIST_DELETED, INVALID_EVENT, FOREIGN_ID, 
 `cd ios && xcodebuild -project LeDor.xcodeproj -scheme LeDor -destination 'platform=iOS Simulator,name=iPhone 17' -derivedDataPath build/DerivedData build`.
 
 Состояние вех: I0–I7 сделаны в коде; I3 проверен в симуляторе (создал событие → точка в сетке, праздники в «Ближайших»),
-he (справа налево, даты буквами) и ru просмотрены на календаре. **Не проверено:** общие списки с настоящим сервером
-(нужен публичный ключ в `Config.xcconfig`), приход уведомлений, фоновое обновление, тёмная тема и все экраны на всех языках
+he (справа налево, даты буквами) и ru просмотрены на календаре. Общие списки проверены с настоящим сервером
+(2026-11-26): создание с переносом события из личного списка, отправка, событие видно через `join_list` + `pull_changes`
+в том же формате, что у Android, удаление из облака. **Не проверено:** приход уведомлений, фоновое обновление, тёмная тема и все экраны на всех языках
 (I8), настоящий iPhone. I9 (TestFlight, App Store) ждёт Apple Developer Program.
 
 Отличия от Android, сделанные намеренно: экраны на системных компонентах iOS (`Form`, `List`, `NavigationStack`) в цветах
