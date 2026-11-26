@@ -109,7 +109,7 @@ export default {
   author: {
     h2: 'Sobre el autor', name: 'Gershon',
     p: 'Autor de LeDor. ¿Has encontrado un error en una fecha o tienes una idea? Escribe desde la app: «Más → Enviar comentarios».',
-    channel: 'Canal de Telegram del autor', torahAlt: 'Gershon con un rollo de la Torá',
+    channel: 'Canal de Telegram del autor', photoAlt: 'Gershon con un lulav en la sucá',
   },
   eco: {
     h2: 'Otros proyectos de BotHub',
@@ -165,7 +165,7 @@ export default {
     body: `<p>Esta política explica qué datos tratan la app móvil LeDor y el sitio kalendar.bothub.chat, para qué, durante cuánto tiempo se conservan y cómo controlarlos.</p>
 
 <h2>1. Responsable</h2>
-<p>LeDor es un proyecto no comercial y de código abierto. El responsable del tratamiento es el autor de la app, una persona física (Gershon). Contacto: el formulario «Más → Enviar comentarios» de la app o el <a href="https://t.me/bothub_founder">canal de Telegram del autor</a>.</p>
+<p>LeDor es un proyecto no comercial y de código abierto. El responsable del tratamiento es el autor de la app, una persona física (Gershon). Contacto: correo <a href="mailto:grx613@gmail.com">grx613@gmail.com</a>, el formulario «Más → Enviar comentarios» de la app o el <a href="https://t.me/bothub_founder">canal de Telegram del autor</a>.</p>
 
 <h2>2. En resumen</h2>
 <ul>

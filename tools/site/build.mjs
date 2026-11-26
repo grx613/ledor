@@ -10,7 +10,7 @@ const SITE = 'https://kalendar.bothub.chat';
 const LANGS = ['en', 'he', 'ru', 'yi', 'fr', 'es'];     // порядок — как в приложении
 const DEFAULT = 'en';
 const APK = readFileSync(join(ROOT, 'tools', 'site', 'apk-name.txt'), 'utf8').trim();   // ledor-X.Y.Z.apk
-const ASSET_V = '6';
+const ASSET_V = '7';
 const CHANNEL = 'https://t.me/bothub_founder';
 const SOURCE = 'https://github.com/grx613/ledor';
 const LIST_COLORS = ['#D4A72C', '#1FA187', '#6A58B5'];   // как цвета списков в приложении на снимках
@@ -228,9 +228,9 @@ ${header(l, '')}
 <section class="alt" aria-labelledby="author-title">
   <div class="wrap about">
     <div class="card author">
-      <img class="author-photo" src="/assets/img/author-torah.jpg" alt="${esc(t.author.torahAlt)}" width="720" height="720" loading="lazy">
+      <img class="author-photo" src="/assets/img/author-lulav.jpg?v=${ASSET_V}" alt="${esc(t.author.photoAlt)}" width="720" height="720" loading="lazy">
       <div>
-        <div class="author-head"><img src="/assets/img/author-face.jpg" alt="" width="56" height="56" loading="lazy"><div><p class="kicker">${t.author.h2}</p><h2 id="author-title">${t.author.name}</h2></div></div>
+        <div class="author-head"><div><p class="kicker">${t.author.h2}</p><h2 id="author-title">${t.author.name}</h2></div></div>
         <p>${t.author.p}</p>
         <a href="${CHANNEL}" rel="noopener">${t.author.channel}</a>
       </div>

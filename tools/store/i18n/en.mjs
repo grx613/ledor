@@ -1,7 +1,7 @@
 // English (default). LeDor Google Play listing: title ≤30, short ≤80, full ≤4000, screenshot captions.
 export default {
   lang: 'en', play: 'en-US', dir: 'ltr',
-  title: 'LeDor Hebrew Birthday Yahrzeit',
+  title: 'LeDor: Jewish Family Calendar',
   short: 'Hebrew calendar: holidays, birthday & yahrzeit reminders, shared family lists',
   full: `LeDor is a Hebrew calendar for the family: it reminds you of birthdays, yahrzeits, family dates and Jewish holidays by the Hebrew and Gregorian calendars — and lets your whole family or community keep one shared list of dates.
 

@@ -109,7 +109,7 @@ export default {
   author: {
     h2: 'About the author', name: 'Gershon',
     p: 'Author of LeDor. Found a mistake in a date or have an idea? Write right from the app: “More → Send feedback”.',
-    channel: 'Author’s Telegram channel', torahAlt: 'Gershon with a Torah scroll',
+    channel: 'Author’s Telegram channel', photoAlt: 'Gershon with a lulav in the sukkah',
   },
   eco: {
     h2: 'Other BotHub projects',
@@ -165,7 +165,7 @@ export default {
     body: `<p>This policy explains what data the LeDor mobile app and the kalendar.bothub.chat website process, why, for how long it is kept and how you can control it.</p>
 
 <h2>1. Who is responsible</h2>
-<p>LeDor is a non-commercial open-source project. The data controller is the app’s author, a private individual (Gershon). Contact: the “More → Send feedback” form in the app or the <a href="https://t.me/bothub_founder">author’s Telegram channel</a>.</p>
+<p>LeDor is a non-commercial open-source project. The data controller is the app’s author, a private individual (Gershon). Contact: email <a href="mailto:grx613@gmail.com">grx613@gmail.com</a>, the “More → Send feedback” form in the app or the <a href="https://t.me/bothub_founder">author’s Telegram channel</a>.</p>
 
 <h2>2. In short</h2>
 <ul>
