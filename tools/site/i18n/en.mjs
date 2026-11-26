@@ -226,16 +226,16 @@ export default {
 <p>If the policy changes, the new version will appear on this page with a new date. We will announce significant changes in the app.</p>`,
   },
 
-  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  // Страница «Общий семейный календарь» (B-38): /<язык>/family/
   family: {
-    "title": "One calendar for the whole family — shared lists in LeDor",
+    "title": "Shared family calendar — shared lists in LeDor",
     "description": "How you and your family can see the same birthdays and yahrzeits and get reminders: a LeDor shared list in five steps.",
-    "h1": "One calendar for the whole family",
+    "h1": "Shared family calendar",
     "intro": "You and your spouse (or the whole family) want to see the same dates: whoever adds a birthday, it shows up for both of you, and the reminder comes to both phones. That is what a LeDor <b>shared list</b> is for. Only people you give its name and code can see it.",
-    "link": "Step-by-step guide with pictures →",
-    "footer": "Shared lists: how it works",
-    "nav": "One calendar for the family",
-    "heroLink": "How to share one calendar with your family — 5 steps →",
+    "link": "How to set up a shared family calendar — step-by-step guide →",
+    "footer": "Shared family calendar",
+    "nav": "Shared family calendar",
+    "heroLink": "How to set up a shared family calendar — 5 steps →",
     "steps": [
       {
         "t": "Open “Lists”",
@@ -258,7 +258,7 @@ export default {
         "shot": "11b_list_join"
       },
       {
-        "t": "Done — one calendar for everyone",
+        "t": "Done — a shared calendar",
         "p": "Now whatever any of you adds, everyone sees, and reminders come to every phone. New events go to the shared list by default. A colored tag shows which list an event belongs to.",
         "shot": "05_events"
       }

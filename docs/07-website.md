@@ -21,7 +21,7 @@ website/
 ├── <lang>/index.html                    главная
 ├── <lang>/converter/index.html          конвертер дат
 ├── <lang>/privacy/index.html            политика конфиденциальности
-├── <lang>/family/index.html             «Один календарь на всю семью»: общий список за 5 шагов со снимками (B-38)
+├── <lang>/family/index.html             «Общий семейный календарь»: общий список за 5 шагов со снимками (B-38)
 ├── sitemap.xml, robots.txt, favicon.svg
 ├── ledor-X.Y.Z.apk, ledor.apk           сборка для скачивания (не в git)
 ├── version.json                         номер последней версии Android из `apk-name.txt`; его читает кнопка «Проверить обновление» (`01`, ABT-5)

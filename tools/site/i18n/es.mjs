@@ -226,16 +226,16 @@ export default {
 <p>Si la política cambia, la nueva versión aparecerá en esta página con una nueva fecha. Los cambios importantes se anunciarán en la app.</p>`,
   },
 
-  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  // Страница «Общий семейный календарь» (B-38): /<язык>/family/
   family: {
-    "title": "Un solo calendario para toda la familia — listas compartidas en LeDor",
+    "title": "Calendario familiar compartido — listas compartidas en LeDor",
     "description": "Cómo tú y tu familia ven los mismos cumpleaños y yahrzeits y reciben recordatorios: una lista compartida de LeDor en cinco pasos.",
-    "h1": "Un solo calendario para toda la familia",
+    "h1": "Calendario familiar compartido",
     "intro": "Tú y tu pareja (o toda la familia) queréis ver las mismas fechas: quien añada un cumpleaños, aparece para los dos, y el recordatorio llega a ambos teléfonos. Para eso está la <b>lista compartida</b> de LeDor. Solo la ven las personas a las que das su nombre y su código.",
-    "link": "Guía paso a paso con imágenes →",
-    "footer": "Listas compartidas: cómo funcionan",
-    "nav": "Un calendario para la familia",
-    "heroLink": "Cómo compartir un calendario con tu familia: 5 pasos →",
+    "link": "Cómo crear un calendario familiar compartido: guía paso a paso →",
+    "footer": "Calendario familiar compartido",
+    "nav": "Calendario familiar compartido",
+    "heroLink": "Cómo crear un calendario familiar compartido: 5 pasos →",
     "steps": [
       {
         "t": "Abre «Listas»",
@@ -258,7 +258,7 @@ export default {
         "shot": "11b_list_join"
       },
       {
-        "t": "Listo — un calendario para todos",
+        "t": "Listo — un calendario compartido",
         "p": "Ahora lo que añada cualquiera de vosotros lo ven todos, y los recordatorios llegan a cada teléfono. Los eventos nuevos van por defecto a la lista compartida. Una etiqueta de color indica a qué lista pertenece cada evento.",
         "shot": "05_events"
       }

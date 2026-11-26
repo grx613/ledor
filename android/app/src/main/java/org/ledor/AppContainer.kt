@@ -82,12 +82,23 @@ class AppContainer(private val context: Context) {
                 .collect { runCatching { syncScheduler.update(it) } }
         }
         appScope.launch { runCatching { reminderScheduler.rearm() } }
-        appScope.launch {
-            val last = settingsStore.lastSyncAttempt()
-            if (rpc.isConfigured && System.currentTimeMillis() - last > 15 * 60_000L) runCatching { syncEngine.syncAll() }
-        }
+        // Синхронизация при каждом открытии приложения — и с нуля, и при возврате из фона (04 §6, B-39).
+        // Человек и так смотрит на экран: один запрос, батарея не страдает. Фоновая раз в сутки остаётся для напоминаний.
+        androidx.lifecycle.ProcessLifecycleOwner.get().lifecycle.addObserver(object : androidx.lifecycle.DefaultLifecycleObserver {
+            override fun onStart(owner: androidx.lifecycle.LifecycleOwner) {
+                appScope.launch {
+                    if (shouldSyncOnOpen(rpc.isConfigured, System.currentTimeMillis(), settingsStore.lastSyncAttempt())) runCatching { syncEngine.syncAll() }
+                }
+            }
+        })
     }
 }
+
+/** Пауза между синхронизациями при открытии приложения: чаще не нужно — правки родных не так срочны. */
+const val SYNC_ON_OPEN_MIN_MS = 5 * 60_000L
+
+/** Синхронизировать ли при открытии приложения: сервер настроен и с прошлой попытки прошло больше [SYNC_ON_OPEN_MIN_MS]. */
+fun shouldSyncOnOpen(configured: Boolean, now: Long, lastAttempt: Long): Boolean = configured && now - lastAttempt > SYNC_ON_OPEN_MIN_MS
 
 class KalendarApp : Application(), androidx.work.Configuration.Provider {
     override val workManagerConfiguration: androidx.work.Configuration

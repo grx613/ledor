@@ -226,16 +226,16 @@ export default {
 <p>Si la politique change, la nouvelle version apparaîtra sur cette page avec une nouvelle date. Les changements importants seront annoncés dans l’application.</p>`,
   },
 
-  // Страница «Один календарь на всю семью» (B-38): /<язык>/family/
+  // Страница «Общий семейный календарь» (B-38): /<язык>/family/
   family: {
-    "title": "Un seul calendrier pour toute la famille — listes partagées dans LeDor",
+    "title": "Calendrier familial partagé — listes partagées dans LeDor",
     "description": "Comment vous et vos proches voyez les mêmes anniversaires et yahrzeits et recevez les rappels : une liste partagée LeDor en cinq étapes.",
-    "h1": "Un seul calendrier pour toute la famille",
+    "h1": "Calendrier familial partagé",
     "intro": "Vous et votre conjoint (ou toute la famille) voulez voir les mêmes dates : quel que soit celui qui ajoute un anniversaire, il apparaît chez vous deux, et le rappel arrive sur les deux téléphones. C’est à cela que sert une <b>liste partagée</b> LeDor. Seules les personnes à qui vous donnez son nom et son code peuvent la voir.",
-    "link": "Guide pas à pas en images →",
-    "footer": "Listes partagées : comment ça marche",
-    "nav": "Un calendrier pour la famille",
-    "heroLink": "Un seul calendrier avec votre famille : 5 étapes →",
+    "link": "Créer un calendrier familial partagé : guide pas à pas →",
+    "footer": "Calendrier familial partagé",
+    "nav": "Calendrier familial partagé",
+    "heroLink": "Créer un calendrier familial partagé : 5 étapes →",
     "steps": [
       {
         "t": "Ouvrez « Listes »",
@@ -258,7 +258,7 @@ export default {
         "shot": "11b_list_join"
       },
       {
-        "t": "C’est prêt — un calendrier pour tous",
+        "t": "C’est prêt — un calendrier partagé",
         "p": "Désormais, tout ce que l’un de vous ajoute, tous le voient, et les rappels arrivent sur chaque téléphone. Les nouveaux événements vont par défaut dans la liste partagée. Une étiquette de couleur indique la liste de chaque événement.",
         "shot": "05_events"
       }
