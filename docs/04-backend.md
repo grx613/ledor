@@ -351,3 +351,33 @@ SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный кл�
   `~/.config/ledor/infra.md` на основном сервере, там же — как откатить DNS.
 - Отложено: смена ПИН-кодов и отзыв токенов, переименование списка, автоудаление заброшенных списков,
   очистка «надгробий», очередь отзывов без сети.
+
+## 9. Прокси-сервер: восстановление и переезд
+
+Названия хостингов и адреса — в `~/.config/ledor/infra.md` на основном сервере (не в Git, D-59). Ниже `ORIGIN_IP` —
+адрес основного сервера, `PROXY_IP` — адрес прокси.
+
+**Прокси перезагрузился.** Делать ничего не нужно: Caddy стоит в автозапуске, настройки и сертификат — на диске.
+Проверка: `curl -s https://kalendar.bothub.chat/version.json`.
+
+**Прокси упал и не поднимается — срочно вернуть работу** (везде, кроме России):
+```bash
+~/.config/ledor/switch-dns.sh ORIGIN_IP proxied     # прямо на основной сервер через CDN; телефоны подхватят за минуту
+```
+
+**Новый прокси-сервер** (переезд или замена). Нужен Ubuntu с открытыми портами 80 и 443, из России доступный, и чтобы с
+него открывался основной сервер — проверить первым делом: `curl -s --resolve kalendar.bothub.chat:443:ORIGIN_IP
+https://kalendar.bothub.chat/version.json` (должен вернуть JSON).
+1. Поставить Caddy (`apt install caddy`), если его там нет. Если Caddy уже обслуживает другие сайты — не трогать их
+   блоки: перед правкой сделать копию `Caddyfile`, после правки — `caddy validate`.
+2. Дописать в конец `/etc/caddy/Caddyfile` блок из `tools/deploy/kalendar-mirror.caddy`, заменив `ORIGIN_IP` на адрес
+   основного сервера.
+3. `caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile && systemctl reload caddy && systemctl enable caddy`.
+4. Переключить DNS: `~/.config/ledor/switch-dns.sh <адрес нового прокси>`. Через минуту-две Caddy на прокси сам получит
+   сертификат; до этого сайт по https не откроется.
+5. Проверить: `curl -s https://kalendar.bothub.chat/version.json`, `curl -sI https://kalendar.bothub.chat/ledor.apk`
+   (200) и RPC с ключом — `tools/rpc-smoke`. В ответах не должно быть заголовка `cf-ray` — значит, мимо CDN.
+6. Записать новый адрес в `~/.config/ledor/infra.md`, старый прокси — убрать блок LeDor из его `Caddyfile`.
+
+**Текущая запись DNS:** `~/.config/ledor/switch-dns.sh` без параметров.
+
