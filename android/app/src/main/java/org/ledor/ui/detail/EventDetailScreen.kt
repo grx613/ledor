@@ -105,7 +105,12 @@ fun EventDetailScreen(vm: AppViewModel, nav: NavController, id: String) {
                 HighlightCard { Text(stringResource(R.string.event_passed)) }
             }
 
-            SectionCard(title = stringResource(R.string.original_date)) {
+            if (e.isMonthly) SectionCard {
+                // B-41: первый раз и повтор; еврейская дата и заход солнца не нужны.
+                val g = e.date.gregorian!!
+                if (g.year != null) InfoLine(stringResource(R.string.first_time), f.gregorianParts(g))
+                InfoLine(stringResource(R.string.field_repeat), f.monthlyDay(g.day).replaceFirstChar { it.titlecase() })
+            } else SectionCard(title = stringResource(R.string.original_date)) {
                 e.date.gregorian?.let { InfoLine(stringResource(R.string.gregorian_date), f.gregorianParts(it) + if (e.date.afterSunset) " · " + stringResource(R.string.after_sunset).lowercase() else "") }
                 e.date.hebrew?.let { InfoLine(stringResource(R.string.hebrew_date), f.hebrewParts(it)) }
                 if (e.recurring) InfoLine(stringResource(R.string.observe_title),

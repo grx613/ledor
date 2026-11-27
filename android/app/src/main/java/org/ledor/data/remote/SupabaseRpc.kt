@@ -54,6 +54,8 @@ data class RemoteEvent(
     @SerialName("h_month") val hMonth: String? = null,
     @SerialName("h_day") val hDay: Int? = null,
     val note: String? = null,
+    /** B-41, миграция 0004. Сервер без неё поле не присылает — тогда false. */
+    val monthly: Boolean = false,
 )
 
 @Serializable

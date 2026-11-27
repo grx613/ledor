@@ -20,6 +20,9 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.util.UUID
 
+/** Повтор события в редакторе (EVT-4, B-41): «Каждый месяц» — только у типа «Другое». */
+enum class Repeat { ONCE, YEARLY, MONTHLY }
+
 data class EditorState(
     val loaded: Boolean = false,
     val id: String? = null,
@@ -29,6 +32,7 @@ data class EditorState(
     val customLabel: String = "",
     val recurring: Boolean = true,
     val recurringManual: Boolean = false,
+    val monthly: Boolean = false,
     val input: CalendarKind = CalendarKind.GREGORIAN,
     val gDay: Int = LocalDate.now().dayOfMonth,
     val gMonth: Int = LocalDate.now().monthValue,
@@ -51,16 +55,25 @@ data class EditorState(
     val hYearInt: Int? get() = if (hYearUnknown) null else hYear.toIntOrNull()
     val inputYearKnown: Boolean get() = if (input == CalendarKind.GREGORIAN) gYearInt != null else hYearInt != null
 
-    fun eventDate(): EventDate = when (input) {
-        CalendarKind.GREGORIAN -> EventDate.fromGregorian(GregorianParts(gYearInt, gMonth, gDay), afterSunset && gYearInt != null)
-        CalendarKind.HEBREW -> EventDate.fromHebrew(HebrewParts(hYearInt, hMonth, hDay))
+    /** Каждый месяц (B-41): только «Другое», дата — григорианская, без захода солнца. */
+    val isMonthly: Boolean get() = monthly && recurring && type == EventType.OTHER
+    val repeat: Repeat get() = when { !recurring -> Repeat.ONCE; isMonthly -> Repeat.MONTHLY; else -> Repeat.YEARLY }
+
+    fun eventDate(): EventDate = when {
+        isMonthly -> EventDate.fromGregorian(GregorianParts(gYearInt, gMonth, gDay), false)
+        input == CalendarKind.GREGORIAN -> EventDate.fromGregorian(GregorianParts(gYearInt, gMonth, gDay), afterSunset && gYearInt != null)
+        else -> EventDate.fromHebrew(HebrewParts(hYearInt, hMonth, hDay))
     }
 
     /** Фактический календарь отметки с учётом правил I1/I2. */
-    fun effectiveObserve(): CalendarKind = if (!recurring || !inputYearKnown || effectiveBoth()) input else observeBy
+    fun effectiveObserve(): CalendarKind = when {
+        isMonthly -> CalendarKind.GREGORIAN
+        !recurring || !inputYearKnown || effectiveBoth() -> input
+        else -> observeBy
+    }
 
     /** «По обоим календарям» — только для повторяющихся событий с известным годом (B-1). */
-    fun effectiveBoth(): Boolean = recurring && inputYearKnown && observeBoth
+    fun effectiveBoth(): Boolean = recurring && !isMonthly && inputYearKnown && observeBoth
 
     fun toEvent(): Event = Event(
         id = id ?: "",
@@ -73,6 +86,7 @@ data class EditorState(
         date = eventDate(),
         note = note.trim().ifEmpty { null },
         observeBoth = effectiveBoth(),
+        monthly = isMonthly,
     )
 
     fun yearMissingForOneOff() = !recurring && !inputYearKnown
@@ -120,7 +134,7 @@ class EventEditorViewModel(app: Application) : AndroidViewModel(app) {
         val h = e.date.hebrew
         val base = EditorState(
             id = e.id, title = e.title, listId = e.listId, type = e.type, customLabel = e.customLabel.orEmpty(),
-            recurring = e.recurring, recurringManual = e.recurring != EventDefaults.recurring(e.type),
+            recurring = e.recurring, recurringManual = e.recurring != EventDefaults.recurring(e.type), monthly = e.isMonthly,
             input = e.date.inputCalendar, afterSunset = e.date.afterSunset, observeBy = e.observeBy, observeBoth = e.observeBoth, note = e.note.orEmpty(),
         )
         return base.copy(
@@ -144,9 +158,23 @@ class EventEditorViewModel(app: Application) : AndroidViewModel(app) {
 
     fun setTitle(v: String) = edit { it.copy(title = v.take(EventValidator.TITLE_MAX)) }
     fun setList(id: String) = edit { it.copy(listId = id) }
-    fun setType(t: EventType) = edit { if (it.recurringManual) it.copy(type = t) else it.copy(type = t, recurring = EventDefaults.recurring(t)) }
+    fun setType(t: EventType) = edit {
+        // «Каждый месяц» бывает только у «Другое»: при смене типа повтор становится ежегодным.
+        val s = if (t != EventType.OTHER && it.monthly) it.copy(monthly = false) else it
+        if (s.recurringManual) s.copy(type = t) else s.copy(type = t, recurring = EventDefaults.recurring(t))
+    }
     fun setCustomLabel(v: String) = edit { it.copy(customLabel = v.take(EventValidator.LABEL_MAX)) }
     fun setRecurring(v: Boolean) = edit { it.copy(recurring = v, recurringManual = true) }
+
+    /** EVT-4 для «Другое»: один раз / каждый год / каждый месяц. Каждый месяц — дата всегда григорианская (B-41). */
+    fun setRepeat(r: Repeat) = _state.update { s0 ->
+        val s = syncHebrewFromGregorian(s0)
+        val base = s.copy(recurring = r != Repeat.ONCE, monthly = r == Repeat.MONTHLY, recurringManual = true, dirty = true)
+        if (r != Repeat.MONTHLY) base
+        // Год нужен, чтобы знать первый раз; поле «Год неизвестен» для ежемесячного не показывается.
+        else base.copy(input = CalendarKind.GREGORIAN, afterSunset = false, observeBoth = false, gYearUnknown = false,
+            gYear = s.gYear.takeIf { !s.gYearUnknown && it.isNotBlank() } ?: LocalDate.now().year.toString())
+    }
     fun setInput(k: CalendarKind) = _state.update { s ->
         val synced = syncHebrewFromGregorian(s)
         synced.copy(input = k, dirty = true)

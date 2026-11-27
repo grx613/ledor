@@ -54,12 +54,17 @@ class DateFormatters(private val context: Context) {
      */
     fun occurrenceDates(o: Occurrence): List<String> {
         val greg = gregorianShortWeekday(o.date)
+        // Ежемесячное (B-41) — только григорианская дата: еврейская для платежа не нужна.
+        if (o.monthly) return listOf(greg)
         val heb = hebrewDate(o.hebrewDate)
         return if (o.calendar == CalendarKind.HEBREW) listOf(heb, greg) else listOf(greg, heb)
     }
 
     /** Одной строкой, главная дата первой: «28 Нисана 5787 (ср, 5 мая 2027)». */
-    fun occurrenceDatesInline(o: Occurrence): String = occurrenceDates(o).let { "${it[0]} (${it[1]})" }
+    fun occurrenceDatesInline(o: Occurrence): String = occurrenceDates(o).let { if (it.size == 1) it[0] else "${it[0]} (${it[1]})" }
+
+    /** «каждый месяц, 10-го» (B-41). */
+    fun monthlyDay(day: Int): String = context.getString(R.string.monthly_day, day)
 
     fun gregorian(d: LocalDate): String = fFull.format(d)
     fun gregorianWeekday(d: LocalDate): String = fWeekday.format(d)

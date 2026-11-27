@@ -154,7 +154,7 @@ ui/splash/ calendar/ events/ editor/ detail/ converter/ lists/ settings/ feedbac
 - «Сегодня» как поток: `todayFlow` — выдаёт дату при подписке, в локальную полночь и при возврате приложения на экран.
 - Строки интерфейса — только в ресурсах. `:domain` строк не содержит (возвращает типы и коды).
 
-## 6. Локальная база (Room, версия 1)
+## 6. Локальная база (Room, версия 2)
 
 ### Таблица `lists`
 
@@ -183,7 +183,7 @@ ui/splash/ calendar/ events/ editor/ detail/ converter/ lists/ settings/ feedbac
 Поля события 1:1 с серверной таблицей (`title`, `type`, `custom_label`, `recurring`, `observe_by`, `input_calendar`,
 `g_year`, `g_month`, `g_day`, `after_sunset`, `h_year`, `h_month`, `h_day`, `note`). `observe_by` — `HEBREW`,
 `GREGORIAN` или `BOTH`; при `BOTH` в домене `observeBoth = true`, а основной календарь равен `input_calendar`
-(отдельного столбца нет, миграция Room не понадобилась). Плюс:
+(отдельного столбца нет). Плюс:
 
 | Колонка | Тип | Описание |
 |---|---|---|
@@ -192,6 +192,12 @@ ui/splash/ calendar/ events/ editor/ detail/ converter/ lists/ settings/ feedbac
 | `rev` | INTEGER | серверная ревизия, 0 для несинхронизированных |
 | `sync_state` | TEXT | `SYNCED` / `PENDING_UPSERT` / `PENDING_DELETE` |
 | `updated_at` | INTEGER | epoch millis |
+| `monthly` | INTEGER NOT NULL DEFAULT 0 | каждый месяц (B-41); с версии 2 |
+
+Миграции Room — явные (`Migration`), схемы каждой версии — в `android/app/schemas/` (в git). 1 → 2 (Android 0.7.0):
+`ALTER TABLE events ADD COLUMN monthly INTEGER NOT NULL DEFAULT 0`. Тест `MonthlyAppTest` создаёт базу версии 1 по
+`1.json` и открывает её новой версией: если миграция разойдётся со схемой, Room упадёт при открытии — значит, приложение
+упало бы при обновлении.
 
 - В личном списке события всегда `SYNCED`, удаление — физическое.
 - В облачном списке: правка → `PENDING_UPSERT`; удаление → `PENDING_DELETE` (строка скрыта из интерфейса и

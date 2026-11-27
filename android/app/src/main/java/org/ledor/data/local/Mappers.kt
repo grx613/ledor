@@ -33,6 +33,7 @@ fun EventEntity.toDomain(): Event {
             gregorian = g, afterSunset = afterSunset, hebrew = h,
         ),
         note = note,
+        monthly = monthly,
     )
 }
 
@@ -56,4 +57,5 @@ fun Event.toEntity(syncState: String, rev: Long = 0, now: Long = System.currentT
     hMonth = date.hebrew?.month?.name,
     hDay = date.hebrew?.day,
     note = note?.trim()?.takeIf { it.isNotEmpty() },
+    monthly = isMonthly,
 )

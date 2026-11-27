@@ -156,8 +156,15 @@ data class Event(
     val date: EventDate,
     val note: String?,                   // до 500 символов
     val observeBoth: Boolean = false,    // отмечать и по второму календарю тоже
-)
+    val monthly: Boolean = false,        // каждый месяц (B-41), действует только вместе с isMonthly
+) {
+    val isMonthly: Boolean               // monthly && recurring && type == OTHER && date.gregorian != null
+}
 ```
+
+Ежемесячное событие хранится как ежегодное по григорианскому календарю (`recurring = true`, `observeBy = GREGORIAN`,
+`inputCalendar = GREGORIAN`) плюс `monthly = true`. Если флаг стоит, а условия `isMonthly` не выполнены (например, старая
+версия приложения сменила тип или сделала событие одноразовым), флаг не действует — событие считается как раньше.
 
 ### Инварианты (`EventValidator`, проверяются при сохранении и покрыты тестами)
 
@@ -280,6 +287,7 @@ data class Occurrence(
     val hebrewDate: HebrewDate,   // fromGregorian(date)
     val yearsSince: Int?,         // сколько лет исполняется; null, если исходный год неизвестен
     val startsEveBefore: Boolean, // true для наступления по еврейскому календарю: день начинается накануне вечером
+    val monthly: Boolean = false, // наступление ежемесячного события: показывается только григорианская дата
 ) { val calendar: CalendarKind }  // по какому календарю это наступление (HEBREW, если startsEveBefore)
 
 object OccurrenceCalculator {
@@ -306,6 +314,11 @@ object OccurrenceCalculator {
 7. **Ежегодное, `observeBoth = true`** (и обе даты с годом): наступления считаются по обоим календарям и объединяются.
    Если в каком-то году обе даты выпали на один день — остаётся одно наступление (по основному календарю).
    `next()` — ближайшее из двух рядов. В списке и календаре у такого события две строки в году, напоминания — для каждой.
+8. **Ежемесячное (`isMonthly`, B-41, `MonthlyRule`)**: в день `gregorian.day` каждого месяца; если такого дня в месяце нет
+   (31-е в апреле, 30-е в феврале) — **последний день месяца** (как 29 февраля → 28, D-11). Дата с известным годом —
+   первое наступление, раньше неё наступлений нет; без года — каждый месяц. `yearsSince = null`, `startsEveBefore = false`,
+   календарь — григорианский. `next()` — в этом месяце или в следующем; `nextEach()` — одно наступление.
+   Еврейский календарь не участвует. Тесты — `MonthlyTest`.
 
 «Через сколько дней» = `ChronoUnit.DAYS.between(today, occurrence.date)`; `today` — гражданская дата устройства.
 

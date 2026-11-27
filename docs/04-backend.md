@@ -27,8 +27,8 @@
 
 ## 2. Схема данных
 
-Миграции: `supabase/migrations/0001_init.sql` (списки, участники, события, лимиты) и `0002_feedback_observe_both.sql`
-(отзывы, `observe_by = 'BOTH'`). Новые изменения схемы — только новыми файлами `000N_….sql`: установочный скрипт применяет
+Миграции: `supabase/migrations/0001_init.sql` (списки, участники, события, лимиты), `0002_feedback_observe_both.sql`
+(отзывы, `observe_by = 'BOTH'`), `0003_change_pins.sql` (смена ПИН-кодов) и `0004_monthly.sql` (поле `monthly`, B-41). Новые изменения схемы — только новыми файлами `000N_….sql`: установочный скрипт применяет
 каждый файл один раз (таблица `public.ledor_migrations`). Расширение `pgcrypto` ставится в схему `extensions`.
 
 ```sql
@@ -80,7 +80,8 @@ create table app.events (
                                                 'KISLEV','TEVET','SHEVAT','ADAR','ADAR_I','ADAR_II')),
   h_day          smallint    check (h_day between 1 and 30),
   note           text        check (char_length(note) <= 500),
-  updated_at     timestamptz not null default now()
+  updated_at     timestamptz not null default now(),
+  monthly        boolean     not null default false           -- 0004: каждый месяц (B-41)
 );
 create index events_list_rev_idx on app.events(list_id, rev);
 
@@ -182,8 +183,15 @@ revoke all on schema app from anon, authenticated;
   "title": "Сара Коэн", "type": "BIRTHDAY", "custom_label": null, "recurring": true,
   "observe_by": "HEBREW", "input_calendar": "GREGORIAN",          // observe_by: HEBREW | GREGORIAN | BOTH
   "g_year": 1990, "g_month": 4, "g_day": 23, "after_sunset": false,
-  "h_year": 5750, "h_month": "NISAN", "h_day": 28, "note": null }
+  "h_year": 5750, "h_month": "NISAN", "h_day": 28, "note": null,
+  "monthly": false }                                             // 0004, B-41
 ```
+
+`monthly` (миграция 0004): `true` — событие повторяется каждый месяц; клиенты учитывают его только у повторяющегося
+события типа `OTHER` с григорианской датой. Совместимость: старые версии приложения поле не знают — не присылают его и
+пропускают в ответе. Если в `push_events` поля нет, значение у существующего события **не меняется** (правка из старой
+версии не превращает ежемесячное событие в ежегодное); у нового — `false`. Старая версия показывает ежемесячное событие
+как ежегодное на дату первого раза.
 
 **5. `push_events(p_list_id uuid, p_token text, p_events jsonb)`** — только `EDITOR`
 → `{"ok":true,"revision":18,"accepted":["uuid",…],"rejected":[{"id":"uuid","reason":"FOREIGN_ID"}]}`
@@ -194,7 +202,7 @@ revoke all on schema app from anon, authenticated;
 3. Для каждого события — `insert … on conflict (id) do update … where app.events.list_id = excluded.list_id`.
    Событие с `id`, принадлежащим **другому** списку, не трогается и попадает в `rejected` (`FOREIGN_ID`).
 4. Для `deleted = true`: строка превращается в «надгробие» с **обнулёнными персональными данными**
-   (`title = ''`, `custom_label`, `note`, все поля даты → `null`/значения по умолчанию). Остаются только `id`, `rev`, `deleted`.
+   (`title = ''`, `custom_label`, `note`, все поля даты и `monthly` → `null`/значения по умолчанию). Остаются только `id`, `rev`, `deleted`.
 5. Любое нарушение ограничений → весь пакет отклоняется: `INVALID_EVENT` (вставку обернуть в блок
    `begin … exception when others then return …`).
 
@@ -340,6 +348,8 @@ SUPABASE_URL=https://kalendar.bothub.chat SUPABASE_KEY=<публичный кл�
 14. `submit_feedback`: пустой текст → `FEEDBACK_EMPTY`, 2001 символ → `FEEDBACK_TOO_LONG`, обычный отзыв → успех.
 15. `change_pins`: читатель → `FORBIDDEN`; неверный Мастер-ПИН → `WRONG_PIN`; плохие и одинаковые коды → `INVALID_PIN`,
     `PINS_EQUAL`; успех → старый код не подходит, новые подходят, читатель видит новый код в `pull_changes`.
+16. `monthly` (миграция 0004): `true` сохраняется и возвращается; правка без поля (как из старой версии) его не меняет;
+    `false` сбрасывает; у всех событий в `pull_changes` поле есть.
 
 Один прогон создаёт три списка (основной, «чужой» для сценария 8 и третий для сценария 15), а лимит `create_list` — 10 в час с адреса:
 запускать smoke-тест не чаще 5 раз в час, иначе он упадёт с `RATE_LIMITED` (это не ошибка бэкенда).

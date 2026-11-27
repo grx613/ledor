@@ -79,7 +79,7 @@ fun EventRow(
                 }
             }
             Text(
-                listOfNotNull(typeLabel, age).joinToString(" · "),
+                listOfNotNull(typeLabel, age, event.takeIf { it.isMonthly }?.let { f.monthlyDay(it.date.gregorian!!.day) }).joinToString(" · "),
                 style = MaterialTheme.typography.bodySmall, color = KalendarColors.extra.forType(event.type), maxLines = 1, overflow = TextOverflow.Ellipsis,
             )
             if (first != null) {

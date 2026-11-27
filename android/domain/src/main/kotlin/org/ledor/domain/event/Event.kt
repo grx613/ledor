@@ -64,7 +64,15 @@ data class Event(
     val note: String?,
     /** Отмечать и по второму календарю тоже (B-1). Требует известного года; observeBy — основной календарь. */
     val observeBoth: Boolean = false,
-)
+    /** Повторять каждый месяц, а не каждый год (B-41). Действует только вместе с [isMonthly]. */
+    val monthly: Boolean = false,
+) {
+    /**
+     * Ежемесячное событие (B-41): только «Другое», повторяющееся, с григорианской датой. Иначе флаг не действует —
+     * например, если старая версия приложения сменила тип или сделала событие одноразовым.
+     */
+    val isMonthly: Boolean get() = monthly && recurring && type == EventType.OTHER && date.gregorian != null
+}
 
 enum class AnniversaryRule { BIRTHDAY, YAHRZEIT }
 enum class YahrzeitAdarPolicy { ADAR_I, ADAR_II }

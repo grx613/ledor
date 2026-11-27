@@ -306,12 +306,12 @@ private fun EventEntity.toRemote() = RemoteEvent(
     id = id, deleted = syncState == SyncState.PENDING_DELETE, rev = rev, title = title, type = type,
     customLabel = customLabel, recurring = recurring, observeBy = observeBy, inputCalendar = inputCalendar,
     gYear = gYear, gMonth = gMonth, gDay = gDay, afterSunset = afterSunset,
-    hYear = hYear, hMonth = hMonth, hDay = hDay, note = note,
+    hYear = hYear, hMonth = hMonth, hDay = hDay, note = note, monthly = monthly,
 )
 
 private fun RemoteEvent.toEntity(listId: String) = EventEntity(
     id = id, listId = listId, rev = rev, syncState = SyncState.SYNCED, title = title, type = type,
     customLabel = customLabel, recurring = recurring, observeBy = observeBy, inputCalendar = inputCalendar,
     gYear = gYear, gMonth = gMonth, gDay = gDay, afterSunset = afterSunset,
-    hYear = hYear, hMonth = hMonth, hDay = hDay, note = note,
+    hYear = hYear, hMonth = hMonth, hDay = hDay, note = note, monthly = monthly,
 )

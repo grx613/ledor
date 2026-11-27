@@ -6,6 +6,7 @@ import org.ledor.domain.calendar.HebrewDate
 import org.ledor.domain.calendar.HebrewMonth
 import java.time.LocalDate
 import java.time.Month
+import java.time.YearMonth
 
 object AnniversaryCalculator {
 
@@ -77,12 +78,43 @@ object AnniversaryCalculator {
     }
 }
 
+/**
+ * Ежемесячный повтор (B-41): тот же день каждого месяца; если такого дня в месяце нет (31-е, 30 февраля) — последний
+ * день месяца. Дата первого раза с известным годом — начало: раньше неё наступлений нет. Без года — каждый месяц.
+ */
+object MonthlyRule {
+    fun date(day: Int, ym: YearMonth): LocalDate = ym.atDay(minOf(day, ym.lengthOfMonth()))
+
+    /** Первое наступление или null, если год не указан. */
+    fun start(g: GregorianParts): LocalDate? = g.year?.let { date(g.day, YearMonth.of(it, g.month)) }
+
+    fun between(g: GregorianParts, from: LocalDate, toInclusive: LocalDate): List<LocalDate> {
+        val start = start(g)
+        val lo = if (start != null && start.isAfter(from)) start else from
+        if (toInclusive.isBefore(lo)) return emptyList()
+        return generateSequence(YearMonth.from(lo)) { it.plusMonths(1) }
+            .takeWhile { !it.isAfter(YearMonth.from(toInclusive)) }
+            .map { date(g.day, it) }
+            .filter { !it.isBefore(lo) && !it.isAfter(toInclusive) }
+            .toList()
+    }
+
+    fun next(g: GregorianParts, today: LocalDate): LocalDate {
+        val start = start(g)
+        val lo = if (start != null && start.isAfter(today)) start else today
+        val d = date(g.day, YearMonth.from(lo))
+        return if (d.isBefore(lo)) date(g.day, YearMonth.from(lo).plusMonths(1)) else d
+    }
+}
+
 data class Occurrence(
     val eventId: String,
     val date: LocalDate,
     val hebrewDate: HebrewDate,
     val yearsSince: Int?,
     val startsEveBefore: Boolean,
+    /** Наступление ежемесячного события (B-41): показывается только григорианская дата. */
+    val monthly: Boolean = false,
 ) {
     /** По какому календарю это наступление: еврейский день начинается накануне вечером. */
     val calendar: CalendarKind get() = if (startsEveBefore) CalendarKind.HEBREW else CalendarKind.GREGORIAN
@@ -124,8 +156,12 @@ object OccurrenceCalculator {
     /** Если в каком-то году обе даты совпали — одно наступление (по основному календарю). */
     private fun merge(list: List<Occurrence>): List<Occurrence> = list.distinctBy { it.date }.sortedBy { it.date }
 
+    private fun monthlyOccurrence(e: Event, date: LocalDate) =
+        Occurrence(e.id, date, M.fromGregorian(date), null, startsEveBefore = false, monthly = true)
+
     fun between(e: Event, from: LocalDate, toInclusive: LocalDate, policy: YahrzeitAdarPolicy): List<Occurrence> {
         if (toInclusive.isBefore(from)) return emptyList()
+        if (e.isMonthly) return MonthlyRule.between(e.date.gregorian!!, from, toInclusive).map { monthlyOccurrence(e, it) }
         if (!e.recurring) return listOfNotNull(oneOff(e)?.takeIf { !it.date.isBefore(from) && !it.date.isAfter(toInclusive) })
         val list = calendars(e).flatMap { cal ->
             if (cal == CalendarKind.HEBREW) {
@@ -139,12 +175,13 @@ object OccurrenceCalculator {
 
     fun next(e: Event, today: LocalDate, policy: YahrzeitAdarPolicy): Occurrence? {
         if (!e.recurring) return oneOff(e)?.takeIf { !it.date.isBefore(today) }
+        if (e.isMonthly) return monthlyOccurrence(e, MonthlyRule.next(e.date.gregorian!!, today))
         return merge(calendars(e).mapNotNull { nextBy(e, it, today, policy) }).firstOrNull()
     }
 
     /** Ближайшее наступление по каждому календарю события: для «по обоим» — две даты (совпавшие — одна). */
     fun nextEach(e: Event, today: LocalDate, policy: YahrzeitAdarPolicy): List<Occurrence> {
-        if (!e.recurring) return listOfNotNull(next(e, today, policy))
+        if (!e.recurring || e.isMonthly) return listOfNotNull(next(e, today, policy))
         return merge(calendars(e).mapNotNull { nextBy(e, it, today, policy) })
     }
 

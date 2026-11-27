@@ -146,27 +146,43 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                         isError = showErr && ValidationError.CUSTOM_LABEL_REQUIRED in errors, enabled = !s.readOnly,
                     )
                 }
-                SwitchRow(
+                if (s.type == EventType.OTHER) {
+                    // У «Другое» — три варианта повтора, в том числе каждый месяц (B-41).
+                    // Строками, а не сегментами: «Каждый месяц» не помещается в треть ширины на узком экране.
+                    Text(stringResource(R.string.field_repeat), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Repeat.entries.forEach { r ->
+                        RadioRow(
+                            stringResource(when (r) {
+                                Repeat.ONCE -> R.string.repeat_once
+                                Repeat.YEARLY -> R.string.repeat_yearly
+                                Repeat.MONTHLY -> R.string.repeat_monthly
+                            }),
+                            s.repeat == r, { vm.setRepeat(r) }, enabled = !s.readOnly,
+                        )
+                    }
+                } else SwitchRow(
                     stringResource(R.string.field_recurring), s.recurring, vm::setRecurring,
                     subtitle = stringResource(if (s.recurring) R.string.recurring_yes else R.string.recurring_no), enabled = !s.readOnly,
                 )
             }
 
             SectionCard(title = stringResource(R.string.field_date)) {
-                Segmented(
+                // Каждый месяц — только по григорианскому календарю (B-41).
+                if (!s.isMonthly) Segmented(
                     listOf(CalendarKind.GREGORIAN, CalendarKind.HEBREW), s.input,
                     label = { Text(stringResource(if (it == CalendarKind.GREGORIAN) R.string.gregorian_date else R.string.hebrew_date), maxLines = 1) },
                     onSelect = vm::setInput,
                 )
                 val dateErr = showErr && (ValidationError.DATE_INVALID in errors || ValidationError.YEAR_OUT_OF_RANGE in errors)
-                if (s.input == CalendarKind.GREGORIAN) {
+                if (s.input == CalendarKind.GREGORIAN || s.isMonthly) {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         SelectField(stringResource(R.string.day), s.gDay, (1..31).toList(), { it.toString() }, vm::setGDay, Modifier.weight(0.8f), isError = dateErr, showArrow = false)
                         SelectField(stringResource(R.string.month), s.gMonth, (1..12).toList(), { f.gregorianMonthName(it) }, vm::setGMonth, Modifier.weight(1.4f))
                         NumberField(stringResource(R.string.year), if (s.gYearUnknown) "" else s.gYear, vm::setGYear, Modifier.weight(1f), enabled = !s.gYearUnknown, isError = dateErr)
                     }
-                    CheckRow(stringResource(R.string.year_unknown), s.gYearUnknown, vm::setGYearUnknown)
-                    if (s.gYearInt != null) {
+                    if (s.isMonthly) Text(stringResource(R.string.monthly_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    else CheckRow(stringResource(R.string.year_unknown), s.gYearUnknown, vm::setGYearUnknown)
+                    if (s.gYearInt != null && !s.isMonthly) {
                         SunsetToggle(s.afterSunset, vm::setAfterSunset)
                         if (!s.readOnly) SunsetHint(runCatching { java.time.LocalDate.of(s.gYearInt!!, s.gMonth, s.gDay) }.getOrNull(), vm::setAfterSunset)
                     }
@@ -186,7 +202,7 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                 if (dateErr) Text(stringResource(R.string.err_date_invalid), color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
                 if (showErr && ValidationError.ONE_OFF_NEEDS_YEAR in errors) Text(stringResource(R.string.err_one_off_year), color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
 
-                HighlightCard {
+                if (!s.isMonthly) HighlightCard {
                     when {
                         s.input == CalendarKind.GREGORIAN && ed.hebrew?.year != null -> {
                             Text(stringResource(R.string.conv_hebrew_label), style = MaterialTheme.typography.labelMedium)
@@ -203,7 +219,7 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                 }
             }
 
-            if (s.recurring) SectionCard(title = stringResource(R.string.observe_title)) {
+            if (s.recurring && !s.isMonthly) SectionCard(title = stringResource(R.string.observe_title)) {
                 val yearKnown = s.inputYearKnown
                 val hebText = ed.hebrew?.let { f.hebrewDayMonth(it.day, it.month) }
                 val gregText = ed.gregorian?.let { f.gregorianDayMonth(java.time.LocalDate.of(2000, it.month, it.day)) }

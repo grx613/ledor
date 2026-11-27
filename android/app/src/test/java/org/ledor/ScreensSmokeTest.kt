@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.onAllNodesWithText
@@ -52,17 +53,17 @@ abstract class ScreensSmokeTest(private val lang: String) {
      */
     private val names: List<String> get() = when (lang.substringBefore('-')) {
         "en" -> listOf("Sarah Cohen", "Grandpa Aaron", "David", "Michael & Leah", "Hanukkah party", "Celebration",
-            "Cohen family", "Chabad of New York", "Beth Shalom community", "Yossi Levin", "Rabbi Shlomo")
+            "Cohen family", "Chabad of New York", "Beth Shalom community", "Yossi Levin", "Rabbi Shlomo", "Apartment", "Rent")
         "he" -> listOf("שרה כהן", "סבא אהרן", "דוד", "מיכאל ולאה", "מסיבת חנוכה", "חגיגה",
-            "משפחת כהן", "חב״ד ניו יורק", "קהילת בית שלום", "יוסי לוין", "הרב שלמה")
+            "משפחת כהן", "חב״ד ניו יורק", "קהילת בית שלום", "יוסי לוין", "הרב שלמה", "דירה", "שכר דירה")
         "yi" -> listOf("שׂרה כּהן", "זיידע אַהרן", "דוד", "מיכאל און לאה", "חנוכּה־מסיבה", "שׂימחה",
-            "משפּחה כּהן", "חב״ד ניו־יאָרק", "קהילה בית שלום", "יאָסי לעווין", "הרבֿ שלמה")
+            "משפּחה כּהן", "חב״ד ניו־יאָרק", "קהילה בית שלום", "יאָסי לעווין", "הרבֿ שלמה", "דירה", "דירה־געלט")
         "fr" -> listOf("Sarah Cohen", "Grand-père Aaron", "David", "Michel et Léa", "Fête de Hanoukka", "Fête",
-            "Famille Cohen", "Habad de New York", "Communauté Beth Shalom", "Yossi Lévine", "Rav Chlomo")
+            "Famille Cohen", "Habad de New York", "Communauté Beth Shalom", "Yossi Lévine", "Rav Chlomo", "Appartement", "Loyer")
         "es" -> listOf("Sara Cohen", "Abuelo Aarón", "David", "Miguel y Lea", "Fiesta de Janucá", "Fiesta",
-            "Familia Cohen", "Jabad de Nueva York", "Comunidad Bet Shalom", "Yosi Levin", "Rabino Shlomó")
+            "Familia Cohen", "Jabad de Nueva York", "Comunidad Bet Shalom", "Yosi Levin", "Rabino Shlomó", "Piso", "Alquiler")
         else -> listOf("Сара Коэн", "Дедушка Аарон", "Давид", "Миша и Лея", "Ханукальный вечер", "Праздник",
-            "Семья Коэн", "Община Хабад Нью-Йорк", "Община «Бейт Шалом»", "Йоси Левин", "Рав Шломо")
+            "Семья Коэн", "Община Хабад Нью-Йорк", "Община «Бейт Шалом»", "Йоси Левин", "Рав Шломо", "Квартира", "Квартплата")
     }
 
     private suspend fun seedData() {
@@ -269,6 +270,30 @@ abstract class ScreensSmokeTest(private val lang: String) {
         rule.onNodeWithText(s(R.string.first_year_title)).assertExists()
         rule.onNodeWithText(s(R.string.milestone_first_yahrzeit)).assertExists()
         shot("16_first_year")
+        // B-41: «каждый месяц» — строка, карточка и редактор.
+        kotlinx.coroutines.runBlocking {
+            container.eventRepository.save(Event("9", "local", names[11], EventType.OTHER, names[12], true, CalendarKind.GREGORIAN,
+                EventDate.fromGregorian(GregorianParts(2026, 1, 10), false), null, monthly = true))
+        }
+        rule.activity.onBackPressedDispatcher.onBackPressed()
+        rule.waitForIdle()
+        rule.onAllNodesWithText(s(R.string.tab_events))[0].performClick()
+        rule.waitForIdle()
+        rule.onAllNodesWithText(s(R.string.list_personal))[0].performClick()
+        rule.waitUntil(5_000) { rule.onAllNodesWithText(names[11]).fetchSemanticsNodes().isNotEmpty() }
+        shot("18_monthly_events")
+        rule.onAllNodesWithText(names[11])[0].performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(s(R.string.first_time)).assertExists()
+        shot("18b_monthly_detail")
+        rule.onNodeWithContentDescription(s(R.string.edit)).performClick()
+        // Редактор читает событие из базы в фоне — ждать, а не проверять сразу.
+        rule.waitUntil(5_000) { rule.onAllNodesWithText(s(R.string.monthly_hint), useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        rule.onAllNodesWithText(s(R.string.observe_title)).assertCountEquals(0)
+        shot("18c_monthly_editor")
+        rule.onNodeWithText(s(R.string.monthly_hint), useUnmergedTree = true).performScrollTo()
+        rule.waitForIdle()
+        shot("18d_monthly_editor_date")
     }
 }
 

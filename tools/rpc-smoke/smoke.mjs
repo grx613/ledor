@@ -194,3 +194,22 @@ test('14. change_pins (миграция 0003): только по Мастер-П
   assert.equal((await rpc('join_list', { p_name: name, p_pin: '27182818' })).role, 'EDITOR');
   assert.equal((await rpc('pull_changes', { p_list_id: c.list.id, p_token: reader, p_since: 0 })).read_pin, '0770');
 });
+
+test('15. monthly (миграция 0004): сохраняется; правка без поля (старое приложение) его не стирает', async () => {
+  const e = ev({ title: 'Квартира', type: 'OTHER', custom_label: 'Квартплата', observe_by: 'GREGORIAN', g_year: 2026, g_month: 12, g_day: 10,
+    h_year: 5787, h_month: 'KISLEV', h_day: 30, monthly: true });
+  const r = await rpc('push_events', { p_list_id: list.id, p_token: editorToken, p_events: [e] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const got = async () => (await rpc('pull_changes', { p_list_id: list.id, p_token: readerToken, p_since: 0 })).events.find((x) => x.id === e.id);
+  assert.equal((await got()).monthly, true);
+  const { monthly, ...old } = e;
+  assert.equal((await rpc('push_events', { p_list_id: list.id, p_token: editorToken, p_events: [{ ...old, title: 'Квартира 2' }] })).ok, true);
+  const after = await got();
+  assert.equal(after.title, 'Квартира 2');
+  assert.equal(after.monthly, true);
+  assert.equal((await rpc('push_events', { p_list_id: list.id, p_token: editorToken, p_events: [{ ...e, monthly: false }] })).ok, true);
+  assert.equal((await got()).monthly, false);
+  // У старых событий поле есть и равно false.
+  const p = await rpc('pull_changes', { p_list_id: list.id, p_token: readerToken, p_since: 0 });
+  assert.ok(p.events.every((x) => typeof x.monthly === 'boolean'));
+});

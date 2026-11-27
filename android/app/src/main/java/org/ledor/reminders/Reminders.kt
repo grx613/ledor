@@ -168,7 +168,11 @@ class NotificationFactory(private val baseContext: Context) {
             r.kind == ReminderKind.DAY -> context.getString(R.string.notif_day_title, type, e.title) to
                 listOfNotNull(
                     // Главная дата — первой (D-54).
-                    if (r.calendar == CalendarKind.GREGORIAN) "${f.gregorian(r.occurrenceDate)} · ${f.hebrewDate(hebrew)}." else "${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}.",
+                    when {
+                        e.isMonthly -> "${f.gregorian(r.occurrenceDate)}."
+                        r.calendar == CalendarKind.GREGORIAN -> "${f.gregorian(r.occurrenceDate)} · ${f.hebrewDate(hebrew)}."
+                        else -> "${f.hebrewDate(hebrew)} · ${f.gregorian(r.occurrenceDate)}."
+                    },
                     age,
                 ).joinToString(" ")
             r.calendar == CalendarKind.GREGORIAN && e.recurring -> context.getString(R.string.notif_eve_greg_title, type, e.title) to

@@ -14,6 +14,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
 import androidx.room.Upsert
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.flow.Flow
 
@@ -70,6 +71,8 @@ data class EventEntity(
     @ColumnInfo(name = "h_month") val hMonth: String?,
     @ColumnInfo(name = "h_day") val hDay: Int?,
     val note: String?,
+    /** Каждый месяц (B-41); с версии базы 2. */
+    @ColumnInfo(defaultValue = "0") val monthly: Boolean = false,
 )
 
 data class ListWithCount(@Embedded val list: ListEntity, @ColumnInfo(name = "event_count") val eventCount: Int)
@@ -139,7 +142,14 @@ interface EventDao {
     suspend fun deletePendingInList(listId: String)
 }
 
-@Database(entities = [ListEntity::class, EventEntity::class], version = 1, exportSchema = true)
+/** 1 → 2: поле «каждый месяц» у события (B-41). */
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE events ADD COLUMN monthly INTEGER NOT NULL DEFAULT 0")
+    }
+}
+
+@Database(entities = [ListEntity::class, EventEntity::class], version = 2, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun lists(): ListDao
     abstract fun events(): EventDao
@@ -155,6 +165,7 @@ abstract class AppDatabase : RoomDatabase() {
                         )
                     }
                 })
+                .addMigrations(MIGRATION_1_2)
                 .build()
     }
 }

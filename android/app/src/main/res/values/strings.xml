@@ -100,6 +100,13 @@
     <string name="field_recurring">Repeats every year</string>
     <string name="recurring_yes">Yearly event</string>
     <string name="recurring_no">One-time event</string>
+    <string name="field_repeat">Repeat</string>
+    <string name="repeat_once">Once</string>
+    <string name="repeat_yearly">Every year</string>
+    <string name="repeat_monthly">Every month</string>
+    <string name="monthly_day">every month on day %1$d</string>
+    <string name="monthly_hint">The first time is on this date, then every month on the same day. If a month has no such day, on its last day.</string>
+    <string name="first_time">First time</string>
     <string name="field_date">Date</string>
     <string name="field_note">Note</string>
     <string name="gregorian_date">Gregorian date</string>
