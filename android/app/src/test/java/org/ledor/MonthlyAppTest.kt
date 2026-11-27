@@ -95,6 +95,6 @@ class MonthlyAppTest {
         val o = Occurrence("m", LocalDate.of(2026, 12, 10), HebrewDate(5787, HebrewMonth.KISLEV, 20), null, startsEveBefore = false, monthly = true)
         assertEquals(listOf("чт, 10 декабря 2026"), f.occurrenceDates(o))
         assertEquals("чт, 10 декабря 2026", f.occurrenceDatesInline(o))
-        assertEquals("каждый месяц, 10-го", f.monthlyDay(10))
+        assertEquals("раз в месяц, 10-го", f.monthlyDay(10))
     }
 }

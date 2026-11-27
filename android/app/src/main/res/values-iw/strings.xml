@@ -103,10 +103,10 @@
     <string name="recurring_no">אירוע חד־פעמי</string>
     <string name="field_repeat">חזרה</string>
     <string name="repeat_once">פעם אחת</string>
-    <string name="repeat_yearly">כל שנה</string>
-    <string name="repeat_monthly">כל חודש</string>
-    <string name="monthly_day">בכל חודש ב־%1$d לחודש</string>
-    <string name="monthly_hint">הפעם הראשונה בתאריך הזה, ואחר כך בכל חודש באותו יום. אם אין יום כזה בחודש — ביום האחרון של החודש.</string>
+    <string name="repeat_yearly">פעם בשנה</string>
+    <string name="repeat_monthly">פעם בחודש</string>
+    <string name="monthly_day">פעם בחודש, ב־%1$d לחודש</string>
+    <string name="monthly_hint">הפעם הראשונה בתאריך הזה, ואחר כך פעם בחודש באותו יום. אם אין יום כזה בחודש — ביום האחרון של החודש.</string>
     <string name="first_time">הפעם הראשונה</string>
     <string name="field_date">תאריך</string>
     <string name="field_note">הערה</string>

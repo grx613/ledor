@@ -108,10 +108,10 @@
     <string name="recurring_no">Одноразовое событие</string>
     <string name="field_repeat">Повтор</string>
     <string name="repeat_once">Один раз</string>
-    <string name="repeat_yearly">Каждый год</string>
-    <string name="repeat_monthly">Каждый месяц</string>
-    <string name="monthly_day">каждый месяц, %1$d-го</string>
-    <string name="monthly_hint">Первый раз — в эту дату, дальше — каждый месяц в тот же день. Если в месяце нет такого дня — в последний день месяца.</string>
+    <string name="repeat_yearly">Раз в год</string>
+    <string name="repeat_monthly">Раз в месяц</string>
+    <string name="monthly_day">раз в месяц, %1$d-го</string>
+    <string name="monthly_hint">Первый раз — в эту дату, дальше — раз в месяц, в тот же день. Если в месяце нет такого дня — в последний день месяца.</string>
     <string name="first_time">Первый раз</string>
     <string name="field_date">Дата</string>
     <string name="field_note">Заметка</string>

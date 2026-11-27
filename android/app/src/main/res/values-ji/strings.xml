@@ -98,10 +98,10 @@
     <string name="recurring_no">איינמאָליקע געשעעניש</string>
     <string name="field_repeat">איבערחזרן</string>
     <string name="repeat_once">איין מאָל</string>
-    <string name="repeat_yearly">יעדעס יאָר</string>
-    <string name="repeat_monthly">יעדן חודש</string>
-    <string name="monthly_day">יעדן חודש, טאָג %1$d</string>
-    <string name="monthly_hint">דאָס ערשטע מאָל — אין דער דאַטע, דערנאָך — יעדן חודש אין דעם זעלבן טאָג. אויב אין חודש איז נישטאָ אַזאַ טאָג — אינעם לעצטן טאָג פֿון חודש.</string>
+    <string name="repeat_yearly">איין מאָל אַ יאָר</string>
+    <string name="repeat_monthly">איין מאָל אַ חודש</string>
+    <string name="monthly_day">איין מאָל אַ חודש, טאָג %1$d</string>
+    <string name="monthly_hint">דאָס ערשטע מאָל — אין דער דאַטע, דערנאָך — איין מאָל אַ חודש אין דעם זעלבן טאָג. אויב אין חודש איז נישטאָ אַזאַ טאָג — אינעם לעצטן טאָג פֿון חודש.</string>
     <string name="first_time">דאָס ערשטע מאָל</string>
     <string name="field_date">דאַטע</string>
     <string name="field_note">באַמערקונג</string>

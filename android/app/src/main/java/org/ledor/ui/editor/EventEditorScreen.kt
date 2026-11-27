@@ -148,7 +148,7 @@ fun EventEditorScreen(app: AppViewModel, nav: NavController, route: EditorRoute)
                 }
                 if (s.type == EventType.OTHER) {
                     // У «Другое» — три варианта повтора, в том числе каждый месяц (B-41).
-                    // Строками, а не сегментами: «Каждый месяц» не помещается в треть ширины на узком экране.
+                    // Строками, а не сегментами: «Раз в месяц» и переводы не помещаются в треть ширины на узком экране.
                     Text(stringResource(R.string.field_repeat), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Repeat.entries.forEach { r ->
                         RadioRow(

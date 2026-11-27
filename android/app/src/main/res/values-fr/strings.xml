@@ -103,10 +103,10 @@
     <string name="recurring_no">Événement unique</string>
     <string name="field_repeat">Répétition</string>
     <string name="repeat_once">Une fois</string>
-    <string name="repeat_yearly">Chaque année</string>
-    <string name="repeat_monthly">Chaque mois</string>
-    <string name="monthly_day">chaque mois, le %1$d</string>
-    <string name="monthly_hint">La première fois à cette date, puis chaque mois le même jour. Si le mois n’a pas ce jour, le dernier jour du mois.</string>
+    <string name="repeat_yearly">Une fois par an</string>
+    <string name="repeat_monthly">Une fois par mois</string>
+    <string name="monthly_day">une fois par mois, le %1$d</string>
+    <string name="monthly_hint">La première fois à cette date, puis une fois par mois le même jour. Si le mois n’a pas ce jour, le dernier jour du mois.</string>
     <string name="first_time">Première fois</string>
     <string name="field_date">Date</string>
     <string name="field_note">Note</string>
