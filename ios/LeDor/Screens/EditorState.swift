@@ -2,6 +2,9 @@ import AppCore
 import Domain
 import Foundation
 
+/// Повтор события в редакторе (EVT-4, B-41): «Раз в месяц» — только у типа «Другое».
+enum Repeat: CaseIterable { case once, yearly, monthly }
+
 /// Состояние редактора — как `EditorState` на Android.
 struct EditorState: Equatable {
     var id: String?
@@ -11,6 +14,7 @@ struct EditorState: Equatable {
     var customLabel = ""
     var recurring = true
     var recurringManual = false
+    var monthly = false
     var input = CalendarKind.gregorian
     var gDay: Int
     var gMonth: Int
@@ -36,21 +40,30 @@ struct EditorState: Equatable {
     var hYearInt: Int? { hYearUnknown ? nil : Int(hYear) }
     var inputYearKnown: Bool { input == .gregorian ? gYearInt != nil : hYearInt != nil }
 
+    /// Каждый месяц (B-41): только «Другое», дата — григорианская, без захода солнца.
+    var isMonthly: Bool { monthly && recurring && type == .other }
+    var repeatMode: Repeat { !recurring ? .once : isMonthly ? .monthly : .yearly }
+
     func eventDate() -> EventDate {
-        input == .gregorian
+        if isMonthly { return .fromGregorian(GregorianParts(year: gYearInt, month: gMonth, day: gDay), afterSunset: false) }
+        return input == .gregorian
             ? .fromGregorian(GregorianParts(year: gYearInt, month: gMonth, day: gDay), afterSunset: afterSunset && gYearInt != nil)
             : .fromHebrew(HebrewParts(year: hYearInt, month: hMonth, day: hDay))
     }
 
     /// «По обоим календарям» — только для повторяющихся событий с известным годом (B-1).
-    var effectiveBoth: Bool { recurring && inputYearKnown && observeBoth }
-    var effectiveObserve: CalendarKind { !recurring || !inputYearKnown || effectiveBoth ? input : observeBy }
+    var effectiveBoth: Bool { recurring && !isMonthly && inputYearKnown && observeBoth }
+    var effectiveObserve: CalendarKind {
+        if isMonthly { return .gregorian }
+        return !recurring || !inputYearKnown || effectiveBoth ? input : observeBy
+    }
 
     func toEvent() -> Event {
         Event(id: id ?? "", listId: listId, title: title.trimmingCharacters(in: .whitespacesAndNewlines), type: type,
               customLabel: type == .other ? customLabel.trimmingCharacters(in: .whitespacesAndNewlines) : nil, recurring: recurring,
               observeBy: effectiveObserve, date: eventDate(),
-              note: note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : note, observeBoth: effectiveBoth)
+              note: note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : note, observeBoth: effectiveBoth,
+              monthly: isMonthly)
     }
 
     var yearMissingForOneOff: Bool { !recurring && !inputYearKnown }
@@ -72,8 +85,22 @@ struct EditorState: Equatable {
     }
 
     mutating func setType(_ t: EventType) {
+        // «Раз в месяц» бывает только у «Другое»: при смене типа повтор становится ежегодным.
+        if t != .other { monthly = false }
         type = t
         if !recurringManual { recurring = EventDefaults.recurring(t) }
+    }
+
+    /// EVT-4 для «Другое»: один раз / раз в год / раз в месяц. Раз в месяц — дата всегда григорианская (B-41).
+    mutating func setRepeat(_ r: Repeat, today: CivilDate) {
+        syncOtherCalendar()
+        recurring = r != .once
+        monthly = r == .monthly
+        recurringManual = true
+        guard r == .monthly else { return }
+        // Год нужен, чтобы знать первый раз; поле «Год неизвестен» для ежемесячного не показывается.
+        if gYearUnknown || gYear.trimmingCharacters(in: .whitespaces).isEmpty { gYear = String(today.year) }
+        input = .gregorian; afterSunset = false; observeBoth = false; gYearUnknown = false
     }
 
     /// Если месяц не существует в новом году — подобрать соответствующий Адар.
@@ -87,7 +114,7 @@ struct EditorState: Equatable {
     static func from(_ e: Event, today: CivilDate) -> EditorState {
         var s = EditorState(today: today)
         s.id = e.id; s.title = e.title; s.listId = e.listId; s.type = e.type; s.customLabel = e.customLabel ?? ""
-        s.recurring = e.recurring; s.recurringManual = e.recurring != EventDefaults.recurring(e.type)
+        s.recurring = e.recurring; s.recurringManual = e.recurring != EventDefaults.recurring(e.type); s.monthly = e.isMonthly
         s.input = e.date.inputCalendar; s.afterSunset = e.date.afterSunset; s.observeBy = e.observeBy; s.observeBoth = e.observeBoth
         s.note = e.note ?? ""
         if let g = e.date.gregorian {

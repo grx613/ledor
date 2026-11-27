@@ -71,6 +71,8 @@ struct Formatters {
     /// по еврейскому. От вкладки списка порядок не зависит.
     func occurrenceDates(_ o: Occurrence) -> [String] {
         let greg = gregorianShortWeekday(o.date)
+        // Ежемесячное (B-41) — только григорианская дата: еврейская для платежа не нужна.
+        if o.monthly { return [greg] }
         let heb = hebrewDate(o.hebrewDate)
         return o.calendar == .hebrew ? [heb, greg] : [greg, heb]
     }
@@ -78,8 +80,11 @@ struct Formatters {
     /// Одной строкой, главная дата первой: «28 Нисана 5787 (ср, 5 мая 2027)».
     func occurrenceDatesInline(_ o: Occurrence) -> String {
         let d = occurrenceDates(o)
-        return "\(d[0]) (\(d[1]))"
+        return d.count == 1 ? d[0] : "\(d[0]) (\(d[1]))"
     }
+
+    /// «раз в месяц, 10-го» (B-41).
+    func monthlyDay(_ day: Int) -> String { L.f("monthly_day", day) }
 
     func relativeDays(_ days: Int) -> String {
         switch days {

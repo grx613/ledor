@@ -51,9 +51,38 @@ struct DataServiceTests {
         let json = try JSONSerialization.jsonObject(with: JSONEncoder().encode(RemoteEvent(id: "x"))) as! [String: Any]
         #expect(json["custom_label"] is NSNull)
         #expect(json["h_month"] is NSNull)
-        #expect(json.count == 17)
+        #expect(json.count == 18)
+        #expect(json["monthly"] as? Bool == false)
         let decoded = try JSONDecoder().decode(RemoteEvent.self, from: Data(#"{"id":"y"}"#.utf8))
-        #expect(decoded.observeBy == "HEBREW" && decoded.recurring && decoded.type == "OTHER")
+        #expect(decoded.observeBy == "HEBREW" && decoded.recurring && decoded.type == "OTHER" && !decoded.monthly)
+    }
+
+    /// B-41: «каждый месяц» сохраняется в файле и уходит на сервер; старый файл без поля — как раньше, «каждый год».
+    @Test func monthlyRoundTrip() throws {
+        let e = Event(id: "m1", listId: localListId, title: "Квартира", type: .other, customLabel: "Квартплата", recurring: true,
+                      observeBy: .gregorian, date: .fromGregorian(GregorianParts(year: 2027, month: 1, day: 31), afterSunset: false),
+                      note: nil, monthly: true)
+        let r = EventRecord(e, syncState: .pendingUpsert)
+        #expect(r.fields.monthly)
+        #expect(r.event == e)
+        #expect(r.event.isMonthly)
+        let json = try JSONSerialization.jsonObject(with: JSONEncoder().encode(r.remote)) as! [String: Any]
+        #expect(json["monthly"] as? Bool == true)
+        let back = try JSONDecoder().decode(EventRecord.self, from: JSONEncoder().encode(r))
+        #expect(back == r)
+        // Файл данных прежней версии: поля нет.
+        var old = try JSONSerialization.jsonObject(with: JSONEncoder().encode(r)) as! [String: Any]
+        var fields = old["fields"] as! [String: Any]
+        fields.removeValue(forKey: "monthly")
+        old["fields"] = fields
+        let legacy = try JSONDecoder().decode(EventRecord.self, from: JSONSerialization.data(withJSONObject: old))
+        #expect(!legacy.fields.monthly)
+        #expect(!legacy.event.isMonthly)
+        // Флаг не действует не у «Другое» — и не сохраняется.
+        var birthday = e
+        birthday.type = .birthday
+        birthday.customLabel = nil
+        #expect(!EventRecord(birthday, syncState: .synced).fields.monthly)
     }
 
     @Test func personalListEditing() async throws {

@@ -83,21 +83,36 @@ struct EventEditorScreen: View {
                     TextField(L.t("field_custom_label"), text: Binding(get: { st.customLabel },
                                                                         set: { s!.customLabel = String($0.prefix(EventValidator.labelMax)) }))
                     if attempted && errors.contains(.customLabelRequired) { errorText(L.t("field_custom_label")) }
+                } else {
+                    // У «Другое» вместо переключателя — «Повтор» ниже (B-41).
+                    Toggle(isOn: Binding(get: { st.recurring }, set: { s!.recurring = $0; s!.recurringManual = true })) {
+                        VStack(alignment: .leading) {
+                            Text(L.t("field_recurring"))
+                            Text(L.t(st.recurring ? "recurring_yes" : "recurring_no")).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant)
+                        }
+                    }
                 }
-                Toggle(isOn: Binding(get: { st.recurring }, set: { s!.recurring = $0; s!.recurringManual = true })) {
-                    VStack(alignment: .leading) {
-                        Text(L.t("field_recurring"))
-                        Text(L.t(st.recurring ? "recurring_yes" : "recurring_no")).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant)
+            }
+            if st.type == .other {
+                // У «Другое» — три варианта повтора, в том числе раз в месяц (B-41).
+                // Строками, а не сегментами: «Раз в месяц» и переводы не помещаются в треть ширины на узком экране.
+                Section(L.t("field_repeat")) {
+                    ForEach(Repeat.allCases, id: \.self) { r in
+                        radio(L.t(r == .once ? "repeat_once" : r == .yearly ? "repeat_yearly" : "repeat_monthly"),
+                              on: st.repeatMode == r, enabled: true, sub: nil) { s!.setRepeat(r, today: model.today) }
                     }
                 }
             }
             Section(L.t("field_date")) {
-                Picker("", selection: Binding(get: { st.input }, set: { s!.syncOtherCalendar(); s!.input = $0 })) {
-                    Text(L.t("gregorian_date")).tag(CalendarKind.gregorian)
-                    Text(L.t("hebrew_date")).tag(CalendarKind.hebrew)
+                // Раз в месяц — только по григорианскому календарю (B-41).
+                if !st.isMonthly {
+                    Picker("", selection: Binding(get: { st.input }, set: { s!.syncOtherCalendar(); s!.input = $0 })) {
+                        Text(L.t("gregorian_date")).tag(CalendarKind.gregorian)
+                        Text(L.t("hebrew_date")).tag(CalendarKind.hebrew)
+                    }
+                    .pickerStyle(.segmented)
                 }
-                .pickerStyle(.segmented)
-                if st.input == .gregorian {
+                if st.input == .gregorian || st.isMonthly {
                     HStack {
                         Picker(L.t("day"), selection: binding(\.gDay)) { ForEach(1...31, id: \.self) { Text(String($0)).tag($0) } }
                             .labelsHidden().frame(maxWidth: 70)
@@ -105,8 +120,12 @@ struct EventEditorScreen: View {
                             .labelsHidden()
                         yearField(binding(\.gYear), disabled: st.gYearUnknown)
                     }
-                    Toggle(L.t("year_unknown"), isOn: binding(\.gYearUnknown))
-                    if let y = st.gYearInt {
+                    if st.isMonthly {
+                        Text(L.t("monthly_hint")).font(Typography.rubik(12)).foregroundStyle(Palette.onSurfaceVariant)
+                    } else {
+                        Toggle(L.t("year_unknown"), isOn: binding(\.gYearUnknown))
+                    }
+                    if let y = st.gYearInt, !st.isMonthly {
                         SunsetToggle(afterSunset: binding(\.afterSunset))
                         if !st.readOnly {
                             SunsetHintView(date: CivilDate(year: y, month: st.gMonth, day: st.gDay)) { v in s!.afterSunset = v; s!.syncOtherCalendar() }
@@ -129,21 +148,23 @@ struct EventEditorScreen: View {
                 }
                 if dateErr { errorText(L.t("err_date_invalid")) }
                 if attempted && errors.contains(.oneOffNeedsYear) { errorText(L.t("err_one_off_year")) }
-                HighlightCard {
-                    if st.input == .gregorian, let h = ed.hebrew, h.year != nil {
-                        Text(L.t("conv_hebrew_label")).font(Typography.rubik(12, .medium))
-                        Text(f.hebrewParts(h)).font(Typography.rubik(20, .medium))
-                    } else if st.input == .hebrew, let g = ed.gregorian?.civilDate {
-                        Text(L.t("conv_gregorian_label")).font(Typography.rubik(12, .medium))
-                        Text(f.gregorianWeekday(g)).font(Typography.rubik(20, .medium))
-                        Text(L.f("conv_eve_note", f.gregorianDayMonth(g.adding(days: -1)))).font(Typography.rubik(12))
-                    } else {
-                        Text(L.t("conv_need_year"))
+                if !st.isMonthly {
+                    HighlightCard {
+                        if st.input == .gregorian, let h = ed.hebrew, h.year != nil {
+                            Text(L.t("conv_hebrew_label")).font(Typography.rubik(12, .medium))
+                            Text(f.hebrewParts(h)).font(Typography.rubik(20, .medium))
+                        } else if st.input == .hebrew, let g = ed.gregorian?.civilDate {
+                            Text(L.t("conv_gregorian_label")).font(Typography.rubik(12, .medium))
+                            Text(f.gregorianWeekday(g)).font(Typography.rubik(20, .medium))
+                            Text(L.f("conv_eve_note", f.gregorianDayMonth(g.adding(days: -1)))).font(Typography.rubik(12))
+                        } else {
+                            Text(L.t("conv_need_year"))
+                        }
                     }
+                    .listRowInsets(EdgeInsets())
                 }
-                .listRowInsets(EdgeInsets())
             }
-            if st.recurring { observeSection(st, ed, f) }
+            if st.recurring && !st.isMonthly { observeSection(st, ed, f) }
             let previews = previewOccurrences(st, ed)
             if !previews.isEmpty {
                 Section {

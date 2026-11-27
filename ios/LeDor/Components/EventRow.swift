@@ -85,7 +85,8 @@ struct EventRow: View {
                             .accessibilityLabel(L.t("pending_upload"))
                     }
                 }
-                Text([typeLabel, age].compactMap { $0 }.joined(separator: " · "))
+                Text([typeLabel, age, event.isMonthly ? event.date.gregorian.map { f.monthlyDay($0.day) } : nil]
+                        .compactMap { $0 }.joined(separator: " · "))
                     .font(Typography.rubik(12)).foregroundStyle(Palette.forType(event.type)).lineLimit(1)
                 if let first {
                     HStack(spacing: 4) {

@@ -49,9 +49,11 @@ public struct Event: Hashable, Codable, Sendable, Identifiable {
     public var note: String?
     /// Отмечать и по второму календарю тоже (B-1). Требует известного года; `observeBy` — основной календарь.
     public var observeBoth: Bool
+    /// Повторять каждый месяц, а не каждый год (B-41). Действует только вместе с `isMonthly`.
+    public var monthly: Bool
 
     public init(id: String, listId: String, title: String, type: EventType, customLabel: String?, recurring: Bool,
-                observeBy: CalendarKind, date: EventDate, note: String?, observeBoth: Bool = false) {
+                observeBy: CalendarKind, date: EventDate, note: String?, observeBoth: Bool = false, monthly: Bool = false) {
         self.id = id
         self.listId = listId
         self.title = title
@@ -62,7 +64,12 @@ public struct Event: Hashable, Codable, Sendable, Identifiable {
         self.date = date
         self.note = note
         self.observeBoth = observeBoth
+        self.monthly = monthly
     }
+
+    /// Ежемесячное событие (B-41): только «Другое», повторяющееся, с григорианской датой. Иначе флаг не действует —
+    /// например, если старая версия приложения сменила тип или сделала событие одноразовым.
+    public var isMonthly: Bool { monthly && recurring && type == .other && date.gregorian != nil }
 }
 
 public enum EventDefaults {

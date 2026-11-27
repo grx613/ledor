@@ -161,17 +161,25 @@ struct EventDetailScreen: View {
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
 
-                Section(L.t("original_date")) {
-                    if let g = e.date.gregorian {
-                        InfoLine(label: L.t("gregorian_date"),
-                                 value: f.gregorianParts(g) + (e.date.afterSunset ? " · " + L.t("after_sunset").lowercased() : ""))
+                if e.isMonthly, let g = e.date.gregorian {
+                    // B-41: первый раз и повтор; еврейская дата и заход солнца не нужны.
+                    Section {
+                        if g.year != nil { InfoLine(label: L.t("first_time"), value: f.gregorianParts(g)) }
+                        InfoLine(label: L.t("field_repeat"), value: f.monthlyDay(g.day).capitalizedFirst(L.locale))
                     }
-                    if let h = e.date.hebrew { InfoLine(label: L.t("hebrew_date"), value: f.hebrewParts(h)) }
-                    if e.recurring {
-                        InfoLine(label: L.t("observe_title"),
-                                 value: L.t(e.observeBoth ? "observe_both" : e.observeBy == .hebrew ? "observe_hebrew" : "observe_gregorian"))
-                    } else {
-                        InfoLine(label: L.t("field_recurring"), value: L.t("recurring_no"))
+                } else {
+                    Section(L.t("original_date")) {
+                        if let g = e.date.gregorian {
+                            InfoLine(label: L.t("gregorian_date"),
+                                     value: f.gregorianParts(g) + (e.date.afterSunset ? " · " + L.t("after_sunset").lowercased() : ""))
+                        }
+                        if let h = e.date.hebrew { InfoLine(label: L.t("hebrew_date"), value: f.hebrewParts(h)) }
+                        if e.recurring {
+                            InfoLine(label: L.t("observe_title"),
+                                     value: L.t(e.observeBoth ? "observe_both" : e.observeBy == .hebrew ? "observe_hebrew" : "observe_gregorian"))
+                        } else {
+                            InfoLine(label: L.t("field_recurring"), value: L.t("recurring_no"))
+                        }
                     }
                 }
 

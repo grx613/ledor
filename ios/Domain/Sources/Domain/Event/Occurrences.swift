@@ -1,3 +1,34 @@
+/// Ежемесячный повтор (B-41): тот же день каждого месяца; если такого дня в месяце нет (31-е, 30 февраля) — последний
+/// день месяца. Дата первого раза с известным годом — начало: раньше неё наступлений нет. Без года — каждый месяц.
+public enum MonthlyRule {
+    public static func date(_ day: Int, year: Int, month: Int) -> CivilDate {
+        CivilDate(year: year, month: month, day: min(day, CivilDate.daysInMonth(year: year, month: month)))!
+    }
+
+    /// Первое наступление или `nil`, если год не указан.
+    public static func start(_ g: GregorianParts) -> CivilDate? { g.year.map { date(g.day, year: $0, month: g.month) } }
+
+    public static func between(_ g: GregorianParts, from: CivilDate, to: CivilDate) -> [CivilDate] {
+        let lo = start(g).map { max($0, from) } ?? from
+        guard lo <= to else { return [] }
+        var result: [CivilDate] = []
+        var (y, m) = (lo.year, lo.month)
+        while (y, m) <= (to.year, to.month) {
+            let d = date(g.day, year: y, month: m)
+            if d >= lo && d <= to { result.append(d) }
+            (y, m) = m == 12 ? (y + 1, 1) : (y, m + 1)
+        }
+        return result
+    }
+
+    public static func next(_ g: GregorianParts, today: CivilDate) -> CivilDate {
+        let lo = start(g).map { max($0, today) } ?? today
+        let d = date(g.day, year: lo.year, month: lo.month)
+        if d >= lo { return d }
+        return lo.month == 12 ? date(g.day, year: lo.year + 1, month: 1) : date(g.day, year: lo.year, month: lo.month + 1)
+    }
+}
+
 /// Наступление события в конкретный день (`03` §7).
 public struct Occurrence: Hashable, Sendable {
     public let eventId: String
@@ -6,13 +37,16 @@ public struct Occurrence: Hashable, Sendable {
     public let yearsSince: Int?
     /// Еврейский день начинается накануне вечером.
     public let startsEveBefore: Bool
+    /// Наступление ежемесячного события (B-41): показывается только григорианская дата.
+    public let monthly: Bool
 
-    public init(eventId: String, date: CivilDate, hebrewDate: HebrewDate, yearsSince: Int?, startsEveBefore: Bool) {
+    public init(eventId: String, date: CivilDate, hebrewDate: HebrewDate, yearsSince: Int?, startsEveBefore: Bool, monthly: Bool = false) {
         self.eventId = eventId
         self.date = date
         self.hebrewDate = hebrewDate
         self.yearsSince = yearsSince
         self.startsEveBefore = startsEveBefore
+        self.monthly = monthly
     }
 
     /// По какому календарю это наступление.
@@ -61,8 +95,13 @@ public enum OccurrenceCalculator {
         return list.filter { seen.insert($0.date).inserted }.sorted { $0.date < $1.date }
     }
 
+    private static func monthlyOccurrence(_ e: Event, _ date: CivilDate) -> Occurrence {
+        Occurrence(eventId: e.id, date: date, hebrewDate: M.fromGregorian(date), yearsSince: nil, startsEveBefore: false, monthly: true)
+    }
+
     public static func between(_ e: Event, from: CivilDate, to: CivilDate, _ policy: YahrzeitAdarPolicy) -> [Occurrence] {
         if to < from { return [] }
+        if e.isMonthly, let g = e.date.gregorian { return MonthlyRule.between(g, from: from, to: to).map { monthlyOccurrence(e, $0) } }
         if !e.recurring { return oneOff(e).map { $0.date >= from && $0.date <= to ? [$0] : [] } ?? [] }
         let list = calendars(e).flatMap { cal -> [Occurrence] in
             cal == .hebrew
@@ -74,12 +113,13 @@ public enum OccurrenceCalculator {
 
     public static func next(_ e: Event, today: CivilDate, _ policy: YahrzeitAdarPolicy) -> Occurrence? {
         if !e.recurring { return oneOff(e).flatMap { $0.date >= today ? $0 : nil } }
+        if e.isMonthly, let g = e.date.gregorian { return monthlyOccurrence(e, MonthlyRule.next(g, today: today)) }
         return merge(calendars(e).compactMap { nextBy(e, $0, today, policy) }).first
     }
 
     /// Ближайшая дата по каждому календарю события (B-28, D-46): «по обоим» — две даты (совпавшие — одна), иначе — одна.
     public static func nextEach(_ e: Event, today: CivilDate, _ policy: YahrzeitAdarPolicy) -> [Occurrence] {
-        if !e.recurring { return next(e, today: today, policy).map { [$0] } ?? [] }
+        if !e.recurring || e.isMonthly { return next(e, today: today, policy).map { [$0] } ?? [] }
         return merge(calendars(e).compactMap { nextBy(e, $0, today, policy) })
     }
 

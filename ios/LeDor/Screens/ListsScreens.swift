@@ -216,7 +216,13 @@ struct ListJoinScreen: View {
             if !model.data.cloudConfigured { Section { Text(L.t("err_cloud_not_configured")) } }
             Section {
                 HStack {
-                    TextField(L.t("list_name"), text: Binding(get: { name }, set: { name = String($0.prefix(ListNameRules.max)); found = false; error = nil }))
+                    TextField(L.t("list_name"), text: $name)
+                        // «Найдено» сбрасывается, только когда название правда изменилось: при уходе фокуса из поля iOS
+                        // записывает то же значение, и раньше форма теряла поле ПИН-кода.
+                        .onChange(of: name) { old, new in
+                            if new.count > ListNameRules.max { name = String(new.prefix(ListNameRules.max)); return }
+                            if old != new { found = false; error = nil }
+                        }
                     if found { Image(systemName: "checkmark.circle.fill").foregroundStyle(Palette.success) }
                 }
             } header: { Text(L.t("join_explain")).textCase(nil) }

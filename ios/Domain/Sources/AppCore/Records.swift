@@ -60,9 +60,11 @@ public struct RemoteEvent: Codable, Hashable, Sendable {
     public var hMonth: String?
     public var hDay: Int?
     public var note: String?
+    /// B-41, миграция 0004. Сервер без неё и старый файл данных поля не содержат — тогда false.
+    public var monthly = false
 
     enum CodingKeys: String, CodingKey {
-        case id, deleted, rev, title, type, recurring, note
+        case id, deleted, rev, title, type, recurring, note, monthly
         case customLabel = "custom_label", observeBy = "observe_by", inputCalendar = "input_calendar"
         case gYear = "g_year", gMonth = "g_month", gDay = "g_day", afterSunset = "after_sunset"
         case hYear = "h_year", hMonth = "h_month", hDay = "h_day"
@@ -90,6 +92,7 @@ public struct RemoteEvent: Codable, Hashable, Sendable {
         hMonth = try c.decodeIfPresent(String.self, forKey: .hMonth)
         hDay = try c.decodeIfPresent(Int.self, forKey: .hDay)
         note = try c.decodeIfPresent(String.self, forKey: .note)
+        monthly = try c.decodeIfPresent(Bool.self, forKey: .monthly) ?? false
     }
 
     /// Пустые поля отправляются явным `null`, как на Android (`explicitNulls = true`).
@@ -112,6 +115,7 @@ public struct RemoteEvent: Codable, Hashable, Sendable {
         try c.encode(hMonth, forKey: .hMonth)
         try c.encode(hDay, forKey: .hDay)
         try c.encode(note, forKey: .note)
+        try c.encode(monthly, forKey: .monthly)
     }
 }
 
@@ -131,7 +135,7 @@ extension EventRecord {
         return Event(id: id, listId: listId, title: f.title, type: EventType.parse(f.type), customLabel: f.customLabel,
                      recurring: f.recurring, observeBy: observe,
                      date: EventDate(inputCalendar: input, gregorian: g, afterSunset: f.afterSunset, hebrew: h),
-                     note: f.note, observeBoth: f.observeBy == observeBoth)
+                     note: f.note, observeBoth: f.observeBy == observeBoth, monthly: f.monthly)
     }
 
     public init(_ e: Event, syncState: SyncState, rev: Int64 = 0, now: Date = Date()) {
@@ -155,6 +159,7 @@ extension EventRecord {
         f.hMonth = e.date.hebrew?.month.rawValue
         f.hDay = e.date.hebrew?.day
         f.note = clean(e.note)
+        f.monthly = e.isMonthly
         self.init(id: e.id, listId: e.listId, rev: rev, syncState: syncState, updatedAt: now, fields: f)
     }
 

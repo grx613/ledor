@@ -5124,6 +5124,47 @@
         }
       }
     },
+    "field_repeat": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repeat"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repetición"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répétition"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חזרה"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повтор"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איבערחזרן"
+          }
+        }
+      }
+    },
     "field_title": {
       "extractionState": "manual",
       "localizations": {
@@ -5243,6 +5284,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "געפֿינען"
+          }
+        }
+      }
+    },
+    "first_time": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primera vez"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première fois"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעם הראשונה"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Первый раз"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דאָס ערשטע מאָל"
           }
         }
       }
@@ -10454,6 +10536,88 @@
         }
       }
     },
+    "monthly_day": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "once a month on day %1$ld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "una vez al mes, el día %1$ld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "une fois par mois, le %1$ld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעם בחודש, ב־%1$ld לחודש"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "раз в месяц, %1$ld-го"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איין מאָל אַ חודש, טאָג %1$ld"
+          }
+        }
+      }
+    },
+    "monthly_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The first time is on this date, then once a month on the same day. If a month has no such day, on its last day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La primera vez en esta fecha, luego una vez al mes el mismo día. Si el mes no tiene ese día, el último día del mes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La première fois à cette date, puis une fois par mois le même jour. Si le mois n’a pas ce jour, le dernier jour du mois."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעם הראשונה בתאריך הזה, ואחר כך פעם בחודש באותו יום. אם אין יום כזה בחודש — ביום האחרון של החודש."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Первый раз — в эту дату, дальше — раз в месяц, в тот же день. Если в месяце нет такого дня — в последний день месяца."
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דאָס ערשטע מאָל — אין דער דאַטע, דערנאָך — איין מאָל אַ חודש אין דעם זעלבן טאָג. אויב אין חודש איז נישטאָ אַזאַ טאָג — אינעם לעצטן טאָג פֿון חודש."
+          }
+        }
+      }
+    },
     "move_local_events": {
       "extractionState": "manual",
       "localizations": {
@@ -12848,6 +13012,129 @@
           "stringUnit": {
             "state": "translated",
             "value": "מאָרגן (פֿון הײַנט אין אָוונט)"
+          }
+        }
+      }
+    },
+    "repeat_monthly": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once a month"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez al mes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois par mois"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעם בחודש"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Раз в месяц"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איין מאָל אַ חודש"
+          }
+        }
+      }
+    },
+    "repeat_once": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעם אחת"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один раз"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איין מאָל"
+          }
+        }
+      }
+    },
+    "repeat_yearly": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once a year"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez al año"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois par an"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעם בשנה"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Раз в год"
+          }
+        },
+        "yi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "איין מאָל אַ יאָר"
           }
         }
       }
